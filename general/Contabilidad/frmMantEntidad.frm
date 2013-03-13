@@ -1,21 +1,21 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Object = "{4D137D9C-00A6-4458-9B46-7E95DB76D55B}#9.0#0"; "TextFer.ocx"
 Begin VB.Form frmMantEntidad 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Entidad (Analìtico)"
-   ClientHeight    =   5550
+   ClientHeight    =   5880
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   7770
+   ClientWidth     =   8250
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   5550
-   ScaleWidth      =   7770
+   ScaleHeight     =   5880
+   ScaleWidth      =   8250
+   StartUpPosition =   2  'CenterScreen
    Begin TextFer.TxFer txtbuscar 
       Height          =   300
       Left            =   3525
@@ -41,7 +41,7 @@ Begin VB.Form frmMantEntidad
       Height          =   555
       Left            =   1028
       TabIndex        =   8
-      Top             =   4875
+      Top             =   5235
       Width           =   5715
       Begin VB.CommandButton cmdBotones 
          Caption         =   "&Nuevo"
@@ -90,22 +90,21 @@ Begin VB.Form frmMantEntidad
       End
    End
    Begin TabDlg.SSTab SSTab1 
-      Height          =   4815
+      Height          =   5175
       Left            =   -15
       TabIndex        =   14
       Top             =   45
-      Width           =   7710
-      _ExtentX        =   13600
-      _ExtentY        =   8493
+      Width           =   8070
+      _ExtentX        =   14235
+      _ExtentY        =   9128
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "frmMantEntidad.frx":0000
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label1"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "lblNumReg"
@@ -115,20 +114,26 @@ Begin VB.Form frmMantEntidad
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmMantEntidad.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "cAcepta"
-      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "Frame1"
       Tab(1).Control(1)=   "cCancela"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Frame1"
-      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(2)=   "cAcepta"
       Tab(1).ControlCount=   3
       Begin VB.Frame Frame1 
-         Height          =   3870
-         Left            =   30
+         Height          =   4710
+         Left            =   -75000
          TabIndex        =   15
          Top             =   330
          Width           =   6555
+         Begin VB.CheckBox Check1 
+            Alignment       =   1  'Right Justify
+            Caption         =   "Cerrado/Anulado/Suspendido"
+            Height          =   495
+            Left            =   120
+            TabIndex        =   27
+            Top             =   2280
+            Width           =   2775
+         End
          Begin VB.ComboBox cboTipoCont 
             Height          =   315
             ItemData        =   "frmMantEntidad.frx":0038
@@ -142,9 +147,9 @@ Begin VB.Form frmMantEntidad
             Height          =   1590
             Left            =   30
             TabIndex        =   24
-            Top             =   2235
-            Width           =   6495
-            _ExtentX        =   11456
+            Top             =   2955
+            Width           =   6375
+            _ExtentX        =   11245
             _ExtentY        =   2805
             View            =   2
             MultiSelect     =   -1  'True
@@ -196,7 +201,7 @@ Begin VB.Form frmMantEntidad
             Width           =   3780
             _ExtentX        =   6668
             _ExtentY        =   529
-            BackColor       =   -2147483639
+            BackColor       =   16777215
             Object.CausesValidation=   -1  'True
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "MS Sans Serif"
@@ -411,14 +416,14 @@ Begin VB.Form frmMantEntidad
       Begin VB.CommandButton cCancela 
          Caption         =   "&Cancelar"
          Height          =   345
-         Left            =   3465
+         Left            =   -68280
          TabIndex        =   7
-         Top             =   4305
+         Top             =   3840
          Width           =   1140
       End
       Begin TrueOleDBGrid70.TDBGrid TDBGrid1 
          Height          =   4110
-         Left            =   -74955
+         Left            =   45
          TabIndex        =   21
          Top             =   360
          Width           =   7605
@@ -541,9 +546,9 @@ Begin VB.Form frmMantEntidad
       Begin VB.CommandButton cAcepta 
          Caption         =   "&Aceptar"
          Height          =   345
-         Left            =   2025
+         Left            =   -68280
          TabIndex        =   6
-         Top             =   4305
+         Top             =   3240
          Width           =   1140
       End
       Begin VB.Label lblNumReg 
@@ -552,7 +557,7 @@ Begin VB.Form frmMantEntidad
          Caption         =   "lblNumReg"
          ForeColor       =   &H0000FFFF&
          Height          =   285
-         Left            =   -69315
+         Left            =   5685
          TabIndex        =   23
          Top             =   5460
          Width           =   915
@@ -560,7 +565,7 @@ Begin VB.Form frmMantEntidad
       Begin VB.Label Label1 
          Caption         =   "Nº Registros"
          Height          =   270
-         Left            =   -70260
+         Left            =   4740
          TabIndex        =   22
          Top             =   5475
          Width           =   900
@@ -593,14 +598,12 @@ Sub ConfiguraForm()
   cAcepta.Enabled = False
   lblNumReg.Caption = Empty
   FLAG_CHECK = False
-  Me.Width = 7860
-  Me.Height = 5925
 End Sub
 
 'FIXIT: Declare 'MuestraDatos' con un tipo de datos de enlace en tiempo de compilación     FixIT90210ae-R1672-R1B8ZE
 Private Function MuestraDatos(xCod As String)
  Dim SQL As String
-  SQL = "SELECT entidadcodigo,entidadrazonsocial,entidaddireccion,entidadtelefono,entidadruc,entidadtipocontri From ct_entidad "
+  SQL = "SELECT entidadcodigo,entidadrazonsocial,entidaddireccion,entidadtelefono,entidadruc,entidadtipocontri,proyectocierre From ct_entidad "
 '  SQL = SQL & "  AND WHERE entidadcodigo<>'00' "
   
   If IsNumeric(xCod) = True Then
@@ -655,7 +658,7 @@ Private Sub cmdBotones_Click(Index As Integer)
   Dim spos As Integer
   Dim SQL As String
   
-  On Error GoTo X
+  On Error GoTo x
   SSTab1.TabEnabled(1) = True
   
   Select Case Index
@@ -700,7 +703,7 @@ Private Sub cmdBotones_Click(Index As Integer)
   
   Exit Sub
    
-X:
+x:
   If Index = 2 And err.Number = -2147217873 Then
     MsgBox "Registro no podrá Eliminarse mientras exista Información en la Tablas Relacionadas", vbInformation, Caption
     VGCNx.RollbackTrans
@@ -722,6 +725,7 @@ Sub EditarValores()
     Else
       cboTipoCont.Text = Empty
     End If
+    Check1.Value = .Columns(6).Value
   End With
 End Sub
 
@@ -823,7 +827,7 @@ End Function
 Sub GrabaData()
   Dim xVarCbo As String
   Dim SQL As String
-  On Error GoTo X
+  On Error GoTo x
   
   SSTab1.TabEnabled(0) = True
   
@@ -831,7 +835,7 @@ Sub GrabaData()
   
   If modoinsert = True Then
     SQL = "INSERT CT_ENTIDAD(entidadcodigo,entidadrazonsocial,entidaddireccion,entidadtelefono,entidadruc,entidadtipocontri,usuariocodigo,fechaact) "
-    SQL = SQL & "VALUES ('" & UCase$(txt(0).Text) & "','" & UCase$(txt(1).Text) & "','" & UCase$(txt(2).Text) & "','" & txt(3).Text & "','" & txt(4).Text & "','" & xVarCbo & "','" & VGusuario & "','" & Date & "')"
+    SQL = SQL & "VALUES ('" & UCase$(txt(0).Text) & "','" & UCase$(txt(1).Text) & "','" & UCase$(txt(2).Text) & "','" & txt(3).Text & "','" & txt(4).Text & "','" & xVarCbo & "','" & VGUsuario & "','" & Date & "')"
     VGCNx.BeginTrans
     VGCNx.Execute (SQL)
     Call GrabaCheckTipoAnalitico
@@ -843,7 +847,8 @@ Sub GrabaData()
     SQL = SQL & "entidadtelefono='" & txt(3).Text & "',"
     SQL = SQL & "entidadruc='" & txt(4).Text & "',"
     SQL = SQL & "entidadtipocontri='" & xVarCbo & "',"
-    SQL = SQL & "usuariocodigo='" & VGusuario & "',fechaact='" & Format(Date, "dd/mm/yyyy") & "' "
+    SQL = SQL & "proyectocierre='" & Check1.Value & "',"
+    SQL = SQL & "usuariocodigo='" & VGUsuario & "',fechaact='" & Format(Date, "dd/mm/yyyy") & "' "
     SQL = SQL & "WHERE entidadcodigo='" & txt(0).Text & "'"
     VGCNx.BeginTrans
     VGCNx.Execute (SQL)
@@ -863,7 +868,7 @@ Sub GrabaData()
   i_filaorigen = -1
   Exit Sub
 
-X:
+x:
   If err.Number = -2147217873 Then
     MsgBox "Esta intentando registrar Código Analítico Existente " & err.Description, vbInformation, Caption
   Else
@@ -913,7 +918,7 @@ Sub GrabaCheckTipoAnalitico()
          Set rsX = VGCNx.Execute(SQL)
          If rsX(0) = 0 Then
            SQL = "INSERT ct_analitico (analiticocodigo,entidadcodigo,tipoanaliticocodigo,usuariocodigo,fechaact) "
-           SQL = SQL & "VALUES ('" & xCodAnalitico & "','" & Trim$(txt(0).Text) & "','" & Trim$(ListView1.ListItems.Item(i).Text) & "','" & VGusuario & "','" & Date & "')"
+           SQL = SQL & "VALUES ('" & xCodAnalitico & "','" & Trim$(txt(0).Text) & "','" & Trim$(ListView1.ListItems.Item(i).Text) & "','" & VGUsuario & "','" & Date & "')"
            VGCNx.Execute (SQL)
          End If
      End If

@@ -117,8 +117,8 @@ Begin VB.Form frmMantprovision
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "frmMantprovision_co.frx":1272
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameConsul"
-      Tab(0).Control(1)=   "FrameConsulta"
+      Tab(0).Control(0)=   "FrameConsulta"
+      Tab(0).Control(1)=   "FrameConsul"
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmMantprovision_co.frx":128E
@@ -412,7 +412,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3836
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   4063233
+            Format          =   107479041
             CurrentDate     =   37617
          End
          Begin VB.CheckBox ChkOperGrab 
@@ -486,7 +486,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   4063233
+            Format          =   107479041
             CurrentDate     =   37469
          End
          Begin MSComCtl2.DTPicker DtpFech_Ven 
@@ -498,7 +498,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   4063233
+            Format          =   107479041
             CurrentDate     =   37469
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_Moneda 
@@ -614,7 +614,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3889
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   4063233
+            Format          =   107479041
             CurrentDate     =   37489
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipRef 
@@ -669,7 +669,7 @@ Begin VB.Form frmMantprovision
             _ExtentY        =   503
             _Version        =   393216
             CheckBox        =   -1  'True
-            Format          =   4063233
+            Format          =   107479041
             CurrentDate     =   37601
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipCompra 
@@ -1423,7 +1423,7 @@ Begin VB.Form frmMantprovision
                Style           =   6
                Object.Width           =   2547
                MinWidth        =   2547
-               TextSave        =   "27/02/2013"
+               TextSave        =   "13/03/2013"
             EndProperty
             BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
                Object.Width           =   8819
@@ -2336,7 +2336,7 @@ If rb.RecordCount > 0 Then
     Wend
      FramePlanillas.Visible = False
      Ctr_Ayuempresa.xclave = Ctr_AyuEmpresaPlanillas.xclave
-     CtrAyu_Moneda.xclave = "01"
+     CtrAyu_moneda.xclave = "01"
 End If
 Call VGvardllgen.ActivaTab(1, 1, SSTabMant)
 Call HabilitarDetalle(True, FramDetalle, Me)
@@ -2470,7 +2470,7 @@ Private Sub CtrAyu_gastos_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
         CtrAyu_Ccosto.xclave = "00": CtrAyu_Ccosto.Ejecutar
     End If
     If ColecCampos("tipoanaliticocodigo") <> "00" Then
-       Ctr_AyuAnalitico.Filtro = " tipoanaliticocodigo='" & VGParamSistem.tipoanaliticocodigo & "' and  isnull(proyectocierre,0)=0 "
+       Ctr_AyuAnalitico.Filtro = " tipoanaliticocodigo='" & ColecCampos("tipoanaliticocodigo") & "' and  isnull(proyectocierre,0)=0 "
        Ctr_AyuAnalitico.Visible = True
        Lblanalitico.Visible = True
      Else
@@ -2557,7 +2557,7 @@ Set VGvardllgen = New dllgeneral.dll_general
     ChkActCaja.Value = 0
 End Sub
 Private Sub CtrAyu_Moneda_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
-    If CtrAyu_Moneda.xclave = "02" Then
+    If CtrAyu_moneda.xclave = "02" Then
         LeTcambio.Visible = True
         CmbTcambio.Visible = True
         lb_vcambio.Visible = True
@@ -2742,7 +2742,7 @@ Private Sub SSTabMant_Click(PreviousTab As Integer)
         End If
         CtrAyu_TipDoc.Requerido = True
         CtrAyu_TipRef.Requerido = False
-        CtrAyu_Moneda.Requerido = True
+        CtrAyu_moneda.Requerido = True
         CtrAyu_Proveedor.Requerido = True
         CtrAyu_TipCompra.Requerido = True
         CtrAyu_Modoprovi.Requerido = True
@@ -2765,7 +2765,7 @@ Private Sub SSTabMant_Click(PreviousTab As Integer)
         End If
         CtrAyu_TipDoc.Requerido = False
         CtrAyu_TipRef.Requerido = False
-        CtrAyu_Moneda.Requerido = False
+        CtrAyu_moneda.Requerido = False
         CtrAyu_Proveedor.Requerido = False
         CtrAyu_TipCompra.Requerido = False
         CtrAyu_Modoprovi.Requerido = False
@@ -3140,7 +3140,7 @@ emitedetraccion = 0
 
        If ChkActCaja.Value = 1 Or modoproviold = 1 Then
           VGCNx.BeginTrans
-          Call ClsMM1.asientotesoreriaenlinea(IMant, Xnumtesor, xcomprobconta, "C", CtrAyu_Moneda.xclave)
+          Call ClsMM1.asientotesoreriaenlinea(IMant, Xnumtesor, xcomprobconta, "C", CtrAyu_moneda.xclave)
           VGCNx.CommitTrans
        End If
     End If
