@@ -1,0 +1,17 @@
+SCC=This is a Source Code Control file
+
+[Planiset.vbp]
+SCC_Aux_Path=C:\ARCHIVOS DE PROGRAMA\MICROSOFT VISUAL STUDIO\COMMON\VSS,
+SCC_Project_Name="$/St@rsoft Planillas VB-Access", BAAAAAAA
+
+[Migracion.vbp]
+SCC_Project_Name = "$/PLANILLAS/Codigo Fuente", JEGAAAAA
+SCC_Aux_Path = "D:\vsource"
+
+[PlanisetTopsa.vbp]
+SCC_Project_Name = "$/PLANILLAS/Codigo Fuente", JEGAAAAA
+SCC_Aux_Path = "D:\vsource"
+
+[PlanillaSQL.vbp]
+SCC_Project_Name ="$/PLANILLAS/Codigo Fuente", JEGAAAAA
+SCC_Aux_Path =D:\vsource,

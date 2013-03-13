@@ -1,0 +1,5 @@
+Línea 22: la clase ctrlayuda_f.Ctr_Ayuda del control Ctr_AyudaSubAsiento no era una clase de control cargada.
+Línea 40: la clase ctrlayuda_f.Ctr_Ayuda del control Ctr_AyudaAsiento no era una clase de control cargada.
+Línea 58: la clase ctrlayuda_f.Ctr_Ayuda del control Ctr_Ayucuenta no era una clase de control cargada.
+Línea 101: la clase ctrlayuda_f.Ctr_Ayuda del control Ctr_Ayucuenta no era una clase de control cargada.
+Línea 120: la clase ctrlayuda_f.Ctr_Ayuda del control Ctr_AyudaEntidad no era una clase de control cargada.

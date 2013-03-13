@@ -1,0 +1,18 @@
+Línea 124: la clase MSComCtl2.DTPicker del control DTPfecha no era una clase de control cargada.
+Línea 136: la clase ctrlayuda_f.Ctr_Ayuda del control Ctr_AyuCajero no era una clase de control cargada.
+Línea 130: el nombre de la propiedad _ExtentX de DTPfecha no es válido.
+Línea 131: el nombre de la propiedad _ExtentY de DTPfecha no es válido.
+Línea 132: el nombre de la propiedad _Version de DTPfecha no es válido.
+Línea 133: el nombre de la propiedad Format de DTPfecha no es válido.
+Línea 134: el nombre de la propiedad CurrentDate de DTPfecha no es válido.
+Línea 143: el nombre de la propiedad _ExtentX de Ctr_AyuCajero no es válido.
+Línea 144: el nombre de la propiedad _ExtentY de Ctr_AyuCajero no es válido.
+Línea 145: el nombre de la propiedad XcodMaxLongitud de Ctr_AyuCajero no es válido.
+Línea 146: el nombre de la propiedad xcodwith de Ctr_AyuCajero no es válido.
+Línea 147: el nombre de la propiedad NomTabla de Ctr_AyuCajero no es válido.
+Línea 148: el nombre de la propiedad TituloAyuda de Ctr_AyuCajero no es válido.
+Línea 149: el nombre de la propiedad ListaCampos de Ctr_AyuCajero no es válido.
+Línea 150: el nombre de la propiedad XcodCampo de Ctr_AyuCajero no es válido.
+Línea 151: el nombre de la propiedad XListCampo de Ctr_AyuCajero no es válido.
+Línea 152: el nombre de la propiedad ListaCamposDescrip de Ctr_AyuCajero no es válido.
+Línea 153: el nombre de la propiedad ListaCamposText de Ctr_AyuCajero no es válido.

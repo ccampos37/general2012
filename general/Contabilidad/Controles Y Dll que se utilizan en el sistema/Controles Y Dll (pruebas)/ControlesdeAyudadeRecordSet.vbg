@@ -1,0 +1,4 @@
+VBGROUP 5.0
+StartupProject=PruebaControlesAyudaRecordSet.vbp
+Project=dllayudaRecordSet.vbp
+Project=controlayudaRecordSet.vbp

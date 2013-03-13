@@ -1,0 +1,8 @@
+Línea 29: la clase TextFer.TxFer del control txt no era una clase de control cargada.
+Línea 54: la clase ctrlayuda_f.Ctr_Ayuda del control CtrAyu_Libro no era una clase de control cargada.
+Línea 96: la clase TextFer.TxFer del control txt no era una clase de control cargada.
+Línea 123: la clase TextFer.TxFer del control txt no era una clase de control cargada.
+Línea 195: la clase ctrlayuda_f.Ctr_Ayuda del control CtrAyu_SubAsiento no era una clase de control cargada.
+Línea 214: la clase ctrlayuda_f.Ctr_Ayuda del control CtrAyu_Asiento no era una clase de control cargada.
+Línea 262: la clase TrueOleDBGrid70.TDBGrid del control TDBG_ConsultaDetalle no era una clase de control cargada.
+Línea 550: la clase TrueOleDBGrid70.TDBGrid del control TDBG_ConsultaCabecera no era una clase de control cargada.

@@ -1,0 +1,10 @@
+Línea 119: la clase axButtonControl.axButton del control axButton1 no era una clase de control cargada.
+Línea 198: la clase axButtonControl.axButton del control axButton2 no era una clase de control cargada.
+Línea 125: el nombre de la propiedad _ExtentX de axButton1 no es válido.
+Línea 126: el nombre de la propiedad _ExtentY de axButton1 no es válido.
+Línea 136: el nombre de la propiedad MaskColor de axButton1 no es válido.
+Línea 137: el nombre de la propiedad Style de axButton1 no es válido.
+Línea 204: el nombre de la propiedad _ExtentX de axButton2 no es válido.
+Línea 205: el nombre de la propiedad _ExtentY de axButton2 no es válido.
+Línea 215: el nombre de la propiedad MaskColor de axButton2 no es válido.
+Línea 216: el nombre de la propiedad Style de axButton2 no es válido.

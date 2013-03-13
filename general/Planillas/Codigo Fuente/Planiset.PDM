@@ -1,0 +1,268 @@
+[Root]
+Most Recent Package=Instalador de Planillas
+
+
+[Package|Instalador de Planillas|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\Entsoft\Instalar
+
+[Package|Instalador de Planillas|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Instalador de Planillas|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Instalador de Planillas|Files Found]
+BDAuxCom.mdb=C:\Entsoft\Data\BDAuxCom.mdb
+
+[Package|Instalador de Planillas|Files Released]
+
+[Package|Instalador de Planillas|Missing Dependency Information]
+C:\WINDOWS\SYSTEM\CRYSTL32.OCX=
+C:\Entsoft\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=
+C:\Entsoft\Apliset\OLEBuscador\ADOSrch.dll=
+C:\Program Files\Common Files\SYSTEM\ADO\MSADO20.TLB=
+C:\WINDOWS\SYSTEM\MSSCRIPT.OCX=
+C:\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=
+C:\InstPlan\ADOSrch.dll=
+
+[Package|Instalador de Planillas|Out-of-Date Dependency Information]
+C:\WINDOWS\SYSTEM\Tabctl32.ocx=
+C:\WINDOWS\SYSTEM\Comdlg32.ocx=
+C:\WINDOWS\SYSTEM\MSCOMCTL.OCX=
+C:\WINDOWS\SYSTEM\CRYSTL32.OCX=
+
+[Package|Instalador de Planillas|Files Added]
+bdauxcom.mdb=
+planilla.sql=
+c:\entsoft\wentpl.mdb=
+
+[Package|Instalador de Planillas|Files Removed]
+
+[Package|Instalador de Planillas|Files In Project]
+C:\Entsoft\Planiset.exe=Yes
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=Yes
+C:\WINDOWS\SYSTEM\OLEAUT32.DLL=Yes
+C:\WINDOWS\SYSTEM\OLEPRO32.DLL=Yes
+C:\WINDOWS\SYSTEM\ASYCFILT.DLL=Yes
+C:\WINDOWS\SYSTEM\STDOLE2.TLB=Yes
+C:\WINDOWS\SYSTEM\VB6ES.DLL=Yes
+C:\WINDOWS\SYSTEM\MSSCRIPT.OCX=Yes
+C:\WINDOWS\SYSTEM\MSSTDFMT.DLL=Yes
+C:\WINDOWS\SYSTEM\STDFTES.DLL=Yes
+C:\WINDOWS\SYSTEM\MSBIND.DLL=Yes
+C:\WINDOWS\SYSTEM\MSCOMCTL.OCX=Yes
+C:\WINDOWS\SYSTEM\MSCMCES.DLL=Yes
+C:\WINDOWS\SYSTEM\MSCOMCT2.OCX=Yes
+C:\WINDOWS\SYSTEM\MSCC2ES.DLL=Yes
+C:\WINDOWS\SYSTEM\Comdlg32.ocx=Yes
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=Yes
+C:\WINDOWS\SYSTEM\MSDATGRD.OCX=Yes
+C:\WINDOWS\SYSTEM\DATGDES.DLL=Yes
+C:\WINDOWS\SYSTEM\Tabctl32.ocx=Yes
+C:\WINDOWS\SYSTEM\TABCTES.DLL=Yes
+C:\WINDOWS\SYSTEM\MSDBRPTR.DLL=Yes
+C:\WINDOWS\SYSTEM\DBRPRES.DLL=Yes
+C:\WINDOWS\SYSTEM\CRYSTL32.OCX=Yes
+C:\WINDOWS\SYSTEM\MSFLXGRD.OCX=Yes
+C:\WINDOWS\SYSTEM\FLXGDES.DLL=Yes
+C:\WINDOWS\SYSTEM\VB6STKIT.DLL=Yes
+C:\Entsoft\WEntPl.mdb=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\InstPlan\ADOSrch.dll=Yes
+C:\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=Yes
+C:\WINDOWS\SYSTEM\CRPE32.DLL=Yes
+C:\WINDOWS\SYSTEM\IMPLODE.DLL=Yes
+C:\WINDOWS\SYSTEM\PG32.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\CO2C40EN.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT20.DLL=Yes
+C:\WINDOWS\Crystal\CRXLAT32.DLL=Yes
+C:\WINDOWS\SYSTEM\P2BBND.DLL=Yes
+C:\WINDOWS\SYSTEM\P3D4BDES.DLL=Yes
+C:\WINDOWS\SYSTEM\P2BDAO.DLL=Yes
+C:\WINDOWS\SYSTEM\P3BDAOES.DLL=Yes
+C:\WINDOWS\SYSTEM\P2CTDAO.DLL=Yes
+C:\WINDOWS\SYSTEM\P3CDAOES.DLL=Yes
+C:\WINDOWS\SYSTEM\P2IRDAO.DLL=Yes
+C:\WINDOWS\SYSTEM\P3RDAOES.DLL=Yes
+C:\WINDOWS\SYSTEM\P2SODBC.DLL=Yes
+C:\WINDOWS\SYSTEM\P3S4ODES.DLL=Yes
+C:\WINDOWS\Crystal\U2DDISK.DLL=Yes
+C:\WINDOWS\Crystal\X2D4DKES.DLL=Yes
+C:\WINDOWS\Crystal\U2DMAPI.DLL=Yes
+C:\WINDOWS\Crystal\X2D4MPES.DLL=Yes
+C:\WINDOWS\Crystal\U2FCR.DLL=Yes
+C:\WINDOWS\Crystal\X2F4CRES.DLL=Yes
+C:\WINDOWS\Crystal\U2FDIF.DLL=Yes
+C:\WINDOWS\Crystal\X2F4DFES.DLL=Yes
+C:\WINDOWS\Crystal\U2FHTML.DLL=Yes
+C:\WINDOWS\Crystal\X2F4HTES.DLL=Yes
+C:\WINDOWS\Crystal\U2FREC.DLL=Yes
+C:\WINDOWS\Crystal\X2F4RCES.DLL=Yes
+C:\WINDOWS\Crystal\U2FRTF.DLL=Yes
+C:\WINDOWS\Crystal\X2F4RTES.DLL=Yes
+C:\WINDOWS\Crystal\U2FSEPV.DLL=Yes
+C:\WINDOWS\Crystal\X2F4SVES.DLL=Yes
+C:\WINDOWS\Crystal\U2FTEXT.DLL=Yes
+C:\WINDOWS\Crystal\X2F4TXES.DLL=Yes
+C:\WINDOWS\Crystal\U2FWKS.DLL=Yes
+C:\WINDOWS\Crystal\X2F4WKES.DLL=Yes
+C:\WINDOWS\Crystal\U2FWORDW.DLL=Yes
+C:\WINDOWS\Crystal\X2F4WDES.DLL=Yes
+C:\WINDOWS\Crystal\U2FXLS.DLL=Yes
+C:\WINDOWS\Crystal\X2F4XLES.DLL=Yes
+C:\WINDOWS\SYSTEM\CR2C40ES.DLL=Yes
+C:\WINDOWS\SYSTEM\CC245ES.DLL=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Entsoft\Data\BDAuxCom.mdb=Yes
+C:\Entsoft\Data\Planilla.sql=Yes
+
+[Package|Instalador de Planillas|Configure Registry Files]
+Applicable=No
+
+[Package|Instalador de Planillas|Configure Remote Servers]
+Applicable=No
+
+[Package|Instalador de Planillas|Install Locations]
+C:\Entsoft\Planiset.exe=$(AppPath)
+C:\WINDOWS\SYSTEM\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\SYSTEM\VB6ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSSCRIPT.OCX=$(WinSysPath)
+C:\Program Files\Common Files\SYSTEM\ADO\MSADO20.TLB=$(WinSysPath)
+C:\Program Files\Common Files\SYSTEM\ADO\MSADOR15.DLL=$(CommonFilesSys)\ADO
+C:\WINDOWS\SYSTEM\MSSTDFMT.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\STDFTES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSBIND.DLL=$(WinSysPath)
+C:\Entsoft\Apliset\OLEBuscador\ADOSrch.dll=$(AppPath)
+C:\WINDOWS\SYSTEM\MSCOMCTL.OCX=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSCMCES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSCOMCT2.OCX=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSCC2ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\Comdlg32.ocx=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CMDLGES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSDATGRD.OCX=$(WinSysPath)
+C:\WINDOWS\SYSTEM\DATGDES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\Tabctl32.ocx=$(WinSysPath)
+C:\WINDOWS\SYSTEM\TABCTES.DLL=$(WinSysPath)
+C:\Entsoft\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=$(AppPath)
+C:\WINDOWS\SYSTEM\MSDBRPTR.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\DBRPRES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CRYSTL32.OCX=$(WinSysPath)
+C:\WINDOWS\SYSTEM\MSFLXGRD.OCX=$(WinSysPath)
+C:\WINDOWS\SYSTEM\FLXGDES.DLL=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\SYSTEM\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Entsoft\BDAuxCom.mdb=$(AppPath)
+C:\Entsoft\Planilla.sql=$(AppPath)
+C:\Entsoft\WEntPl.mdb=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\InstPlan\ADOSrch.dll=$(AppPath)
+C:\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=$(AppPath)
+C:\WINDOWS\SYSTEM\CRPE32.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\IMPLODE.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\PG32.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\CO2C40EN.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT20.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\Crystal\CRXLAT32.DLL=$(WinPath)\Crystal
+C:\WINDOWS\SYSTEM\P2BBND.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P3D4BDES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P2BDAO.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P3BDAOES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P2CTDAO.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P3CDAOES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P2IRDAO.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P3RDAOES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P2SODBC.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\P3S4ODES.DLL=$(WinSysPath)
+C:\WINDOWS\Crystal\U2DDISK.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2D4DKES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2DMAPI.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2D4MPES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FCR.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4CRES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FDIF.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4DFES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FHTML.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4HTES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FREC.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4RCES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FRTF.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4RTES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FSEPV.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4SVES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FTEXT.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4TXES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FWKS.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4WKES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FWORDW.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4WDES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\U2FXLS.DLL=$(WinPath)\Crystal
+C:\WINDOWS\Crystal\X2F4XLES.DLL=$(WinPath)\Crystal
+C:\WINDOWS\SYSTEM\CR2C40ES.DLL=$(WinSysPath)
+C:\WINDOWS\SYSTEM\CC245ES.DLL=$(WinSysPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Entsoft\Data\BDAuxCom.mdb=$(AppPath)
+C:\Entsoft\Data\Planilla.sql=$(AppPath)
+
+[Package|Instalador de Planillas|Configure Shared Files]
+Applicable=Yes
+C:\Entsoft\Planiset.exe=No
+C:\Entsoft\Apliset\OLEBuscador\ADOSrch.dll=No
+C:\Entsoft\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=No
+C:\Entsoft\BDAuxCom.mdb=No
+C:\Entsoft\Planilla.sql=No
+C:\Entsoft\WEntPl.mdb=No
+C:\InstPlan\ADOSrch.dll=No
+C:\Apliset\Control\Apliset Control Text 1.0\ApliCTxt.ocx=No
+C:\Archivos de programa\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=No
+C:\Entsoft\Data\BDAuxCom.mdb=No
+C:\Entsoft\Data\Planilla.sql=No
+
+[Package|Instalador de Planillas|Distribution]
+Type=multi
+Size=1.44 MB
+Title=St@rsoft Planillas
+
+[Package|Instalador de Planillas|IconGroups]
+Group0=Enterprise Solutions
+PrivateGroup0=Falso
+Parent0=$(Programs)
+
+[Package|Instalador de Planillas|Enterprise Solutions]
+Icon1=Planiset.exe
+Title1=St@rsoft Planillas
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Instalador de Planillas|Package]
+PackageFolder=C:\Entsoft\Instalar
+ProjectFolder=C:\Entsoft\Data
+ServerSideCab=
+File1=C:\Entsoft\Instalar\setup.exe
+File2=C:\Entsoft\Instalar\Setup.Lst
+File3=C:\Entsoft\Instalar\Planis1.CAB
+File4=C:\Entsoft\Instalar\Planis2.CAB
+File5=C:\Entsoft\Instalar\Planis3.CAB
+File6=C:\Entsoft\Instalar\Planis4.CAB
+File7=C:\Entsoft\Instalar\Planis5.CAB
+File8=C:\Entsoft\Instalar\Planis6.CAB
+File9=C:\Entsoft\Instalar\Planis7.CAB
+File10=C:\Entsoft\Instalar\Planis8.CAB
+File11=C:\Entsoft\Instalar\Planis9.CAB
+Handler1=PDWizard.FloppyDplySubWiz
+Handler2=PDWizard.FolderDplySubWiz
+Handler3=PDWizard.WebPostDplySubWiz

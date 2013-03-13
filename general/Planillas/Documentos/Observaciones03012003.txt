@@ -1,0 +1,16 @@
+03/01/2003
+
+-Reporte de Vacaciones Pendientes. 
+ Que personas le falta cumplir vacaciones 
+ dentro del mes.
+
+-Reporte consolidado por centro 
+ de costos tanto empleados y obreros
+ por conceptos de planilla.
+
+-Listado de retenciones de quinta
+ ordenarlo. 
+
+-Cambiarle el Nombre al reporte 
+ de conceptos en  la palabra 
+ egresos por (deducciones o egresos).

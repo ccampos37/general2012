@@ -1,0 +1,4 @@
+VBGROUP 5.0
+StartupProject=ContabilidadCamtex.vbp
+Project=..\Controles y Dlls\Dll y Ocx Compilados\dllayuda.vbp
+Project=..\Controles y Dlls\Dll y Ocx Compilados\controlayuda.vbp

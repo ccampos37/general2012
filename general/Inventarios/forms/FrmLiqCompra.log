@@ -1,0 +1,5 @@
+Línea 21: la clase MSComctlLib.StatusBar del control Panel no era una clase de control cargada.
+Línea 29: el nombre de la propiedad _ExtentX de Panel no es válido.
+Línea 30: el nombre de la propiedad _ExtentY de Panel no es válido.
+Línea 31: el nombre de la propiedad _Version de Panel no es válido.
+Línea 48: el nombre de la propiedad Panels de Panel no es válido.

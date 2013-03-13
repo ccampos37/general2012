@@ -1,0 +1,380 @@
+VERSION 5.00
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
+Begin VB.Form FrmClienteProdu 
+   Caption         =   "Informe de Venta de Cliente por Articulo"
+   ClientHeight    =   3195
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   5955
+   LinkTopic       =   "Form1"
+   ScaleHeight     =   3195
+   ScaleWidth      =   5955
+   StartUpPosition =   3  'Windows Default
+   Begin VB.ComboBox Combo1 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   1950
+      Style           =   2  'Dropdown List
+      TabIndex        =   3
+      Top             =   390
+      Width           =   2535
+   End
+   Begin VB.ComboBox Combo2 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   1950
+      Style           =   2  'Dropdown List
+      TabIndex        =   2
+      Top             =   900
+      Width           =   3615
+   End
+   Begin VB.CommandButton cmdAceptar 
+      Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Index           =   0
+      Left            =   1470
+      TabIndex        =   7
+      Top             =   2550
+      Width           =   1215
+   End
+   Begin VB.TextBox txt 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   0
+      Left            =   2910
+      TabIndex        =   6
+      TabStop         =   0   'False
+      Top             =   450
+      Visible         =   0   'False
+      Width           =   1365
+   End
+   Begin VB.TextBox txt 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   315
+      Index           =   1
+      Left            =   3270
+      TabIndex        =   5
+      TabStop         =   0   'False
+      Top             =   900
+      Visible         =   0   'False
+      Width           =   1455
+   End
+   Begin VB.CommandButton cmdCancelar 
+      Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Index           =   1
+      Left            =   3150
+      TabIndex        =   4
+      Top             =   2550
+      Width           =   1215
+   End
+   Begin Crystal.CrystalReport oCrystalReport 
+      Left            =   390
+      Top             =   2190
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   348160
+      PrintFileLinesPerPage=   60
+   End
+   Begin MSComCtl2.DTPicker DTHasta 
+      Height          =   345
+      Left            =   1950
+      TabIndex        =   0
+      Top             =   1830
+      Width           =   1455
+      _ExtentX        =   2566
+      _ExtentY        =   609
+      _Version        =   393216
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Format          =   62390273
+      CurrentDate     =   37518
+   End
+   Begin MSComCtl2.DTPicker DTDesde 
+      Height          =   375
+      Left            =   1950
+      TabIndex        =   1
+      Top             =   1350
+      Width           =   1455
+      _ExtentX        =   2566
+      _ExtentY        =   661
+      _Version        =   393216
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Format          =   62390273
+      CurrentDate     =   37518
+   End
+   Begin VB.Label lbl 
+      Caption         =   "Hasta"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   345
+      Index           =   2
+      Left            =   870
+      TabIndex        =   11
+      Top             =   1830
+      Width           =   765
+   End
+   Begin VB.Label lbl 
+      Caption         =   "Desde"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   1
+      Left            =   870
+      TabIndex        =   10
+      Top             =   1350
+      Width           =   735
+   End
+   Begin VB.Label lbl 
+      Caption         =   "Almacen"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   0
+      Left            =   870
+      TabIndex        =   9
+      Top             =   390
+      Width           =   1095
+   End
+   Begin VB.Label lbl 
+      Caption         =   "Cliente"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   3
+      Left            =   870
+      TabIndex        =   8
+      Top             =   870
+      Width           =   855
+   End
+End
+Attribute VB_Name = "FrmClienteProdu"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+Dim adll As New dllgeneral.dll_general
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+'Agregar:
+Dim busca As New dll_apisgen.dll_apis
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Private Sub cmdAceptar_Click(Index As Integer)
+On Error GoTo Errores
+ If DTDesde > DTHasta Then
+     MsgBox "Fecha Desde debe ser mayor a Fecha Hasta", vbInformation, "AVISO"
+     Exit Sub
+  End If
+                                   
+Screen.MousePointer = 11
+                                   
+With oCrystalReport
+        .Reset
+        .ReportFileName = VGParamSistem.Rutareport & "RepvtVtasxClientexArticulo.rpt"
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''
+        .LogOnServer "pdssql.dll", _
+         busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "SERVIDOR", ""), _
+         busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "BDDATOS", ""), _
+         busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "USUARIO", ""), _
+         busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "PASSW", "")
+        .Connect = _
+        "DSN=" & busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "SERVIDOR", "") & ";" & _
+        "DSQ=" & busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "BDDATOS", "") & ";" & _
+        "UID=" & busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "USUARIO", "") & ";" & _
+        "PWD=" & busca.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "PASSW", "")
+        '''''''''''''''''''''''''''''''''''''''''''''''''''
+        .DiscardSavedData = True
+        .Destination = crptToWindow
+        .WindowState = crptMaximized
+        .WindowShowPrintSetupBtn = True
+        .WindowShowExportBtn = True
+        .WindowShowZoomCtl = True
+        .WindowShowNavigationCtls = True
+        .WindowShowPrintBtn = True
+        .WindowTitle = "Ventas de Clientes por Articulo"
+        .Formulas(0) = "Empresa='" & VGparametros.nomempresa & "'"
+        .Formulas(1) = "Desde='" & DTDesde & "'"
+        .Formulas(2) = "Hasta='" & DTHasta & "'"
+        If Combo1.ListIndex <> -1 Then
+            .Formulas(3) = "Almacen='" & Combo1.Text & "'"
+        Else
+            .Formulas(3) = "Almacen='TODOS'"
+        End If
+        If Combo2.ListIndex <> -1 Then
+            .Formulas(4) = "Articulo='" & Combo2.Text & "'"
+        Else
+            .Formulas(4) = "Articulo='TODOS'"
+        End If
+        .StoredProcParam(0) = busca.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "BDDATOS", "")
+        .StoredProcParam(1) = IIf(Trim(txt(0)) = "", "%", Trim(txt(0)))
+        .StoredProcParam(2) = DTDesde
+        .StoredProcParam(3) = DTHasta
+        .StoredProcParam(4) = "%"
+        .StoredProcParam(5) = IIf(Trim(txt(1)) = "", "%", Trim(txt(1)))
+        .StoredProcParam(6) = "2"
+        .Action = 1
+        
+  End With
+  
+Screen.MousePointer = 1
+
+Exit Sub
+Errores:
+  Screen.MousePointer = 1
+  MsgBox "Error inesperado: " & Err.Number & "  " & Err.Description, vbExclamation
+  Err = 0
+  Exit Sub
+End Sub
+
+Private Sub cmdCancelar_Click(Index As Integer)
+    Unload Me
+End Sub
+
+Private Sub Combo1_Click()
+  If Combo1.ListIndex <> -1 Then
+    txt(0) = adll.ComboDato(Combo1.Text)
+  Else
+    txt(0) = ""
+  End If
+End Sub
+
+Private Sub Combo1_KeyDown(KeyCode As Integer, Shift As Integer)
+     If KeyCode = 13 Then SendKeys "{TAB}"
+End Sub
+
+Private Sub Combo2_Click()
+    If Combo2.ListIndex <> -1 Then
+        txt(1) = adll.ComboDato(Combo2.Text)
+    Else
+        txt(1) = ""
+    End If
+End Sub
+
+Private Sub Combo2_DropDown()
+   
+   Call adll.llenacombo _
+    (Combo2, "select clientecodigo,RTRIM(clienterazonsocial) " & _
+    "from vt_cliente " & _
+    "order by  clienterazonsocial", VGcnx)
+    
+End Sub
+
+Private Sub Combo2_KeyDown(KeyCode As Integer, Shift As Integer)
+     If KeyCode = 13 Then SendKeys "{TAB}"
+End Sub
+
+Private Sub DTDesde_KeyDown(KeyCode As Integer, Shift As Integer)
+      If KeyCode = 13 Then SendKeys "{TAB}"
+End Sub
+
+Private Sub DTHasta_KeyDown(KeyCode As Integer, Shift As Integer)
+      If KeyCode = 13 Then SendKeys "{TAB}"
+End Sub
+
+Private Sub Form_Load()
+    MostrarForm Me, "C2"
+    Call adll.llenacombo(Combo1, "select almacencodigo,almacendescripcion from vt_almacen", VGcnx)
+    DTDesde = Date
+    DTHasta = Date
+End Sub
+
+Private Sub txt_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+    If KeyCode = 13 Then SendKeys "{TAB}"
+End Sub
+
+

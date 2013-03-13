@@ -1,0 +1,21 @@
+*--------------------------*
+INSTALACION DE PLANILLAS
+*--------------------------*
+
+*VERSION EN ACCES (CONSIDERACIONES)
+
+*--AL NIVEL DEL "EJECUTABLE"--*   
+  -ADMINPER.SQL (PARA RECURSOS HUMANOS)
+  -PLANILLA.SQL (SOLO ES PLANILLA)
+  -PLANISET.EXE
+  -BDAUXCOM.MDB
+  -OBJBLANK.BMP
+
+*--AL NIVEL DEL "WENTPL.MDB" 
+  -LOGINMGM.JPG
+  -WENTPL.MDB
+  -REPORTES
+
+=============================================
+*VERSION EN SQL 7.0
+  

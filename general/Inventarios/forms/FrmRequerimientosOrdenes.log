@@ -1,0 +1,12 @@
+Línea 17: la propiedad Icon de frmRequerimientos tenía una referencia a archivo no válida.
+Línea 36: la propiedad Picture de CmdSalir tenía una referencia a archivo no válida.
+Línea 46: la propiedad Picture de cmdNue tenía una referencia a archivo no válida.
+Línea 56: la propiedad Picture de CmdEli tenía una referencia a archivo no válida.
+Línea 66: la propiedad Picture de cmdEdi tenía una referencia a archivo no válida.
+Línea 76: la propiedad Picture de cmdImp tenía una referencia a archivo no válida.
+Línea 331: la propiedad Picture de cmdNue2 tenía una referencia a archivo no válida.
+Línea 343: la propiedad Picture de cmdEli2 tenía una referencia a archivo no válida.
+Línea 355: la propiedad Picture de cmdEdi2 tenía una referencia a archivo no válida.
+Línea 366: la propiedad Picture de cmdGra tenía una referencia a archivo no válida.
+Línea 377: la propiedad Picture de CmdSalir2 tenía una referencia a archivo no válida.
+Línea 385: la propiedad Bindings de CrystalReport1 tenía una referencia a archivo no válida.

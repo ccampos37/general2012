@@ -1,0 +1,11 @@
+Línea 17: la clase TextFer.TxFer del control TxRecibo no era una clase de control cargada.
+Línea 23: el nombre de la propiedad _ExtentX de TxRecibo no es válido.
+Línea 24: el nombre de la propiedad _ExtentY de TxRecibo no es válido.
+Línea 25: el nombre de la propiedad Object.CausesValidation de TxRecibo no es válido.
+Línea 35: el nombre de la propiedad MaxLength de TxRecibo no es válido.
+Línea 36: el nombre de la propiedad Text de TxRecibo no es válido.
+Línea 37: el nombre de la propiedad ColorIlumina de TxRecibo no es válido.
+Línea 38: el nombre de la propiedad Valor de TxRecibo no es válido.
+Línea 39: el nombre de la propiedad NoCaracteres de TxRecibo no es válido.
+Línea 40: el nombre de la propiedad SignodeMiles de TxRecibo no es válido.
+Línea 41: el nombre de la propiedad NoRangoCadena de TxRecibo no es válido.

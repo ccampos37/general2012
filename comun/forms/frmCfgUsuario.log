@@ -1,0 +1,3 @@
+Línea 81: la clase MSDataGridLib.DataGrid del control DataGrid1 no era una clase de control cargada.
+Línea 191: la clase MSComctlLib.ImageList del control ImageList1 no era una clase de control cargada.
+Línea 213: la clase MSComctlLib.TreeView del control TreeView1 no era una clase de control cargada.
