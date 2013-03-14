@@ -49,7 +49,7 @@ Begin VB.Form Frmcliente
       _ExtentY        =   12091
       _Version        =   393216
       Style           =   1
-      Tab             =   2
+      Tab             =   1
       TabHeight       =   520
       WordWrap        =   0   'False
       TabCaption(0)   =   "Consulta"
@@ -61,12 +61,13 @@ Begin VB.Form Frmcliente
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Descripcion"
       TabPicture(1)   =   "FrmCliente.frx":001C
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "Fr1(0)"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
       TabCaption(2)   =   "Representante"
       TabPicture(2)   =   "FrmCliente.frx":0038
-      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Fr3(0)"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
@@ -248,7 +249,7 @@ Begin VB.Form Frmcliente
       Begin VB.Frame Fr3 
          Height          =   5535
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   65
          Top             =   720
          Width           =   9015
@@ -488,7 +489,7 @@ Begin VB.Form Frmcliente
       Begin VB.Frame Fr1 
          Height          =   6135
          Index           =   0
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   41
          Top             =   480
          Width           =   9255
@@ -554,7 +555,7 @@ Begin VB.Form Frmcliente
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Format          =   99155969
+               Format          =   96665601
                CurrentDate     =   37480
             End
             Begin MSComCtl2.DTPicker DTP_FecAct 
@@ -575,7 +576,7 @@ Begin VB.Form Frmcliente
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Format          =   99155969
+               Format          =   96665601
                CurrentDate     =   37480
             End
             Begin VB.ComboBox Combo7 
@@ -1394,7 +1395,6 @@ End Sub
 
 Private Sub cmdBotones_Click(Index As Integer)
    Dim lcondi As String
-'FIXIT: Declare 'OBJ' con un tipo de datos de enlace en tiempo de compilación              FixIT90210ae-R1672-R1B8ZE
    Dim OBJ As Object
    Dim SQL As String
 
@@ -1797,7 +1797,7 @@ Public Function GrabaCliente()
   
   opc = adll.VerificaDatoExistente(VGCNx, "select * from vt_cliente where clientecodigo='" & MBox(0) & "'")
   
-  s_fechaactivacion = IIf(IsNull(DTP_FecAct), "Null", DTP_FecAct)
+  s_fechaactivacion = IIf(IsNull(DTP_FecAct), "Null", Format(DTP_FecAct, "dd/mm/yyyy"))
   If Not IsNull(DTP_FecAct) Then
     s_fechaactivacion = "'" & s_fechaactivacion & "'"
   End If
