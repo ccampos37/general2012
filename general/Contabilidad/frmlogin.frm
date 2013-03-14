@@ -100,7 +100,7 @@ Begin VB.Form frmlogin
             _ExtentX        =   2699
             _ExtentY        =   503
             _Version        =   393216
-            Format          =   40763393
+            Format          =   109576193
             CurrentDate     =   37508
          End
          Begin TextFer.TxFer TxUser 
@@ -456,7 +456,7 @@ Dim tccambio As Double
     MDIPrincipal.StatusBar1.Panels(4).Text = "Tipo Cambio  (" & Format(tccambio, "#.000") & ")"
     VGUsuario = TxUser.Text
         Dim Clsmenu As New ClassMenu
-        Set Clsmenu.conexion = VGConfig
+        Set Clsmenu.Conexion = VGConfig
         VGtipo = contab
         Clsmenu.TablaMenu = "si_menu"
         Clsmenu.CrearTablaMenu
@@ -502,7 +502,8 @@ Dim cab As Boolean, det As Boolean, msg As String
 End Function
 
 Private Sub cmdCancelar_Click()
-    End
+    VGSalir = True
+    Unload Me
 End Sub
 
 Private Sub cmdGenerar_Click()
@@ -623,8 +624,8 @@ Private Function VERIFICAUSUARIO() As Boolean
     'VALIDANDO SI EXISTE EL PWD
     Pwd = CODIFICA(TxPwd.Text, 5)
     Set RSPASS = Nothing
-    RSPASS.Open "SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USUARIOCODIGO='" & TxUser.Text & _
-    "' AND USU_PASSWORD='" & Pwd & "'", VGConfig, adOpenKeyset
+    Set RSPASS = VGConfig.Execute("SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USUARIOCODIGO='" & TxUser.Text & _
+    "' AND USUarioPASSWORD='" & Pwd & "'")
     If RSPASS.RecordCount = 0 Then
         MsgBox "LA CONTRASEÑA ES INCORRECTA", vbExclamation
         TxPwd.SetFocus

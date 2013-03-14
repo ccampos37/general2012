@@ -64,5 +64,5 @@ FuncionesCobrar = 110, 145, 967, 485,
 FrmrepPlanCompensaciones = 110, 145, 744, 633, , 88, 116, 722, 604, C
 MainCobrar = 52, 52, 664, 362, 
 ClassMenu = 52, 52, 663, 336, 
-Frmcliente = 78, 78, 689, 362, Z, 52, 52, 701, 336, C
+Frmcliente = 78, 78, 689, 362, , 52, 52, 701, 336, C
 ModificarCampos = 26, 26, 817, 310, 

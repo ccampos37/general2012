@@ -1134,7 +1134,7 @@ Private Sub cAceptaA_Click()
        End If
     End If
     If Len(Trim(nnume)) > 0 Then
-       Set acmd.ActiveConnection = VGgeneral
+       Set acmd.ActiveConnection = VGGeneral
        acmd.CommandType = adCmdStoredProc
        acmd.CommandText = "vt_anulafactura_pro"
        acmd.CommandTimeout = 0
@@ -1156,10 +1156,10 @@ Private Sub cAceptaA_Click()
   Set rsctacte = VGCNx.Execute(" select * from vt_modoventa where modovtacodigo='" & rs!modovtacodigo & "'")
        If rsdeta.RecordCount > 0 And rsctacte!modovtactrlinventario = True Then
           Set rsctacte = Nothing
-          Set rsctacte = VGCNx.Execute(" select * from movalmcab where carftdoc='" & rs!pedidotipofac & "' and carfndoc='" & rs!pedidonrofact & "' and caalma='" & rs!almacencodigo & "'")
+          Set rsctacte = VGCNx.Execute(" select * from movalmcab where canroped='" & xDocu & "' and caalma='" & rs!almacencodigo & "'")
           If rsctacte.RecordCount > 0 Then
              SQL = "UPDATE movalmcab set casitgui='A' , usuariomodifica='" & g_usuario & "', fechamodifica=getdate() "
-             SQL = SQL & " Where carftdoc='" & rs!pedidotipofac & "' and carfndoc='" & rs!pedidonrofact & "'"
+             SQL = SQL & " Where canroped='" & xDocu & "'"
              SQL = SQL & " and caalma='" & rs!almacencodigo & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
               VGCNx.Execute (SQL)
               estadoinv = 1
@@ -1167,7 +1167,7 @@ Private Sub cAceptaA_Click()
            rsdeta.MoveFirst
            Do Until rsdeta.EOF
               If estadoinv = 1 Then
-                Set acmd.ActiveConnection = VGgeneral
+                Set acmd.ActiveConnection = VGGeneral
                 acmd.CommandType = adCmdStoredProc
                 acmd.CommandTimeout = 0
                 acmd.CommandText = "vt_actualizoalma_pro"

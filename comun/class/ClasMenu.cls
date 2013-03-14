@@ -44,7 +44,7 @@ End Sub
 Public Sub CrearTablaMenu()
     Dim SQL As String
     Dim Contr As Control
-    Dim RSAUX As New ADODB.Recordset
+    Dim rsaux As New ADODB.Recordset
     Dim ContNiv() As Integer
     Dim Niv As Integer, i As Integer, J As Integer
     Dim CodigoMenu As String
@@ -56,13 +56,13 @@ Public Sub CrearTablaMenu()
         " CONSTRAINT Clave PRIMARY KEY (Men_Codigo))"
         VGConfig.Execute SQL
       Else:
-        VGConfig.Execute "Delete From " & TablaMenu & " where tipodesistema=" & vgtipo
+        VGConfig.Execute "Delete From " & TablaMenu & " where tipodesistema=" & VGtipo
     End If
     'Redimensionando los Niveles
     ReDim ContNiv(MaxNivel + 1) 'MaxNivel : Funcion que determina el maximo nivel en el menu
     '*Armando El Menu
-    Set RSAUX = Nothing
-    RSAUX.Open TablaMenu, VGConfig, adOpenDynamic, adLockOptimistic
+    Set rsaux = Nothing
+    rsaux.Open TablaMenu, VGConfig, adOpenDynamic, adLockOptimistic
     For Each Contr In MDIPrincipal.Controls
         If TypeOf Contr Is Menu Then
            If Contr.Visible And RTrim$(Contr.Caption) <> "-" And UCase$(RTrim$(Contr.Caption)) <> "Salir" Then
@@ -73,19 +73,19 @@ Public Sub CrearTablaMenu()
                         ContNiv(J) = 0
                     Next
                 Next
-                RSAUX.AddNew
+                rsaux.AddNew
                 CodigoMenu = ""
                 For i = 0 To UBound(ContNiv) - 1
                     CodigoMenu = CodigoMenu & IIf(ContNiv(i) > 0, Format(ContNiv(i), "00"), "")
                 Next
-                RSAUX!tipodesistema = vgtipo
-                RSAUX!Men_CodIGO = RTrim$(CodigoMenu)
-                RSAUX!Men_Descri = DevCad("&", Contr.Caption)
-                RSAUX!Men_CodEdit = RTrim$(Contr.Name)
+                rsaux!tipodesistema = VGtipo
+                rsaux!Men_CodIGO = RTrim$(CodigoMenu)
+                rsaux!Men_Descri = DevCad("&", Contr.Caption)
+                rsaux!Men_CodEdit = RTrim$(Contr.Name)
                 
-                RSAUX!Men_Visible = -1
+                rsaux!Men_Visible = -1
                 
-                RSAUX.Update
+                rsaux.Update
             End If
         End If
     Next
@@ -109,26 +109,26 @@ Private Function MaxNivel() As Integer
         End If
     Next
 End Function
-Public Function NumChar(cadena As String, Caracter As String) As Integer
+Public Function NumChar(CADENA As String, Caracter As String) As Integer
 'Funcion Creada por Fernando Cossio
     Dim i As Integer, Cont As Integer
     Cont = 0
-    For i = 1 To Len(cadena)
-        If UCase$(Caracter) = Mid$(cadena, i, 1) Then
+    For i = 1 To Len(CADENA)
+        If UCase$(Caracter) = Mid$(CADENA, i, 1) Then
             Cont = Cont + 1
         End If
     Next
     NumChar = Cont
 End Function
 'FIXIT: Declare 'DevCad' con un tipo de datos de enlace en tiempo de compilación           FixIT90210ae-R1672-R1B8ZE
-Public Function DevCad(CaraterNo As String, cadena As String)
+Public Function DevCad(CaraterNo As String, CADENA As String)
     'Devuelve toda la cadena sin el caracter espcificado en el parametro
     'Funcion creada por fernando cossio
     Dim i As Integer, acum, Cont As String
   
-    For i = 1 To Len(cadena)
-        If UCase$(CaraterNo) <> Mid$(cadena, i, 1) Then
-            acum = acum + Mid$(cadena, i, 1)
+    For i = 1 To Len(CADENA)
+        If UCase$(CaraterNo) <> Mid$(CADENA, i, 1) Then
+            acum = acum + Mid$(CADENA, i, 1)
         End If
     Next
     DevCad = acum
@@ -137,25 +137,27 @@ Public Sub HabilitarMenuNom(Usuario As String)
 'Procedimiento creado por Fernando Cossio
     Dim RsMenUsu As New ADODB.Recordset
     Dim SQL As String
-    SQL = " SELECT a.usuariocodigo, " & _
-          " b.Men_CodEdit, a.MEN_HAB " & _
-          " From " & TabaMenuDet & " As a, " & TablaMenu & " as b " & _
-          " WHERE a.MEN_CODIGO=b.Men_Codigo And  " & _
-          " a.usuariocodigo='" & Usuario & "' and a.tipodesistema=b.tipodesistema "
-    RsMenUsu.Open SQL, VGConfig, adOpenKeyset, adLockReadOnly
+    SQL = " SELECT a.usuariocodigo, b.Men_CodEdit, a.MEN_HAB From " & TabaMenuDet & " a "
+    SQL = SQL & "inner join " & TablaMenu & " b on  a.MEN_CODIGO=b.Men_Codigo "
+    SQL = SQL & " where a.usuariocodigo='" & Usuario & "' and a.tipodesistema=b.tipodesistema "
+    SQL = SQL & " order by b.men_codedit "
+    Set RsMenUsu = VGConfig.Execute(SQL)
     Dim n As String
-    Do While Not RsMenUsu.EOF
-        For Each Contr In MDIPrincipal.Controls
-            If TypeOf Contr Is Menu Then
-                n = Contr.Name
-                If UCase$(n) = UCase$(RsMenUsu!Men_CodEdit) Then
-                     Contr.Enabled = IIf(RsMenUsu!MEN_HAB, True, False)
-                     Exit For
-                End If
-            End If
-        Next
-        RsMenUsu.MoveNext
-    Loop
+    If RsMenUsu.RecordCount > 0 Then
+       RsMenUsu.MoveFirst
+       Do While Not RsMenUsu.EOF
+           For Each Contr In MDIPrincipal.Controls
+               If TypeOf Contr Is Menu Then
+                   n = Contr.Name
+                   If UCase$(n) = UCase$(RsMenUsu!Men_CodEdit) Then
+                        Contr.Enabled = IIf(RsMenUsu!MEN_HAB, True, False)
+                        Exit For
+                 End If
+              End If
+          Next
+         RsMenUsu.MoveNext
+      Loop
+    End If
 End Sub
 Public Sub MenuTrue()
 'Procedimiento creado por Fernando Cossio
