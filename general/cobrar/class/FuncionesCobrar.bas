@@ -22,7 +22,7 @@ ErrorFecha:
       Case Adof: FechS = Null
    End Select
    
-End Sub
+End Function
 Public Sub ParametrosFuncionalesCobrar()
    Dim rs2 As New ADODB.Recordset
    Dim rb As New ADODB.Recordset
@@ -301,13 +301,3 @@ Dim monto As Double
     saldo = monto
   End If
 End Function
-
-
-Public Sub Main()
-Call ADOConectar
-   Call ParametrosFuncionalesCobrar
-   Call Cargar_Parametros_Funcionales
-   FrmIngreso.Show
-   'MDIPrincipal.Show
-End Sub
-

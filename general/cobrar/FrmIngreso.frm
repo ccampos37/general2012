@@ -238,7 +238,7 @@ Dim xsql As New ADODB.Recordset
      Else
        VGparametros.puntovta = Left(Combo2.Text, 2)
    End If
-   Set xsql = vgconfig.Execute("select * from usuario where USU_CODIGO='" & MText(0) & "'")
+   Set xsql = VGConfig.Execute("select * from usuario where USU_CODIGO='" & MText(0) & "'")
    If xsql.RecordCount = 0 Then
         MsgBox "Usuario No valido...Verifique!!!", vbInformation, MsgTitle
 'FIXIT: Reemplazar la función 'UCase' con la función 'UCase$'.                             FixIT90210ae-R9757-R1B8ZE
@@ -253,7 +253,7 @@ Dim xsql As New ADODB.Recordset
    Call adicionarcampos
    Call Cargar_Parametros_Funcionales
    Dim Clsmenu As New ClassMenu
-   Set Clsmenu.conexion = vgconfig
+   Set Clsmenu.Conexion = VGConfig
    VGtipo = cobrar
         Clsmenu.TablaMenu = "si_menu"
         Clsmenu.CrearTablaMenu
@@ -264,7 +264,6 @@ Dim xsql As New ADODB.Recordset
       MDIPrincipal.Show
       Unload Me
    Else
-      MostrarForm MDIPrincipal, "M"
       Call Cargar_Parametros_Funcionales
       Unload FrmIngreso
    End If
@@ -278,15 +277,15 @@ Private Sub cCancela_Click(Index As Integer)
    End If
 End Sub
 
-Private Sub Combo1_click()
+Private Sub Combo1_Click()
 Dim rs As ADODB.Recordset
 If Combo1.ListCount > 0 Then
     Set rs = New ADODB.Recordset
     SQL = "Select * from EMPRESA WHERE  EMP_RAZON_NOMBRE = '" & RTrim$(Combo1.Text) & "' "
     SQL = SQL & " and empresaflagcobrar= 1"
-    rs.Open (SQL), vgconfig, adOpenStatic
+    rs.Open (SQL), VGConfig, adOpenStatic
     If Not rs.EOF Then
-      VGCODEMPRESA = rs("EMP_CODIGO")
+      VGCodEmpresa = rs("EMP_CODIGO")
       VGparametros.NomEmpresa = rs("EMP_RAZON_NOMBRE")
       VGparametros.RucEmpresa = Escadena(rs("EMP_RUC_DOCUMENTO"))
       If rs!empresaflagcobrar = 1 Then VGparamsistem.bdempresa = rs!empresabasecobrar
@@ -327,7 +326,7 @@ End Sub
 Public Sub CargaIngreso()
  Dim reg1 As New ADODB.Recordset
  Dim X As String
- reg1.Open "Select * from EMPRESA where empresaflagcobrar= 1 order by EMP_CODIGO ", vgconfig, adOpenStatic
+ reg1.Open "Select * from EMPRESA where empresaflagcobrar= 1 order by EMP_CODIGO ", VGConfig, adOpenStatic
  If reg1.EOF Then Exit Sub
  If reg1.BOF Then Exit Sub
  Do While Not reg1.EOF

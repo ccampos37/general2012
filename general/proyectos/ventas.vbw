@@ -1,4 +1,4 @@
-Funcionesventas = 13, -14, 768, 436, 
+Funcionesventas = 13, -14, 768, 436, Z
 FrmListaPrecios = 39, 58, 684, 542, , 22, 22, 649, 483, C
 MDIPrincipal = 44, 58, 799, 508, , 22, 29, 777, 479, C
 FrmProcesolista = 198, 198, 821, 652, , 176, 176, 799, 630, C
@@ -64,7 +64,7 @@ FrmAyudaPedidos = 44, 58, 800, 509, , 0, 0, 627, 461, C
 FrmImpCaja = 0, 0, 0, 0, C, 22, 22, 649, 483, C
 FrmFv = 0, 0, 0, 0, C, 44, 44, 671, 505, C
 FrmConPro = 88, 116, 735, 604, , 66, 66, 693, 527, C
-ClassMenu = 0, 0, 0, 0, C
+ClassMenu = 52, 52, 881, 336, 
 frmConceptosdePago = 0, 0, 612, 310, , 88, 88, 715, 549, C
 FrmImpresora = 0, 0, 0, 0, C, 110, 110, 737, 571, C
 Impresora = 176, 176, 799, 630, C

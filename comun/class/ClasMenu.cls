@@ -25,7 +25,7 @@ Public Sub CrearTablasSeguridad()
         SQL = "" & _
         " Create Table " & TablaUsu & " ( " & _
         " usuariocodigo Text(5)  , Emp_Codigo Text(15) , USUARIOPASSWORD Text(8), " & _
-        " Usu_Nivel Text(1), usu_Nombre Text(32), " & _
+        " Usu_Nivel Text(1), USUARIOCODIGO Text(32), " & _
         " CONSTRAINT Clave " & _
         " PRIMARY KEY (usuariocodigo, Emp_Codigo)) "
         conexion.Execute SQL
@@ -65,9 +65,7 @@ Public Sub CrearTablaMenu()
     RSAUX.Open TablaMenu, VGConfig, adOpenDynamic, adLockOptimistic
     For Each Contr In MDIPrincipal.Controls
         If TypeOf Contr Is Menu Then
-'FIXIT: 'Caption' no es una propiedad del objeto genérico 'Control' en Visual Basic .NET. Para obtener acceso a 'Caption', declare 'Contr' utilizando su tipo real en lugar de 'Control'     FixIT90210ae-R1460-RCFE85
-'FIXIT: 'Caption' no es una propiedad del objeto genérico 'Control' en Visual Basic .NET. Para obtener acceso a 'Caption', declare 'Contr' utilizando su tipo real en lugar de 'Control'     FixIT90210ae-R1460-RCFE85
-            If Contr.Visible And RTrim$(Contr.Caption) <> "-" And UCase$(RTrim$(Contr.Caption)) <> "Salir" Then
+           If Contr.Visible And RTrim$(Contr.Caption) <> "-" And UCase$(RTrim$(Contr.Caption)) <> "Salir" Then
                 Niv = NumChar(Contr.Name, "_")
                 For i = Niv To Niv
                     ContNiv(i) = ContNiv(i) + 1
@@ -82,7 +80,6 @@ Public Sub CrearTablaMenu()
                 Next
                 RSAUX!tipodesistema = vgtipo
                 RSAUX!Men_CodIGO = RTrim$(CodigoMenu)
-'FIXIT: 'Caption' no es una propiedad del objeto genérico 'Control' en Visual Basic .NET. Para obtener acceso a 'Caption', declare 'Contr' utilizando su tipo real en lugar de 'Control'     FixIT90210ae-R1460-RCFE85
                 RSAUX!Men_Descri = DevCad("&", Contr.Caption)
                 RSAUX!Men_CodEdit = RTrim$(Contr.Name)
                 
@@ -94,6 +91,7 @@ Public Sub CrearTablaMenu()
     Next
     Exit Sub
 errortab:
+'MsgBox Err.Description
 Resume Next
 End Sub
 Private Function MaxNivel() As Integer

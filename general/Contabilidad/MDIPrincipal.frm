@@ -232,36 +232,43 @@ Begin VB.MDIForm MDIPrincipal
          Caption         =   "Grabar"
          Index           =   2
          Shortcut        =   ^G
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Eliminar"
          Index           =   3
          Shortcut        =   ^E
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Modificar"
          Index           =   4
          Shortcut        =   ^U
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Cancelar"
          Index           =   5
          Shortcut        =   {F3}
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Insertar detalle"
          Index           =   6
          Shortcut        =   {F5}
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Eliminar detalle"
          Index           =   7
          Shortcut        =   {F6}
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Imprimir"
          Index           =   8
          Shortcut        =   ^P
+         Visible         =   0   'False
       End
       Begin VB.Menu mnu00_01 
          Caption         =   "Avanzados"
@@ -910,7 +917,7 @@ Private Sub mnu05_02_Click()
     frmParametros.Show
 End Sub
 Private Sub mnu05_03_Click()
-    frmCfgUsuario.Show
+   Frmusuarios.Show
 End Sub
 
 Private Sub mnu05_04_01_Click()

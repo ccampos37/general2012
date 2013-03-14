@@ -1,10 +1,10 @@
 VERSION 5.00
-Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
 Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
 Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
+Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
 Begin VB.Form Frmcliente 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Clientes"
@@ -49,26 +49,26 @@ Begin VB.Form Frmcliente
       _ExtentY        =   12091
       _Version        =   393216
       Style           =   1
-      Tab             =   1
+      Tab             =   2
       TabHeight       =   520
       WordWrap        =   0   'False
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "FrmCliente.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "TDBGrid1"
+      Tab(0).Control(0)=   "Frame2(1)"
       Tab(0).Control(1)=   "frmbotones"
-      Tab(0).Control(2)=   "Frame2(1)"
+      Tab(0).Control(2)=   "TDBGrid1"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Descripcion"
       TabPicture(1)   =   "FrmCliente.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Fr1(0)"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
       TabCaption(2)   =   "Representante"
       TabPicture(2)   =   "FrmCliente.frx":0038
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "Fr3(0)"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.Frame Frame2 
          Caption         =   "Búsqueda"
@@ -248,7 +248,7 @@ Begin VB.Form Frmcliente
       Begin VB.Frame Fr3 
          Height          =   5535
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   65
          Top             =   720
          Width           =   9015
@@ -488,7 +488,7 @@ Begin VB.Form Frmcliente
       Begin VB.Frame Fr1 
          Height          =   6135
          Index           =   0
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   41
          Top             =   480
          Width           =   9255
@@ -554,7 +554,7 @@ Begin VB.Form Frmcliente
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Format          =   99221505
+               Format          =   99155969
                CurrentDate     =   37480
             End
             Begin MSComCtl2.DTPicker DTP_FecAct 
@@ -575,7 +575,7 @@ Begin VB.Form Frmcliente
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Format          =   99221505
+               Format          =   99155969
                CurrentDate     =   37480
             End
             Begin VB.ComboBox Combo7 
@@ -1410,7 +1410,7 @@ Private Sub cmdBotones_Click(Index As Integer)
                     OBJ.ListIndex = -1
                 End If
                 If TypeOf OBJ Is MaskEdBox Then
-                    OBJ.text = ""
+                    OBJ.Text = ""
                 End If
         Next
         'VALORES DEFAULT:
@@ -1431,7 +1431,7 @@ Private Sub cmdBotones_Click(Index As Integer)
           CargaData
           'MBox(0).Enabled = False: MBox(1).Enabled = False
           modoedit = True
-          i_codigocliente = RTrim$(TDBGrid1.Columns.item(0).text)
+          i_codigocliente = RTrim$(TDBGrid1.Columns.Item(0).Text)
           MBox(0).SetFocus
        Else
           MsgBox MsgEdit, vbInformation, MsgTitle
@@ -1493,7 +1493,7 @@ Private Sub cmdBotones_Click(Index As Integer)
         ''
         
     Case 13
-        Call imprimir("RepvtMantCliente.rpt")
+        Call Imprimir("RepvtMantCliente.rpt")
    End Select
 End Sub
 
@@ -1622,7 +1622,7 @@ End Sub
 Public Sub CargaData()
   Dim rsc As New ADODB.Recordset
   
-  Set rsc = VGCNx.Execute("select * from vt_cliente where clientecodigo='" & TDBGrid1.Columns(0).text & "'")
+  Set rsc = VGCNx.Execute("select * from vt_cliente where clientecodigo='" & TDBGrid1.Columns(0).Text & "'")
   If rsc.RecordCount > 0 Then
         MBox(0) = rsc!clientecodigo
         MBox(1) = Escadena(rsc!clienteruc)
@@ -1678,11 +1678,11 @@ Public Function BuscaCombo(xcombo As ComboBox, ByVal xcampo As String) As Intege
    
     For J = 0 To xcombo.ListCount - 1
        xcombo.ListIndex = J
-       np = InStr(xcombo.text, "-")
+       np = InStr(xcombo.Text, "-")
        If np > 1 Then
-         xbusca = Left$(xcombo.text, np - 1)
+         xbusca = Left$(xcombo.Text, np - 1)
        Else
-         xbusca = Combo1.text
+         xbusca = Combo1.Text
        End If
        
        If xcampo = xbusca Then
@@ -1761,13 +1761,13 @@ Private Sub MBox_LostFocus(Index As Integer)
             End If
         End If
      ElseIf Index = 1 Then
-        If Not (Len(MBox(Index)) = 11) And Left$(Combo2.text, 1) = "2" Then
+        If Not (Len(MBox(Index)) = 11) And Left$(Combo2.Text, 1) = "2" Then
           MsgBox "Ingrese un numero de RUC válido..", vbInformation, MsgTitle
           Exit Sub
         End If
         
      ElseIf Index = 21 Then
-            MBox(Index).text = Format(CDbl(MBox(Index).text), "##,##0.00")
+            MBox(Index).Text = Format(CDbl(MBox(Index).Text), "##,##0.00")
      
      End If
       
@@ -1833,13 +1833,13 @@ Public Function GrabaCliente()
              "clienteproptelefono," & _
              "clientepropcodpostal,fechaact,usuariocodigo,clientedistrito,clientedescuento)" & _
              " VALUES(" & _
-             "'" & MBox(0) & "','" & MBox(1) & "','" & BuscaPrefijo(Combo1.text) & "'," & _
+             "'" & MBox(0) & "','" & MBox(1) & "','" & BuscaPrefijo(Combo1.Text) & "'," & _
              "'" & MBox(2) & "','" & MBox(3) & "'," & _
              "'" & Textdir & "'," & _
              "'" & MBox(6) & "','" & MBox(7) & "'," & _
-             "'" & MBox(8) & "','" & MBox(9) & "','" & MBox(10) & "','" & MBox(11) & "','" & BuscaPrefijo(Combo2.text) & "','" & BuscaPrefijo(Combo3.text) & "'," & _
-             IIf(BuscaPrefijo(Combo4.text) = "S", 1, 0) & ",'" & BuscaPrefijo(Combo5.text) & "'," & s_fechaactivacion & "," & s_fechaanulacion & "," & _
-             IIf(Combo7.text = "", 0, Combo7.text) & ",'" & MBox(14) & "','" & MBox(15) & "','" & MBox(16) & "','" & _
+             "'" & MBox(8) & "','" & MBox(9) & "','" & MBox(10) & "','" & MBox(11) & "','" & BuscaPrefijo(Combo2.Text) & "','" & BuscaPrefijo(Combo3.Text) & "'," & _
+             IIf(BuscaPrefijo(Combo4.Text) = "S", 1, 0) & ",'" & BuscaPrefijo(Combo5.Text) & "'," & s_fechaactivacion & "," & s_fechaanulacion & "," & _
+             IIf(Combo7.Text = "", 0, Combo7.Text) & ",'" & MBox(14) & "','" & MBox(15) & "','" & MBox(16) & "','" & _
              MBox(17) & "','" & MBox(18) & "','" & MBox(19) & "','" & _
              Date & "','" & g_usuario & "','" & MBox(20) & "'," & d_descuento & ")"
        
@@ -1850,15 +1850,15 @@ Public Function GrabaCliente()
              
        nsql = "UPDATE vt_Cliente " & _
              " Set clientecodigo='" & MBox(0) & "',clienteruc='" & MBox(1) & "'," & _
-             "     negociocodigo='" & BuscaPrefijo(Combo1.text) & "',clienterazonsocial='" & MBox(2) & "'," & _
+             "     negociocodigo='" & BuscaPrefijo(Combo1.Text) & "',clienterazonsocial='" & MBox(2) & "'," & _
              "     clientesiglas='" & MBox(3) & "'," & _
              "     clientedireccion='" & Textdir & "',clientecodpostal='" & MBox(6) & "'," & _
              "     clienteprovincia='" & MBox(7) & "',clientedepartamento='" & MBox(8) & "'," & _
              "     clientetelefono='" & MBox(9) & "',clientefax='" & MBox(10) & "',clientemail='" & MBox(11) & "'," & _
-             "     clientetipopersona='" & BuscaPrefijo(Combo2.text) & "',clientetipopais='" & BuscaPrefijo(Combo3.text) & "'," & _
-             "     clientesuspendido='" & IIf(BuscaPrefijo(Combo4.text) = "S", "1", "0") & "',clienteaval='" & BuscaPrefijo(Combo5.text) & "'," & _
+             "     clientetipopersona='" & BuscaPrefijo(Combo2.Text) & "',clientetipopais='" & BuscaPrefijo(Combo3.Text) & "'," & _
+             "     clientesuspendido='" & IIf(BuscaPrefijo(Combo4.Text) = "S", "1", "0") & "',clienteaval='" & BuscaPrefijo(Combo5.Text) & "'," & _
              "     clientefechaactivacion=" & s_fechaactivacion & ",clientefechabajaoanula=" & s_fechaanulacion & "," & _
-             "     clientediasmaxpagocont=" & IIf(Combo7.ListIndex = -1, 0, RTrim$(Combo7.text)) & "," & _
+             "     clientediasmaxpagocont=" & IIf(Combo7.ListIndex = -1, 0, RTrim$(Combo7.Text)) & "," & _
              "     clientepropietario='" & MBox(14) & "',clienteprople='" & MBox(15) & "'," & _
              "     clientepropruc='" & MBox(16) & "',clientepropdirecc='" & MBox(17) & "'," & _
              "     clienteproptelefono='" & MBox(18) & "'," & _
@@ -1934,7 +1934,7 @@ Private Function Validar_DatosNulos() As Boolean
 Dim dato As Integer
 dato = 0
 If RTrim$(MBox(1)) <> "" Then dato = 1
-If RTrim$(MBox(1)) = "" And Left$(Combo2.text, 1) = "1" Then dato = 1
+If RTrim$(MBox(1)) = "" And Left$(Combo2.Text, 1) = "1" Then dato = 1
 Validar_DatosNulos = False
                 If RTrim$(MBox(0)) <> "" And dato = 1 _
                 And Combo1.ListIndex <> -1 And Combo2.ListIndex <> -1 _
@@ -2050,7 +2050,7 @@ Verificar_Codigo = True
 
 If operacion = 0 Then           'ingreso
 
-            lcondi = "select * from vt_cliente where clientecodigo='" & MBox(0).text & "'"
+            lcondi = "select * from vt_cliente where clientecodigo='" & MBox(0).Text & "'"
             If adll.VerificaDatoExistente(VGCNx, lcondi) = 1 Then
                 Verificar_Codigo = False
                 Exit Function
@@ -2059,7 +2059,7 @@ If operacion = 0 Then           'ingreso
 ElseIf operacion = 1 Then       'edicion
 
             lcondi = "select * from vt_cliente " & _
-                    "where clientecodigo ='" & RTrim$(MBox(0).text) & "'" & _
+                    "where clientecodigo ='" & RTrim$(MBox(0).Text) & "'" & _
                     " and clientecodigo <> '" & RTrim$(i_codigocliente) & "'"
             If adll.VerificaDatoExistente(VGCNx, lcondi) = 1 Then
                     Verificar_Codigo = False
@@ -2075,11 +2075,11 @@ On Error GoTo CONTROLERRORES
     VGCNx.BeginTrans
     
     SENsql = "DELETE FROM VT_CLIENTEDIRECCION " & _
-                "WHERE CLIENTECODIGO = '" & TDBGrid1.Columns(0).text & "'"
+                "WHERE CLIENTECODIGO = '" & TDBGrid1.Columns(0).Text & "'"
     VGCNx.Execute SENsql
     
     SENsql = "DELETE FROM VT_CLIENTE " & _
-                "WHERE CLIENTECODIGO = '" & TDBGrid1.Columns(0).text & "'"
+                "WHERE CLIENTECODIGO = '" & TDBGrid1.Columns(0).Text & "'"
     
     VGCNx.Execute SENsql
     Eliminar_Cliente = True
@@ -2099,7 +2099,7 @@ Public Function BuscaCombo2(xcombo As ComboBox, ByVal xcampo As String) As Integ
    
     For J = 0 To xcombo.ListCount - 1
        xcombo.ListIndex = J
-       CADENA = RTrim$(xcombo.text)
+       CADENA = RTrim$(xcombo.Text)
        If CADENA = RTrim$(xcampo) Then
          BuscaCombo2 = J
          Exit For

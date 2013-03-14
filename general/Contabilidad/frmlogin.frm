@@ -100,7 +100,7 @@ Begin VB.Form frmlogin
             _ExtentX        =   2699
             _ExtentY        =   503
             _Version        =   393216
-            Format          =   47841281
+            Format          =   40763393
             CurrentDate     =   37508
          End
          Begin TextFer.TxFer TxUser 
@@ -454,7 +454,7 @@ Dim tccambio As Double
     End If
     MDIPrincipal.StatusBar1.Panels(3).Text = "Fecha de Trabajo (" & VGParamSistem.FechaTrabajo & ")"
     MDIPrincipal.StatusBar1.Panels(4).Text = "Tipo Cambio  (" & Format(tccambio, "#.000") & ")"
-    VGusuario = TxUser.Text
+    VGUsuario = TxUser.Text
         Dim Clsmenu As New ClassMenu
         Set Clsmenu.conexion = VGConfig
         VGtipo = contab
@@ -462,7 +462,7 @@ Dim tccambio As Double
         Clsmenu.CrearTablaMenu
         Clsmenu.TabaMenuDet = "si_menuusuarios"
         Clsmenu.TablaMenu = "si_menu"
-        Call Clsmenu.HabilitarMenuNom(VGusuario)
+        Call Clsmenu.HabilitarMenuNom(VGUsuario)
        Call CargarParametrosContabilidad
        Call adicionarcamposCT
     If TxUser.Text <> "" Then
@@ -513,7 +513,7 @@ Private Sub cmdGenerar_Click()
     Unload frmannos
 End Sub
 Private Sub Combo1_Click()
-Dim rsql As String
+Dim RSQL As String
 Dim rs As ADODB.Recordset
 On Local Error GoTo ERRAR
 If Combo1.ListCount > 0 Then
@@ -527,7 +527,7 @@ If Combo1.ListCount > 0 Then
       VGParametros.RucEmpresa = ESNULO(rs("EMP_RUC_DOCUMENTO"), "")
       If ESNULO(rs!multiempresas, False) = True Then Lbgrupo.Caption = "Grupo"
       VGParametros.multiempresas = ESNULO(rs!multiempresas, False)
-      vgcodempresa = rs("EMP_CODIGO")
+      VGCodEmpresa = rs("EMP_CODIGO")
       If Trim$(rs!empresabasecontabilidad) <> "" Then
          VGParamSistem.BDEmpresa = rs!empresabasecontabilidad
          Set VGCNx = New ADODB.Connection
@@ -601,7 +601,7 @@ Private Function VERIFICAUSUARIO() As Boolean
     Dim Pwd As String
     Dim CLMENU As ClassMenu
     Set CLMENU = New ClassMenu
-    CLMENU.TablaUsu = "USUARIO"
+    CLMENU.TablaUsu = "SI_USUARIO"
     
     'cuando no existe usuarios
     VERIFICAUSUARIO = False
@@ -613,7 +613,7 @@ Private Function VERIFICAUSUARIO() As Boolean
     End If
     'VALIDANDO SI EXISTE EL USUARIO
     Set RSPASS = New ADODB.Recordset
-    RSPASS.Open "SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USU_CODIGO='" & TxUser.Text & "'", VGConfig, adOpenKeyset
+    RSPASS.Open "SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USUARIOCODIGO='" & TxUser.Text & "'", VGConfig, adOpenKeyset
     If RSPASS.RecordCount = 0 Then
         MsgBox "NO SE ENCUENTRA EL USUARIO ", vbExclamation
         TxUser.SetFocus
@@ -623,7 +623,7 @@ Private Function VERIFICAUSUARIO() As Boolean
     'VALIDANDO SI EXISTE EL PWD
     Pwd = CODIFICA(TxPwd.Text, 5)
     Set RSPASS = Nothing
-    RSPASS.Open "SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USU_CODIGO='" & TxUser.Text & _
+    RSPASS.Open "SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USUARIOCODIGO='" & TxUser.Text & _
     "' AND USU_PASSWORD='" & Pwd & "'", VGConfig, adOpenKeyset
     If RSPASS.RecordCount = 0 Then
         MsgBox "LA CONTRASEÑA ES INCORRECTA", vbExclamation

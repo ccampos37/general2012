@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
 Begin VB.Form frmCfgUsuario 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Usuarios"
@@ -282,7 +282,7 @@ Dim RSQL As String
 
 Private Sub Form_Load()
 central Me
-ADOCONECTAR
+ADOConectar
 ' Init_ControlDataGrid DataGrid1
 If Adoreg1.RecordCount = 0 Then
     Botones_Init True
@@ -298,7 +298,7 @@ ntipo = 1
 
 ' Configura el control TreeView
 TreeView1.Sorted = False
-TreeView1.CheckBoxes = True
+TreeView1.Checkboxes = True
 Set mNode = TreeView1.Nodes.Add()
 mNode.Text = "Menu"
 mNode.Tag = VGConfig
@@ -308,16 +308,16 @@ TreeView1.LabelEdit = False
 Cargar_Opc
 End Sub
 
-Private Sub ADOCONECTAR()
+Private Sub ADOConectar()
 Set Adoreg1 = New ADODB.Recordset
 Set AdoReg2 = New ADODB.Recordset
 Set AdoUsu = New ADODB.Recordset
 
 'Adoreg1.CursorType = adOpenDynamic           NO USAR CAMBIAR BOOKMARK
 
-Adoreg1.Open "Select usuariocodigo,USU_NOMBRE from si_usuario", VGConfig, adOpenStatic
+Adoreg1.Open "Select usuariocodigo,USUARIOCODIGO from si_usuario", VGConfig, adOpenStatic
 AdoReg2.Open "Select * from si_USUARIO ", VGConfig, adOpenDynamic, adLockOptimistic
-AdoUsu.Open "Select * From si_menuusuarios where tipodesistema=" & vgtipo & "", VGConfig, adOpenDynamic, adLockOptimistic
+AdoUsu.Open "Select * From si_menuusuarios where tipodesistema=" & VGtipo & "", VGConfig, adOpenDynamic, adLockOptimistic
  
 Set DataGrid1.DataSource = Adoreg1
 End Sub
@@ -417,7 +417,7 @@ Select Case Index
                          AdoReg2.Fields("usuariocodigo") = UCase$(RTrim$(Text1(0).Text))
                         AdoReg2.Fields("USUARIOPASSWORD") = CODIFICA(RTrim$(Text1(2).Text), NUMMAGICO) 'password
                         AdoReg2.UpdateBatch
-                        If RTrim$(Text1(1).Text) <> "" Then AdoReg2.Fields("Usu_Nombre") = UCase$(RTrim$(Text1(1).Text))
+                        If RTrim$(Text1(1).Text) <> "" Then AdoReg2.Fields("USUARIOCODIGO") = UCase$(RTrim$(Text1(1).Text))
                         AdoReg2.Update
                         Adoreg1.Requery
                         Call Grab_Men(UCase$(RTrim$(Text1(0).Text)))
@@ -438,7 +438,7 @@ Select Case Index
              
             AdoReg2.Fields("usuariocodigo") = UCase$(RTrim$(Text1(0).Text))
             AdoReg2.Fields("USUARIOPASSWORD") = CODIFICA(RTrim$(Text1(2).Text), NUMMAGICO)
-            If RTrim$(Text1(1).Text) <> "" Then AdoReg2.Fields("Usu_Nombre") = UCase$(RTrim$(Text1(1).Text))
+            If RTrim$(Text1(1).Text) <> "" Then AdoReg2.Fields("USUARIOCODIGO") = UCase$(RTrim$(Text1(1).Text))
             AdoReg2.UpdateBatch
             Adoreg1.Requery
             AdoReg2.Requery
@@ -468,7 +468,7 @@ Select Case Index
             Text1(0).Text = AdoReg2.Fields(0)
             Text1(2).Text = DECODIFICA(ESNULO(AdoReg2.Fields(1), ""), NUMMAGICO)
             Text1(3).Text = DECODIFICA(ESNULO(AdoReg2.Fields(1), ""), NUMMAGICO)
-            If Not IsNull(AdoReg2.Fields("Usu_Nombre")) Then Text1(1).Text = AdoReg2.Fields("Usu_Nombre")
+            If Not IsNull(AdoReg2.Fields("USUARIOCODIGO")) Then Text1(1).Text = AdoReg2.Fields("USUARIOCODIGO")
             
             Frame1.Caption = "Modificar Usuario"
             Frame0.Visible = False
@@ -492,7 +492,7 @@ Select Case Index
           op = MsgBox("Esta Seguro que desea Eliminar el registro actual ", vbQuestion + vbYesNo, "Eliminación de Registro")
           If op = vbYes Then
                 AdoReg2.Bookmark = Adoreg1.Bookmark
-                VGConfig.Execute "Delete From si_menuusuarios Where tipodesistema=" & vgtipo & " and  usuariocodigo = '" & AdoReg2("usuariocodigo") & "'"
+                VGConfig.Execute "Delete From si_menuusuarios Where tipodesistema=" & VGtipo & " and  usuariocodigo = '" & AdoReg2("usuariocodigo") & "'"
                 AdoReg2.Delete
                 AdoReg2.UpdateBatch
                 AdoReg2.Requery
@@ -605,7 +605,7 @@ bolVisibleS = True
 On Error GoTo err1
 
 Set ADOMen = New ADODB.Recordset
-ADOMen.Open "SELECT * FROM si_menu where tipodesistema=" & vgtipo & " ORDER BY MEN_CODIGO", VGConfig, adOpenStatic
+ADOMen.Open "SELECT * FROM si_menu where tipodesistema=" & VGtipo & " ORDER BY MEN_CODIGO", VGConfig, adOpenStatic
 
 Do While Not ADOMen.EOF
     If Len(ADOMen("Men_Codigo")) = 2 And ADOMen("Men_Visible") Then
@@ -630,7 +630,7 @@ Do While Not ADOMen.EOF
     If Len(ADOMen("Men_Codigo")) = 4 And ADOMen("Men_Visible") And bolVisibleP Then
         Set mNode = TreeView1.Nodes.Add(intIndex01, tvwChild)
         mNode.Text = ADOMen("Men_Descri") ' Texto.
-        mNode.key = ADOMen("Men_Codigo") & " ID"  ' ID único.
+        mNode.Key = ADOMen("Men_Codigo") & " ID"  ' ID único.
         mNode.Image = "Cerrar"     ' Imagen de ImageList.
             
         intIndex02 = mNode.Index
@@ -660,7 +660,7 @@ Do While Not ADOMen.EOF
         If bolVisibleS = True Then
             Set mNode = TreeView1.Nodes.Add(intIndex02, tvwChild)
             mNode.Text = ADOMen("Men_Descri") ' Texto.
-            mNode.key = ADOMen("Men_Codigo") & " ID"   ' ID único.
+            mNode.Key = ADOMen("Men_Codigo") & " ID"   ' ID único.
             mNode.Image = "Cerrar"     ' Imagen de ImageList.
             intIndex03 = mNode.Index
             bolVisibleS = True
@@ -688,7 +688,7 @@ Do While Not ADOMen.EOF
         If bolVisibleS = True Then
             Set mNode = TreeView1.Nodes.Add(intIndex03, tvwChild)
             mNode.Text = ADOMen("Men_Descri") ' Texto.
-            mNode.key = ADOMen("Men_Codigo") & " ID"   ' ID único.
+            mNode.Key = ADOMen("Men_Codigo") & " ID"   ' ID único.
             mNode.Image = "Cerrar"     ' Imagen de ImageList.
         
             bolVisibleS = True
@@ -744,7 +744,7 @@ If nG = 1 Then
     Next nI
 ElseIf nG = 2 Then
     For nI = nIni To nfin
-        If Mid$(TreeView1.Nodes(nI).key, 1, Len(RTrim$(cCod))) = RTrim$(cCod) Then
+        If Mid$(TreeView1.Nodes(nI).Key, 1, Len(RTrim$(cCod))) = RTrim$(cCod) Then
             TreeView1.Nodes.Item(nI).Checked = bFlag
         End If
     Next nI
@@ -762,10 +762,10 @@ If NODE.Index = 1 Then
 Else
     If TreeView1.Nodes(NODE.Index).Children > 0 Then
         If NODE.Checked = False Then
-            Call Carga_Valor(NODE.Index + 1, TreeView1.Nodes.Count, False, 2, Mid$(TreeView1.Nodes(NODE.Index).key, 1, InStr(TreeView1.Nodes(NODE.Index).key, " ID")))
+            Call Carga_Valor(NODE.Index + 1, TreeView1.Nodes.Count, False, 2, Mid$(TreeView1.Nodes(NODE.Index).Key, 1, InStr(TreeView1.Nodes(NODE.Index).Key, " ID")))
             NODE.Expanded = False
         Else
-            Call Carga_Valor(NODE.Index + 1, TreeView1.Nodes.Count, True, 2, Mid$(TreeView1.Nodes(NODE.Index).key, 1, InStr(TreeView1.Nodes(NODE.Index).key, " ID")))
+            Call Carga_Valor(NODE.Index + 1, TreeView1.Nodes.Count, True, 2, Mid$(TreeView1.Nodes(NODE.Index).Key, 1, InStr(TreeView1.Nodes(NODE.Index).Key, " ID")))
             NODE.Expanded = True
         End If
     End If
@@ -781,13 +781,13 @@ On Error GoTo err1
 nIi = 2
 ADOMen.MoveFirst
 Set AdoUsu = New ADODB.Recordset
-RSQL = "delete si_menuusuarios Where tipodesistema=" & vgtipo & " and usuariocodigo = '" & cCod & "'"
+RSQL = "delete si_menuusuarios Where tipodesistema=" & VGtipo & " and usuariocodigo = '" & cCod & "'"
 Set AdoUsu = VGConfig.Execute(RSQL)
 Do While Not ADOMen.EOF
     If TreeView1.Nodes(1).Checked Then  'Raiz
-        If TreeView1.Nodes.Item(nIi).key = ADOMen("Men_Codigo") & " ID" And ADOMen("Men_Visible") Then
+        If TreeView1.Nodes.Item(nIi).Key = ADOMen("Men_Codigo") & " ID" And ADOMen("Men_Visible") Then
             nOp = 2
-            RSQL = "Select * From si_menuusuarios Where tipodesistema=" & vgtipo & " and usuariocodigo = '" & cCod & "' and Men_Codigo = '" & ADOMen("Men_Codigo") & "'"
+            RSQL = "Select * From si_menuusuarios Where tipodesistema=" & VGtipo & " and usuariocodigo = '" & cCod & "' and Men_Codigo = '" & ADOMen("Men_Codigo") & "'"
             AdoUsu.Open RSQL, VGConfig, adOpenStatic
             If AdoUsu.RecordCount > 0 Then
                     nOp = 1
@@ -795,7 +795,7 @@ Do While Not ADOMen.EOF
             AdoUsu.Close
             
             If nOp = 2 Then
-                    RSQL = "Insert Into si_menuusuarios (usuariocodigo,tipodesistema,Men_Codigo,Men_Hab) Values ('" & cCod & "'," & vgtipo & ",'" & ADOMen("Men_Codigo") & "',"
+                    RSQL = "Insert Into si_menuusuarios (usuariocodigo,tipodesistema,Men_Codigo,Men_Hab) Values ('" & cCod & "'," & VGtipo & ",'" & ADOMen("Men_Codigo") & "',"
                     If TreeView1.Nodes.Item(nIi).Checked = True Then
                         RSQL = RSQL & "1" & ")"
                     Else
@@ -808,7 +808,7 @@ Do While Not ADOMen.EOF
                     Else
                         RSQL = RSQL & "0"
                     End If
-                    RSQL = RSQL & " Where tipodesistema=" & vgtipo & " and usuariocodigo = '" & cCod & "' and Men_Codigo = '" & ADOMen("Men_Codigo") & "'"
+                    RSQL = RSQL & " Where tipodesistema=" & VGtipo & " and usuariocodigo = '" & cCod & "' and Men_Codigo = '" & ADOMen("Men_Codigo") & "'"
             End If
             VGConfig.Execute RSQL
         End If
@@ -841,13 +841,13 @@ For nJ = 1 To TreeView1.Nodes.Count
     TreeView1.Nodes(nJ).Expanded = False
 Next nJ
 
-ADOUsMe.Open "SELECT * FROM si_menuusuarios  WHERE tipodesistema=" & vgtipo & " and usuariocodigo = '" & cCodU & "' ", VGConfig, adOpenStatic
+ADOUsMe.Open "SELECT * FROM si_menuusuarios  WHERE tipodesistema=" & VGtipo & " and usuariocodigo = '" & cCodU & "' ", VGConfig, adOpenStatic
 If ADOUsMe.RecordCount > 0 Then ADOUsMe.MoveFirst
 If Not ADOUsMe.EOF Then
     TreeView1.Nodes(1).Checked = True 'Raiz
     Do While Not ADOUsMe.EOF
         For nJ = 2 To TreeView1.Nodes.Count
-            If TreeView1.Nodes(nJ).key = ADOUsMe("MEN_CODIGO") & " ID" Then
+            If TreeView1.Nodes(nJ).Key = ADOUsMe("MEN_CODIGO") & " ID" Then
                 If ADOUsMe("Men_Hab") Then
                     TreeView1.Nodes(nJ).Checked = True
                 Else

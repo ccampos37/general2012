@@ -108,6 +108,69 @@ Begin VB.MDIForm MDIPrincipal
          EndProperty
       EndProperty
    End
+   Begin MSComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   330
+      Left            =   0
+      TabIndex        =   1
+      Top             =   5940
+      Width           =   10755
+      _ExtentX        =   18971
+      _ExtentY        =   582
+      _Version        =   393216
+      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+         NumPanels       =   6
+         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   4410
+            MinWidth        =   4410
+            Text            =   "Mes Proceso"
+            TextSave        =   "Mes Proceso"
+         EndProperty
+         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   3528
+            MinWidth        =   3528
+            Text            =   "Año Proceso"
+            TextSave        =   "Año Proceso"
+         EndProperty
+         BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   4657
+            MinWidth        =   4657
+            Text            =   "Fecha de Trabajo"
+            TextSave        =   "Fecha de Trabajo"
+         EndProperty
+         BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   4304
+            MinWidth        =   4304
+            Picture         =   "MDIPrincipal.frx":0F46
+            Text            =   "Tipo Cambio"
+            TextSave        =   "Tipo Cambio"
+         EndProperty
+         BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Object.Width           =   4480
+            MinWidth        =   4480
+            Picture         =   "MDIPrincipal.frx":1262
+            Text            =   "Servidor"
+            TextSave        =   "Servidor"
+         EndProperty
+         BeginProperty Panel6 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            AutoSize        =   1
+            Object.Width           =   7832
+            MinWidth        =   7832
+            Picture         =   "MDIPrincipal.frx":13BE
+            Text            =   "Base de Datos"
+            TextSave        =   "Base de Datos"
+         EndProperty
+      EndProperty
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
    Begin VB.Menu opc1 
       Caption         =   "Ingresos"
       Begin VB.Menu opc1_01 
@@ -363,6 +426,16 @@ Private Sub Form_Unload(Cancel As Integer)
       Set VGcnxCT = Nothing
       End
    End If
+End Sub
+
+
+Private Sub MDIForm_Activate()
+  If VgActivalogin > 1 Then Exit Sub
+  Set VGvardllgen = New dllgeneral.dll_general
+  FrmIngreso.Show vbModal
+  StatusBar1.Panels(1).Text = "Mes Proceso: " & VGvardllgen.DesMes(VGparamsistem.mesproceso)      'Mesproceso
+  StatusBar1.Panels(2).Text = "Año Proceso: " & VGparamsistem.Anoproceso                          'AnnoProceso
+  VgActivalogin = 2
 End Sub
 
 Private Sub menu03_11_Click()
