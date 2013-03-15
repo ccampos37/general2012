@@ -22,22 +22,6 @@ Public Sub PlanillaTotales(xrb As ADODB.Recordset, xcampo, xdepo As Label)
     xdepo = numero(asumar)
 End Sub
 
-
-Public Function DatoMoneda(xValor As String) As String
-   Dim rmone As New ADODB.Recordset
-   
-   Set rmone = VGCNx.Execute("select * from gr_moneda where monedacodigo='" & xValor & "'")
-   If rmone.RecordCount > 0 Then
-       DatoMoneda = Escadena(rmone!monedasimbolo) & " ."
-   Else
-       DatoMoneda = " "
-   End If
-   rmone.Close
-   Set rmone = Nothing
-
-End Function
-
-
 Public Function aImpresora(wFile)
   Dim wbat, wcade As String
   Dim X As Long
@@ -63,18 +47,7 @@ nerror:
    End If
 
 End Function
-Public Sub PropCrystal(ByRef CrystalRpt As CrystalReport)
-    CrystalRpt.WindowShowCancelBtn = True
-    CrystalRpt.WindowShowCloseBtn = True
-    CrystalRpt.WindowShowExportBtn = True
-    CrystalRpt.WindowShowGroupTree = True
-    CrystalRpt.WindowShowNavigationCtls = True
-    CrystalRpt.WindowShowPrintBtn = True
-    CrystalRpt.WindowShowPrintSetupBtn = True
-    CrystalRpt.WindowShowProgressCtls = True
-    CrystalRpt.WindowShowSearchBtn = True
-    CrystalRpt.WindowShowZoomCtl = True
-End Sub
+
 
 Public Sub ImprimirRecibo(Nrecibo As String)
 Dim arrform() As Variant, arrparm() As Variant
@@ -134,7 +107,7 @@ End Sub
 Public Sub ImprimirComprobanteretencion(Nrecibo As String)
 Dim arrform(1) As Variant, arrparm(4) As Variant
 Dim rs As ADODB.Recordset
-Dim rsql As New ADODB.Recordset
+Dim RSQL As New ADODB.Recordset
 Dim xmonto As Double
 Dim monto As String
 Dim SQL As String
@@ -163,10 +136,10 @@ Dim SQL As String
        SQL = "select top 1 detrec_ndqc from te_detallerecibos where detrec_ndqc>'0' "
        SQL = SQL & " and detrec_tdqc='" & VGParametros.empresacodigoretencion & "'"
        SQL = SQL & " and cabrec_numrecibo='" & Nrecibo & "'"
-       Set rsql = VGCNx.Execute(SQL)
+       Set RSQL = VGCNx.Execute(SQL)
        arrparm(2) = "0000000"
-       If rsql.RecordCount() > 0 Then
-          arrparm(2) = Trim(rsql!detrec_ndqc)
+       If RSQL.RecordCount() > 0 Then
+          arrparm(2) = Trim(RSQL!detrec_ndqc)
        End If
        arrparm(3) = VGParametros.porcentajeretencion
        arrform(0) = "@NumeroLetras='" & NUMLET(monto) & " Nuevos soles '"
@@ -190,38 +163,38 @@ End Function
 
 Public Function ArmaCriterioComodin(cad As String, Campo As String) As String
 Dim pos As Integer, cadaux As String, criterio As String
-Dim valor As String
+Dim Valor As String
     criterio = ""
     Do While True
         pos = InStr(1, cad, "%", vbTextCompare)
         If pos = 0 Then Exit Do
-        valor = "'" & Left(cad, pos) & "'"
+        Valor = "'" & Left(cad, pos) & "'"
         cad = Right(cad, (Len(cad) - pos))
-        criterio = criterio & Campo & " like " & valor & " or "
+        criterio = criterio & Campo & " like " & Valor & " or "
     Loop
     ArmaCriterioComodin = Left(criterio, Len(criterio) - 3)
 End Function
 Public Function FiltroCcosto(codigo As String, ByRef flag As Boolean) As String
-Dim rsaux As ADODB.Recordset
+Dim RSAUX As ADODB.Recordset
 Dim AuxCad As String, filtro As String
 Dim tipocontrol As String
-    Set rsaux = New ADODB.Recordset
+    Set RSAUX = New ADODB.Recordset
     flag = False
     tipocontrol = 1
     If tipocontrol = 0 Then
        filtro = "centrocostocodigo<>'00' and centrocostotipo='6'"
-       rsaux.Open "Select criterio=isnull(conceptotextccosto,''),flagx=isnull(conceptosiccosto,0)  From te_conceptocaja Where conceptocodigo='" & Trim(codigo) & "'", VGCNx, adOpenKeyset, adLockReadOnly
-       If rsaux.RecordCount > 0 Then
-          flag = rsaux!flagx
+       RSAUX.Open "Select criterio=isnull(conceptotextccosto,''),flagx=isnull(conceptosiccosto,0)  From te_conceptocaja Where conceptocodigo='" & Trim(codigo) & "'", VGCNx, adOpenKeyset, adLockReadOnly
+       If RSAUX.RecordCount > 0 Then
+          flag = RSAUX!flagx
           If flag Then
-             If rsaux!criterio <> "" Then filtro = filtro & " and (" & ArmaCriterioComodin(rsaux!criterio, "centrocostocodigo") & ")"
+             If RSAUX!criterio <> "" Then filtro = filtro & " and (" & ArmaCriterioComodin(RSAUX!criterio, "centrocostocodigo") & ")"
           End If
        End If
      Else
        filtro = "gastoscodigo<>'00'"
-       rsaux.Open "Select criterio=isnull(conceptotextccosto,''),flagx=isnull(conceptosiccosto,0)  From te_conceptocaja Where conceptocodigo='" & Trim(codigo) & "'", VGCNx, adOpenKeyset, adLockReadOnly
-       If rsaux.RecordCount > 0 Then
-          flag = rsaux!flagx
+       RSAUX.Open "Select criterio=isnull(conceptotextccosto,''),flagx=isnull(conceptosiccosto,0)  From te_conceptocaja Where conceptocodigo='" & Trim(codigo) & "'", VGCNx, adOpenKeyset, adLockReadOnly
+       If RSAUX.RecordCount > 0 Then
+          flag = RSAUX!flagx
 '          If flag Then
 '             If rsaux!criterio <> "" Then Filtro = Filtro & " and (" & ArmaCriterioComodin(rsaux!criterio, "gastoscodigo") & ")"
 '          End If
@@ -268,8 +241,8 @@ On Error Resume Next
     For Each Control In formx.Controls
         If UCase(Control.Container.Name) = UCase(framex.Name) Then
             If UCase(Left(Control.Name, 2)) <> "LE" Then
-                If TypeOf Control Is TextBox Then Control.Text = ""
-                If TypeOf Control Is TextFer.TxFer Then Control.Text = ""
+                If TypeOf Control Is TextBox Then Control.text = ""
+                If TypeOf Control Is TextFer.TxFer Then Control.text = ""
                 If TypeOf Control Is Label Then Control.Caption = ""
                 'If TypeOf Control Is DTPicker Then Control.Value = Date
             End If
@@ -277,30 +250,30 @@ On Error Resume Next
     Next
 End Sub
 Public Function ActualizaNumeroAuto(Tabla As String, op As String, cnx As ADODB.Connection, Optional tipo As Integer) As Long
-Dim rsaux As ADODB.Recordset
+Dim RSAUX As ADODB.Recordset
 On Error GoTo errornum
-    Set rsaux = New ADODB.Recordset
+    Set RSAUX = New ADODB.Recordset
     Select Case op
         Case 1
             If tipo = 1 Then
-               Set rsaux = cnx.Execute("SELECT top 1 Numx=isnull(empresanumeingreso,1) from te_parametroempresa ")
+               Set RSAUX = cnx.Execute("SELECT top 1 Numx=isnull(empresanumeingreso,1) from te_parametroempresa ")
              Else
-               Set rsaux = VGCNx.Execute("SELECT top 1 Numx=isnull(empresanumegreso,1) from te_parametroempresa ")
+               Set RSAUX = VGCNx.Execute("SELECT top 1 Numx=isnull(empresanumegreso,1) from te_parametroempresa ")
             End If
     End Select
     
-    If rsaux.EOF Or rsaux.BOF Then
+    If RSAUX.EOF Or RSAUX.BOF Then
       ActualizaNumeroAuto = 1
       Exit Function
     Else
-      ActualizaNumeroAuto = rsaux!Numx
+      ActualizaNumeroAuto = RSAUX!Numx
     End If
-    Set rsaux = New ADODB.Recordset
+    Set RSAUX = New ADODB.Recordset
     If op = 1 And tipo = 1 Then
        If tipo = 1 Then
-          Set rsaux = cnx.Execute("update te_parametroempresa  set empresanumeingreso = empresanumeingreso + 1")
+          Set RSAUX = cnx.Execute("update te_parametroempresa  set empresanumeingreso = empresanumeingreso + 1")
         Else
-          Set rsaux = cnx.Execute("update te_parametroempresa  set empresanumegreso = empresanumegreso + 1")
+          Set RSAUX = cnx.Execute("update te_parametroempresa  set empresanumegreso = empresanumegreso + 1")
        End If
     End If
     Exit Function
@@ -345,20 +318,20 @@ recibosrendicion = VGcomputer + "_cajaconcil"
 rs.MoveFirst
 End Function
 Public Function UltNumeroAuto(Tabla As String, op As String, cnx As ADODB.Connection) As Long
-Dim rsaux As ADODB.Recordset
+Dim RSAUX As ADODB.Recordset
 On Error GoTo errornum
-    Set rsaux = New ADODB.Recordset
+    Set RSAUX = New ADODB.Recordset
     Select Case op
         Case 1
 '            rsaux.Open "SELECT Numx=isnull(IDENT_CURRENT('" & TABLA & "'),0)", cnx, adOpenKeyset, adLockReadOnly
-            rsaux.Open "SELECT top 1 Numx=isnull(cabprovinumero,1) from co_sistema ", cnx, adOpenKeyset, adLockReadOnly
+            RSAUX.Open "SELECT top 1 Numx=isnull(cabprovinumero,1) from co_sistema ", cnx, adOpenKeyset, adLockReadOnly
     End Select
-    If rsaux.EOF Or rsaux.BOF Then
+    If RSAUX.EOF Or RSAUX.BOF Then
       UltNumeroAuto = 1
       Exit Function
     Else
-      UltNumeroAuto = rsaux!Numx
-      Set rsaux = New ADODB.Recordset
+      UltNumeroAuto = RSAUX!Numx
+      Set RSAUX = New ADODB.Recordset
     End If
     Exit Function
 errornum:

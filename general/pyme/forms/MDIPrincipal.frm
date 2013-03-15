@@ -463,6 +463,12 @@ Begin VB.Form MDIPrincipal
             Caption         =   "Clientes"
          End
       End
+      Begin VB.Menu menu02_05 
+         Caption         =   "Procesos"
+         Begin VB.Menu menu02_05_01 
+            Caption         =   "Anulacion de documentos"
+         End
+      End
    End
    Begin VB.Menu menu03 
       Caption         =   "Cobranzas"

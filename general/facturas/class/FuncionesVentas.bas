@@ -20,86 +20,6 @@ ErrorFecha:
    End Select
 End Function
 
-Public Sub exportarExcel(RSSQL1 As ADODB.Recordset, titulo As String)
-On Error GoTo ErrorExcel
-Dim objExcel As Excel.Application
-Dim HNom As Integer 'Horizontal
-Dim VNom As Integer 'Vertical
-Dim Hdatos As Integer 'Horizontal
-Dim Vdatos As Integer 'Vertical
-Dim cuentaNombres As Integer
-Dim cuentadatos As Integer
-Dim I As Integer
-Dim n As Integer
-Dim J As Integer
-
-If RSSQL1.RecordCount <> 0 Then
-   'Crear un objeto del tipo excel.application
-
-   cuentaNombres = RSSQL1.Fields.Count
-   cuentadatos = RSSQL1.RecordCount
-
-   Set objExcel = New Excel.Application
-   objExcel.Visible = True
-   objExcel.SheetsInNewWorkbook = 1
-   objExcel.Workbooks.Add
-
-    'PONER UN TITULO
-    objExcel.ActiveSheet.Cells(1, 1) = "EXPORTAR A EXCEL - " + titulo
-    objExcel.ActiveSheet.Cells(2, 1) = cuentadatos
-    objExcel.ActiveSheet.Cells(2, 2) = cuentaNombres
-    With objExcel.ActiveSheet.Cells(1, 1).Font
-      .Color = vbBlack
-      .Size = 12
-      .Bold = True
-   End With
-
-   'UTILIZAMOS LAS VARIABLES PARA LA UBICACION DE NUESTROS TEXTOS
-   HNom = 1
-   VNom = 4
-   Vdatos = 5
-   Hdatos = 1
-
-
-   'AGREGAMOS LOS REGISTROS (RECUERDEN QUE NO IMPORTA CUANTAS COLUMNAS O REGISTROS TENGAMOS EL BUCLE_
-   'FUNCIONA SEGUN EL NUMERO DE CABECERAS Y REGISTROS
-  
-    For I = 0 To (cuentaNombres - 1)
-       objExcel.ActiveSheet.Cells(VNom, HNom) = RSSQL1.Fields(I).Name
-       objExcel.ActiveSheet.Range(objExcel.ActiveSheet.Cells(VNom, HNom), objExcel.ActiveSheet.Cells(VNom, HNom)).HorizontalAlignment = xlHAlignCenterAcrossSelection
-       With objExcel.ActiveSheet.Cells(VNom, HNom).Font
-          .Size = 12
-          .Color = vbRed
-          .Bold = True
-       End With
-       RSSQL1.MoveFirst
-       For n = 1 To RSSQL1.RecordCount
-         objExcel.ActiveSheet.Cells(Vdatos, Hdatos) = RSSQL1.Fields(I).Value
-         objExcel.ActiveSheet.Cells(Vdatos, Hdatos).Font.Size = 10
-         Vdatos = Vdatos + 1
-         RSSQL1.MoveNext
-       Next
-       HNom = HNom + 1
-       Hdatos = Hdatos + 1
-       Vdatos = 5
-       RSSQL1.MoveFirst
-   Next I
-   'AHORA LE ASIGNAMOS UN TAMAÑO A CADA COLUMNA SEGUN NESECITEMOS
-    objExcel.Columns("B").ColumnWidth = 15.43
-    objExcel.Columns("C").ColumnWidth = 15.43
-    objExcel.Columns("D").ColumnWidth = 25.86
-    objExcel.Columns("E").ColumnWidth = 15.83
-End If
-Exit Sub
-ErrorExcel:
-MsgBox Err.Description
-End Sub
-
-
-
-
-
-
 Public Function TraeTipoCambio(vfecha As Date, vcon As ADODB.Connection) As String
     Dim rsbuscn As New ADODB.Recordset
     
@@ -218,12 +138,12 @@ Public Sub Configurar_Conexiones()
     VGParamSistem.BDEmpresa = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOS", "?")
     VGParamSistem.Servidor = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "SERVIDOR", "?")
     VGParamSistem.Usuario = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "USUARIO", "?")
-    VGParamSistem.PWD = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "PASSW", "?")
-    vgorden = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "ORDEN", "?")
+    VGParamSistem.Pwd = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "PASSW", "?")
+    VGOrden = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "ORDEN", "?")
    
 ' reportes
    
-   VGParamSistem.Rutareport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "VENTAS", "?")
+   VGParamSistem.RutaReport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "VENTAS", "?")
     VGParamSistem.carpetareportes = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "CARPETAREPORTES", "?")
         
     'Conexion de Contabilidad
@@ -232,7 +152,7 @@ Public Sub Configurar_Conexiones()
        VGParamSistem.BDEmpresaCT = VGParamSistem.BDEmpresa
        VGParamSistem.ServidorCT = VGParamSistem.Servidor
        VGParamSistem.UsuarioCT = VGParamSistem.Usuario
-       VGParamSistem.PwdCT = VGParamSistem.PWD
+       VGParamSistem.PwdCT = VGParamSistem.Pwd
      Else
        VGParamSistem.BDEmpresaCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "BDDATOS", "?")
        VGParamSistem.ServidorCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "SERVIDOR", "?")
@@ -243,8 +163,8 @@ Public Sub Configurar_Conexiones()
         MsgBox "No se ha Configurado bien los parametros BDDATOS y SERVIDOR en el archivo " & Chr(13) & _
                App.Path & "\MARFICE.INI"
     End If
-    If VGParamSistem.Rutareport = "" Or VGParamSistem.Rutareport = "?" Then
-       VGParamSistem.Rutareport = App.Path
+    If VGParamSistem.RutaReport = "" Or VGParamSistem.RutaReport = "?" Then
+       VGParamSistem.RutaReport = App.Path
        VGParamSistem.carpetareportes = "Reportes"
     End If
        
@@ -267,7 +187,7 @@ Public Sub Configurar_Conexiones()
     VGCNx.CursorLocation = adUseClient
     VGCNx.CommandTimeout = 0
     VGCNx.ConnectionTimeout = 0
-    VGCNx.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.PWD & ";Initial Catalog=" & VGParamSistem.BDEmpresa & ";Data Source=" & VGParamSistem.Servidor
+    VGCNx.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=" & VGParamSistem.BDEmpresa & ";Data Source=" & VGParamSistem.Servidor
     VGCNx.Open
     
    
@@ -276,7 +196,7 @@ Public Sub Configurar_Conexiones()
     VGConfig.CursorLocation = adUseClient
     VGConfig.CommandTimeout = 0
     VGConfig.ConnectionTimeout = 0
-    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.PWD & ";Initial Catalog=bdwenco;Data Source=" & VGParamSistem.Servidor
+    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=bdwenco;Data Source=" & VGParamSistem.Servidor
     VGConfig.Open
   
 
@@ -313,8 +233,8 @@ Public Function MostrarFormVentasVentas(pVentana As Form, pPos As String)
      Exit Function
    End If
    If pPos = "M" Then
-      pVentana.StatusBar1.Panels(1).Text = "EMPRESA: " & VGParametros.nomempresa
-      pVentana.StatusBar1.Panels(2).Text = "PTO. VENTA: " & g_ptoventa
+      pVentana.StatusBar1.Panels(1).text = "EMPRESA: " & VGParametros.NomEmpresa
+      pVentana.StatusBar1.Panels(2).text = "PTO. VENTA: " & g_ptoventa
       pVentana.StatusBar1.Panels(2).Alignment = sbrLeft
    Else
  '     pVentana.StatusBar1.Panels(1).Text = "FORMATO : " & Escadena(pVentana.Caption)
@@ -357,16 +277,3 @@ nerror:
 
 End Function
 
-Public Function DatoMoneda(xValor As String) As String
-   Dim rmone As New ADODB.Recordset
-   
-   Set rmone = VGCNx.Execute("select * from gr_moneda where monedacodigo='" & xValor & "'")
-   If rmone.RecordCount > 0 Then
-       DatoMoneda = Escadena(rmone!monedasimbolo) & " ."
-   Else
-       DatoMoneda = " "
-   End If
-   rmone.Close
-   Set rmone = Nothing
-
-End Function

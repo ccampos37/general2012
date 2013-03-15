@@ -14,6 +14,7 @@ Public g_TipoMovi As Integer
  Public g_guiaserie As String
 Public g_ticserieb As String
 Public g_ticserief As String
+Public g_GuiaRemSerie As String
 
 
 
@@ -26,6 +27,7 @@ Public Const g_tipobol = "03"    'boletas
 Public Const g_tipoguia = "80"    '9"   'guias B.O
 Public Const g_Todos = "99"      'Todos los documentos para Reporte
 Public Const g_Eventual = "88888888888" 'cliente eventual
+Public Const g_tipoguiaRem = "GR" ' guias de remision
 '*************************
 
 Public nAyuda1   As String
@@ -225,6 +227,7 @@ Public Type Parametrosdeempresa
  listaPuntoVtas As String
  listacajas As String
  
+ multiguias As Boolean
 End Type
 
 
@@ -469,6 +472,3 @@ End If
 
 
 End Sub
-
-
-
