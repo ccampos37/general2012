@@ -40,7 +40,7 @@ Public VGCodigo As String
 Public VGAlma As String
 Public VGoficina As String
          'Codigo de la compannia
-Public vgtipo As TIPOSISTEMA
+
 Public VGOrden As String
 
 Public VGformatofecha As String
@@ -155,7 +155,7 @@ Public nDetalle As String
 Public ndensidad As Long
 Public modoventa As modoventa
 
-
+Public VGtipo As TIPOSISTEMA
 Public VGParametros As Parametrosdeempresa
 Public Type Parametrosdeempresa
     
@@ -259,10 +259,9 @@ Public Type modoventa   'Crea modoventa
     copiastic As Integer
     copiasGr As Integer
     emitehoja As String
-
-
     valorizaliqcompra As String
-
+    canje As Boolean
+    
 End Type
 
 Public VGParamSistem As ParametrosdeSistema

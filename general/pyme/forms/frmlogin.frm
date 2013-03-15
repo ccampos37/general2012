@@ -173,7 +173,7 @@ Begin VB.Form frmlogin
          _ExtentX        =   2566
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   98238465
+         Format          =   41353217
          CurrentDate     =   39104
       End
       Begin VB.Label Label1 
@@ -397,7 +397,6 @@ If clave < 4 Then
         MDIPrincipal.StatusBar1.Panels.item(5) = "Fecha:  " & VGParamSistem.fechatrabajo
         MDIPrincipal.StatusBar1.Panels.item(6) = "Pto de Venta:  " & VGParametros.puntovta & " - " & RsPvta!puntovtadescripcion
                
-        vgtipo = TIPOSISTEMA.PyMe
         Clsmenu.TablaMenu = "si_menu"
         Clsmenu.CrearTablaMenu
         Clsmenu.TabaMenuDet = "si_menuusuarios"
@@ -606,7 +605,8 @@ clave = 1
 central Me
 ADOConectar
 DTPfecha.Value = Date
-SQL = " select * from si_sistema where tipodesistema =" & TIPOSISTEMA.PyMe & ""
+VGtipo = PyM
+SQL = " select * from si_sistema where tipodesistema =" & VGtipo & ""
 Set REG1 = VGConfig.Execute(SQL)
 If REG1.RecordCount > 0 Then Label1(0) = RTrim(REG1!tipodesistemadescripcion) + " : " + REG1!anno + "." + REG1!Version
 Set REG1 = New ADODB.Recordset

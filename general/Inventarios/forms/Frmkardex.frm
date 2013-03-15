@@ -10,8 +10,8 @@ Begin VB.Form FrmKardex
    ClientWidth     =   6540
    Icon            =   "Frmkardex.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   11565
-   ScaleWidth      =   19110
+   ScaleHeight     =   3420
+   ScaleWidth      =   6540
    Begin VB.Frame Frame4 
       Height          =   615
       Left            =   240
@@ -96,7 +96,7 @@ Begin VB.Form FrmKardex
          _ExtentX        =   2566
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   97976321
+         Format          =   110755841
          CurrentDate     =   36437
          MaxDate         =   401768
          MinDate         =   35796
@@ -110,7 +110,7 @@ Begin VB.Form FrmKardex
          _ExtentX        =   2566
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   97976321
+         Format          =   110755841
          CurrentDate     =   36437
          MaxDate         =   401768
          MinDate         =   35796
@@ -402,8 +402,8 @@ Dim Codigo2 As String
        End If
        Call kardex2
           CrystalReport1.Reset
-           CrystalReport1.WindowTitle = "Inv034 -- Control de Inventarios"
-           CrystalReport1.ReportFileName = VGParamSistem.RutaReport & "inv034.rpt"
+           CrystalReport1.WindowTitle = "al_kardexDetallado  -- Control de Inventarios"
+           CrystalReport1.ReportFileName = VGParamSistem.RutaReport & "al_kardexDetallado.rpt"
        CrystalReport1.DiscardSavedData = True
        
  

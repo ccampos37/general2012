@@ -108,7 +108,7 @@ Begin VB.Form FrmVtasporPuntoVta
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   98762753
+         Format          =   100597761
          CurrentDate     =   37518
       End
       Begin MSComCtl2.DTPicker DTDesde 
@@ -129,7 +129,7 @@ Begin VB.Form FrmVtasporPuntoVta
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   98762753
+         Format          =   100597761
          CurrentDate     =   37518
       End
       Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyuProducto 
@@ -257,7 +257,7 @@ Dim busca As New dll_apisgen.dll_apis
 Dim sresumen As Integer
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-Private Sub cmdAceptar_Click(Index As Integer)
+Private Sub cmdaceptar_Click(Index As Integer)
 Dim aform(3) As Variant
 Dim aparam(7) As Variant
 
@@ -268,12 +268,12 @@ Dim aparam(7) As Variant
 aform(0) = "Desde='" & DTDesde & "'"
 aform(1) = "Hasta='" & DTHasta & "'"
 If Ctr_AyuPuntoVta.xclave <> "" Then
-   aform(2) = "puntoventa='" & Ctr_AyuPuntoVta.xclave & "'"
+   aform(2) = "puntoventa='" & Ctr_AyuPuntoVta.xnombre & "'"
  Else
    aform(2) = "puntoventa='TODOS'"
 End If
 If Ctr_AyuProducto.xclave <> "" Then
-   aform(3) = "Articulo='" & Ctr_AyuProducto.xclave & "'"
+   aform(3) = "Articulo='" & Ctr_AyuProducto.xnombre & "'"
    aparam(3) = Ctr_AyuProducto.xclave
  Else
    aform(3) = "Articulo='TODOS'"
@@ -292,7 +292,7 @@ Else
 End If
 End Sub
 
-Private Sub cmdCancelar_Click(Index As Integer)
+Private Sub CmdCancelar_Click(Index As Integer)
     Unload Me
 End Sub
 

@@ -1,10 +1,10 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
-Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
-Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
-Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
+Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
+Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
 Object = "{4D137D9C-00A6-4458-9B46-7E95DB76D55B}#9.0#0"; "TextFer.ocx"
 Begin VB.Form FrmPedidoGlosa 
    BorderStyle     =   1  'Fixed Single
@@ -3592,7 +3592,7 @@ Begin VB.Form FrmPedidoGlosa
          _ExtentX        =   2408
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   107806721
+         Format          =   41353217
          CurrentDate     =   39763
          MaxDate         =   44196
          MinDate         =   36526
@@ -3606,7 +3606,7 @@ Begin VB.Form FrmPedidoGlosa
          _ExtentX        =   2408
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   107806721
+         Format          =   41353217
          CurrentDate     =   39763
          MaxDate         =   44196
          MinDate         =   36526
@@ -3809,14 +3809,14 @@ Dim Param(5) As Variant
 Dim reporte As String
 
 Param(0) = VGParamSistem.BDEmpresa
-Param(1) = MBox(1).Text
+Param(1) = MBox(1).text
 Param(2) = VGParametros.empresacodigo
 Param(3) = VGParametros.puntovta
-Param(4) = Left(Combo1.Text, 2)
+Param(4) = Left(Combo1.text, 2)
 
 
 formulas(0) = "@ruc='" & VGParametros.RucEmpresa & "'"
-formulas(1) = "Montoletras='" & dllgeneral.NUMLET(Round(CDbl(MBox2(10)), 2)) & IIf(dllgeneral.ComboDato(Combo1.Text) = g_tiposol, "Nuevos Soles", "Dolares Americanos") & "'"
+formulas(1) = "Montoletras='" & dllgeneral.NUMLET(Round(CDbl(MBox2(10)), 2)) & IIf(dllgeneral.ComboDato(Combo1.text) = g_tiposol, "Nuevos Soles", "Dolares Americanos") & "'"
 
 If VGParametros.multifacturas Then
    reporte = "vt_bolimpresa_" & VGCNx.DefaultDatabasparaametrose & VGParametros.empresacodigo & VGParametros.puntovta & ".rpt"
@@ -3826,17 +3826,17 @@ End If
 Call ImpresionRptProc(reporte, formulas, Param, , "Impresion de Boletas")
 End Sub
 
-Private Sub ingresosalmacen(rrsql As Recordset, valor As Integer, valor1 As Integer)
+Private Sub ingresosalmacen(rrsql As Recordset, Valor As Integer, valor1 As Integer)
     Dim acmd As New ADODB.Command
     Dim n As Integer
-    Dim nn As String
+    Dim nN As String
     Dim xrsql As New ADODB.Recordset
     rrsql.MoveFirst
     n = 0
 Do While Not rrsql.EOF
    n = n + 1
-  nn = Format(n, "000")
-    If valor = 1 Then
+  nN = Format(n, "000")
+    If Valor = 1 Then
        Set acmd.ActiveConnection = VGGeneral
                     acmd.CommandType = adCmdStoredProc
                     acmd.CommandTimeout = 0
@@ -3846,11 +3846,11 @@ Do While Not rrsql.EOF
                         .Parameters("@base") = VGCNx.DefaultDatabase
                         .Parameters("@tabla") = "movalmdet" ' nsql
                         .Parameters("@tipo") = "1"
-                        .Parameters("@item") = rsdeta!Item
+                        .Parameters("@item") = rsdeta!item
                         .Parameters("@numero") = wCabe(5)
                         .Parameters("@producto") = rrsql!codart
                         .Parameters("@unidad") = rsdeta.Fields(3)
-                        .Parameters("@cantidad") = rsdeta.Fields(4) * rrsql!canart
+                        .Parameters("@cantidad") = rsdeta.Fields(4) * rrsql!CANART
                         .Parameters("@preciopacto") = rsdeta.Fields(5)
                         .Parameters("@dsctoxitem") = rsdeta.Fields(6)
                         .Parameters("@importebruto") = rsdeta.Fields(7)
@@ -3883,7 +3883,7 @@ Do While Not rrsql.EOF
                                .Parameters("@tipo") = "1"
                         End If
                         .Parameters("@articulo") = rrsql!codart
-                        .Parameters("@cantidad") = rsdeta.Fields(4) * rrsql!canart
+                        .Parameters("@cantidad") = rsdeta.Fields(4) * rrsql!CANART
                       End With
                       acmd.Execute
                       Set acmd = Nothing
@@ -3908,7 +3908,7 @@ Dim formulas(1) As Variant, Param(4) As Variant
         Param(1) = Ctr_Ayuda3.xclave
         Param(2) = "GR"
         Param(3) = MBox(12)
-        formulas(0) = "guia='" & MBox(12).Text & "'"
+        formulas(0) = "guia='" & MBox(12).text & "'"
         If VGParametros.multiguias Then
            reporte = "al_guiaremision_" & VGCNx.DefaultDatabase & VGParametros.puntovta & ".rpt"
          Else
@@ -4002,7 +4002,7 @@ Dim J As Integer
                      rb.MoveNext
                Next J
                oCrystalReport.Reset
-               oCrystalReport.ReportFileName = VGParamSistem.Rutareport & "Repguiaimpresa.rpt"
+               oCrystalReport.ReportFileName = VGParamSistem.RutaReport & "Repguiaimpresa.rpt"
                oCrystalReport.LogOnServer "pdssql.dll", _
                     busca.LeerIni(App.Path & "\MARFICE.INI", "conexion", "SERVIDOR", ""), _
                     busca.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOS", ""), _
@@ -4050,7 +4050,7 @@ Dim xsql As New ADODB.Recordset
        FrmAyudaPedidos.TipoForma = 1
        FrmAyudaPedidos.BConexion = VGCNx
        FrmAyudaPedidos.BTabla = "vt_clientedireccion"
-       FrmAyudaPedidos.Bdata = "0"
+       FrmAyudaPedidos.bdata = "0"
        FrmAyudaPedidos.BCampos = "Cliedirnumero as Codigo,Cliedirdireccion as Descripcion"
        FrmAyudaPedidos.BOrden = "Cliedirnumero"
        FrmAyudaPedidos.BCondi = "clientecodigo='" & Ctr_Ayuda1.xclave & "'"
@@ -4067,11 +4067,11 @@ Dim xsql As New ADODB.Recordset
        FrmAyudaPedidos.TipoForma = 1
        FrmAyudaPedidos.BConexion = VGCNx
        FrmAyudaPedidos.BTabla = " maeart left join stkart ON acodigo=stcodigo "
-       FrmAyudaPedidos.Bdata = "2"
-       FrmAyudaPedidos.Bdato = Escadena(MBox2(1).Text)
+       FrmAyudaPedidos.bdata = "2"
+       FrmAyudaPedidos.bdato = Escadena(MBox2(1).text)
        If modoventa.ctrlinventario = 0 Then
           'FrmAyudaPedidos.BCampos = "acodigo as Codigo,adescri as Descripcion"
-          FrmAyudaPedidos.BCampos = "acodigo as Codigo,acodigo2 as tipo,adescri as Descripcion,stskdis-stskcom as Stock"
+          FrmAyudaPedidos.BCampos = "acodigo as Codigo,acodigo2 as tipo,adescri as Descripcion,isnull(stskdis-stskcom,0) as Stock"
        Else
           If VGParamSistem.stockcomp = 1 Then
              If VGParamSistem.kitvirtual = 1 Then
@@ -4103,7 +4103,7 @@ Dim xsql As New ADODB.Recordset
            End If
           End If
        Else
-          FrmAyudaPedidos.BCondi = ""
+          FrmAyudaPedidos.BCondi = " isnull(stskdis,0) >=0  "
        End If
        FrmAyudaPedidos.BFiltro = sfiltra
    Else
@@ -4128,7 +4128,7 @@ Private Sub cBoton_Click(Index As Integer)
        TClie.Value = 0
        Limpiartexto MBox, 2, 9
        MBox(0).Enabled = False:  MBox(1).Enabled = False
-       MBox(0).Text = g_ptoventa
+       MBox(0).text = g_ptoventa
        MBox(1) = g_pedserie & Right("0000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where documentocodigo='" & g_tipoped & "' and puntovtadocserie='" & g_pedserie & "' and puntovtacodigo='" & g_ptoventa & "' and empresacodigo='" & VGParametros.empresacodigo & "'", VGCNx), 10)
        MBox(2) = g_facserie & Right("000000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where documentocodigo='" & g_tipofac & "' and puntovtadocserie='" & g_facserie & "' and puntovtacodigo='" & g_ptoventa & "' and empresacodigo='" & VGParametros.empresacodigo & "'", VGCNx), 10)
        MBox(3) = g_bolserie & Right("000000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where documentocodigo='" & g_tipobol & "' and puntovtadocserie='" & g_bolserie & "' and puntovtacodigo='" & g_ptoventa & "' and empresacodigo='" & VGParametros.empresacodigo & "'", VGCNx), 10)
@@ -4137,9 +4137,9 @@ Private Sub cBoton_Click(Index As Integer)
        LblTicSer.Caption = g_ticserieb & Right("000000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where documentocodigo='" & g_tipoticketB & "' and puntovtadocserie='" & g_ticserieb & "' and puntovtacodigo='" & g_ptoventa & "' and empresacodigo='" & VGParametros.empresacodigo & "'", VGCNx), 10)
        
        MBox(5) = numero(0): MBox(6) = numero(0): MBox(7) = numero(0): MBox(8) = numero(TraeTipoCambio(Date, VGCNx))
-       MBox(9) = Escadena(VGParamSistem.mensaje)
+       MBox(9) = Escadena(VGParamSistem.Mensaje)
        MBox(19) = ""
-       MBox(10) = Format(VGParamSistem.FechaTrabajo, "dd/mm/yyyy")
+       MBox(10) = Format(VGParamSistem.fechatrabajo, "dd/mm/yyyy")
        MBox(13) = numero(0)
        MBox(15) = numero(0)
        MBox(16) = 0: MBox(17) = "": MBox(18) = "0"
@@ -4159,7 +4159,7 @@ Private Sub cBoton_Click(Index As Integer)
        'Ctr_Ayuda3.Filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'"
        Call Ctr_Ayuda3.Ejecutar
        If Len(Trim(modoventa.almacenes)) > 0 And Chkentrega.Value = 0 Then
-          Ctr_Ayuda3.Filtro = "taalma in (" & modoventa.almacenes & ") and puntovtacodigo='" & VGParametros.puntovta & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
+          Ctr_Ayuda3.filtro = "taalma in (" & modoventa.almacenes & ") and puntovtacodigo='" & VGParametros.puntovta & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
           Ctr_Ayuda3.Ejecutar
        End If
 
@@ -4251,7 +4251,7 @@ Private Sub cmdBotones_Click(Index As Integer)
        End If
     Case 2
        If TDBGrid2.Row >= 0 Then
-        asql = "pedidonumero='" & TDBGrid2.Columns(0).Text & "'"
+        asql = "pedidonumero='" & TDBGrid2.Columns(0).text & "'"
         If dllgeneral.EliminaReg(VGCNx, g_DetallePuntoVta, asql) = 1 Then
            If VGParamSistem.stockcomp = 1 Then
              Set rswork = VGCNx.Execute("select productocodigo,detpedcantpedida from " & g_DetallePuntoVta & " where " & asql & "")
@@ -4364,14 +4364,14 @@ Private Sub cmdBotones_Click(Index As Integer)
                 cOpc2(3).Value = Escadena(IIf(modoventa.documento <> g_tipoticketB, False, True))   'g_tipoticket
                 cOpc2(4).Value = Escadena(IIf(modoventa.documento <> g_tipoticketf, False, True))   'g_tipoticket
                 
-                TxFerimporte.Text = Trim(MBox2(10))
-                TxFermoneda.Text = Left(Combo1.Text, 2)
+                TxFerimporte.text = Trim(MBox2(10))
+                TxFermoneda.text = Left(Combo1.text, 2)
                 If modoventa.ctacte = 0 Then
                    Ctr_Ayuoperacion.xclave = "01"
                    Ctr_Ayuoperacion.xnombre = "EFECTIVO"
-                   Ctr_Ayuoperacion.Filtro = " pagotipocontado=1"
+                   Ctr_Ayuoperacion.filtro = " pagotipocontado=1"
                 Else
-                   Ctr_Ayuoperacion.Filtro = " pagotipocontado=0"
+                   Ctr_Ayuoperacion.filtro = " pagotipocontado=0"
                 End If
                 Ctr_Ayutipo.Visible = False
                 TxFernumero.Visible = False
@@ -4384,7 +4384,7 @@ Private Sub cmdBotones_Click(Index As Integer)
            End If
        End If
        g_TipoMovi = 0
-       If Right(TxtHor.Text, 2) > 59 Then
+       If Right(TxtHor.text, 2) > 59 Then
         MsgBox "Hora no valida", vbInformation, "Sistema"
         TxtHor.SetFocus
 End If
@@ -4449,7 +4449,7 @@ Private Sub Combo3_Click()
   If Combo3.ListCount >= 0 Then
      Call CargarModo
      If Len(Trim(modoventa.almacenes)) > 0 Then
-          Ctr_Ayuda3.Filtro = "taalma in (" & modoventa.almacenes & ") and empresacodigo='" & VGParametros.empresacodigo & "'"
+          Ctr_Ayuda3.filtro = "taalma in (" & modoventa.almacenes & ") and empresacodigo='" & VGParametros.empresacodigo & "'"
           'Ctr_Ayuda3.Ejecutar
       End If
   End If
@@ -4537,7 +4537,7 @@ Private Sub cSeleccion_Click(Index As Integer)
         MsgBox "Primero agregue el pago que se va a realizar.", vbInformation, "ZIYAZ"
         Exit Sub
     End If
-    TxFerimporte.valor = 0
+    TxFerimporte.Valor = 0
    If Not validar() Then
         MsgBox "Digite Importe = 0 o Importe de forma de Pago no es igual a Monto del documento, verifique ", vbInformation, "ZIYAZ"
         Exit Sub
@@ -4618,20 +4618,20 @@ End Sub
 Private Sub Ctr_Ayuda1_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
     Dim acliente As New ADODB.Recordset
     
-    MBox3(0) = Trim(ColecCampos.Item(0))
-    MBox3(1) = Trim(ColecCampos.Item(1))
-    MBox3(2) = Trim(ColecCampos.Item(2))
-    MBox(19) = Left(Trim(ColecCampos.Item(3)), 64)
-    MBox3(3) = Left(Trim(ColecCampos.Item(3)), 64)
-    MBox3(4) = ESNULO(Trim(ColecCampos.Item(4)), "")
-    Text5 = Trim(ColecCampos.Item(2))
+    MBox3(0) = Trim(ColecCampos.item(0))
+    MBox3(1) = Trim(ColecCampos.item(1))
+    MBox3(2) = Trim(ColecCampos.item(2))
+    MBox(19) = Left(Trim(ColecCampos.item(3)), 64)
+    MBox3(3) = Left(Trim(ColecCampos.item(3)), 64)
+    MBox3(4) = ESNULO(Trim(ColecCampos.item(4)), "")
+    Text5 = Trim(ColecCampos.item(2))
     
-    If IsNull(ColecCampos.Item(10)) Or Len(Trim(ColecCampos.Item(10))) = 0 Then
+    If IsNull(ColecCampos.item(10)) Or Len(Trim(ColecCampos.item(10))) = 0 Then
        Text1 = numero(0)
        Text2 = numero(0)
     Else
-       Text1 = numero(CDbl(Trim(ColecCampos.Item(10))))
-       Text2 = numero(CDbl(Trim(ColecCampos.Item(10))) * 100)
+       Text1 = numero(CDbl(Trim(ColecCampos.item(10))))
+       Text2 = numero(CDbl(Trim(ColecCampos.item(10))) * 100)
     End If
     
     lcred(0) = numero(0)
@@ -4657,7 +4657,7 @@ Private Sub Ctr_Ayuda1_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
             Ctr_AyuAnalitico.xclave = "": Ctr_AyuAnalitico.Ejecutar
             Ctr_Ayuda1.SetFocus
           Else
-            Ctr_AyuAnalitico.Filtro = SQL
+            Ctr_AyuAnalitico.filtro = SQL
             Ctr_AyuAnalitico.Visible = True
   
          End If
@@ -4756,16 +4756,16 @@ End If
    Do Until rsdetax.EOF
       montox = montox + rsdetax!pagoimporte
       key = rsdetax!pagocodigo + RTrim(rsdetax!pagotipocodigo) + rsdetax!pagonumdoc + rsdetax!monedacodigo
-      If key = Ctr_Ayuoperacion.xclave + Ctr_Ayutipo.xclave + TxFernumero.valor + TxFermoneda.valor And numero(TxFerimporte.valor) > 0 Then
+      If key = Ctr_Ayuoperacion.xclave + Ctr_Ayutipo.xclave + TxFernumero.Valor + TxFermoneda.Valor And numero(TxFerimporte.Valor) > 0 Then
              MsgBox ("forma de pago duplicado, verifique ")
              Exit Function
       End If
       rsdetax.MoveNext
    Loop
-   If Left(Combo1.Text, 2) = "01" And TxFermoneda.valor = "02" Then
-      montox = montox + Format((numero(TxFerimporte.valor) * MBox(8)), "###,###,##0.00")
+   If Left(Combo1.text, 2) = "01" And TxFermoneda.Valor = "02" Then
+      montox = montox + Format((numero(TxFerimporte.Valor) * MBox(8)), "###,###,##0.00")
     Else
-      montox = montox + Format(numero(Trim(TxFerimporte.valor)), "###,###,##0.00")
+      montox = montox + Format(numero(Trim(TxFerimporte.Valor)), "###,###,##0.00")
    End If
    If montox > MBox2(10) Then
       MsgBox ("Monto de forma de pago es mayor al monto de la factura")
@@ -4785,21 +4785,21 @@ Private Sub adicionar()
 rsdetax!pedidonumero = MBox(1)
 rsdetax!pagocodigo = Ctr_Ayuoperacion.xclave
 rsdetax!pagotipocodigo = Ctr_Ayutipo.xclave
-rsdetax!pagonumdoc = TxFernumero.valor
-rsdetax!monedacodigo = dllgeneral.ComboDato(TxFermoneda.Text)
+rsdetax!pagonumdoc = TxFernumero.Valor
+rsdetax!monedacodigo = dllgeneral.ComboDato(TxFermoneda.text)
 rsdetax!TipoDeCambio = MBox(8)
-If rsdetax!monedacodigo = "01" And TxFermoneda.valor = "02" Then
-   rsdetax!pagoimporte = Format((TxFerimporte.valor * MBox(8)), "###,###,##0.00")
+If rsdetax!monedacodigo = "01" And TxFermoneda.Valor = "02" Then
+   rsdetax!pagoimporte = Format((TxFerimporte.Valor * MBox(8)), "###,###,##0.00")
 Else
-  rsdetax!pagoimporte = Format(Trim(TxFerimporte.valor), "###,###,##0.00")
+  rsdetax!pagoimporte = Format(Trim(TxFerimporte.Valor), "###,###,##0.00")
 End If
 End Sub
 
 
 Private Sub Ctr_Ayuoperacion_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
-Ctr_Ayutipo.Filtro = "pagocodigo='" & Ctr_Ayuoperacion.xclave & "'"
+Ctr_Ayutipo.filtro = "pagocodigo='" & Ctr_Ayuoperacion.xclave & "'"
 Ctr_Ayutipo.xclave = ""
-TxFernumero.valor = ""
+TxFernumero.Valor = ""
 
 If ColecCampos("pagoefectivo") = False Then
    Ctr_Ayutipo.Visible = False
@@ -4813,13 +4813,13 @@ Private Sub Ctr_Ayuda3_GotFocus()
     If Len(Trim(modoventa.almacenes)) > 0 Then
   '     Ctr_Ayuda3.Filtro = " taalma in (" & Trim(modoventa.almacenes) & ") and puntovtacodigo='" & VGParametros.puntovta & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
         If Chkentrega.Value = 1 Then
-           Ctr_Ayuda3.Filtro = " taalma in (" & Trim(modoventa.almacenes) & ") and empresacodigo='" & VGParametros.empresacodigo & "'"
+           Ctr_Ayuda3.filtro = " taalma in (" & Trim(modoventa.almacenes) & ") and empresacodigo='" & VGParametros.empresacodigo & "'"
          Else
-          Ctr_Ayuda3.Filtro = " taalma in (" & Trim(modoventa.almacenes) & ") and empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'"
+          Ctr_Ayuda3.filtro = " taalma in (" & Trim(modoventa.almacenes) & ") and empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'"
        End If
        Ctr_Ayuda3.Ejecutar
     Else
-       Ctr_Ayuda3.Filtro = " almacencodigo like '%' and puntovtacodigo='" & VGParametros.puntovta & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
+       Ctr_Ayuda3.filtro = " almacencodigo like '%' and puntovtacodigo='" & VGParametros.puntovta & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
        Ctr_Ayuda3.Ejecutar
     End If
 End Sub
@@ -4837,12 +4837,12 @@ End Sub
 Private Sub Form_Load()
 Call configuramasivo
 MostrarFormVentas Me, "C"
-Call Ctr_Ayuoperacion.conexion(VGCNx)
-Call Ctr_Ayutipo.conexion(VGCNx)
-Call Ctr_AyudaTc.conexion(VGCNx)
-Call Ctr_AyudaPro.conexion(VGCNx)
-Call Ctr_AyuAnalitico.conexion(VGCNx)
-Ctr_AyuAnalitico.Filtro = " tipoanaliticocodigo='" & VGParamSistem.tipoanaliticocodigo & "' and proyectocierre=0"
+Call Ctr_Ayuoperacion.Conexion(VGCNx)
+Call Ctr_Ayutipo.Conexion(VGCNx)
+Call Ctr_AyudaTc.Conexion(VGCNx)
+Call Ctr_AyudaPro.Conexion(VGCNx)
+Call Ctr_AyuAnalitico.Conexion(VGCNx)
+Ctr_AyuAnalitico.filtro = " tipoanaliticocodigo='" & VGParamSistem.tipoanaliticocodigo & "' and proyectocierre=0"
 
 flag = 0
 'Call dllgeneral.ActivaTab(0, 1, SSTab1)
@@ -4872,7 +4872,7 @@ cmdBotones(1).Picture = MDIPrincipal.ImageList2.ListImages("Modificar").Picture
 cmdBotones(2).Picture = MDIPrincipal.ImageList2.ListImages("Eliminar").Picture
 cmdBotones(4).Picture = MDIPrincipal.ImageList2.ListImages("Retornar").Picture
 
-TxtHor.Text = Format(Time, "HH:mm")
+TxtHor.text = Format(Time, "HH:mm")
 
 Me.Top = 0
 Me.Left = 0
@@ -4905,27 +4905,27 @@ Dim J As Integer
       rsmasivo.MoveFirst
       J = 0
       Do Until rsmasivo.EOF
-         If rsmasivo!cantidad > 0 Then
+         If rsmasivo!CANTIDAD > 0 Then
             J = J + 1
             rsdeta.AddNew
             rsdeta.Fields(0) = J
             rsdeta.Fields(1) = rsmasivo!articulo
             rsdeta.Fields(2) = rsmasivo!descripcion
             rsdeta.Fields(3) = rsmasivo!unidad
-            If Trim(rsmasivo!cantidad) = "" Then
-               rsmasivo!cantidad = 0
+            If Trim(rsmasivo!CANTIDAD) = "" Then
+               rsmasivo!CANTIDAD = 0
             End If
-            rsdeta.Fields(4) = rsmasivo!cantidad
-            MBox2(0) = rsmasivo!cantidad
+            rsdeta.Fields(4) = rsmasivo!CANTIDAD
+            MBox2(0) = rsmasivo!CANTIDAD
             MBox2(2) = rsmasivo!unidad
             MBox2(1) = rsmasivo!articulo
             MBox2(4) = 0
             MBox2(5) = 0
-            If Text7.Text > 0 Then
-                rsdeta.Fields(12) = Text7.Text
+            If Text7.text > 0 Then
+                rsdeta.Fields(12) = Text7.text
                 MBox2(3) = rsdeta.Fields(12)
               Else
-                Set rsk = VGCNx.Execute("select * from listapre" & Trim(Combo2.Text) & " where productocodigo='" & rsmasivo!articulo & "' and almacencodigo='" & Trim(Ctr_Ayuda3.xclave) & "'")
+                Set rsk = VGCNx.Execute("select * from listapre" & Trim(Combo2.text) & " where productocodigo='" & rsmasivo!articulo & "' and almacencodigo='" & Trim(Ctr_Ayuda3.xclave) & "'")
                 If rsk.RecordCount > 0 Then
                     rsdeta.Fields(12) = rsk.Fields("productoprecvta")
                     MBox2(3) = rsdeta.Fields(12)
@@ -4942,17 +4942,17 @@ Dim J As Integer
                  If rsmasivo.Fields(5) = 1 Then
                     rsdeta.Fields(5) = (MBox2(3) / (1 + VGParamSistem.Igv / 100))
                    Else
-                    rsdeta.Fields(5) = MBox2(3).Text
+                    rsdeta.Fields(5) = MBox2(3).text
                   End If
           '       rsdeta.Fields(12) = MBox2(3).Tag
                Else
-                 rsdeta.Fields(5) = MBox2(3).Text
+                 rsdeta.Fields(5) = MBox2(3).text
            '      rsdeta.Fields(12) = MBox2(3).Tag
               End If
            End If
            rsdeta.Fields(6) = numero(MBox2(4))
            rsdeta.Fields(7) = numero(MBox2(0) * MBox2(3))   ' IIf(VGParamSistem.tieneigv = "1", (MBox2(3) / (1 + (VGParamSistem.igv / 100))), MBox2(3)))
-           rsdeta.Fields(8) = rsmasivo!cantidad
+           rsdeta.Fields(8) = rsmasivo!CANTIDAD
            rsdeta.Fields(9) = IIf(Len(Trim(MBox2(11))) = 0, 0, Format(MBox2(11), "##,###,##0"))
            rsdeta.Fields(10) = numero(MBox2(13))
            rsdeta.Fields(11) = IIf(IsNull(MBox2(14)) Or Len(Trim(MBox2(14))) = 0, 0, MBox2(14))
@@ -4994,7 +4994,7 @@ Private Function loadmasivo()
  
   TDBGrid3.Columns(6).AddRegexCellStyle dbgNormalCell, NoItem, "^0"
   TDBGrid3.Columns(6).AddRegexCellStyle dbgNormalCell + dbgCurrentCell, NoItem, "^0"
-   Text7.Text = 0
+   Text7.text = 0
    wposi = 0
    Text10 = 0
    If rsgrid3.RecordCount > 0 And masivo = 0 Then
@@ -5008,7 +5008,7 @@ Private Function loadmasivo()
          rsmasivo.Fields(3) = rsgrid3!unidad
          rsmasivo.Fields(4) = rsgrid3!saldo
          rsmasivo.Fields(5) = rsgrid3!tieneigv
-         rsmasivo.Fields(6) = rsgrid3!cantidad
+         rsmasivo.Fields(6) = rsgrid3!CANTIDAD
          rsgrid3.MoveNext
      Loop
   End If
@@ -5076,10 +5076,10 @@ Public Function Cargacombo()
    Call CargarTipoVentas(Combo8, 3)
    
    
-   Call Ctr_Ayuda1.conexion(VGCNx)
-   Call Ctr_Ayuda2.conexion(VGCNx)
-   Call Ctr_Ayuda3.conexion(VGCNx)
-   Call Ctr_AyuTransporte.conexion(VGCNx)
+   Call Ctr_Ayuda1.Conexion(VGCNx)
+   Call Ctr_Ayuda2.Conexion(VGCNx)
+   Call Ctr_Ayuda3.Conexion(VGCNx)
+   Call Ctr_AyuTransporte.Conexion(VGCNx)
    
 End Function
 
@@ -5199,8 +5199,8 @@ If Fecha = 1 Then
   SQL = SQL & " and pedidofecha between '" & DtFechaDesde.Value & "' and '" & DtFechaHasta.Value & "' "
 End If
 
-If Len(Trim(TxtNro.Text)) <> 0 Then SQL = " and pedidonumero='" & TxtNro.Text & "'"
-If Len(Trim(TxtCliente.Text)) <> 0 Then SQL = SQL + " and clienterazonsocial like '%" & TxtCliente.Text & "%' "
+If Len(Trim(TxtNro.text)) <> 0 Then SQL = " and pedidonumero='" & TxtNro.text & "'"
+If Len(Trim(TxtCliente.text)) <> 0 Then SQL = SQL + " and clienterazonsocial like '%" & TxtCliente.text & "%' "
 
 SQL = SQL & " order by pedidofecha,pedidonumero"
 
@@ -5233,7 +5233,7 @@ End Sub
 
 Private Sub MBox_GotFocus(Index As Integer)
   Call dllgeneral.Enfoquetexto(MBox(Index))
- If MBox(10).Text <> VGParamSistem.FechaTrabajo Then
+ If MBox(10).text <> VGParamSistem.fechatrabajo Then
      Chkentrega.Value = 1
    Else
      Chkentrega.Value = 0
@@ -5329,7 +5329,7 @@ Private Sub MBox2_GotFocus(Index As Integer)
      Call TraerProducto
   End If
     If Index > 2 Then
-     If MBox2(1).Text = "" Then
+     If MBox2(1).text = "" Then
         MsgBox (" No existe codigo del producto")
         MBox2(2).SetFocus
         Exit Sub
@@ -5392,7 +5392,7 @@ Private Sub MBox2_LostFocus(Index As Integer)
    Case 1
       'ntabla = IIf(Combo2.ListCount > 0, "listapre" & dllgeneral.ComboDato(Combo2.Text), "vt_producto")
       'If dllgeneral.VerificaDatoExistente(VGcnx, "select * from " & ntabla & " where productocodigo='" & MBox2(Index).Text & "' and almacencodigo='" & Ctr_Ayuda3.xclave & "'") = 0 And Len(Trim(MBox2(Index))) > 0 Then
-      If dllgeneral.VerificaDatoExistente(VGCNx, "select * from stkart where stcodigo='" & MBox2(Index).Text & "' and stalma='" & Ctr_Ayuda3.xclave & "'") = 0 And Len(Trim(MBox2(Index))) > 0 Then
+      If dllgeneral.VerificaDatoExistente(VGCNx, "select * from stkart where stcodigo='" & MBox2(Index).text & "' and stalma='" & Ctr_Ayuda3.xclave & "'") = 0 And Len(Trim(MBox2(Index))) > 0 Then
           Call cAyuda_Click(3)
           MBox2(1).MaxLength = 20
          Exit Sub
@@ -5407,7 +5407,7 @@ Private Sub MBox2_LostFocus(Index As Integer)
             
       End If
    Case 3, 4, 5
-      If Index = 3 And dllgeneral.ComboDato(Combo5.Text) = "N" Then
+      If Index = 3 And dllgeneral.ComboDato(Combo5.text) = "N" Then
           Call TraerProducto
       End If
       If Not dllgeneral.ValidaCadena(MBox2(Index), "N") And Len(Trim(MBox2(Index))) <> 0 Then
@@ -5492,7 +5492,7 @@ Private Sub MBox2_LostFocus(Index As Integer)
                  End If
               End If
            Else
-              rsdeta.Fields(5) = MBox2(3).Text
+              rsdeta.Fields(5) = MBox2(3).text
               rsdeta.Fields(12) = MBox2(3).Tag
            End If
         End If
@@ -5509,7 +5509,7 @@ Private Sub MBox2_LostFocus(Index As Integer)
         rsdeta.Fields(10) = numero(MBox2(13))
         rsdeta.Fields(11) = IIf(IsNull(MBox2(14)) Or Len(Trim(MBox2(14))) = 0, 0, MBox2(14))
         
-        Set rsk = VGCNx.Execute("select * from listapre" & Trim(Combo2.Text) & " where productocodigo='" & Trim(Escadena(MBox2(1))) & "' and almacencodigo='" & Trim(Ctr_Ayuda2.xclave) & "'")
+        Set rsk = VGCNx.Execute("select * from listapre" & Trim(Combo2.text) & " where productocodigo='" & Trim(Escadena(MBox2(1))) & "' and almacencodigo='" & Trim(Ctr_Ayuda2.xclave) & "'")
         If rsk.RecordCount > 0 Then
            rsdeta.Fields(12) = rsk.Fields("productoprecvta")
         Else
@@ -5746,7 +5746,7 @@ Private Sub TDBGrid1_KeyDown(KeyCode As Integer, Shift As Integer)
         Limpiartexto MBox2, 6, 10
         Exit Sub
      End If
-     nvalor = TDBGrid1.Columns(0).Text
+     nvalor = TDBGrid1.Columns(0).text
      If rsdeta.RecordCount > 0 Then
         rsdeta.MoveFirst
         Do Until rsdeta.EOF
@@ -5763,24 +5763,24 @@ Private Sub TDBGrid1_KeyDown(KeyCode As Integer, Shift As Integer)
      Exit Sub
   ElseIf KeyCode = 13 Then
     Limpiartexto MBox2, 0, 5
-    MBox2(12) = TDBGrid1.Columns(0).Text
-    MBox2(0) = TDBGrid1.Columns(4).Text
-    MBox2(1) = TDBGrid1.Columns(1).Text
-    Label2 = TDBGrid1.Columns(2).Text
-    MBox2(2) = Escadena(TDBGrid1.Columns(3).Text)
-   MBox2(11) = Escadena(TDBGrid1.Columns(9).Text)
+    MBox2(12) = TDBGrid1.Columns(0).text
+    MBox2(0) = TDBGrid1.Columns(4).text
+    MBox2(1) = TDBGrid1.Columns(1).text
+    Label2 = TDBGrid1.Columns(2).text
+    MBox2(2) = Escadena(TDBGrid1.Columns(3).text)
+   MBox2(11) = Escadena(TDBGrid1.Columns(9).text)
    
     If VGParamSistem.tieneigv = "1" Then
-         MBox2(3) = Format(TDBGrid1.Columns(5).Text, "######0.0000") '* (1 + (VGParamSistem.Igv)), "######0.0000")
+         MBox2(3) = Format(TDBGrid1.Columns(5).text, "######0.0000") '* (1 + (VGParamSistem.Igv)), "######0.0000")
     Else
        If modoventa.impuestos = "1" Then
-           MBox2(3) = Format(IIf(IsNull(TDBGrid1.Columns(5).Text) Or Len(Trim(TDBGrid1.Columns(5).Text)) = 0, 0, TDBGrid1.Columns(5).Text) * (1 + (VGParamSistem.Igv)), "######0.0000")
+           MBox2(3) = Format(IIf(IsNull(TDBGrid1.Columns(5).text) Or Len(Trim(TDBGrid1.Columns(5).text)) = 0, 0, TDBGrid1.Columns(5).text) * (1 + (VGParamSistem.Igv)), "######0.0000")
        Else
-           MBox2(3) = Format(TDBGrid1.Columns(5).Text, "######0.0000")
+           MBox2(3) = Format(TDBGrid1.Columns(5).text, "######0.0000")
        End If
     End If
-    MBox2(4) = numero(TDBGrid1.Columns(6).Text)
-    MBox2(5) = numero(TDBGrid1.Columns(8).Text)
+    MBox2(4) = numero(TDBGrid1.Columns(6).text)
+    MBox2(5) = numero(TDBGrid1.Columns(8).text)
     If MBox2(11).Enabled = True Then
       MBox2(11).SetFocus
     Else
@@ -5795,7 +5795,7 @@ Public Function Carga_Pedido()
     Dim csql As New ADODB.Recordset
     Dim acliente As New ADODB.Recordset
     Dim J As Integer
-    Set csql = VGCNx.Execute("select * from " & g_PedidoPuntoVta & " where pedidonumero='" & TDBGrid2.Columns(0).Text & "'")
+    Set csql = VGCNx.Execute("select * from " & g_PedidoPuntoVta & " where pedidonumero='" & TDBGrid2.Columns(0).text & "'")
     If csql.RecordCount > 0 Then
        MBox(0) = Escadena(csql!puntovtacodigo)                    'Pto Venta
        MBox(1) = Escadena(csql!pedidonumero)                      'nro pedido
@@ -5879,7 +5879,7 @@ Public Function Carga_Pedido()
                           "inner Join " & _
                           "[" & VGCNx.DefaultDatabase & "].dbo.maeart B " & _
                           " ON A.productocodigo=b.acodigo " & _
-                          "where pedidonumero='" & TDBGrid2.Columns(0).Text & "' order by detpeditem ")
+                          "where pedidonumero='" & TDBGrid2.Columns(0).text & "' order by detpeditem ")
     
     Set rsdeta = Nothing
     Call CargaGrilla
@@ -5948,17 +5948,17 @@ Public Function GrabarData() As Integer
     wCabe(6) = MBox(5)                       'dscto gral
     wCabe(7) = MBox(6)                       'dscto promocional
     wCabe(8) = MBox(7)                       'dscto especial
-    wCabe(9) = dllgeneral.ComboDato(Combo1.Text)        'moneda
+    wCabe(9) = dllgeneral.ComboDato(Combo1.text)        'moneda
     wCabe(10) = MBox(8)                      'tipo de cambio
-    wCabe(11) = dllgeneral.ComboDato(Combo2.Text)       'lista de precios
+    wCabe(11) = dllgeneral.ComboDato(Combo2.text)       'lista de precios
     If Ctr_AyuAnalitico.Visible = True Then
        wCabe(12) = RTrim(Text3)
      Else
        wCabe(12) = MBox(9)                      'mensajes
     End If
-    wCabe(13) = dllgeneral.ComboDato(Combo3.Text)       'modo de venta
+    wCabe(13) = dllgeneral.ComboDato(Combo3.text)       'modo de venta
     wCabe(14) = MBox(10)                     'fecha de atencion
-    wCabe(15) = dllgeneral.ComboDato(Combo4.Text)       'forma de pago
+    wCabe(15) = dllgeneral.ComboDato(Combo4.text)       'forma de pago
     wCabe(16) = MBox3(0)    'Ctr_Ayuda1.xclave         ' MBox(11)                     'cliente
     wCabe(17) = Ctr_Ayuda2.xclave        'MBox(12)                     'vendedor
     wCabe(18) = MBox(13)                  'comision
@@ -5966,7 +5966,7 @@ Public Function GrabarData() As Integer
     wCabe(20) = MBox(15)                     'otros gastos
     wCabe(21) = MBox(16)                     'nota pedido
     wCabe(22) = MBox(17)                     'orden de compra
-    wCabe(23) = dllgeneral.ComboDato(Combo5.Text)       'autorizacion
+    wCabe(23) = dllgeneral.ComboDato(Combo5.text)       'autorizacion
     wCabe(24) = numero(MBox(18))            'dias pago
     wCabe(25) = MBox2(6)                    'Total Cantidad
     wCabe(26) = Round(MBox2(7), 2)          'Total Bruto
@@ -5977,7 +5977,7 @@ Public Function GrabarData() As Integer
     wCabe(31) = MBox3(1)                    'nombre cliente
     wCabe(32) = MBox3(3)                    'direccion
     wCabe(33) = MBox3(2)                    'ruc
-    wCabe(34) = VGParamSistem.FechaTrabajo   'fechafactura
+    wCabe(34) = VGParamSistem.fechatrabajo   'fechafactura
     wCabe(35) = DTGlobal                     'Total Descuentos Globales
     wCabe(36) = DTCliente                    'Total Descuentos Cliente
     wCabe(37) = DTOficina                    'Total Descuentos Oficina
@@ -5989,7 +5989,7 @@ Public Function GrabarData() As Integer
     wCabe(43) = Trim(Text4(1)) & Trim(Text4(2))
     wCabe(44) = Trim(Ctr_AyudaTc.xclave)
     wCabe(45) = Trim(Ctr_AyudaPro.xclave)
-    wCabe(46) = TxtHor.Text
+    wCabe(46) = TxtHor.text
     
     If cOpc(0).Value Or cOpc3(0).Value Then
         Set asql = VGCNx.Execute("select productocodigo,detpedcantpedida from " & g_DetallePuntoVta & " where pedidonumero='" & MBox(1) & "'")
@@ -6216,7 +6216,7 @@ Public Function GrabarData() As Integer
     
     DoEvents
         If modoventa.copiasGr > 0 Then
-           MBox(12).Text = g_pedserie & Right("000000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where empresacodigo='" & VGParametros.empresacodigo & "' and documentocodigo='GR' and puntovtadocserie='" & g_pedserie & "' and puntovtacodigo='" & g_ptoventa & "'", VGCNx), 10)
+           MBox(12).text = g_pedserie & Right("000000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where empresacodigo='" & VGParametros.empresacodigo & "' and documentocodigo='GR' and puntovtadocserie='" & g_pedserie & "' and puntovtacodigo='" & g_ptoventa & "'", VGCNx), 10)
            wCabe(5) = MBox(12)
            VGCNx.Execute "Update vt_puntovtadocumento " & _
                 " set puntovtadoccorr='" & Right("0000000000" & Trim(CStr(Val(guias_num) + 1)), 10) & "'" & _
@@ -6308,7 +6308,7 @@ Public Function GrabarData() As Integer
             .Parameters("@numero") = wCabe(5)
             If modoventa.copiasGr > 0 Then
               .Parameters("@boleta") = "GR"
-              .Parameters("@factura") = MBox(12).Text
+              .Parameters("@factura") = MBox(12).text
             Else
               .Parameters("@factura") = wCabe(3)
               .Parameters("@boleta") = wCabe(4)
@@ -6470,16 +6470,16 @@ Public Function GrabarData() As Integer
                If cOpc2(0).Value Or cOpc2(1).Value Or cOpc2(2).Value Or cOpc2(3).Value Or cOpc2(4).Value Then     'PUEDE SER AKI
                
                     If cOpc2(0).Value Then
-                        xserie = Left(MBox(2).Text, 4)
-                        xfactu = Val(Right(MBox(2).Text, 10))
+                        xserie = Left(MBox(2).text, 4)
+                        xfactu = Val(Right(MBox(2).text, 10))
                         xtipofac = g_tipofac
                     ElseIf cOpc2(1).Value Then
-                        xserie = Left(MBox(3).Text, 4)
-                        xfactu = Val(Right(MBox(3).Text, 10))
+                        xserie = Left(MBox(3).text, 4)
+                        xfactu = Val(Right(MBox(3).text, 10))
                         xtipofac = g_tipobol
                     ElseIf cOpc2(2).Value Then
-                        xserie = Left(MBox(4).Text, 4)
-                        xfactu = Val(Right(MBox(4).Text, 10))
+                        xserie = Left(MBox(4).text, 4)
+                        xfactu = Val(Right(MBox(4).text, 10))
                         xtipofac = g_tipoguia
                     ElseIf cOpc2(3) Then
                         xserie = Left(LblTicSer.Caption, 4)
@@ -6610,7 +6610,7 @@ Public Function GrabarData() As Integer
         Set acmd = Nothing
         
     End If
-    If rsdetax.RecordCount > 0 Then
+    If rsdetax.RecordCount > 0 And Not modoventa.canje Then
        rsdetax.MoveFirst
        Do Until rsdetax.EOF
           Set acmd.ActiveConnection = VGGeneral
@@ -6721,7 +6721,7 @@ Public Sub TraerProducto()
               Set rabusca = Nothing
               If Chkentrega.Value = 0 Then
                  If cOpc(0) = 0 Then
-                    MBox2(3).Text = 0
+                    MBox2(3).text = 0
                    Exit Sub
                  End If
               End If
@@ -6735,9 +6735,9 @@ Public Sub TraerProducto()
       Else
          mone = rabusca!acodmon
       End If
-      If mone <> dllgeneral.ComboDato(Combo1.Text) Then
-         If dllgeneral.ComboDato(Combo1.Text) = g_tiposol Then
-            nprecio = TraePrecio(Combo2.Text, MBox2(1).Text, VGCNx, Trim(Ctr_Ayuda3.xclave))
+      If mone <> dllgeneral.ComboDato(Combo1.text) Then
+         If dllgeneral.ComboDato(Combo1.text) = g_tiposol Then
+            nprecio = TraePrecio(Combo2.text, MBox2(1).text, VGCNx, Trim(Ctr_Ayuda3.xclave))
             If nprecio > 0 Then
                MBox2(3) = numero(nprecio * CDbl(MBox(8)))
                If modoventa.unidadmedida = "R" And modoventa.usafactor = "1" Then
@@ -6750,7 +6750,7 @@ Public Sub TraerProducto()
                End If
                MBox2(14) = numero(0) 'rabusca!productoporcimpto)
             Else
-               MBox2(3) = numero(TraePrecio(Combo2.Text, MBox2(1).Text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
+               MBox2(3) = numero(TraePrecio(Combo2.text, MBox2(1).text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
                If modoventa.unidadmedida = "R" And modoventa.usafactor = "1" Then
                   MBox2(0) = numero(0)  'rabusca!unidadfactorconv)
                   MBox2(13) = numero(0) 'rabusca!unidadfactorconv)
@@ -6761,8 +6761,8 @@ Public Sub TraerProducto()
                End If
                MBox2(14) = numero(0) 'rabusca!productoporcimpto)
             End If
-         ElseIf dllgeneral.ComboDato(Combo1.Text) = g_tipodolar Then
-            nprecio = TraePrecio(Combo2.Text, MBox2(1).Text, VGCNx, Trim(Ctr_Ayuda3.xclave))
+         ElseIf dllgeneral.ComboDato(Combo1.text) = g_tipodolar Then
+            nprecio = TraePrecio(Combo2.text, MBox2(1).text, VGCNx, Trim(Ctr_Ayuda3.xclave))
             If nprecio > 0 Then
                MBox2(3) = numero(nprecio / CDbl(MBox(8)))
                If modoventa.unidadmedida = "R" And modoventa.usafactor = "1" Then
@@ -6775,7 +6775,7 @@ Public Sub TraerProducto()
                End If
                MBox2(14) = numero(0)     'rabusca!productoporcimpto)
             Else
-               MBox2(3) = numero(TraePrecio(Combo2.Text, MBox2(1).Text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
+               MBox2(3) = numero(TraePrecio(Combo2.text, MBox2(1).text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
                If modoventa.unidadmedida = "R" And modoventa.usafactor = "1" Then
                   MBox2(0) = numero(0)   'rabusca!unidadfactorconv)
                   MBox2(13) = numero(0)  'rabusca!unidadfactorconv)
@@ -6788,8 +6788,8 @@ Public Sub TraerProducto()
             End If
          End If
       Else
-         MBox2(3).Text = numero(TraePrecio(Combo2.Text, MBox2(1).Text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
-         MBox2(3).Tag = numero(TraePrecio(Combo2.Text, MBox2(1).Text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
+         MBox2(3).text = numero(TraePrecio(Combo2.text, MBox2(1).text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
+         MBox2(3).Tag = numero(TraePrecio(Combo2.text, MBox2(1).text, VGCNx, Trim(Ctr_Ayuda3.xclave))) 'rabusca!productoprecvta)
          If modoventa.unidadmedida = "R" And modoventa.usafactor = "1" Then
       '      MBox2(0) = numero(0)    'rabusca!unidadfactorconv)
             MBox2(13) = numero(0)   'rabusca!unidadfactorconv)
@@ -6844,7 +6844,7 @@ Param(0) = VGParamSistem.BDEmpresa
 Param(1) = MBox(1)
 Param(2) = VGParametros.empresacodigo
 Param(3) = VGParametros.puntovta
-Param(4) = Left(Combo1.Text, 2)
+Param(4) = Left(Combo1.text, 2)
 
 reporte = "vt_Ticket_" & VGCNx.DefaultDatabase & VGParametros.empresacodigo & VGParametros.puntovta & ".rpt"
 
@@ -6858,13 +6858,13 @@ Dim Param(5) As Variant
 Dim reporte As String
 
 Param(0) = VGParamSistem.BDEmpresa
-Param(1) = MBox(1).Text
+Param(1) = MBox(1).text
 Param(2) = VGParametros.empresacodigo
 Param(3) = VGParametros.puntovta
-Param(4) = Left(Combo1.Text, 2)
+Param(4) = Left(Combo1.text, 2)
 
 formulas(0) = "@ruc='" & VGParametros.RucEmpresa & "'"
-formulas(1) = "Montoletras='" & dllgeneral.NUMLET(Round(CDbl(MBox2(10)), 2)) & IIf(dllgeneral.ComboDato(Combo1.Text) = g_tiposol, "Nuevos Soles", "Dolares Americanos") & "'"
+formulas(1) = "Montoletras='" & dllgeneral.NUMLET(Round(CDbl(MBox2(10)), 2)) & IIf(dllgeneral.ComboDato(Combo1.text) = g_tiposol, "Nuevos Soles", "Dolares Americanos") & "'"
 
 If VGParametros.multifacturas Then
    reporte = "vt_factuimpresa_" & VGCNx.DefaultDatabase & VGParametros.empresacodigo & VGParametros.puntovta & ".rpt"
@@ -6927,7 +6927,7 @@ If rb.RecordCount > 0 Then
 End If
 
 oCrystalReport.Reset
-oCrystalReport.ReportFileName = VGParamSistem.Rutareport & "vt_pedido.rpt"
+oCrystalReport.ReportFileName = VGParamSistem.RutaReport & "vt_pedido.rpt"
 oCrystalReport.LogOnServer "pdssql.dll", _
  busca.LeerIni(App.Path & "\MARFICE.INI", "conexion", "SERVIDOR", ""), _
  busca.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOS", ""), _
@@ -6966,7 +6966,7 @@ oCrystalReport.Connect = _
        Else
          .formulas(10) = "partida=''"
       End If
-      .formulas(11) = "moneda='" & Combo1.Text & "'"
+      .formulas(11) = "moneda='" & Combo1.text & "'"
       .formulas(12) = "cpago='" & Escadena(Combo4) & "'"
       .formulas(13) = "vendedor='" & Escadena(Ctr_Ayuda2.xnombre) & "'"
       rb.Close
@@ -6983,7 +6983,7 @@ Public Sub CargarModo()
      Dim J As Integer
 
      On Error Resume Next
-     Set rs = VGCNx.Execute("select * from vt_modoventa where modovtacodigo='" & dllgeneral.ComboDato(Combo3.Text) & "'")
+     Set rs = VGCNx.Execute("select * from vt_modoventa where modovtacodigo='" & dllgeneral.ComboDato(Combo3.text) & "'")
      If rs.RecordCount > 0 Then
         modoventa.descuento = Escadena(rs!modovtadscto)
         modoventa.impuestos = Escadena(IIf(IsNull(rs!modovtaimpuestos) Or rs!modovtaimpuestos = 0, "0", "1"))
@@ -7007,6 +7007,8 @@ Public Sub CargarModo()
         modoventa.unidadmedida = Escadena(IIf(IsNull(rs!modovtaunidadmedida) Or rs!modovtaunidadmedida = "V", "V", Escadena(rs!modovtaunidadmedida)))
         modoventa.unidadmedida = Left(modoventa.unidadmedida, 1)
         modoventa.usafactor = Escadena(IIf(IsNull(rs!modovtausafactconv) Or rs!modovtausafactconv = 0, "0", "1"))
+        modoventa.canje = ESNULO(rs!modovtacanje, 0)
+        
         If Not IsNull(rs!modovtaalmacen) Then
            ncade = "'"
            For J = 1 To Len(Trim(rs!modovtaalmacen))
@@ -7054,7 +7056,7 @@ Private Sub TDBGrid3_KeyDown(KeyCode As Integer, Shift As Integer)
   On Error Resume Next
   nvalor = KeyCode
 If KeyCode = vbKeyReturn Or KeyCode = vbKeyTab Or KeyCode = vbKeyDown Or KeyCode = vbKeyUp Then
-   Text10 = Text10 - Val(rsmasivo!cantidad) + Val(TDBGrid3.Columns(6))
+   Text10 = Text10 - Val(rsmasivo!CANTIDAD) + Val(TDBGrid3.Columns(6))
   If KeyCode = vbKeyReturn Or KeyCode = vbKeyTab Then
     rsmasivo.MoveNext
   End If
@@ -7280,11 +7282,11 @@ Public Function ValidaNegativos()
           End If
           Set rabusca = VGCNx.Execute(nsql)
           If rabusca.RecordCount() > 0 Then
-             If Val(rabusca!stskdis) - rsdeta!cant < 0 Then
+             If Val(rabusca!STSKDIS) - rsdeta!cant < 0 Then
                If Chkentrega.Value = 0 Then
                  If cOpc(0) = 0 Then
                     ValidaNegativos = 1
-                    MsgBox " PRODUCTO " & Trim(rsdeta!descripcion) & " solo tiene saldo disponible ===> " & rabusca!stskdis & "", vbInformation, "AVISO"
+                    MsgBox " PRODUCTO " & Trim(rsdeta!descripcion) & " solo tiene saldo disponible ===> " & rabusca!STSKDIS & "", vbInformation, "AVISO"
                     rabusca.Close
                     Set rabusca = Nothing
                     Exit Function
