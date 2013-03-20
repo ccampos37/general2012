@@ -808,7 +808,7 @@ Begin VB.Form FrmMovimientoProve
                Left            =   3210
                MaxLength       =   50
                TabIndex        =   29
-               Top             =   1290
+               Top             =   1320
                Width           =   6105
             End
             Begin VB.CommandButton cayuda 
@@ -1420,7 +1420,7 @@ Property Let fondofijo(valor As String)
 End Property
 
 Public Sub cargar_grilla()
-   Tabla = VGComputer + "det_recibo"
+   Tabla = VGcomputer + "det_recibo"
    Set rsdetat = Nothing
    If ExisteElem(0, VGCNx, Tabla) Then VGCNx.Execute ("drop table " & Tabla)
    
@@ -1452,7 +1452,7 @@ Public Sub cargar_grilla()
    
 End Sub
 
-Private Sub cayuda_Click(Index As Integer)
+Private Sub cAyuda_Click(Index As Integer)
  Dim rb As New ADODB.Recordset
  Dim nMonedaCab As String
  Dim SQL As String
@@ -1722,7 +1722,7 @@ Private Sub cayuda_Click(Index As Integer)
    nAyuda = "": nDetalle = ""
 End Sub
 
-Public Function grabardata() As Integer
+Public Function GrabarData() As Integer
   Dim acmd As New ADODB.Command
   Dim rb As New ADODB.Recordset
   Dim xabono, xzona, xmone, xcuenta, xtipo, nosaldos As String
@@ -1730,7 +1730,7 @@ Public Function grabardata() As Integer
   Dim rsql As String
   Dim grabauno, xactualizaxtesoreria As String
  On Error GoTo error
-    grabardata = 0
+    GrabarData = 0
     grabauno = 0
   VGCNx.BeginTrans
     'Actualizamos el numerador de tipo de ingreso
@@ -2053,7 +2053,7 @@ End If
     If VGParametros.controlaestadosrendicion Then
        If controlarendicion Then Call Actualizasaldorendicion
     End If
-    grabardata = 1
+    GrabarData = 1
     MsgBox "Los datos han sido grabados satisfactoriamente...!!!", vbInformation, MsgTitle
 Exit Function
 error:
@@ -2088,7 +2088,7 @@ Private Sub cmdBotones_Click(Index As Integer)
       If ValidarGrabacion() = 1 Then
          cmdBotones(5).Enabled = False
          'Grabamos Cabecera de Tesoreria
-         If grabardata() = 1 And adicionaretenciones = 0 Then
+         If GrabarData() = 1 And adicionaretenciones = 0 Then
                
            'Generando Asiento Contable en Linea para cuentas por cobrar
            If VGParametros.sistemaasientoenlinea Then
@@ -2257,7 +2257,7 @@ Function ValidarGrabacion() As Integer
    ValidarGrabacion = 1
 End Function
 
-Private Sub cmdSalir_Click()
+Private Sub CmdSalir_Click()
  FrameRetencion.Visible = False
  SendKeys "{tab}"
 End Sub
@@ -2374,7 +2374,7 @@ Private Sub Form_Load()
    Frame4.Enabled = False
    tipooperacion = 0
    MBox1 = Format(VGParamSistem.fechatrabajo, "dd/mm/yyyy")
-   Text1(3) = numero(DatoTipoCambio(VGCnxCT, MBox1))
+   Text1(3) = numero(DatoTipoCambio(VGcnxCT, MBox1))
    Call cargar_grilla
    
 End Sub
@@ -2384,7 +2384,7 @@ Private Sub MBox1_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub MBox1_LostFocus()
- If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGCnxCT, MBox1.Text)
+ If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGcnxCT, MBox1.Text)
 End Sub
 
 Private Sub MBox2_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -2395,23 +2395,11 @@ Dim lEncontro As Boolean
         MsgBox "La Fecha de Cancelación es mayor a fecha de entrega de mportes" & fechatransferencia, vbInformation, Caption
 
      End If
-     If rsdetat.RecordCount > 0 Then
-        If Combo1.ListIndex = 1 Then
-           rsdetat.MoveFirst
-           Do Until rsdetat.EOF
-             If Format(Trim(rsdetat.Fields(9).Value), "dd/mm/yyyy") <> Format(MBox2.Text, "dd/mm/yyyy") Then
-               lEncontro = True
-               Exit Do
-             End If
-             rsdetat.MoveNext
-           Loop
-           If lEncontro = True Then
-              MsgBox "La Fecha de Cancelación debe ser la misma para todos los Documentos", vbInformation, Caption
-              MBox2.Text = Format(rsdetat.Fields(9).Value, "dd/mm/yyyy")
-              MBox2.SetFocus
-              Exit Sub
-           End If
-        End If
+     If Format(MBox2.Text, "dd/mm/yyyy") <> Format(MBox1.Text, "dd/mm/yyyy") Then
+        MsgBox "La Fecha de Cancelación debe ser la misma para todos los Documentos", vbInformation, Caption
+        MBox2.Text = Format(MBox1.Text, "dd/mm/yyyy")
+        MBox2.SetFocus
+        Exit Sub
      End If
      If Len(Trim(Ctr_AyudaCaja.xclave)) = 0 Then
          SendKeys "{tab}"
@@ -2562,6 +2550,9 @@ Public Sub grabacion()
     Text2(1).SetFocus
 End Sub
 
+Private Sub MBox2_LostFocus()
+Call MBox2_KeyDown(13, 0)
+End Sub
 Private Sub Text1_GotFocus(Index As Integer)
    Call adll.Enfoquetexto(Text1(Index))
 '   Ctr_Ayutransf.Visible = False

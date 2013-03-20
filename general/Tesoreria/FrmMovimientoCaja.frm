@@ -1572,7 +1572,7 @@ Private Sub CtrAyu_gastos_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
     End If
     If ColecCampos("tipoanaliticocodigo") <> "00" Then
        Ctr_AyuAnalitico.xclave = "": Ctr_AyuAnalitico.xnombre = ""
-       Ctr_AyuAnalitico.filtro = " tipoanaliticocodigo='" & VGParamSistem.tipoanaliticocodigo & "' and isnull(proyectocierre,0)=0"
+       Ctr_AyuAnalitico.filtro = " tipoanaliticocodigo='" & ColecCampos("tipoanaliticocodigo") & "' and isnull(proyectocierre,0)=0"
        Ctr_AyuAnalitico.Visible = True
        Lblanalitico.Visible = True
      Else
@@ -1640,6 +1640,13 @@ End Sub
 
 Private Sub MBox2_KeyDown(KeyCode As Integer, Shift As Integer)
    If KeyCode = 13 Then
+      If Format(MBox2.Text, "dd/mm/yyyy") <> Format(MBox1.Text, "dd/mm/yyyy") Then
+          MsgBox "La Fecha de Cancelación debe ser la misma para todos los Documentos", vbInformation, Caption
+          MBox2.Text = Format(MBox1.Text, "dd/mm/yyyy")
+          MBox2.SetFocus
+          Exit Sub
+      End If
+
       SendKeys "{tab}"
    End If
 End Sub

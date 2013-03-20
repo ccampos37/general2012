@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Begin VB.Form FrmDetalleAnula 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Detalle Documento "
@@ -1072,7 +1072,7 @@ Public Function CargaGrilla()
    Call rsdeta.Fields.Append("Item", adInteger)
    Call rsdeta.Fields.Append("Codigo", adChar, 20)
    Call rsdeta.Fields.Append("Descripcion", adChar, 100)
-   Call rsdeta.Fields.Append("UM", adChar, 3)
+   Call rsdeta.Fields.Append("UM", adChar, 5)
    Call rsdeta.Fields.Append("Cant", adDouble)
    Call rsdeta.Fields.Append("Precio_Vta", adDouble)
    Call rsdeta.Fields.Append("Dscto(%)", adDouble)

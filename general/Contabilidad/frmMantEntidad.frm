@@ -100,28 +100,29 @@ Begin VB.Form frmMantEntidad
       _Version        =   393216
       Style           =   1
       Tabs            =   2
+      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "frmMantEntidad.frx":0000
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "Label1"
-      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "TDBGrid1"
       Tab(0).Control(1)=   "lblNumReg"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "TDBGrid1"
-      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(2)=   "Label1"
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmMantEntidad.frx":001C
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame1"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "cAcepta"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "cCancela"
-      Tab(1).Control(2)=   "cAcepta"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "Frame1"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       Begin VB.Frame Frame1 
          Height          =   4710
-         Left            =   -75000
+         Left            =   0
          TabIndex        =   15
          Top             =   330
          Width           =   6555
@@ -281,7 +282,7 @@ Begin VB.Form frmMantEntidad
             Index           =   4
             Left            =   2715
             TabIndex        =   1
-            Top             =   570
+            Top             =   600
             Width           =   3780
             _ExtentX        =   6668
             _ExtentY        =   529
@@ -416,14 +417,14 @@ Begin VB.Form frmMantEntidad
       Begin VB.CommandButton cCancela 
          Caption         =   "&Cancelar"
          Height          =   345
-         Left            =   -68280
+         Left            =   6720
          TabIndex        =   7
          Top             =   3840
          Width           =   1140
       End
       Begin TrueOleDBGrid70.TDBGrid TDBGrid1 
          Height          =   4110
-         Left            =   45
+         Left            =   -74955
          TabIndex        =   21
          Top             =   360
          Width           =   7605
@@ -546,7 +547,7 @@ Begin VB.Form frmMantEntidad
       Begin VB.CommandButton cAcepta 
          Caption         =   "&Aceptar"
          Height          =   345
-         Left            =   -68280
+         Left            =   6720
          TabIndex        =   6
          Top             =   3240
          Width           =   1140
@@ -557,7 +558,7 @@ Begin VB.Form frmMantEntidad
          Caption         =   "lblNumReg"
          ForeColor       =   &H0000FFFF&
          Height          =   285
-         Left            =   5685
+         Left            =   -69315
          TabIndex        =   23
          Top             =   5460
          Width           =   915
@@ -565,7 +566,7 @@ Begin VB.Form frmMantEntidad
       Begin VB.Label Label1 
          Caption         =   "Nº Registros"
          Height          =   270
-         Left            =   4740
+         Left            =   -70260
          TabIndex        =   22
          Top             =   5475
          Width           =   900
@@ -882,20 +883,19 @@ Sub MuestraCheckTipoAnalitico()
  Dim rsX As ADODB.Recordset
  Dim i As Long
  Dim SQL As String
- SQL = "select tipoanaliticocodigo,analiticocodigo FROM ct_analitico WHERE entidadcodigo='" & txt(4).Text & "'"
- Set rsX = VGCNx.Execute(SQL)
- 
- While Not rsX.EOF
-   For i = 1 To ListView1.ListItems.Count
-     If ListView1.ListItems.Item(i).Text = rsX(0) Then
-       ListView1.ListItems.Item(i).Checked = True
-     Else
-       ListView1.ListItems.Item(i).Checked = False
-     End If
-   Next
-   rsX.MoveNext
- Wend
- Set rsX = Nothing
+ Dim tipo As String
+      For i = 1 To ListView1.ListItems.Count
+          tipo = ListView1.ListItems.Item(i).Text
+          SQL = "select * FROM ct_analitico WHERE entidadcodigo='" & txt(0).Text & "'"
+          SQL = SQL & " and tipoanaliticocodigo='" & tipo & "'"
+          Set rsX = VGCNx.Execute(SQL)
+          If rsX.RecordCount = 0 Then
+              ListView1.ListItems.Item(i).Checked = False
+           Else
+              ListView1.ListItems.Item(i).Checked = True
+          End If
+       Next
+Set rsX = Nothing
 
 End Sub
 

@@ -208,13 +208,13 @@ If rsprove.RecordCount > 0 Then
     If VGForm1 = 21 Then
         'frmGuiaMabel.TxTProveedor.text = DBGrid1.Columns(0).text
     ElseIf VGForm1 = 11 Then
-       frmPrueba.TxTProveedor.text = DbGrid1.Columns(0).text
+       frmPrueba.TxtProveedor.text = DbGrid1.Columns(0).text
     ElseIf VGForm1 = 12 Then
-        FrmRegistro.TxTProveedor.text = DbGrid1.Columns(0).text
+        FrmRegistro.TxtProveedor.text = DbGrid1.Columns(0).text
         FrmRegistro.Label13.Caption = DbGrid1.Columns(1).text
     ElseIf VGForm1 = 13 Then ' nuevo
-        FrmMntMovimientos.TxTProveedor.text = DbGrid1.Columns(0).text
-        FrmMntMovimientos.Label13.Caption = DbGrid1.Columns(1).text
+    '    FrmMntMovimientos.TxtProveedor.text = DBGrid1.Columns(0).text
+    '    FrmMntMovimientos.Label13.Caption = DBGrid1.Columns(1).text
     
     End If
 End If

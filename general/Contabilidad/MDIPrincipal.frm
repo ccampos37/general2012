@@ -534,6 +534,7 @@ Begin VB.MDIForm MDIPrincipal
       End
       Begin VB.Menu mnu05_04 
          Caption         =   "&Configuracion de Empresas"
+         Visible         =   0   'False
          Begin VB.Menu mnu05_04_01 
             Caption         =   "Creacion de empresas"
          End
@@ -657,12 +658,12 @@ End If
 
 Exit Sub
 
-Err:
-    MsgBox Err.Description, vbExclamation, "Aviso"
+err:
+    MsgBox err.Description, vbExclamation, "Aviso"
     Exit Sub
     Resume
 Xmain:
-    MsgBox Err.Description, vbExclamation
+    MsgBox err.Description, vbExclamation
 
 End Sub
 
@@ -807,7 +808,7 @@ Private Sub mnu03_01_Click()
 Mayor:
     Screen.MousePointer = 1
     VGCNx.RollbackTrans
-    MsgBox "No se pudo mayorizar " & Chr(13) & Err.Description, vbExclamation
+    MsgBox "No se pudo mayorizar " & Chr(13) & err.Description, vbExclamation
 End Sub
 Private Sub mnu03_03_Click()
     Call CancelaDocumentos
@@ -850,7 +851,7 @@ Private Sub mnu03_07_Click()
 xx:
     Screen.MousePointer = 1
     VGCNx.RollbackTrans
-    MsgBox "No se pudo Aperturar la Cuenta Corriente " & Chr(13) & Err.Description, vbExclamation
+    MsgBox "No se pudo Aperturar la Cuenta Corriente " & Chr(13) & err.Description, vbExclamation
     End Sub
 
 Private Sub mnu03_08_Click()
@@ -920,7 +921,7 @@ Private Sub mnu04_07_01_02_Click()
     Call ImpresionRptProc(NombreRep, arrform, arrparm, CadOrden, "Descuadre de Asientos")
     Exit Sub
 xx:
-    MsgBox "No se pudo Abrir el Reporte " & Chr(13) & Err.Description, vbExclamation
+    MsgBox "No se pudo Abrir el Reporte " & Chr(13) & err.Description, vbExclamation
 End Sub
 
 

@@ -8,7 +8,7 @@ Begin VB.Form FrmRepCuentasVsAnaliticos
    LinkTopic       =   "Form1"
    ScaleHeight     =   1740
    ScaleWidth      =   4500
-   StartUpPosition =   3  'Windows Default
+   StartUpPosition =   1  'CenterOwner
    Begin VB.ComboBox cmbNivel 
       Height          =   315
       Left            =   1650
@@ -74,16 +74,17 @@ End Sub
 
 Public Sub imprimir()
 'FIXIT: Declare 'arrform' con un tipo de datos de enlace en tiempo de compilación          FixIT90210ae-R1672-R1B8ZE
-Dim arrform(2) As Variant, arrparm(11) As Variant
+Dim arrform(2) As Variant, arrparm(7) As Variant
 Dim mon As String
 
      '@Base,@empresa, @Anno, @computer, @Nivel, @tipo
     arrparm(0) = VGParamSistem.BDEmpresa
     arrparm(1) = VGParametros.empresacodigo
     arrparm(2) = VGParamSistem.Anoproceso
-    arrparm(3) = VGComputer
-    arrparm(4) = LongitudNivel(CInt(cmbNivel.Text))
-    arrparm(5) = "1"
+    arrparm(3) = VGParamSistem.Mesproceso
+    arrparm(4) = VGcomputer
+    arrparm(5) = LongitudNivel(CInt(cmbNivel.Text))
+    arrparm(6) = "1"
     
     Call ImpresionRptProc("ct_CuentasVsAnaliticos.rpt", arrform, arrparm)
 End Sub

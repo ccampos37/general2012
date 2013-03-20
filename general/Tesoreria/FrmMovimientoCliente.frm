@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
+Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
 Begin VB.Form FrmMovimientoClientes 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Control de Cuentas por Cobrar"
@@ -937,11 +937,11 @@ Dim rsdetat As New ADODB.Recordset
 
 Dim m_fondofijo As Integer
 Dim m_docxrendir As Integer
-Property Let docxrendir(Valor As String)
-   m_docxrendir = Valor
+Property Let docxrendir(valor As String)
+   m_docxrendir = valor
 End Property
-Property Let fondofijo(Valor As String)
-   m_fondofijo = Valor
+Property Let fondofijo(valor As String)
+   m_fondofijo = valor
 End Property
 Public Sub ConfigGrid()
     With TDBGrid1
@@ -999,7 +999,7 @@ Private Sub cAyuda_Click(Index As Integer)
          dfiltra(1, 1) = "Codigo": dfiltra(1, 2) = "operacioncodigo"
          FrmAyudaTes.TipoForma = 1
          FrmAyudaTes.BConexion = VGCNx
-         FrmAyudaTes.bdata = "0"
+         FrmAyudaTes.Bdata = "0"
          FrmAyudaTes.BTabla = "te_operaciongeneral"
          FrmAyudaTes.BCampos = "operacioncodigo as Codigo,operaciondescripcion as Descripcion"
          FrmAyudaTes.BOrden = "operacioncodigo"
@@ -1015,14 +1015,14 @@ Private Sub cAyuda_Click(Index As Integer)
          If rb.RecordCount > 0 Then
             If Escadena(rb!operacionvalidacajabancos) = "B" Then
                 Text1(2).Enabled = False
-                cAyuda(1).Enabled = False
+                cayuda(1).Enabled = False
                 Combo2.SetFocus
                 rb.Close
                 Set rb = Nothing
                 Exit Sub
             Else
 '                Text1(2).Enabled = True
-                cAyuda(1).Enabled = True
+                cayuda(1).Enabled = True
 '                Text1(2).SetFocus
             End If
         End If
@@ -1038,7 +1038,7 @@ Private Sub cAyuda_Click(Index As Integer)
         gfiltra(1, 1) = "Codigo": gfiltra(1, 2) = "cajacodigo"
         FrmAyudaTes.TipoForma = 1
         FrmAyudaTes.BConexion = VGCNx
-        FrmAyudaTes.bdata = "0"
+        FrmAyudaTes.Bdata = "0"
         FrmAyudaTes.BTabla = "te_codigocaja"
         FrmAyudaTes.BCampos = "cajacodigo as Codigo,cajadescripcion as Descripcion"
         FrmAyudaTes.BOrden = "cajacodigo"
@@ -1058,7 +1058,7 @@ Private Sub cAyuda_Click(Index As Integer)
             zfiltra(1, 1) = "Documento": zfiltra(1, 2) = "tdocumentocodigo"
             FrmAyudaTes.TipoForma = 1
             FrmAyudaTes.BConexion = VGCNx
-            FrmAyudaTes.bdata = "0"
+            FrmAyudaTes.Bdata = "0"
             FrmAyudaTes.BTabla = "cc_tipodocumento"
             FrmAyudaTes.BCampos = "tdocumentocodigo as Codigo,tdocumentodescripcion as Descripcion"
             FrmAyudaTes.BOrden = "tdocumentocodigo"
@@ -1082,25 +1082,25 @@ Private Sub cAyuda_Click(Index As Integer)
             wfiltra(1, 1) = "Documento": wfiltra(1, 2) = "cargonumdoc"
             FrmAyudaTes.TipoForma = 5
             FrmAyudaTes.BConexion = VGCNx
-            FrmAyudaTes.bdata = "0"
+            FrmAyudaTes.Bdata = "0"
             FrmAyudaTes.BTabla = "vt_cargo A inner join cc_tipodocumento B On a.documentocargo=b.tdocumentocodigo"
             FrmAyudaTes.BCampos = "documentocargo as TD,cargonumdoc as Numero,monedacodigo as Mnd,cargoapeimpape as Total,(Round(cargoapeimpape,2)-Round(isnull(cargoapeimppag,0),2)) as Saldo,cargoapefecemi as FecEmision,cargoapefecvct as FecVencimiento, cargoaperefere as Referencia"
             FrmAyudaTes.BOrden = "Clientecodigo,cargoapefecemi"
-            FrmAyudaTes.BCondi = " empresacodigo ='" & Ctr_Ayuempresa.xclave & "' and clientecodigo='" & Ctr_Ayuda2.xclave & "' and isnull(cargoapeflgcan,0)<>1  and b.tdocumentotipo='C' and a.documentocargo='" & Text2(1).text & "' and isnull(cargoapeflgreg,0)<>1"
+            FrmAyudaTes.BCondi = " empresacodigo ='" & Ctr_Ayuempresa.xclave & "' and clientecodigo='" & Ctr_Ayuda2.xclave & "' and isnull(cargoapeflgcan,0)<>1  and b.tdocumentotipo='C' and a.documentocargo='" & Text2(1).Text & "' and isnull(cargoapeflgreg,0)<>1"
             FrmAyudaTes.BFiltro = gfiltra
             FrmAyudaTes.Show 1
             Text2(2) = nDetalle
-            Text2(8).text = nAyuda
+            Text2(8).Text = nAyuda
             Label6.Caption = nAyuda1
             If nAyuda = Empty Then Exit Sub
             lblMonProv.Caption = nMoneda
             nMonedaCab = Left(Combo2.List(Combo2.ListIndex), 2)
-            Text2(7).text = nMonedaCab
+            Text2(7).Text = nMonedaCab
             If lblMonProv.Caption <> nMonedaCab Then
                If nMonedaCab = "01" Then
-                  Text2(8).text = Format(nAyuda * Text1(3).text, "###,###,##0.#0")
+                  Text2(8).Text = Format(nAyuda * Text1(3).Text, "###,###,##0.#0")
                Else
-                  Text2(8).text = Format(nAyuda / Text1(3).text, "###,###,##0.#0")
+                  Text2(8).Text = Format(nAyuda / Text1(3).Text, "###,###,##0.#0")
                End If
             End If
             
@@ -1119,22 +1119,22 @@ Private Sub cAyuda_Click(Index As Integer)
         ffiltra(1, 1) = "Documento": ffiltra(1, 2) = "tdocumentocodigo"
         FrmAyudaTes.TipoForma = 1
         FrmAyudaTes.BConexion = VGCNx
-        FrmAyudaTes.bdata = "0"
+        FrmAyudaTes.Bdata = "0"
         FrmAyudaTes.BTabla = "cc_tipodocumento"
         FrmAyudaTes.BCampos = "tdocumentocodigo as Codigo,tdocumentodescripcion as Descripcion"
         FrmAyudaTes.BOrden = "tdocumentocodigo"
         FrmAyudaTes.BCondi = "tdocumentotipo='A' and tdocumentocancela='1'"
         FrmAyudaTes.BFiltro = ffiltra
         FrmAyudaTes.Show 1
-        Text2(4).text = nAyuda
+        Text2(4).Text = nAyuda
         
         If Trim(nAyuda) = "10" Then
            Text2(6).Enabled = False
-           cAyuda(5).Enabled = False
+           cayuda(5).Enabled = False
            Text2(5).Enabled = False
         Else
            Text2(6).Enabled = True
-           cAyuda(5).Enabled = True
+           cayuda(5).Enabled = True
            Text2(5).Enabled = True
         End If
         
@@ -1153,7 +1153,7 @@ Private Sub cAyuda_Click(Index As Integer)
         tfiltra(1, 1) = "Banco": tfiltra(1, 2) = "bancodescripcion"
         FrmAyudaTes.TipoForma = 1
         FrmAyudaTes.BConexion = VGCNx
-        FrmAyudaTes.bdata = "0"
+        FrmAyudaTes.Bdata = "0"
         FrmAyudaTes.BTabla = "gr_banco a INNER JOIN te_cuentabancos b ON a.bancocodigo=b.cbanco_codigo"
         FrmAyudaTes.BCampos = "DISTINCT a.bancocodigo as Codigo,a.bancodescripcion as Descripcion"
         FrmAyudaTes.BOrden = "a.bancocodigo"
@@ -1170,7 +1170,7 @@ Private Sub cAyuda_Click(Index As Integer)
         pfiltra(1, 1) = "Codigo": pfiltra(1, 2) = "monedacodigo"
         FrmAyudaTes.TipoForma = 1
         FrmAyudaTes.BConexion = VGCNx
-        FrmAyudaTes.bdata = "0"
+        FrmAyudaTes.Bdata = "0"
         FrmAyudaTes.BTabla = "gr_moneda"
         FrmAyudaTes.BCampos = "monedacodigo as Codigo,monedadescripcion as Descripcion"
         FrmAyudaTes.BOrden = "monedacodigo"
@@ -1187,7 +1187,7 @@ Private Sub cAyuda_Click(Index As Integer)
         qfiltra(1, 1) = "Banco": qfiltra(1, 2) = "bancocodigo"
         FrmAyudaTes.TipoForma = 1
         FrmAyudaTes.BConexion = VGCNx
-        FrmAyudaTes.bdata = "0"
+        FrmAyudaTes.Bdata = "0"
         FrmAyudaTes.BTabla = "te_cuentabancos inner join gr_banco on te_cuentabancos.cbanco_codigo=gr_banco.bancocodigo"
         FrmAyudaTes.BCampos = "cbanco_numero as NoCtaCte,monedacodigo as Moneda,bancocodigo as CodBan,bancodescripcion as Banco"
         FrmAyudaTes.BOrden = "gr_banco.bancocodigo"
@@ -1213,11 +1213,11 @@ VGCNx.BeginTrans
     'Actualizamos el numerador de tipo de ingreso
     Set rb = VGCNx.Execute("select * from te_parametroempresa where empresacodigo='" & VGCodEmpresa & "'")
     If rb.RecordCount > 0 Then
-     If adll.ComboDato(Combo1.text) = "I" Then
+     If adll.ComboDato(Combo1.Text) = "I" Then
          Text1(0) = Right("0000000000" & Trim(CStr(CDbl(IIf(IsNull(rb!empresanumeingreso + 1) Or Len(Trim(rb!empresanumeingreso)) = 0, 1, rb!empresanumeingreso + 1)))), 6)
          VGCNx.Execute "Update te_parametroempresa Set empresanumeingreso='" & Right("0000000000" & Trim(CStr(Val(Text1(0)))), 6) & "' where empresacodigo='" & VGCodEmpresa & "'"
          
-     ElseIf adll.ComboDato(Combo1.text) = "E" Then
+     ElseIf adll.ComboDato(Combo1.Text) = "E" Then
          Text1(0) = Right("0000000000" & Trim(CStr(CDbl(IIf(IsNull(rb!empresanumegreso + 1) Or Len(Trim(rb!empresanumegreso)) = 0, 1, rb!empresanumegreso + 1)))), 6)
          VGCNx.Execute "Update te_parametroempresa Set empresanumegreso='" & Right("0000000000" & Trim(CStr(Val(Text1(0)))), 6) & "' where empresacodigo='" & VGCodEmpresa & "'"
      End If
@@ -1247,7 +1247,7 @@ VGCNx.BeginTrans
         .Parameters("@tipocambio") = CDbl(Text1(3))
         .Parameters("@totsoles") = CDbl(Label5(0))
         .Parameters("@totdolares") = CDbl(Label5(1))
-        .Parameters("@fechadocumento") = MBox1.text
+        .Parameters("@fechadocumento") = MBox1.Text
         .Parameters("@empresa") = Ctr_Ayuempresa.xclave
         .Parameters("@observa") = ""
         .Parameters("@transferauto") = ""
@@ -1325,8 +1325,8 @@ VGCNx.BeginTrans
                  .Parameters("@tipoplanilla") = "TE"
                  .Parameters("@vendedor") = ""    'Escadena(Ctr_Ayuda2.xclave)
                  .Parameters("@numplanilla") = Right("00000000" & Trim(Text1(0)), 6)
-                 .Parameters("@fechapla") = MBox1.text
-                 .Parameters("@fechapro") = MBox1.text
+                 .Parameters("@fechapla") = MBox1.Text
+                 .Parameters("@fechapro") = MBox1.Text
                  .Parameters("@moneda") = xmone
                  .Parameters("@abonocancarabo") = xabono
                  .Parameters("@cuenta") = xcuenta
@@ -1393,14 +1393,14 @@ VGCNx.BeginTrans
              End If
                                              
             '**** Actualizamos correlativo de documentos de anticipos
-            Dim RSQL As String
-             RSQL = " select tdocumentonumeauto,tdocumentonumerador from cc_tipodocumento "
-             RSQL = RSQL & " where tdocumentocodigo='" & Trim(rsdetat.Fields(1)) & "'"
-             Set rb = VGCNx.Execute(RSQL)
+            Dim rsql As String
+             rsql = " select tdocumentonumeauto,tdocumentonumerador from cc_tipodocumento "
+             rsql = rsql & " where tdocumentocodigo='" & Trim(rsdetat.Fields(1)) & "'"
+             Set rb = VGCNx.Execute(rsql)
              If rb!tdocumentonumeauto = 1 And rb!tdocumentonumerador = rsdetat.Fields(2) Then
                 rsdetat.Fields(2) = rb!tdocumentonumerador
-                RSQL = Format(rsdetat.Fields(2) + 1, "00000000000000")
-                VGCNx.Execute "Update  cc_tipodocumento Set tdocumentonumerador='" & RSQL & "' where tdocumentocodigo='" & Trim(rsdetat.Fields(1)) & "'"
+                rsql = Format(rsdetat.Fields(2) + 1, "00000000000000")
+                VGCNx.Execute "Update  cc_tipodocumento Set tdocumentonumerador='" & rsql & "' where tdocumentocodigo='" & Trim(rsdetat.Fields(1)) & "'"
              End If
              
              '****Permite Aplicaciones
@@ -1465,8 +1465,8 @@ VGCNx.BeginTrans
                              .Parameters("@tipoplanilla") = "TE" ' Escadena(Ctr_Ayuda1.xclave)
                              .Parameters("@vendedor") = ""  'Escadena(Ctr_Ayuda2.xclave)
                              .Parameters("@numplanilla") = Right("00000000" & Trim(Text1(0)), 6)
-                             .Parameters("@fechapla") = MBox1.text
-                             .Parameters("@fechapro") = MBox1.text
+                             .Parameters("@fechapla") = MBox1.Text
+                             .Parameters("@fechapro") = MBox1.Text
                              .Parameters("@moneda") = xmone
                              .Parameters("@abonocancarabo") = "A"   'xabono
                              .Parameters("@cuenta") = xcuenta
@@ -1658,7 +1658,7 @@ Private Sub cmdBotones_Click(Index As Integer)
                
             'Generando Asiento Contable en Linea para cuentas por cobrar
             If VGParametros.sistemaasientoenlinea Then
-               Call GeneraAsientoEnlineaTesor(CDate(MBox1.text), Ctr_Ayuempresa.xclave, "X", Escadena(Text1(0)), 1, "''''", adll.ComboDato(Combo2), IIf(Len(Trim(Text1(2))) = 0, "B", "C"), adll.ComboDato(Combo1))
+               Call GeneraAsientoEnlineaTesor(CDate(MBox1.Text), Ctr_Ayuempresa.xclave, "X", Escadena(Text1(0)), 1, "''''", adll.ComboDato(Combo2), IIf(Len(Trim(Text1(2))) = 0, "B", "C"), adll.ComboDato(Combo1))
             End If
             If MsgBox("Desea Imprimir el Recibo ", vbQuestion + vbOKCancel) = vbOK Then
               Call ImprimirRecibo(Escadena(Text1(0)))
@@ -1675,7 +1675,7 @@ Private Sub cmdBotones_Click(Index As Integer)
          
     Case 6
       If rsdetat.RecordCount > 0 Then
-       nvalor = TDBGrid1.Columns(0).text
+       nvalor = TDBGrid1.Columns(0).Text
        If rsdetat.RecordCount > 0 Then
           rsdetat.MoveFirst
           Do Until rsdetat.EOF
@@ -1717,9 +1717,9 @@ Private Sub Combo1_Click()
   
   Set rs = VGCNx.Execute("select * from te_parametroempresa where empresacodigo='" & VGCodEmpresa & "'")
   If rs.RecordCount > 0 Then
-    If adll.ComboDato(Combo1.text) = "I" Then
+    If adll.ComboDato(Combo1.Text) = "I" Then
         Text1(0) = Right("0000000000" & Trim(CStr(CDbl(IIf(IsNull(rs!empresanumeingreso + 1) Or Len(Trim(rs!empresanumeingreso)) = 0, 1, rs!empresanumeingreso + 1)))), 6)
-    ElseIf adll.ComboDato(Combo1.text) = "E" Then
+    ElseIf adll.ComboDato(Combo1.Text) = "E" Then
         Text1(0) = Right("0000000000" & Trim(CStr(CDbl(IIf(IsNull(rs!empresanumegreso + 1) Or Len(Trim(rs!empresanumegreso)) = 0, 1, rs!empresanumegreso + 1)))), 6)
     End If
   End If
@@ -1737,7 +1737,7 @@ Private Sub Combo2_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Ctr_AyudaCaja_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
-Text1(2).text = Ctr_AyudaCaja.xclave
+Text1(2).Text = Ctr_AyudaCaja.xclave
 End Sub
 
 Private Sub Form_Load()
@@ -1748,12 +1748,12 @@ Private Sub Form_Load()
    Combo1.AddItem "E- EGRESOS"
    Combo1.ListIndex = 0
    
-   Call Ctr_Ayuda2.Conexion(VGCNx)
-   Call Ctr_AyudaCaja.Conexion(VGCNx)
+   Call Ctr_Ayuda2.conexion(VGCNx)
+   Call Ctr_AyudaCaja.conexion(VGCNx)
    SQL = " isnull(CajaCuentaxRendir,0)=" & m_docxrendir & " and isnull(Cajafondofijo,0)=" & m_fondofijo
    If VGParametros.listacajas <> "" Then SQL = SQL & " and cajacodigo in (" & VGParametros.listacajas & ")"
    Ctr_AyudaCaja.filtro = SQL
-   Call Ctr_Ayuempresa.Conexion(VGCNx)
+   Call Ctr_Ayuempresa.conexion(VGCNx)
    If VGParametros.sistemamultiempresas Then
       Ctr_Ayuempresa.Visible = True
     Else
@@ -1770,7 +1770,7 @@ Private Sub Form_Load()
    Frame4.Enabled = False
    
    MBox1 = Format(VGParamSistem.fechatrabajo, "dd/mm/yyyy")
-   Text1(3) = DatoTipoCambio(VGcnxCT, MBox1.text)
+   Text1(3) = DatoTipoCambio(VGcnxCT, MBox1.Text)
    Call cargar_grilla
    Call ConfigGrid
    
@@ -1781,18 +1781,24 @@ Private Sub MBox1_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub MBox1_LostFocus()
- If IsDate(MBox1.text) Then Text1(3).text = DatoTipoCambio(VGcnxCT, MBox1.text)
+ If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGcnxCT, MBox1.Text)
 End Sub
 
 Private Sub MBox2_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = 13 Then
+       If Format(MBox2.Text, "dd/mm/yyyy") <> Format(MBox1.Text, "dd/mm/yyyy") Then
+           MsgBox "La Fecha de Cancelación debe ser la misma para todos los Documentos", vbInformation, Caption
+           MBox2.Text = Format(MBox1.Text, "dd/mm/yyyy")
+           MBox2.SetFocus
+           Exit Sub
+       End If
+
        If Len(Trim(Text1(2))) = 0 Then
            SendKeys "{tab}"
        Else
           Call grabacion
         End If
     End If
-    
 End Sub
 
 Public Sub grabacion()
@@ -1843,7 +1849,7 @@ Public Sub grabacion()
     If rb.RecordCount > 0 And rb!tdocumentotipo = "C" Then
         Set rb = Nothing
         SQL = "select * from vt_cargo where empresacodigo='" & Ctr_Ayuempresa.xclave & "' And clientecodigo='" & Ctr_Ayuda2.xclave & "'" & _
-        " and documentocargo='" & Text2(1) & "' and cargonumdoc='" & Text2(2).text & "'"
+        " and documentocargo='" & Text2(1) & "' and cargonumdoc='" & Text2(2).Text & "'"
         Set rb = VGCNx.Execute(SQL)
         If rb.RecordCount = 0 Then
             MsgBox "No existe el Nº Documento Referenciado...Verifique!!", vbInformation, MsgTitle
@@ -1853,7 +1859,7 @@ Public Sub grabacion()
         Set rb = Nothing
     ElseIf rb.RecordCount > 0 And rb!tdocumentotipo = "A" Then
         SQL = "select * from vt_cargo where empresacodigo='" & Ctr_Ayuempresa.xclave & "' " & _
-        " and documentocargo='" & Text2(1) & "' and cargonumdoc='" & Text2(2).text & "'"
+        " and documentocargo='" & Text2(1) & "' and cargonumdoc='" & Text2(2).Text & "'"
         Set rb = VGCNx.Execute(SQL)
         If rb.RecordCount > 0 Then
             MsgBox "Ya existe el Nº Documento Referenciado...Verifique!!", vbInformation, MsgTitle
@@ -1876,8 +1882,8 @@ Public Sub grabacion()
     rsdetat.Fields(7) = Escadena(Text2(7))
     rsdetat.Fields(8) = numero(Text2(8))
     rsdetat.Fields(9) = Format(MBox2, "dd/mm/yyyy")
-    rsdetat.Fields(10) = Escadena(Text2(9).text)
-    rsdetat.Fields(11) = Escadena(Text2(10).text)
+    rsdetat.Fields(10) = Escadena(Text2(9).Text)
+    rsdetat.Fields(11) = Escadena(Text2(10).Text)
     rsdetat.Update
     TDBGrid1.Refresh
     Call ConfigGrid
@@ -1886,6 +1892,10 @@ Public Sub grabacion()
     Text2(0) = CStr(CDbl(rsdetat.Fields(0)) + 1)
     Call Totales
     Text2(1).SetFocus
+End Sub
+
+Private Sub MBox2_LostFocus()
+Call MBox2_KeyDown(13, 0)
 End Sub
 
 Private Sub Text1_GotFocus(Index As Integer)
@@ -1905,29 +1915,29 @@ Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
             If Escadena(rb!operacionvalidacajabancos) = "B" Then
                 Ctr_AyudaCaja.Visible = False
 '                Text1(2).Enabled = True
-                cAyuda(1).Enabled = True
+                cayuda(1).Enabled = True
                 Text1(2) = "": Label2(1) = ""
                 Text1(2).Enabled = False
-                cAyuda(1).Enabled = False
+                cayuda(1).Enabled = False
                 rb.Close
                 Set rb = Nothing
                 Combo2.SetFocus
                 Text2(6).Enabled = True
-                cAyuda(5).Enabled = True
+                cayuda(5).Enabled = True
                 Text2(5).Enabled = True
                 Text2(9).Enabled = True
-                cAyuda(7).Enabled = True
+                cayuda(7).Enabled = True
                 Exit Sub
             Else
 '                Text1(2).Enabled = True
-                cAyuda(1).Enabled = True
+                cayuda(1).Enabled = True
                 Ctr_AyudaCaja.Visible = True
                 Text2(6).Enabled = False
-                cAyuda(5).Enabled = False
+                cayuda(5).Enabled = False
                 Text2(5).Enabled = False
                 Text2(9).Enabled = False
-                cAyuda(7).Enabled = False
-                Text1(2).text = Ctr_AyudaCaja.xclave
+                cayuda(7).Enabled = False
+                Text1(2).Text = Ctr_AyudaCaja.xclave
 '                Text1(2).SetFocus
                 Ctr_AyudaCaja.SetFocus
                 Set rb = Nothing
@@ -1935,7 +1945,7 @@ Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
             End If
          Else
 '            Text1(2).Enabled = True
-            cAyuda(1).Enabled = True
+            cayuda(1).Enabled = True
             Text1(1) = "": Label2(0) = "": Text1(2) = "": Label2(1) = ""
          End If
          rb.Close
@@ -1994,7 +2004,7 @@ End Sub
 
 Private Sub Text2_Change(Index As Integer)
   If Index = 3 Then
-     Text2(3).text = UCase(Text2(3).text)
+     Text2(3).Text = UCase(Text2(3).Text)
   End If
 End Sub
 
@@ -2012,7 +2022,7 @@ Private Sub Text2_KeyPress(Index As Integer, KeyAscii As Integer)
           Exit Sub
         ElseIf rb!tdocumentonumeauto = 1 Then
 '              Text2(11).Text = Left(rb!tdocumentonumerador, 3)
-              Text2(2).text = rb!tdocumentonumerador 'Mid(rb!tdocumentonumerador, 4, Len(rb!tdocumentonumerador) - 3)
+              Text2(2).Text = rb!tdocumentonumerador 'Mid(rb!tdocumentonumerador, 4, Len(rb!tdocumentonumerador) - 3)
         End If
         rb.Close
         Set rb = Nothing
@@ -2104,9 +2114,9 @@ Private Sub Text2_LostFocus(Index As Integer)
 Dim SQL As String
 Dim rs As New ADODB.Recordset
       
-   If Index = 4 And Trim(Text2(4).text) = "10" Then
+   If Index = 4 And Trim(Text2(4).Text) = "10" Then
       Text2(6).Enabled = False
-      cAyuda(5).Enabled = False
+      cayuda(5).Enabled = False
       Text2(5).Enabled = False
    Else
       Text2(6).Enabled = True
@@ -2117,25 +2127,25 @@ Dim rs As New ADODB.Recordset
    Set rs = New ADODB.Recordset
    If Index = 8 Then
       SQL = "select monedacodigo,isnull(cargoapeimpape,0)-isnull(cargoapeimppag,0) from vt_cargo "
-      SQL = SQL & "where empresacodigo='" & Ctr_Ayuempresa.xclave & "' and documentocargo='" & Text2(1).text & "' and "
-      SQL = SQL & "cargonumdoc='" & Trim(Text2(2).text) & "' and clientecodigo='" & Trim(Ctr_Ayuda2.xclave) & "'"
+      SQL = SQL & "where empresacodigo='" & Ctr_Ayuempresa.xclave & "' and documentocargo='" & Text2(1).Text & "' and "
+      SQL = SQL & "cargonumdoc='" & Trim(Text2(2).Text) & "' and clientecodigo='" & Trim(Ctr_Ayuda2.xclave) & "'"
       Set rs = VGCNx.Execute(SQL)
       If Not rs.BOF And Not rs.EOF Then
-        If Text2(7).text = rs(0) Then
-          If Round(numero(Text2(8).text), 2) > Round(rs(1), 2) Then
+        If Text2(7).Text = rs(0) Then
+          If Round(numero(Text2(8).Text), 2) > Round(rs(1), 2) Then
             MsgBox "El Monto a Pagar es mayor que el Saldo del Documento", vbInformation, Caption
             Text2(8).SetFocus
             SendKeys "{Home}+{End}"
           End If
         Else
           If rs(0) = g_tiposol Then
-            If Round(numero(Text2(8).text) * MontoCero(Text1(3).text), 2) > Round(rs(1), 2) Then
+            If Round(numero(Text2(8).Text) * MontoCero(Text1(3).Text), 2) > Round(rs(1), 2) Then
               MsgBox "El Monto a Pagar es mayor que el Saldo del Documento", vbInformation, Caption
               Text2(8).SetFocus
               SendKeys "{Home}+{End}"
             End If
           Else
-            If Round(numero(Text2(8).text) / MontoCero(Text1(3).text), 2) > Round(rs(1), 2) Then
+            If Round(numero(Text2(8).Text) / MontoCero(Text1(3).Text), 2) > Round(rs(1), 2) Then
                MsgBox "El Monto a Pagar es mayor que el Saldo del Documento", vbInformation, Caption
                Text2(8).SetFocus
                SendKeys "{Home}+{End}"

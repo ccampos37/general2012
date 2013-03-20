@@ -798,6 +798,10 @@ Private Sub menu02_04_05_Click()
 Frmcliente.Show
 End Sub
 
+Private Sub menu02_05_01_Click()
+FrmAnulaFactura.Show
+End Sub
+
 Private Sub menu03_01_01_Click()
 FrmPlanillaVarios.Show
 End Sub

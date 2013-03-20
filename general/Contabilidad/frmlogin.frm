@@ -100,7 +100,7 @@ Begin VB.Form frmlogin
             _ExtentX        =   2699
             _ExtentY        =   503
             _Version        =   393216
-            Format          =   109576193
+            Format          =   97648641
             CurrentDate     =   37508
          End
          Begin TextFer.TxFer TxUser 
@@ -452,9 +452,11 @@ Dim tccambio As Double
     If tccambio = 0 Then
         MsgBox "No existe tipo de cambio para esta fecha", vbInformation
     End If
+    MDIPrincipal.StatusBar1.Panels(1).Text = "Mes Proceso : " & VGvardllgen.DesMes(Month(DTPfecha))
+    MDIPrincipal.StatusBar1.Panels(2).Text = "Año Proceso :" & Year(DTPfecha)
     MDIPrincipal.StatusBar1.Panels(3).Text = "Fecha de Trabajo (" & VGParamSistem.FechaTrabajo & ")"
     MDIPrincipal.StatusBar1.Panels(4).Text = "Tipo Cambio  (" & Format(tccambio, "#.000") & ")"
-    VGUsuario = TxUser.Text
+    VGUsuario = UCase(TxUser.Text)
         Dim Clsmenu As New ClassMenu
         Set Clsmenu.Conexion = VGConfig
         VGtipo = contab
@@ -488,14 +490,14 @@ Dim rssql As New ADODB.Recordset
 End Sub
 Private Function Validaraño() As Boolean
 Validaraño = True
-Dim RSAUX As ADODB.Recordset
+Dim rsaux As ADODB.Recordset
 Dim cab As Boolean, det As Boolean, msg As String
-    Set RSAUX = New ADODB.Recordset
+    Set rsaux = New ADODB.Recordset
     'Verificar que existan cabecera de comprobante
-    RSAUX.Open "select name from sysobjects where name in ('" & _
+    rsaux.Open "select name from sysobjects where name in ('" & _
                         VGParamSistem.TablaCabcomprob & "','" & _
                         VGParamSistem.TablaDetcomprob & "')", VGCNx
-    If RSAUX.RecordCount <= 1 Then
+    If rsaux.RecordCount <= 1 Then
         MsgBox "No estan aperturadas la tablas para este año", vbExclamation
         Validaraño = False
     End If
@@ -624,8 +626,9 @@ Private Function VERIFICAUSUARIO() As Boolean
     'VALIDANDO SI EXISTE EL PWD
     Pwd = CODIFICA(TxPwd.Text, 5)
     Set RSPASS = Nothing
-    Set RSPASS = VGConfig.Execute("SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USUARIOCODIGO='" & TxUser.Text & _
-    "' AND USUarioPASSWORD='" & Pwd & "'")
+    SQL = "SELECT * FROM " & UCase$(CLMENU.TablaUsu) & " WHERE USUARIOCODIGO='" & TxUser.Text & "'"
+    SQL = SQL & " AND USUarioPASSWORD='" & Pwd & "'"
+    Set RSPASS = VGConfig.Execute(SQL)
     If RSPASS.RecordCount = 0 Then
         MsgBox "LA CONTRASEÑA ES INCORRECTA", vbExclamation
         TxPwd.SetFocus
@@ -679,7 +682,10 @@ End Sub
 
 
 Private Sub TxUser_KeyPress(KeyAscii As Integer)
-If KeyAscii = 13 Then SendKeys "{tab}"
+If KeyAscii = 13 Then
+   TxUser.Text = UCase$(TxUser.Text)
+   SendKeys "{tab}"
+End If
 End Sub
 
 
