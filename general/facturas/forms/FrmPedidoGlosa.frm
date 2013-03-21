@@ -3592,7 +3592,7 @@ Begin VB.Form FrmPedidoGlosa
          _ExtentX        =   2408
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   41353217
+         Format          =   88932353
          CurrentDate     =   39763
          MaxDate         =   44196
          MinDate         =   36526
@@ -3606,7 +3606,7 @@ Begin VB.Form FrmPedidoGlosa
          _ExtentX        =   2408
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   41353217
+         Format          =   88932353
          CurrentDate     =   39763
          MaxDate         =   44196
          MinDate         =   36526
@@ -4407,12 +4407,12 @@ vererror:
     End If
 End Sub
 
-Public Function Activa(ntipo As Integer)
-    If ntipo = 1 Then
+Public Function Activa(nTipo As Integer)
+    If nTipo = 1 Then
         SSTab1.TabEnabled(0) = False
         SSTab1.TabEnabled(1) = True
         SSTab1.Tab = 1
-    ElseIf ntipo = 2 Then
+    ElseIf nTipo = 2 Then
         SSTab1.TabEnabled(0) = True
         SSTab1.TabEnabled(1) = False
         SSTab1.Tab = 0
@@ -5888,7 +5888,7 @@ Public Function Carga_Pedido()
        rsdeta.AddNew
        rsdeta.Fields(0) = Escadena(csql!detpeditem)
        rsdeta.Fields(1) = Escadena(csql!productocodigo)
-       rsdeta.Fields(2) = Escadena(csql!adescri)
+       rsdeta.Fields(2) = Escadena(csql!ADESCRI)
        rsdeta.Fields(3) = Escadena(csql!unidadcodigo)
        rsdeta.Fields(4) = numero(csql!detpedcantpedida)
        rsdeta.Fields(5) = numero(IIf(IsNull(csql!detpedpreciopact), 0, csql!detpedpreciopact))  'numero(IIf(IsNull(csql!detpedimpbruto), 0, csql!detpedimpbruto))
@@ -6077,8 +6077,8 @@ Public Function GrabarData() As Integer
          ' wCabe(34) = Date                       'fechaguia
           MBox(4) = g_guiaserie & Right("000000000000" & TraeDataSerie("select puntovtadoccorr from vt_puntovtadocumento where empresacodigo='" & VGParametros.empresacodigo & "' and documentocodigo='" & g_tipoguia & "' and puntovtadocserie='" & g_guiaserie & "' and puntovtacodigo='" & g_ptoventa & "'", VGCNx), 10)  ' MBox(4).MaxLength)
           MBox(2) = "0": MBox(3) = "0"
-          If dllgeneral.VerificaDatoExistente(VGCNx, "select * from vt_pedido where empresacodigo='" & VGParametros.empresacodigo & "' and pedidonrofact='" & MBox(3) & "' and pedidotipofac='" & g_tipoguia & "'") = 1 Then
-            MsgBox "Ya existe Documento " & g_tipoguia & "-" & MBox(3), vbInformation, MsgTitle
+          If dllgeneral.VerificaDatoExistente(VGCNx, "select * from vt_pedido where empresacodigo='" & VGParametros.empresacodigo & "' and pedidonrofact='" & MBox(4) & "' and pedidotipofac='" & g_tipoguia & "'") = 1 Then
+            MsgBox "Ya existe Documento " & g_tipoguia & "-" & MBox(4), vbInformation, MsgTitle
             GrabarData = 0
             Exit Function
           End If
@@ -6155,8 +6155,11 @@ Public Function GrabarData() As Integer
                 'VGcnx.RollbackTrans
                 Exit Function
              End If
-        
-        ElseIf cOpc2(3).Value Or cOpc2(4).Value Then
+             nsql = "Update vt_puntovtadocumento set puntovtadoccorr='" & Right("0000000000" & Trim(CStr(MBox(4) + 1)), 10) & "'"
+             nsql = nsql & " Where empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & g_ptoventa & "'"
+             nsql = nsql & " and documentocodigo='" & g_tipoguia & "' and puntovtadocserie='" & g_guiaserie & "'"
+         
+         ElseIf cOpc2(3).Value Or cOpc2(4).Value Then
              If Len(Trim(g_ticserieb)) = 0 And Len(Trim(g_ticserief)) = 0 Then
                 MsgBox "No existe Serie de Ticket....Verifique!!", vbInformation, MsgTitle
                 Exit Function
@@ -6707,7 +6710,7 @@ Public Sub TraerProducto()
     End If
     Set rabusca = VGCNx.Execute(nsql)
     If rabusca.RecordCount > 0 Then
-      Label2 = Escadena(rabusca!adescri)
+      Label2 = Escadena(rabusca!ADESCRI)
       MBox2(2) = Escadena(rabusca!aunidad)
       If Val(rabusca.Fields("stskdis")) < Val(MBox2(0).ClipText) Then
         If modoventa.ctrlinventario = "1" Then
@@ -7028,7 +7031,7 @@ Public Sub CargarModo()
         MBox(1).Enabled = IIf(modoventa.documento = g_tipoped And modoventa.numeraauto <> "1" And modoventa.ingpedido = "1", True, False) 'Modo de pedido
         MBox(2).Enabled = IIf(modoventa.documento = g_tipofac And modoventa.numeraauto <> "1", True, False) 'Modo de factura
         MBox(3).Enabled = IIf(modoventa.documento = g_tipobol And modoventa.numeraauto <> "1", True, False) 'Modo de boleta
-       MBox(4).Enabled = IIf(modoventa.documento = g_tipoguia And modoventa.numeraauto <> "1" And modoventa.ingguia = "1", True, False)  'Modo de Modifica
+       MBox(4).Enabled = IIf(modoventa.documento = g_tipoguia And modoventa.numeraauto <> "1", True, False)   'Modo de Modifica
         
         modoventa.numeraauto = Escadena(IIf(IsNull(rs!modovtanumautom) Or rs!modovtanumautom = 0, "0", "1"))
         modoventa.documento = Escadena(IIf(IsNull(rs!documentocodigo), "", rs!documentocodigo))

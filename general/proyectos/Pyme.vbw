@@ -1,5 +1,5 @@
 FormOcuGui = 0, 0, 0, 0, C, 154, 203, 745, 651, C
-FormAyuArt = 52, 50, 664, 362, Z, 0, 0, 591, 448, C
+FormAyuArt = 52, 50, 664, 362, , 0, 0, 591, 448, C
 FormKardex = 52, 52, 844, 362, , 22, 29, 613, 477, C
 FormKardexMov = 78, 78, 690, 388, , 44, 58, 635, 506, C
 FormAyuTransa = 104, 104, 716, 414, , 110, 145, 701, 593, C
@@ -110,7 +110,7 @@ FrmPlanillaVariosModi = 26, 26, 638, 336, , 78, 78, 690, 388, C
 FrmMovimientoCaja = 52, 52, 844, 362, , 52, 52, 664, 362, C
 FrmMovimientoClientes = 26, 26, 638, 336, , 52, 52, 664, 362, C
 FrmAyudaTes = 0, 0, 792, 310, , 26, 26, 638, 336, C
-FrmPedidoGlosa = 0, 0, 792, 310, , 130, 130, 742, 440, C
+FrmPedidoGlosa = 0, 0, 792, 310, Z, 130, 130, 742, 440, C
 FrmAyudaPedidos = 130, 130, 922, 440, , 52, 52, 664, 362, C
 FrmCotizacionLibre = 104, 104, 896, 414, , 130, 130, 742, 440, C
 FuncionesAlmacenes = 130, 130, 742, 440, 
