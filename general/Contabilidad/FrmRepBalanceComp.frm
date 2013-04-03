@@ -1,21 +1,21 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "msdatlst.ocx"
 Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
 Begin VB.Form FrmRepBalanceComp 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Reporte Balance de Comprobancion"
-   ClientHeight    =   4860
+   ClientHeight    =   5505
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   6225
+   ClientWidth     =   6600
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   4860
-   ScaleWidth      =   6225
+   ScaleHeight     =   5505
+   ScaleWidth      =   6600
    Begin VB.Frame Frame5 
       Caption         =   "Filtro por Cuentas"
       Height          =   900
@@ -74,7 +74,7 @@ Begin VB.Form FrmRepBalanceComp
          _ExtentY        =   503
          _Version        =   393216
          CustomFormat    =   "MM - MMMM"
-         Format          =   50266115
+         Format          =   4063235
          UpDown          =   -1  'True
          CurrentDate     =   37505
       End
@@ -271,8 +271,8 @@ Private Sub Form_Load()
     Width = 6315
     Call CargaNivel
     Call CargaRsFiltro
-    Call CtrAyu_Moneda.conexion(VGCNx)
-    Call CtrAyu_Cuenta.conexion(VGCNx)
+    Call CtrAyu_Moneda.Conexion(VGCNx)
+    Call CtrAyu_Cuenta.Conexion(VGCNx)
     CtrAyu_Moneda.xclave = VGParametros.monedabase: CtrAyu_Moneda.Ejecutar
     OptForma(1).Value = True:
     OpTipo(0).Value = True

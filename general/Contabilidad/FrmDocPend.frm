@@ -6,13 +6,13 @@ Begin VB.Form FrmDocPend
    ClientHeight    =   4110
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   9060
+   ClientWidth     =   11160
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   4110
-   ScaleWidth      =   9060
+   ScaleWidth      =   11160
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton CmdCancelar 
       Caption         =   "&Cancelar"
@@ -35,17 +35,17 @@ Begin VB.Form FrmDocPend
       Height          =   3555
       Left            =   45
       ScaleHeight     =   3495
-      ScaleWidth      =   8925
+      ScaleWidth      =   10965
       TabIndex        =   0
       Top             =   90
-      Width           =   8985
+      Width           =   11025
       Begin TrueOleDBGrid70.TDBGrid TDBG_DocPend 
          Height          =   2910
          Left            =   60
          TabIndex        =   1
          Top             =   45
-         Width           =   8745
-         _ExtentX        =   15425
+         Width           =   10785
+         _ExtentX        =   19024
          _ExtentY        =   5133
          _LayoutType     =   4
          _RowHeight      =   -2147483647
@@ -105,14 +105,19 @@ Begin VB.Form FrmDocPend
          Columns(9).DataField=   "Saldo"
          Columns(9).NumberFormat=   "###,###,###.00"
          Columns(9)._PropDict=   "_MaxComboItems,516,2;_VlistStyle,514,3"
-         Columns.Count   =   10
+         Columns(10)._VlistStyle=   0
+         Columns(10)._MaxComboItems=   5
+         Columns(10).Caption=   "NroComprobante"
+         Columns(10).DataField=   "cabcomprobnumero"
+         Columns(10)._PropDict=   "_MaxComboItems,516,2;_VlistStyle,514,3"
+         Columns.Count   =   11
          Splits(0)._UserFlags=   0
          Splits(0).RecordSelectorWidth=   503
          Splits(0)._SavedRecordSelectors=   0   'False
          Splits(0).DividerColor=   12632256
          Splits(0).SpringMode=   0   'False
          Splits(0)._PropDict=   "_ColumnProps,515,0;_UserFlags,518,3"
-         Splits(0)._ColumnProps(0)=   "Columns.Count=10"
+         Splits(0)._ColumnProps(0)=   "Columns.Count=11"
          Splits(0)._ColumnProps(1)=   "Column(0).Width=635"
          Splits(0)._ColumnProps(2)=   "Column(0).DividerColor=0"
          Splits(0)._ColumnProps(3)=   "Column(0)._WidthInPix=556"
@@ -125,9 +130,9 @@ Begin VB.Form FrmDocPend
          Splits(0)._ColumnProps(10)=   "Column(2).DividerColor=0"
          Splits(0)._ColumnProps(11)=   "Column(2)._WidthInPix=529"
          Splits(0)._ColumnProps(12)=   "Column(2).Order=3"
-         Splits(0)._ColumnProps(13)=   "Column(3).Width=2328"
+         Splits(0)._ColumnProps(13)=   "Column(3).Width=2725"
          Splits(0)._ColumnProps(14)=   "Column(3).DividerColor=0"
-         Splits(0)._ColumnProps(15)=   "Column(3)._WidthInPix=2249"
+         Splits(0)._ColumnProps(15)=   "Column(3)._WidthInPix=2646"
          Splits(0)._ColumnProps(16)=   "Column(3).Order=4"
          Splits(0)._ColumnProps(17)=   "Column(4).Width=873"
          Splits(0)._ColumnProps(18)=   "Column(4).DividerColor=0"
@@ -153,6 +158,10 @@ Begin VB.Form FrmDocPend
          Splits(0)._ColumnProps(38)=   "Column(9).DividerColor=0"
          Splits(0)._ColumnProps(39)=   "Column(9)._WidthInPix=2064"
          Splits(0)._ColumnProps(40)=   "Column(9).Order=10"
+         Splits(0)._ColumnProps(41)=   "Column(10).Width=2725"
+         Splits(0)._ColumnProps(42)=   "Column(10).DividerColor=0"
+         Splits(0)._ColumnProps(43)=   "Column(10)._WidthInPix=2646"
+         Splits(0)._ColumnProps(44)=   "Column(10).Order=11"
          Splits.Count    =   1
          PrintInfos(0)._StateFlags=   3
          PrintInfos(0).Name=   "piInternal 0"
@@ -252,27 +261,31 @@ Begin VB.Form FrmDocPend
          _StyleDefs(73)  =   "Splits(0).Columns(9).HeadingStyle:id=71,.parent=14"
          _StyleDefs(74)  =   "Splits(0).Columns(9).FooterStyle:id=72,.parent=15"
          _StyleDefs(75)  =   "Splits(0).Columns(9).EditorStyle:id=73,.parent=17"
-         _StyleDefs(76)  =   "Named:id=33:Normal"
-         _StyleDefs(77)  =   ":id=33,.parent=0"
-         _StyleDefs(78)  =   "Named:id=34:Heading"
-         _StyleDefs(79)  =   ":id=34,.parent=33,.valignment=2,.bgcolor=&H8000000F&,.fgcolor=&H80000012&"
-         _StyleDefs(80)  =   ":id=34,.wraptext=-1"
-         _StyleDefs(81)  =   "Named:id=35:Footing"
-         _StyleDefs(82)  =   ":id=35,.parent=33,.valignment=2,.bgcolor=&H8000000F&,.fgcolor=&H80000012&"
-         _StyleDefs(83)  =   "Named:id=36:Selected"
-         _StyleDefs(84)  =   ":id=36,.parent=33,.bgcolor=&H8000000D&,.fgcolor=&H8000000E&"
-         _StyleDefs(85)  =   "Named:id=37:Caption"
-         _StyleDefs(86)  =   ":id=37,.parent=34,.alignment=2"
-         _StyleDefs(87)  =   "Named:id=38:HighlightRow"
-         _StyleDefs(88)  =   ":id=38,.parent=33,.bgcolor=&H8000000D&,.fgcolor=&H8000000E&"
-         _StyleDefs(89)  =   "Named:id=39:EvenRow"
-         _StyleDefs(90)  =   ":id=39,.parent=33,.bgcolor=&HFFFF00&"
-         _StyleDefs(91)  =   "Named:id=40:OddRow"
-         _StyleDefs(92)  =   ":id=40,.parent=33"
-         _StyleDefs(93)  =   "Named:id=41:RecordSelector"
-         _StyleDefs(94)  =   ":id=41,.parent=34"
-         _StyleDefs(95)  =   "Named:id=42:FilterBar"
-         _StyleDefs(96)  =   ":id=42,.parent=33"
+         _StyleDefs(76)  =   "Splits(0).Columns(10).Style:id=78,.parent=13"
+         _StyleDefs(77)  =   "Splits(0).Columns(10).HeadingStyle:id=75,.parent=14"
+         _StyleDefs(78)  =   "Splits(0).Columns(10).FooterStyle:id=76,.parent=15"
+         _StyleDefs(79)  =   "Splits(0).Columns(10).EditorStyle:id=77,.parent=17"
+         _StyleDefs(80)  =   "Named:id=33:Normal"
+         _StyleDefs(81)  =   ":id=33,.parent=0"
+         _StyleDefs(82)  =   "Named:id=34:Heading"
+         _StyleDefs(83)  =   ":id=34,.parent=33,.valignment=2,.bgcolor=&H8000000F&,.fgcolor=&H80000012&"
+         _StyleDefs(84)  =   ":id=34,.wraptext=-1"
+         _StyleDefs(85)  =   "Named:id=35:Footing"
+         _StyleDefs(86)  =   ":id=35,.parent=33,.valignment=2,.bgcolor=&H8000000F&,.fgcolor=&H80000012&"
+         _StyleDefs(87)  =   "Named:id=36:Selected"
+         _StyleDefs(88)  =   ":id=36,.parent=33,.bgcolor=&H8000000D&,.fgcolor=&H8000000E&"
+         _StyleDefs(89)  =   "Named:id=37:Caption"
+         _StyleDefs(90)  =   ":id=37,.parent=34,.alignment=2"
+         _StyleDefs(91)  =   "Named:id=38:HighlightRow"
+         _StyleDefs(92)  =   ":id=38,.parent=33,.bgcolor=&H8000000D&,.fgcolor=&H8000000E&"
+         _StyleDefs(93)  =   "Named:id=39:EvenRow"
+         _StyleDefs(94)  =   ":id=39,.parent=33,.bgcolor=&HFFFF00&"
+         _StyleDefs(95)  =   "Named:id=40:OddRow"
+         _StyleDefs(96)  =   ":id=40,.parent=33"
+         _StyleDefs(97)  =   "Named:id=41:RecordSelector"
+         _StyleDefs(98)  =   ":id=41,.parent=34"
+         _StyleDefs(99)  =   "Named:id=42:FilterBar"
+         _StyleDefs(100) =   ":id=42,.parent=33"
       End
       Begin VB.Label lbnregdetalle 
          Alignment       =   1  'Right Justify

@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Begin VB.Form FrmAnulaFactura 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Mantenimiento de Anulacion de Pedido"
@@ -14,6 +14,15 @@ Begin VB.Form FrmAnulaFactura
    ScaleHeight     =   8775
    ScaleWidth      =   10875
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton Command1 
+      BackColor       =   &H80000008&
+      Caption         =   "&Salir"
+      Height          =   375
+      Left            =   8760
+      TabIndex        =   15
+      Top             =   240
+      Width           =   1095
+   End
    Begin MSComctlLib.StatusBar Panel 
       Align           =   2  'Align Bottom
       Height          =   375
@@ -346,13 +355,13 @@ Private Sub aBusca_KeyPress(Index As Integer, KeyAscii As Integer)
      Set TDBGrid1.DataSource = Nothing
      aBusca(0) = Right("0000000000" & Trim(aBusca(0)), aBusca(0).MaxLength)
      aBusca(1) = Right("0000000000" & Trim(aBusca(1)), aBusca(1).MaxLength)
-     If (Val(Trim(aBusca(1).Text)) = 0 And Val(Trim(aBusca(1).Text)) = 0) Then
+     If (Val(Trim(aBusca(1).text)) = 0 And Val(Trim(aBusca(1).text)) = 0) Then
        Listado
      Else
-       If adll.ComboDato(Combo1.Text) = g_tipoped Then
+       If adll.ComboDato(Combo1.text) = g_tipoped Then
           Call adll.ListarEnTDBGRID(VGCNx, "vt_pedido", TDBGrid1, "CASE  pedidocondicionfactura WHEN '1' THEN '*' ELSE '' END,pedidofecha,pedidonumero,pedidotipofac,pedidonrofact,clienterazonsocial,pedidototneto", "pedidofecha", nLongicampo, "pedidonumero='" & Trim(aBusca(0) & aBusca(1)) & "' and empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'")
        Else
-          Call adll.ListarEnTDBGRID(VGCNx, "vt_pedido", TDBGrid1, "CASE  pedidocondicionfactura WHEN '1' THEN '*' ELSE '' END,pedidofecha,pedidonumero,pedidotipofac,pedidonrofact,clienterazonsocial,pedidototneto", "pedidofecha", nLongicampo, "pedidonrofact='" & Trim(aBusca(0) & aBusca(1)) & "' and pedidotipofac='" & adll.ComboDato(Combo1.Text) & "' and empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'")
+          Call adll.ListarEnTDBGRID(VGCNx, "vt_pedido", TDBGrid1, "CASE  pedidocondicionfactura WHEN '1' THEN '*' ELSE '' END,pedidofecha,pedidonumero,pedidotipofac,pedidonrofact,clienterazonsocial,pedidototneto", "pedidofecha", nLongicampo, "pedidonrofact='" & Trim(aBusca(0) & aBusca(1)) & "' and pedidotipofac='" & adll.ComboDato(Combo1.text) & "' and empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'")
        End If
      End If
      ConfiguraGrid
@@ -372,13 +381,17 @@ Private Sub aBusca_LostFocus(Index As Integer)
 End Sub
 
 Private Sub cBusca_Click()
-  If Len(Trim(aBusca(0).Text)) = 0 Or Len(Trim(aBusca(1).Text)) = 0 Then
+  If Len(Trim(aBusca(0).text)) = 0 Or Len(Trim(aBusca(1).text)) = 0 Then
      Listado
   Else
      aBusca_KeyPress 1, 13
   End If
 End Sub
 
+
+Private Sub Command1_Click()
+Unload Me
+End Sub
 
 Private Sub Form_Activate()
   Listado
@@ -402,7 +415,7 @@ Public Function Listado()
   TDBGrid1.ClearFields
   TDBGrid1.Refresh
   nlongi(1, 0) = 0
-  Call adll.ListarEnTDBGRID(VGCNx, "vt_pedido", TDBGrid1, "CASE  pedidocondicionfactura WHEN '1' THEN '*' ELSE '' END,pedidofecha,pedidonumero,pedidotipofac,pedidonrofact,clienterazonsocial,pedidototneto", "pedidofecha", nlongi, "empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'")
+  Call adll.ListarEnTDBGRID(VGCNx, "vt_pedido", TDBGrid1, "Anu=CASE  pedidocondicionfactura WHEN '1' THEN '*' ELSE '' END,pedidofecha,Numero_de_Pedido=pedidonumero,Tipo=pedidotipofac,Numero_de_Documento=pedidonrofact,clienterazonsocial,pedidototneto", "pedidofecha", nlongi, "empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'")
   End Function
 
 Public Function ConfiguraGrid()
@@ -444,9 +457,9 @@ End Sub
 Private Sub TDBGrid1_KeyDown(KeyCode As Integer, Shift As Integer)
   On Error Resume Next
   If KeyCode = 13 Then
-     If TDBGrid1.ApproxCount > 0 And TDBGrid1.Columns(0).Text <> "*" Then
+     If TDBGrid1.ApproxCount > 0 And TDBGrid1.Columns(0).text <> "*" Then
         FrmDetalleAnula.Btipo = g_tipoped
-        FrmDetalleAnula.BNumero = TDBGrid1.Columns(2).Text
+        FrmDetalleAnula.BNumero = TDBGrid1.Columns(2).text
         FrmDetalleAnula.Show 1
         Listado
      Else

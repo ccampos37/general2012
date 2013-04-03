@@ -199,7 +199,7 @@ Begin VB.Form FrmRegistro
          Enabled         =   0   'False
          Height          =   288
          Left            =   10350
-         MaxLength       =   11
+         MaxLength       =   15
          TabIndex        =   13
          Top             =   225
          Visible         =   0   'False
@@ -279,7 +279,7 @@ Begin VB.Form FrmRegistro
          _ExtentX        =   2566
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   99090433
+         Format          =   98369537
          CurrentDate     =   36437
          MaxDate         =   401768
          MinDate         =   36161
@@ -830,7 +830,7 @@ End If
 End Sub
 'Eliminar
 Private Sub Command3_Click()
-Dim I As Integer
+Dim i As Integer
 
 If MSFlexGrid1.Rows = 1 Then
     MsgBox "No hay registros para Eliminar", vbInformation, "Información"
@@ -838,9 +838,9 @@ If MSFlexGrid1.Rows = 1 Then
 End If
 If MsgBox("Desea Eliminar el Registro?", vbQuestion + vbYesNo, "Mensaje") = vbYes Then
     
-    I = MSFlexGrid1.RowSel
+    i = MSFlexGrid1.RowSel
     If MSFlexGrid1.Rows > 2 Then
-        MSFlexGrid1.RemoveItem I
+        MSFlexGrid1.RemoveItem i
     Else
         MSFlexGrid1.Clear
         MSFlexGrid1.Rows = 1
@@ -943,7 +943,7 @@ Private Sub Cmddetalle_Click()
      Check1.Enabled = False
      Text2 = "01"
      muestra
-Text1.text = Format(TxSerie.text, "000") + Format(TxNdoc.text, "00000000")
+Text1.text = TxSerie.text + TxNdoc.text
 End Sub
 
 Private Sub Command4_Click()

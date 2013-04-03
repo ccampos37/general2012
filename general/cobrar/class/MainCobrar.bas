@@ -103,6 +103,8 @@ Private Type PuntoVenta   'Crea Punto de Venta
     pwd As String
     servidor As String
     
+    bdempresaCONF As String
+    
     bdempresaCT As String
     usuarioCT As String
     pwdCT As String
@@ -171,6 +173,10 @@ Public Sub Main()
     VGparamsistem.Usuario = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "USUARIO", "?")
     VGparamsistem.pwd = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "PASSW", "?")
     
+    VGparamsistem.bdempresaCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "BDDATOSCONF", "?")
+    If VGparamsistem.bdempresaCONF = "?" Then VGparamsistem.bdempresaCONF = "Bdwenco"
+    
+    
     VGparamsistem.bdempresaCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "BDDATOS", "?")
     VGparamsistem.servidorCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "SERVIDOR", "?")
     VGparamsistem.usuarioCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "USUARIO", "?")
@@ -222,10 +228,10 @@ Public Sub Main()
     VGConfig.CursorLocation = adUseClient
     VGConfig.CommandTimeout = 0
     VGConfig.ConnectionTimeout = 0
-    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.Usuario & ";Password=" & VGparamsistem.pwd & ";Initial Catalog=bdwenco;Data Source=" & VGparamsistem.servidor
+    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.Usuario & ";Password=" & VGparamsistem.pwd & ";Initial Catalog=" & VGparamsistem.bdempresaCONF & ";Data Source=" & VGparamsistem.servidor
     VGConfig.Open
 
-    VGtipo = contab
+    VGtipo = cobrar
    'Call AdjuntarServ(VGGeneral, VGParamSistem.Servidor)
     'Base de datos de la Empresa
     Call adicionarcampos

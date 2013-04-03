@@ -138,12 +138,18 @@ Public Sub Configurar_Conexiones()
     VGParamSistem.BDEmpresa = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOS", "?")
     VGParamSistem.Servidor = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "SERVIDOR", "?")
     VGParamSistem.Usuario = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "USUARIO", "?")
-    VGParamSistem.Pwd = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "PASSW", "?")
-    VGOrden = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "ORDEN", "?")
+    VGParamSistem.PWD = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "PASSW", "?")
+    vgorden = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "ORDEN", "?")
+   
+    'VGParamSistem.ServidorCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "SERVIDOR", "?")
+   
+   
+    VGParamSistem.BDempresaCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOSCONF", "?")
+    If VGParamSistem.BDempresaCONF = "?" Then VGParamSistem.BDempresaCONF = "bdwenco"
    
 ' reportes
    
-   VGParamSistem.RutaReport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "VENTAS", "?")
+   VGParamSistem.Rutareport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "VENTAS", "?")
     VGParamSistem.carpetareportes = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "CARPETAREPORTES", "?")
         
     'Conexion de Contabilidad
@@ -152,7 +158,7 @@ Public Sub Configurar_Conexiones()
        VGParamSistem.BDEmpresaCT = VGParamSistem.BDEmpresa
        VGParamSistem.ServidorCT = VGParamSistem.Servidor
        VGParamSistem.UsuarioCT = VGParamSistem.Usuario
-       VGParamSistem.PwdCT = VGParamSistem.Pwd
+       VGParamSistem.PwdCT = VGParamSistem.PWD
      Else
        VGParamSistem.BDEmpresaCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "BDDATOS", "?")
        VGParamSistem.ServidorCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "SERVIDOR", "?")
@@ -163,8 +169,8 @@ Public Sub Configurar_Conexiones()
         MsgBox "No se ha Configurado bien los parametros BDDATOS y SERVIDOR en el archivo " & Chr(13) & _
                App.Path & "\MARFICE.INI"
     End If
-    If VGParamSistem.RutaReport = "" Or VGParamSistem.RutaReport = "?" Then
-       VGParamSistem.RutaReport = App.Path
+    If VGParamSistem.Rutareport = "" Or VGParamSistem.Rutareport = "?" Then
+       VGParamSistem.Rutareport = App.Path
        VGParamSistem.carpetareportes = "Reportes"
     End If
        
@@ -187,7 +193,7 @@ Public Sub Configurar_Conexiones()
     VGCNx.CursorLocation = adUseClient
     VGCNx.CommandTimeout = 0
     VGCNx.ConnectionTimeout = 0
-    VGCNx.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=" & VGParamSistem.BDEmpresa & ";Data Source=" & VGParamSistem.Servidor
+    VGCNx.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.PWD & ";Initial Catalog=" & VGParamSistem.BDEmpresa & ";Data Source=" & VGParamSistem.Servidor
     VGCNx.Open
     
    
@@ -196,7 +202,7 @@ Public Sub Configurar_Conexiones()
     VGConfig.CursorLocation = adUseClient
     VGConfig.CommandTimeout = 0
     VGConfig.ConnectionTimeout = 0
-    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=bdwenco;Data Source=" & VGParamSistem.Servidor
+    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.PWD & ";Initial Catalog=" & VGParamSistem.BDempresaCONF & ";Data Source=" & VGParamSistem.Servidor
     VGConfig.Open
   
 
@@ -233,8 +239,8 @@ Public Function MostrarFormVentasVentas(pVentana As Form, pPos As String)
      Exit Function
    End If
    If pPos = "M" Then
-      pVentana.StatusBar1.Panels(1).text = "EMPRESA: " & VGParametros.NomEmpresa
-      pVentana.StatusBar1.Panels(2).text = "PTO. VENTA: " & g_ptoventa
+      pVentana.StatusBar1.Panels(1).Text = "EMPRESA: " & VGParametros.nomempresa
+      pVentana.StatusBar1.Panels(2).Text = "PTO. VENTA: " & g_ptoventa
       pVentana.StatusBar1.Panels(2).Alignment = sbrLeft
    Else
  '     pVentana.StatusBar1.Panels(1).Text = "FORMATO : " & Escadena(pVentana.Caption)

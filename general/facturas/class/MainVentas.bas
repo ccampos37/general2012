@@ -79,6 +79,8 @@ Private Type ParametrosdeSistema         ' Crea Tipo de Empresa
    Servidor As String
    PWD      As String
    
+   BDempresaCONF As String
+   
    ServidorGEN As String
    BDEmpresaGEN As String
    UsuarioGEN As String
@@ -156,7 +158,7 @@ Private Type modoventa   'Crea modoventa
     usafactor As String * 1
     documento As String * 2
     almacenes As String * 100
-
+    canje As Boolean
 End Type
 
 

@@ -53,4 +53,4 @@ RptSaldoxProveedor = 110, 145, 927, 575, , 110, 145, 886, 625, C
 FrmAnulaPllaCanjes = 110, 145, 975, 567, , 132, 174, 908, 654, C
 FrmrepPlanCompensaciones = 52, 52, 717, 339, , 110, 145, 852, 625, C
 MainPagar = 0, 0, 612, 310, 
-ModificarCampos = 78, 78, 869, 362, C
+ModificarCampos = 0, 0, 0, 0, C

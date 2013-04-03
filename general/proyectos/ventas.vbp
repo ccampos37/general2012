@@ -108,6 +108,7 @@ Object={C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0; crviewer.dll
 Module=ModificarCampos; ..\..\..\comun\class\Modtablas.bas
 Module=MainVentas; ..\facturas\class\MainVentas.bas
 Form=..\facturas\forms\FrmVtasporPuntoVta.frm
+Module=ModVarios; ..\..\..\comun\class\ModVarios.bas
 IconForm="FrmIngreso"
 Startup="Sub Main"
 HelpFile=""

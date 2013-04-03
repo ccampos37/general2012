@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Object = "{4D137D9C-00A6-4458-9B46-7E95DB76D55B}#9.0#0"; "TextFer.ocx"
 Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
@@ -33,11 +33,11 @@ Begin VB.Form frmMantPlanCuentas
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "frmMantPlanCuentas.frx":0000
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1"
+      Tab(0).Control(0)=   "TDBGrid1"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "lblNumReg"
       Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "TDBGrid1"
+      Tab(0).Control(2)=   "Label1"
       Tab(0).Control(2).Enabled=   0   'False
       Tab(0).ControlCount=   3
       TabCaption(1)   =   "Mantenimiento"
@@ -53,17 +53,17 @@ Begin VB.Form frmMantPlanCuentas
       TabCaption(2)   =   "Cuentas Distribución"
       TabPicture(2)   =   "frmMantPlanCuentas.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label4"
-      Tab(2).Control(1)=   "lbl(12)"
-      Tab(2).Control(2)=   "lbl(13)"
-      Tab(2).Control(3)=   "Label5"
-      Tab(2).Control(4)=   "lblPorcen"
+      Tab(2).Control(0)=   "cmdSigue"
+      Tab(2).Control(1)=   "txtPorcen"
+      Tab(2).Control(2)=   "cmdAceptar"
+      Tab(2).Control(3)=   "Ctr_Ayuda3"
+      Tab(2).Control(4)=   "Ctr_Ayuda2"
       Tab(2).Control(5)=   "TDBGrid2"
-      Tab(2).Control(6)=   "Ctr_Ayuda2"
-      Tab(2).Control(7)=   "Ctr_Ayuda3"
-      Tab(2).Control(8)=   "cmdAceptar"
-      Tab(2).Control(9)=   "txtPorcen"
-      Tab(2).Control(10)=   "cmdSigue"
+      Tab(2).Control(6)=   "lblPorcen"
+      Tab(2).Control(7)=   "Label5"
+      Tab(2).Control(8)=   "lbl(13)"
+      Tab(2).Control(9)=   "lbl(12)"
+      Tab(2).Control(10)=   "Label4"
       Tab(2).ControlCount=   11
       Begin VB.CommandButton cmdSigue 
          Caption         =   "&Aceptar"
@@ -1144,15 +1144,15 @@ Begin VB.Form frmMantPlanCuentas
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
-      Height          =   570
+      Height          =   600
       Left            =   0
       TabIndex        =   18
       Top             =   0
       Width           =   11190
       _ExtentX        =   19738
-      _ExtentY        =   1005
-      ButtonWidth     =   1376
-      ButtonHeight    =   953
+      _ExtentY        =   1058
+      ButtonWidth     =   1667
+      ButtonHeight    =   1005
       Appearance      =   1
       Style           =   1
       _Version        =   393216
@@ -1278,7 +1278,7 @@ Dim rs As New ADODB.Recordset
 Dim rsDist As New ADODB.Recordset
 Dim cCta As String
 Dim dCta As String
-Dim xCuenta As String
+Dim xcuenta As String
 Dim xdllgen As New dll_general
 Dim FLAGMOVIMIENTODISTRI As Boolean
 Dim FLAGDISTRIBUCION As Boolean
@@ -1298,19 +1298,19 @@ Private Sub Form_Load()
   End If
   Screen.MousePointer = 1
   TDBGrid1.FetchRowStyle = True
-  xCuenta = "%"
+  xcuenta = "%"
 End Sub
 
 Sub ConfiguraForm()
   SSTab1.Tab = 0
   SSTab1.TabEnabled(1) = False
   SSTab1.TabEnabled(2) = False
-  Ctr_Ayuda1.conexion VGCNx
-  Ctr_Ayuda2.conexion VGCNx
-  Ctr_Ayuda3.conexion VGCNx
+  Ctr_Ayuda1.Conexion VGCNx
+  Ctr_Ayuda2.Conexion VGCNx
+  Ctr_Ayuda3.Conexion VGCNx
   Ctr_Ayuda2.Filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and cuentanivel=" & VGnumnivelescuenta
   Ctr_Ayuda3.Filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and  cuentanivel=" & VGnumnivelescuenta
-  Ctr_Ayuda4.conexion VGCNx
+  Ctr_Ayuda4.Conexion VGCNx
   cAcepta.Enabled = False
   lblNumReg.Caption = Empty
   frmMantPlanCuentas.Width = 11310
@@ -1472,7 +1472,7 @@ Sub GrabarData()
   Set rsDist = Nothing
   Exit Sub
 
-X:
+x:
   If err.Number = -2147217873 Then
     MsgBox "Esta intentando registrar uno Existente " & err.Description, vbInformation, Caption
   Else
@@ -1640,7 +1640,7 @@ Sub Mantenimiento(indice As Integer)
   Dim spos As Integer
   Dim SQL As String
 
-  On Error GoTo X
+  On Error GoTo x
   SSTab1.TabEnabled(1) = True
 
   Select Case indice
@@ -1688,7 +1688,7 @@ Sub Mantenimiento(indice As Integer)
           .cryRpt.Destination = crptToWindow
           .cryRpt.WindowState = crptMaximized
           .cryRpt.StoredProcParam(0) = VGParamSistem.BDEmpresa
-          .cryRpt.StoredProcParam(1) = Trim(xCuenta) & "%"
+          .cryRpt.StoredProcParam(1) = Trim(xcuenta) & "%"
           .cryRpt.Formulas(0) = "@Emp='" & VGParametros.NomEmpresa & "'"
           .cryRpt.ReportFileName = VGParamSistem.RutaReport + "rptPlanCuentas.rpt"
           .cryRpt.Connect = vgCADENAREPORT
@@ -1701,7 +1701,7 @@ Sub Mantenimiento(indice As Integer)
   End Select
   Exit Sub
 
-X:
+x:
   If indice = 2 And err.Number = -2147217873 Then
     MsgBox "Registro no podrá Eliminarse mientras exista Información en las Tablas Relacionadas", vbInformation, Caption
   Else
@@ -1831,7 +1831,7 @@ Function GrabarPlanCuenta(tipooperacion As Integer, xCod As String, xDes As Stri
    Case 0
      strSQL = "INSERT INTO ct_cuenta (empresacodigo,cuentacodigo, cuentadescripcion, cuentalineaactivo,cuentalineapasivo, cuentalineaegp, cuentanatu, cuentanategp,"
      strSQL = strSQL & "cuentaestadoccostos, cuentaestadoanalitico,cuentadocumento, cuentanivel, tipoanaliticocodigo,cuentaestadodistribucion,tipocuentacodigo,usuariocodigo, fechaact, CUENTAGRUPO,tipoajuste,cuentaestado,cuentaadicionacargo) "
-     strSQL = strSQL & " VALUES ('" & VGParametros.empresacodigo & "','" & xCod & "','" & xDes & "'," & xLinAct & "," & xLinPas & "," & xLinEgp & ",'" & xNatu & "','" & xNatuegp & "'," & xCtaCostos & "," & xCtaAnalitico & "," & xCtaDoc & "," & xCtaNivel & ",'" & xTipoAnalitico & "'," & xCtaDist & ",'" & xTipoCuenta & "','" & VGusuario & "','" & Format(Now, "dd/mm/yyyy") & "','01','" & xTipoAJuste & "','1','" & xAdicionaCargo & "')"
+     strSQL = strSQL & " VALUES ('" & VGParametros.empresacodigo & "','" & xCod & "','" & xDes & "'," & xLinAct & "," & xLinPas & "," & xLinEgp & ",'" & xNatu & "','" & xNatuegp & "'," & xCtaCostos & "," & xCtaAnalitico & "," & xCtaDoc & "," & xCtaNivel & ",'" & xTipoAnalitico & "'," & xCtaDist & ",'" & xTipoCuenta & "','" & VGUsuario & "','" & Format(Now, "dd/mm/yyyy") & "','01','" & xTipoAJuste & "','1','" & xAdicionaCargo & "')"
    
    Case 1
      strSQL = "UPDATE CT_CUENTA SET "
@@ -1848,7 +1848,7 @@ Function GrabarPlanCuenta(tipooperacion As Integer, xCod As String, xDes As Stri
      strSQL = strSQL & "tipoanaliticocodigo='" & xTipoAnalitico & "',"
      strSQL = strSQL & "cuentaestadodistribucion=" & xdllgen.ESNULO(xCtaDist, 0) & ","
      strSQL = strSQL & "tipocuentacodigo='" & xTipoCuenta & "',"
-     strSQL = strSQL & "usuariocodigo='" & VGusuario & "',"
+     strSQL = strSQL & "usuariocodigo='" & VGUsuario & "',"
      strSQL = strSQL & "fechaact='" & Format(Now, "dd/mm/yyyy") & "',"
      strSQL = strSQL & "cuentagrupo='01',"
      strSQL = strSQL & "tipoajuste='" & xTipoAJuste & "', "
@@ -1870,7 +1870,7 @@ Function GrabarCuentaDistribucion()
    rsDist.MoveFirst
    For i = 0 To rsDist.RecordCount - 1
      SQL = "INSERT ct_distribucion (empresacodigo,cuentacodigo,distribucioncargo,distribucionabono,distribucionporcen,usuariocodigo,fechaact) VALUES "
-     SQL = SQL & "('" & VGParametros.empresacodigo & "','" & rsDist(0) & "','" & rsDist(1) & "','" & rsDist(2) & "'," & rsDist(3) & ",'" & VGusuario & "','" & Date & "')"
+     SQL = SQL & "('" & VGParametros.empresacodigo & "','" & rsDist(0) & "','" & rsDist(1) & "','" & rsDist(2) & "'," & rsDist(3) & ",'" & VGUsuario & "','" & Date & "')"
      VGCNx.Execute (SQL)
      rsDist.MoveNext
    Next
@@ -1883,7 +1883,7 @@ Function GrabarTablaSaldos()
  Dim NombreTabla As String
     NombreTabla = "CT_SALDOS" & VGParamSistem.Anoproceso
     SQL = "INSERT " & NombreTabla & "(empresacodigo,cuentacodigo,usuariocodigo,fechaact)"
-    SQL = SQL & "VALUES ('" & VGParametros.empresacodigo & "','" & txt(0).Text & "','" & VGusuario & "','" & Date & "')"
+    SQL = SQL & "VALUES ('" & VGParametros.empresacodigo & "','" & txt(0).Text & "','" & VGUsuario & "','" & Date & "')"
     VGCNx.Execute (SQL)
 
 End Function
@@ -1996,11 +1996,11 @@ End Sub
 Private Sub txtPorcen_Change()
  If Ctr_Ayuda2.xclave <> Empty And Ctr_Ayuda3.xclave <> Empty Then
    If txtPorcen.Text <> Empty Then
-     cmdAceptar.Enabled = True
+     CmdAceptar.Enabled = True
      Exit Sub
    End If
  End If
- cmdAceptar.Enabled = False
+ CmdAceptar.Enabled = False
 End Sub
 
 Function ValidarGridDist() As Boolean
@@ -2131,7 +2131,7 @@ End Sub
 
 Private Sub TreeView1_NodeClick(ByVal NODE As MSComctlLib.NODE)
   If NODE.Key <> Empty Then
-    xCuenta = Right(Trim(NODE.Key), Len(Trim(NODE.Key)) - 1)
+    xcuenta = Right(Trim(NODE.Key), Len(Trim(NODE.Key)) - 1)
     MuestraDatos (Right(Trim(NODE.Key), Len(Trim(NODE.Key)) - 1))
   End If
 End Sub

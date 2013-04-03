@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
 Begin VB.Form FrmRepArtxProveedor 
    Caption         =   "Form1"
@@ -305,7 +305,7 @@ Begin VB.Form FrmRepArtxProveedor
          _ExtentX        =   2355
          _ExtentY        =   529
          _Version        =   393216
-         Format          =   16646145
+         Format          =   97714177
          CurrentDate     =   37445
       End
       Begin MSComCtl2.DTPicker txtDFec 
@@ -317,7 +317,7 @@ Begin VB.Form FrmRepArtxProveedor
          _ExtentX        =   2355
          _ExtentY        =   476
          _Version        =   393216
-         Format          =   16646145
+         Format          =   97714177
          CurrentDate     =   37445
       End
       Begin VB.Label Label1 
@@ -391,7 +391,7 @@ Dim aform(6) As Variant
 Dim Reporte As String
 Dim filtro As String
 On Error GoTo Err
-    
+  Dim dato As String
 If Ctr_ayuAlmacen.xclave = "" Then
    Mensaje = "Ingrese Codigo de Almacen "
    MsgBox Mensaje, vbExclamation, "Error"
@@ -460,8 +460,8 @@ End If
      Else
        aparam(5) = "%%"
     End If
-    Call filtrotransa
-    aparam(6) = VGComputer + "_compras"
+    dato = filtrotransa
+    aparam(6) = dato
     aparam(7) = Ctr_ayuAlmacen.xclave
     Call ImpresionRptProc(Reporte, aform, aparam, , " Compras x proveedor " & Reporte)
 Exit Sub
@@ -471,29 +471,26 @@ Err:
   Resume
 
 End Sub
-Private Sub filtrotransa()
-Dim rsql As New ADODB.Recordset
-SQL = VGComputer + "_compras"
-If ExisteElem(0, VGCNx, SQL) Then Set rsql = VGCNx.Execute(" drop table " & SQL & "")
-   Set rsql = VGCNx.Execute("create table " & SQL & " ( transa nvarchar(3) null )")
-
-If TxtMov1.text <> "" Then Set rsql = VGCNx.Execute("insert " & SQL & " ( transa) values ('I" & TxtMov1.text & "')")
-If TxtMov2.text <> "" Then Set rsql = VGCNx.Execute("insert " & SQL & " ( transa) values ('I" & TxtMov2.text & "')")
-If txtMov3.text <> "" Then Set rsql = VGCNx.Execute("insert " & SQL & " ( transa) values ('I" & txtMov3.text & "')")
-If txtDev1.text <> "" Then Set rsql = VGCNx.Execute("insert " & SQL & " ( transa) values ('S" & txtDev1.text & "')")
-If txtDev2.text <> "" Then Set rsql = VGCNx.Execute("insert " & SQL & " ( transa) values ('S" & txtDev2.text & "')")
-If txtDev3.text <> "" Then Set rsql = VGCNx.Execute("insert " & SQL & " ( transa) values ('S" & txtDev3.text & "')")
-
-End Sub
+Private Function filtrotransa()
+Dim RSQL As New ADODB.Recordset
+SQL = ""
+If TxtMov1.text <> "" Then SQL = SQL & "" & TxtMov1.text & ","
+If TxtMov2.text <> "" Then SQL = SQL & "" & TxtMov2.text & ","
+If txtMov3.text <> "" Then SQL = SQL & "" & txtMov3.text & ","
+If txtDev1.text <> "" Then SQL = SQL & "" & txtDev1.text & ","
+If txtDev2.text <> "" Then SQL = SQL & "" & txtDev2.text & ","
+If txtDev3.text <> "" Then SQL = SQL & "" & txtDev3.text & ","
+filtrotransa = SQL
+End Function
 
 
 Private Sub Form_Load()
-    txtDFec = VGParamSistem.FechaTrabajo
-    txtHFec = VGParamSistem.FechaTrabajo
-    Call Ctr_AyuProveedor1.Conexion(VGCNx)
-    Call Ctr_AyuAnalitico.Conexion(VGCNx)
-    Call Ctr_AyuMoneda.Conexion(VGCNx)
-    Call Ctr_ayuAlmacen.Conexion(VGCNx)
+    txtDFec = VGParamSistem.fechatrabajo
+    txtHFec = VGParamSistem.fechatrabajo
+    Call Ctr_AyuProveedor1.conexion(VGCNx)
+    Call Ctr_AyuAnalitico.conexion(VGCNx)
+    Call Ctr_AyuMoneda.conexion(VGCNx)
+    Call Ctr_ayuAlmacen.conexion(VGCNx)
     Check1.Value = 1
     Check2.Value = 1
 End Sub

@@ -9,7 +9,6 @@ Option Explicit
 Public Const ColorHabilitado = &H80000004
 Public Const ColorDesHabilitado = &H80000005
 
-Public SQL As String
 
 'Constantes de mensajes para visualizar
 
@@ -19,12 +18,7 @@ Public Const MsgElim = "No Existen Datos a Eliminar.."
 Public Const MsgAdd = "Los datos ya existen...Verifique!!!"
 Public Const MsgTitle = "AVISO"
 Public Const Msg29 = "Debe Ingresar Numeros"
-Public mensaje1 As String
 
-Public VGCNx As ADODB.Connection             'Conexion de la BD empresa
-Public VGcnxCT As ADODB.Connection        'Conexion de Contabilidad
-Public VGgeneral As ADODB.Connection      'Conexion de la BD Generales
-Public VGconfig As ADODB.Connection      'Conexion de la BD de configuracion
 
 Public VgActivalogin As Long                 'Activa login una sola vez
 Public Cuentacodigo As String
@@ -43,16 +37,10 @@ Public VGstrConexion As String               'Cadena de Conexion
 Public VgMostrar As Boolean
 Public vgcont As Integer
 
-
-Public VGUsuario As String
-Public VGComputer As String                  'Nombre de la computadora
 Public VGOrden As String
-Public VGCODEMPRESA As String * 3          'Codigo de la compannia
 Public VGfecha As Date
 Public vgsalir As Boolean
 
-Public vgCADENAREPORT2 As String              'Cadena de Reportes Base Marfice
-Public Const NUMMAGICO As Integer = 5
 
 Private Type Parametrosdecostos
     
@@ -88,6 +76,8 @@ Private Type Parametrosdecostos
     diasatrazorendicion As Integer
     diacierrerendicion As Integer
 
+    sistemactaajustehab As String
+    sistemactaajustedeb As String
         
 End Type
 
@@ -116,12 +106,12 @@ Private Type parametrosdesistema
     
     carpetareportes As String
 End Type
-Public Declare Function GetComputerName Lib "Kernel32" Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
+Public Declare Function GetComputerName Lib "kernel32" Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
 Public VGParametros As Parametrosdecostos
 Public VGParamSistem As parametrosdesistema
 Public VGtipo As TIPOSISTEMA
 'VGtipo = 2
-Public Sub main()
+Public Sub Main()
  Dim sFileName As String
  Dim sBD As String
  Dim sBDt As String
@@ -133,7 +123,7 @@ Public Sub main()
    
  'Verifica si es Copia Ilegal
  '  Verificar_Sistema
-    VGComputer = UCase(ComputerName)
+    VGcomputer = UCase(ComputerName)
     
      VGsql = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "SQL", "?")
     VGsql = IIf(VGsql = "?", 0, VGsql)
@@ -183,7 +173,7 @@ Public Sub main()
        
     'Establecer Cadena de Conexión de Reportes
     
-    vgCADENAREPORT2 = "DSN=jckconsultores;DSQ=" & VGParamSistem.BDEmpresaGEN & ";UID=" & VGParamSistem.UsuarioGEN & ";PWD=" & VGParamSistem.PwdGEN & ""
+    VGCadenaReport2 = "DSN=jckconsultores;DSQ=" & VGParamSistem.BDEmpresaGEN & ";UID=" & VGParamSistem.UsuarioGEN & ";PWD=" & VGParamSistem.PwdGEN & ""
           
 
   FrmLogin.Show

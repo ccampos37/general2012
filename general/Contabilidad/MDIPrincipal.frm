@@ -394,14 +394,17 @@ Begin VB.MDIForm MDIPrincipal
       Begin VB.Menu mnu03_09 
          Caption         =   "Generar &Saldos Iniciales"
       End
-      Begin VB.Menu mnu03_05 
-         Caption         =   "&Importar Datos Facturacion"
-      End
-      Begin VB.Menu mnu03_06 
-         Caption         =   "&Importar Datos Cobranza"
-      End
-      Begin VB.Menu mnu03_08 
-         Caption         =   "Importar Datos Pagar"
+      Begin VB.Menu mnu03_04 
+         Caption         =   "Importar"
+         Begin VB.Menu mnu03_04_01 
+            Caption         =   "&Importar Datos Facturacion"
+         End
+         Begin VB.Menu mnu03_04_02 
+            Caption         =   "&Importar Datos Cobranza"
+         End
+         Begin VB.Menu mnu03_04_03 
+            Caption         =   "Importar Datos Pagar"
+         End
       End
    End
    Begin VB.Menu mnu04 
@@ -534,7 +537,6 @@ Begin VB.MDIForm MDIPrincipal
       End
       Begin VB.Menu mnu05_04 
          Caption         =   "&Configuracion de Empresas"
-         Visible         =   0   'False
          Begin VB.Menu mnu05_04_01 
             Caption         =   "Creacion de empresas"
          End
@@ -544,6 +546,15 @@ Begin VB.MDIForm MDIPrincipal
       End
    End
    Begin VB.Menu mnu06 
+      Caption         =   "Sunat"
+      Begin VB.Menu mnu06_01 
+         Caption         =   "Formularios"
+         Begin VB.Menu mnu06_01_01 
+            Caption         =   "Form 682"
+         End
+      End
+   End
+   Begin VB.Menu mnu08 
       Caption         =   "&Salir"
       WindowList      =   -1  'True
    End
@@ -599,6 +610,10 @@ On Error GoTo Xmain
         VGParamSistem.UsuarioReporte = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "USUARIO", "?")
         VGParamSistem.Pwd = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "PASSW", "?")
     End If
+    
+   VGParamSistem.BDempresaCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "BDDATOSCONF", "?")
+   If VGParamSistem.BDempresaCONF = "?" Then VGParamSistem.BDempresaCONF = "bdwenco"
+    
     If VGParamSistem.BDEmpresa = "?" Or VGParamSistem.Servidor = "?" Then
         MsgBox "No se ha Configurado bien los parametros BDDATOS y SERVIDOR en el archivo " & Chr(13) & _
                App.Path & "\MARFICE.INI"
@@ -632,7 +647,7 @@ On Error GoTo Xmain
     VGConfig.CursorLocation = adUseClient
     VGConfig.CommandTimeout = 0
     VGConfig.ConnectionTimeout = 0
-    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=bdwenco;Data Source=" & VGParamSistem.Servidor
+    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=" & VGParamSistem.BDempresaCONF & ";Data Source=" & VGParamSistem.Servidor
     VGConfig.Open
 
     VGtipo = contab
@@ -664,6 +679,18 @@ err:
     Resume
 Xmain:
     MsgBox err.Description, vbExclamation
+
+End Sub
+
+Private Sub mnu_03_04_01_Click()
+
+End Sub
+
+Private Sub mnu_03_04_02_Click()
+
+End Sub
+
+Private Sub mnu_03_04_03_Click()
 
 End Sub
 
@@ -817,11 +844,11 @@ Private Sub mnu03_02_Click()
 FrmAjusDiferxDoc.Show
 End Sub
 
-Private Sub mnu03_05_Click()
+Private Sub mnu03_04_01_Click()
     FrmImportDataFac.Show
 End Sub
 
-Private Sub mnu03_06_Click()
+Private Sub mnu03_04_02_Click()
     FrmContabCobrar.Show
 End Sub
 
@@ -854,7 +881,7 @@ xx:
     MsgBox "No se pudo Aperturar la Cuenta Corriente " & Chr(13) & err.Description, vbExclamation
     End Sub
 
-Private Sub mnu03_08_Click()
+Private Sub mnu03_04_03_Click()
 FrmContabPagar.Show 1
 End Sub
 
@@ -1036,7 +1063,13 @@ Private Sub mnu05_05_Click()
 FrmCierremensual.Show 1
 End Sub
 
-Private Sub mnu06_Click()
+
+
+Private Sub mnu06_01_01_Click()
+FrmSunat682.Show
+End Sub
+
+Private Sub mnu08_Click()
 Unload Me
 End Sub
 

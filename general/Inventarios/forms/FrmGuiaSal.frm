@@ -1213,7 +1213,7 @@ Begin VB.Form FrmGuiaSal
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   39321601
+         Format          =   98369537
          CurrentDate     =   36437
          MaxDate         =   401768
          MinDate         =   36161
@@ -1872,15 +1872,15 @@ End If
 End Sub
 'Eliminar
 Private Sub Command3_Click()
-Dim I As Integer
+Dim i As Integer
 If MSFlexGrid1.Rows = 1 Then
     MsgBox "No existe registros para Eliminar", vbInformation, "Información"
     Exit Sub
 End If
 If MsgBox("Desea Eliminar el registro", vbQuestion + vbYesNo, "Información") = vbYes Then
-    I = MSFlexGrid1.RowSel
+    i = MSFlexGrid1.RowSel
     If MSFlexGrid1.Rows > 2 Then
-        MSFlexGrid1.RemoveItem I
+        MSFlexGrid1.RemoveItem i
     Else
         MSFlexGrid1.Clear
         MSFlexGrid1.Rows = 1
@@ -1958,7 +1958,7 @@ Dim FACTOR As Double
 Dim uSql As String
 Dim tipo As String * 2
 Dim nroguia As String
-Dim veces As Integer, I As Integer
+Dim veces As Integer, i As Integer
 Dim cad, ncad As String
 Dim rst As New ADODB.Recordset
 Dim rs As New ADODB.Recordset
@@ -1976,12 +1976,12 @@ CANTIDAD = 0:  veces = 0: Productos = ""
 'VALIDACION DE EMISION DE GUIAS
 With MSFlexGrid1
     If .Rows > 1 Then
-    For I = 1 To .Rows - 1
+    For i = 1 To .Rows - 1
         SQL = " select stcodigo as Codigo,c.adescri as Producto,a.stskdis as Disponible,"
-        SQL = SQL & .TextMatrix(I, 3) & " as Can_Pedida "
+        SQL = SQL & .TextMatrix(i, 3) & " as Can_Pedida "
         SQL = SQL & " from dbo.stkart a inner join dbo.maeart c on stcodigo=c.acodigo "
-        SQL = SQL & " where stalma='" & TxtAlmacen & "' and stcodigo='" & Trim(.TextMatrix(I, 0)) & "'"
-        SQL = SQL & " And stskdis - " & .TextMatrix(I, 3) & " < 0"
+        SQL = SQL & " where stalma='" & TxtAlmacen & "' and stcodigo='" & Trim(.TextMatrix(i, 0)) & "'"
+        SQL = SQL & " And stskdis - " & .TextMatrix(i, 3) & " < 0"
         Set rs = VGCNx.Execute(SQL)
         If Not rs.EOF Then
             GridP.DataSource = rs
@@ -1993,11 +1993,11 @@ With MSFlexGrid1
             End With
             Exit For
         End If
-    Next I
+    Next i
     End If
     If ok = 1 Then
        GridP.Refresh
-       MsgBox "ATENCION Saldos negativos !!! Codigo " & Trim(.TextMatrix(I, 0)) & Chr(13) & " Saldo " & rs!disponible & " NO SE PUEDE EMITIR LA GUIA ", vbCritical, "Sistemas"
+       MsgBox "ATENCION Saldos negativos !!! Codigo " & Trim(.TextMatrix(i, 0)) & Chr(13) & " Saldo " & rs!disponible & " NO SE PUEDE EMITIR LA GUIA ", vbCritical, "Sistemas"
        FrmValida.Visible = True
        Timer1.Enabled = True
        Exit Sub
@@ -2323,7 +2323,7 @@ End Sub
 
 
 Private Sub CmdSalir_Click()
-Dim I As Integer
+Dim i As Integer
 Dim Productos As String
 Dim ok As Integer
 ok = 0
@@ -2331,12 +2331,12 @@ If Frame1.Visible Then
      If MSFlexGrid1.Rows > 1 Then
         If vbYes = MsgBox("Desea Grabar?", vbYesNo + vbQuestion, "Aviso") Then
            With MSFlexGrid1
-           For I = 1 To .Rows - 1
+           For i = 1 To .Rows - 1
               SQL = " select stcodigo as Codigo,c.adescri as Producto,a.stskdis as Disponible,"
-              SQL = SQL & .TextMatrix(I, 3) & " as Can_Pedida "
+              SQL = SQL & .TextMatrix(i, 3) & " as Can_Pedida "
               SQL = SQL & " from dbo.stkart a inner join dbo.maeart c on stcodigo=c.acodigo "
-              SQL = SQL & " where stalma='" & TxtAlmacen & "' and stcodigo='" & Trim(.TextMatrix(I, 0)) & "'"
-              SQL = SQL & " And stskdis - " & .TextMatrix(I, 3) & " < 0"
+              SQL = SQL & " where stalma='" & TxtAlmacen & "' and stcodigo='" & Trim(.TextMatrix(i, 0)) & "'"
+              SQL = SQL & " And stskdis - " & .TextMatrix(i, 3) & " < 0"
               Set rs = VGCNx.Execute(SQL)
               If Not rs.EOF Then
                  GridP.DataSource = rs
@@ -2348,10 +2348,10 @@ If Frame1.Visible Then
                  End With
                  Exit For
               End If
-           Next I
+           Next i
         If ok = 1 Then
            GridP.Refresh
-           MsgBox "ATENCION Saldos negativos !!! Codigo " & Trim(.TextMatrix(I, 0)) & Chr(13) & " Saldo " & rs!disponible & " NO SE PUEDE EMITIR LA GUIA ", vbCritical, "Sistemas"
+           MsgBox "ATENCION Saldos negativos !!! Codigo " & Trim(.TextMatrix(i, 0)) & Chr(13) & " Saldo " & rs!disponible & " NO SE PUEDE EMITIR LA GUIA ", vbCritical, "Sistemas"
            FrmValida.Visible = True
            Timer1.Enabled = True
            Exit Sub
@@ -3238,7 +3238,7 @@ End Sub
 Private Sub grabaserie(alma As String, codigo As String)
 Dim uSql As String
 Dim Serie As String
-Dim Valor As Integer
+Dim valor As Integer
 Dim rs As New ADODB.Recordset
 Dim RSQL As String
 Dim fecfab As Date
@@ -3248,8 +3248,8 @@ Dim fecven As Date
 '    Set RS = VGBaseDatos.OpenRecordset(RSQL, dbOpenSnapshot)
     Set rs = VGCNx.Execute(RSQL)
     If rs.RecordCount > 0 Then
-       Valor = IIf((Campo = "NI" And alma <> TxtAlmacen.text), 1, 0)
-       uSql = "update STKSERI set STSSKDIS = " & Valor & " WHERE  STSALMA='" & alma & "' and STSCODIGO='" & codigo & "'AND STSSERIE='" & Serie & "'"
+       valor = IIf((Campo = "NI" And alma <> TxtAlmacen.text), 1, 0)
+       uSql = "update STKSERI set STSSKDIS = " & valor & " WHERE  STSALMA='" & alma & "' and STSCODIGO='" & codigo & "'AND STSSERIE='" & Serie & "'"
     Else
        If (Campo = "NI" And alma <> TxtAlmacen.text) Then
          uSql = "insert into STKSERI (STSALMA,STSCODIGO,STSSERIE,STSFECMOV,STSFECVEN,STSSKDIS,STSSKCOM) VALUES ('" & alma & "','" & codigo & "','" & Serie & "' ,'" & Date & "','" & Date & "',1,1) "
@@ -3860,8 +3860,8 @@ Private Sub detallefact()
  Dim NumDoc As String
  Dim numserie1 As String
  Dim Serie As String
- numserie1 = Mid(Text4, 1, 3)  'obtengo la serie
- NumDoc = Mid(Text4, 4, 11)   'obtengo el numero de doc
+ numserie1 = Mid(Text4, 1, 4)  'obtengo la serie
+ NumDoc = Mid(Text4, 5, 14)   'obtengo el numero de doc
 
  RSQL = "Select * from FACDET where  dfnumser = '" & numserie1 & "' "  'and cfnrocaj ='" & vGPtoVenta & "'                    '    A Inner Join FACCAB B on a.DFTD = B.CFTD and "
  RSQL = RSQL & "and dfnumdoc = '" & NumDoc & "'  AND    dftd ='" & Text3 & "' "

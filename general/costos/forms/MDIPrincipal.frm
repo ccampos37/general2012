@@ -205,7 +205,7 @@ FrmCierres.Show 1
 End Sub
 
 Private Sub Menu05_01_Click()
-frmCfgUsuario.Show
+Frmusuarios.Show
 End Sub
 
 Private Sub menuSalir_Click()

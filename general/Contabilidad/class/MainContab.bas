@@ -79,6 +79,8 @@ Private Type ParametrosdeSistema
     Usuario As String
     Servidor As String
     
+    BDempresaCONF As String
+    
     ServidorGEN As String
     UsuarioGEN As String
     PwdGEN As String

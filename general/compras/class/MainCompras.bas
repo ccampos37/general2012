@@ -89,17 +89,19 @@ End Type
 Private Type ParametrosdeSistema
     TablaCabcomprob As String
     TablaDetcomprob As String
-    BDEmpresa As String
     Mesproceso As String * 2
     Anoproceso As String * 4
     FechaTrabajo As Date
     tipoanaliticocodigo As String
     familiaproyectos As String
     
+    BDEmpresa As String
     Usuario As String
     Servidor As String
     RutaReport As String
     PWD      As String
+    
+    BDEmpresaCONF As String
     
     ServidorCT As String
     BDEmpresaCT As String
@@ -150,6 +152,11 @@ On Error GoTo Xmain
     VGParamSistem.PWD = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "PASSW", "?")
     VGOrden = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "ORDEN", "?")
    
+    VGParamSistem.BDEmpresaCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOSCONF", "?")
+
+    If VGParamSistem.BDEmpresaCONF = "?" Then VGParamSistem.BDEmpresaCONF = "bdwenco"
+
+
 ' reportes
    
    VGParamSistem.RutaReport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "COMPRAS", "?")
@@ -205,7 +212,7 @@ On Error GoTo Xmain
     VGConfig.CursorLocation = adUseClient
     VGConfig.CommandTimeout = 0
     VGConfig.ConnectionTimeout = 0
-    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.PWD & ";Initial Catalog=bdwenco;Data Source=" & VGParamSistem.Servidor
+    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.PWD & ";Initial Catalog=" & VGParamSistem.BDEmpresaCONF & ";Data Source=" & VGParamSistem.Servidor
     VGConfig.Open
     
     

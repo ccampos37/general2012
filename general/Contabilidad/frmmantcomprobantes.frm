@@ -1,8 +1,8 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "msdatlst.ocx"
 Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
 Object = "{4D137D9C-00A6-4458-9B46-7E95DB76D55B}#9.0#0"; "TextFer.ocx"
 Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
@@ -35,19 +35,20 @@ Begin VB.Form frmantcomprobantes
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BackColor       =   16777215
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "frmmantcomprobantes.frx":1272
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "FrameConsulta"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Frame3"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmmantcomprobantes.frx":128E
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Shilu2"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "SSTab2"
@@ -62,7 +63,7 @@ Begin VB.Form frmantcomprobantes
       Begin VB.Frame FrameCabecera 
          BackColor       =   &H00C0FFFF&
          Height          =   2100
-         Left            =   105
+         Left            =   -74895
          TabIndex        =   24
          Top             =   315
          Width           =   11175
@@ -85,7 +86,7 @@ Begin VB.Form frmantcomprobantes
             _ExtentX        =   2699
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   16318465
+            Format          =   110034945
             CurrentDate     =   37469
          End
          Begin TextFer.TxFer TxGlosaComprobCab 
@@ -447,7 +448,7 @@ Begin VB.Form frmantcomprobantes
       Begin VB.Frame frameGrid 
          BackColor       =   &H00FFFFC0&
          Height          =   2925
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   81
          Top             =   2400
          Width           =   11175
@@ -764,7 +765,7 @@ Begin VB.Form frmantcomprobantes
       Begin VB.Frame Frame3 
          BackColor       =   &H8000000B&
          Height          =   1785
-         Left            =   -74910
+         Left            =   90
          TabIndex        =   54
          Top             =   390
          Width           =   11250
@@ -777,7 +778,7 @@ Begin VB.Form frmantcomprobantes
             _ExtentX        =   2593
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   16318465
+            Format          =   110034945
             CurrentDate     =   37489
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_SubAsiento 
@@ -899,7 +900,7 @@ Begin VB.Form frmantcomprobantes
       End
       Begin MSComctlLib.StatusBar StBar 
          Height          =   285
-         Left            =   90
+         Left            =   -74910
          TabIndex        =   53
          Top             =   8580
          Width           =   11220
@@ -923,7 +924,7 @@ Begin VB.Form frmantcomprobantes
             EndProperty
             BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
                Style           =   6
-               TextSave        =   "27/10/2012"
+               TextSave        =   "01/04/2013"
             EndProperty
             BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
                Alignment       =   2
@@ -937,7 +938,7 @@ Begin VB.Form frmantcomprobantes
       End
       Begin TabDlg.SSTab SSTab2 
          Height          =   3195
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   1
          Top             =   5355
          Width           =   11235
@@ -1284,7 +1285,7 @@ Begin VB.Form frmantcomprobantes
                _ExtentX        =   2275
                _ExtentY        =   556
                _Version        =   393216
-               Format          =   16318465
+               Format          =   110034945
                CurrentDate     =   37469
             End
             Begin MSComCtl2.DTPicker DtpFech_Ven 
@@ -1297,7 +1298,7 @@ Begin VB.Form frmantcomprobantes
                _ExtentY        =   556
                _Version        =   393216
                CheckBox        =   -1  'True
-               Format          =   16318465
+               Format          =   110034945
                CurrentDate     =   37469
             End
             Begin TextFer.TxFer TxGlosa 
@@ -1377,7 +1378,7 @@ Begin VB.Form frmantcomprobantes
                _Version        =   393216
                CheckBox        =   -1  'True
                DateIsNull      =   -1  'True
-               Format          =   16318465
+               Format          =   110034945
                CurrentDate     =   37469
             End
             Begin VB.Label lbnref 
@@ -1591,7 +1592,7 @@ Begin VB.Form frmantcomprobantes
       Begin VB.Frame FrameConsulta 
          BackColor       =   &H00808080&
          Height          =   6735
-         Left            =   -74910
+         Left            =   90
          TabIndex        =   71
          Top             =   2160
          Width           =   11250
@@ -1908,7 +1909,7 @@ Begin VB.Form frmantcomprobantes
          BorderColor     =   &H0000FF00&
          BorderWidth     =   2
          Height          =   2865
-         Left            =   11295
+         Left            =   -63705
          Top             =   2490
          Visible         =   0   'False
          Width           =   30

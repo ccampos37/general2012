@@ -188,20 +188,6 @@ Public Sub PlanillaTotalesCanje(xrb As ADODB.Recordset, xcampo, xdepo As Label)
     Set rs = Nothing
 End Sub
 
-
-Public Function DatoMoneda(xValor As String) As String
-   Dim rmone As New ADODB.Recordset
-   
-   Set rmone = VGCNx.Execute("select * from gr_moneda where monedacodigo='" & xValor & "'")
-   If rmone.RecordCount > 0 Then
-       DatoMoneda = Escadena(rmone!monedasimbolo) & " ."
-   Else
-       DatoMoneda = " "
-   End If
-   rmone.Close
-   Set rmone = Nothing
-
-End Function
 Public Function aImpresora(wFile)
   Dim wbat, wcade As String
   Dim X As Long
