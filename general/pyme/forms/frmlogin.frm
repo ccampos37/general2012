@@ -173,7 +173,7 @@ Begin VB.Form frmlogin
          _ExtentX        =   2566
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   41353217
+         Format          =   47316993
          CurrentDate     =   39104
       End
       Begin VB.Label Label1 
@@ -605,8 +605,8 @@ clave = 1
 central Me
 ADOConectar
 DTPfecha.Value = Date
-VGtipo = PyM
-SQL = " select * from si_sistema where tipodesistema =" & VGtipo & ""
+vgtipo = PyM
+SQL = " select * from si_sistema where tipodesistema =" & vgtipo & ""
 Set REG1 = VGConfig.Execute(SQL)
 If REG1.RecordCount > 0 Then Label1(0) = RTrim(REG1!tipodesistemadescripcion) + " : " + REG1!anno + "." + REG1!Version
 Set REG1 = New ADODB.Recordset

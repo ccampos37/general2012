@@ -145,7 +145,7 @@ Begin VB.Form FrmRepVtasxForma
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   40960001
+      Format          =   108986369
       CurrentDate     =   37518
    End
    Begin MSComCtl2.DTPicker DTDesde 
@@ -166,7 +166,7 @@ Begin VB.Form FrmRepVtasxForma
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   40960001
+      Format          =   108986369
       CurrentDate     =   37518
    End
    Begin VB.Label lbl 
@@ -258,14 +258,14 @@ Private Sub cmdAceptar_Click(Index As Integer)
 Dim aparam(5) As Variant
 Dim aform(5) As Variant
 
- If DTDesde > DtHasta Then
+ If DTDesde > DTHasta Then
      MsgBox "Fecha Desde debe ser mayor a Fecha Hasta", vbInformation, "AVISO"
      Exit Sub
   End If
         
     aform(0) = "Empresa='" & VGParametros.nomempresa & "'"
     aform(1) = "Desde='" & DTDesde & "'"
-    aform(2) = "Hasta='" & DtHasta & "'"
+    aform(2) = "Hasta='" & DTHasta & "'"
         If Combo0.ListIndex <> -1 Then
             aform(3) = "Puntoventa='" & Combo0.Text & "'"
         Else
@@ -276,11 +276,11 @@ Dim aform(5) As Variant
         Else
             aform(4) = "Formapago='TODOS'"
         End If
-        aparam(0) = busca.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "BDDATOS", "")
-        aparam(1) = IIf(Trim(txt(0)) = "", "%", Trim(txt(0)))
-        aparam(2) = IIf(Trim(txt(1)) = "", "%", Trim(txt(1)))
+        aparam(0) = VGCNx.DefaultDatabase
+        aparam(1) = IIf(Trim(txt(0)) = "", "%%", Trim(txt(0)))
+        aparam(2) = IIf(Trim(txt(1)) = "", "%%", Trim(txt(1)))
         aparam(3) = DTDesde
-        aparam(4) = DtHasta
+        aparam(4) = DTHasta
   
   Call ImpresionRpt_SubRpt_Proc("vt_VtasxFormaPago.rpt", aform, aparam, "vt_VtasxFormaPago_sub.rpt", 0, " Forma de Pagos")
 
@@ -327,7 +327,7 @@ Private Sub Form_Load()
     Call adll.llenacombo(Combo0, "select puntovtacodigo,puntovtadescripcion from vt_puntoventa", VGCNx)
     Call adll.llenacombo(Combo1, "select formapagocodigo,formapagodescripcion from vt_formapago", VGCNx)
     DTDesde = Date
-    DtHasta = Date
+    DTHasta = Date
 End Sub
 
 Private Sub txt_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)

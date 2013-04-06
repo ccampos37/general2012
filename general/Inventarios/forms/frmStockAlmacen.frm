@@ -116,7 +116,6 @@ Begin VB.Form FrmStockAlmacen
       End
       Begin VB.OptionButton Option2 
          Caption         =   "Familias"
-         Enabled         =   0   'False
          Height          =   255
          Left            =   255
          TabIndex        =   4
@@ -134,7 +133,6 @@ Begin VB.Form FrmStockAlmacen
       End
    End
    Begin VB.Frame FrameRep 
-      Enabled         =   0   'False
       Height          =   2055
       Left            =   2400
       TabIndex        =   15
@@ -155,12 +153,10 @@ Begin VB.Form FrmStockAlmacen
          MaxLength       =   8
          TabIndex        =   7
          Top             =   210
-         Visible         =   0   'False
          Width           =   1110
       End
       Begin VB.OptionButton OpRango 
          Caption         =   "Rango"
-         Enabled         =   0   'False
          Height          =   255
          Left            =   360
          TabIndex        =   10
@@ -206,7 +202,6 @@ Begin VB.Form FrmStockAlmacen
          Left            =   300
          TabIndex        =   21
          Top             =   240
-         Visible         =   0   'False
          Width           =   735
       End
       Begin VB.Label Label2 
@@ -276,7 +271,6 @@ Dim Conexion As String
 Dim Adodc3 As ADODB.Recordset
 
 Private Sub Combo1_Click()
-'almacen = Format(Combo1.ListIndex + 1, "00")
 almacen = Mid(Combo1, 1, 2)
 End Sub
 
@@ -303,7 +297,7 @@ Private Sub Command1_Click()
     If OpArt.Value Then
          imprimir
     ElseIf Option2.Value Then
-        Imprimir2
+        imprimir
     ElseIf Option3.Value Then
         Imprimir3
     ElseIf Option4.Value Then
@@ -339,19 +333,18 @@ OpArt.Value = True
 FrameRep.Caption = " Por Articulos "
 OpTodos.Caption = "Todos los Articulos"
 limpiar_t1_t2
-OpTodos.Top = 300: OpRango.Top = 650
-Text1.Top = 1100: Label2.Top = 1100
-Text2.Top = 1500: Label3.Top = 1500
 End Sub
 
 Private Sub Option2_Click()
-Option2.Value = True
-FrameRep.Caption = " Por Familias "
-OpTodos.Caption = "Todos las Familias"
-limpiar_t1_t2
-OpTodos.Top = 300: OpRango.Top = 650
-Text1.Top = 1100: Label2.Top = 1100
-Text2.Top = 1500: Label3.Top = 1500
+If Option2.Value = True Then
+  FrameRep.Caption = " Por Familias "
+  OpTodos.Caption = "Todos las Familias"
+ Else
+  limpiar_t1_t2
+End If
+Label4.Visible = True
+Text3.Visible = True
+Text3.Enabled = True
 End Sub
 
 Private Sub Option3_Click()
@@ -361,9 +354,6 @@ OpTodos.Caption = "Todos las Líneas "
 limpiar_t1_t2
 Label4.Visible = True
 Text3.Visible = True
-OpTodos.Top = 550: OpRango.Top = 900
-Text1.Top = 1200: Label2.Top = 1200
-Text2.Top = 1600: Label3.Top = 1600
 End Sub
 
 Private Sub Option4_Click()
@@ -373,9 +363,6 @@ OpTodos.Caption = "Todos los Grupos"
 limpiar_t1_t2
 Label4.Visible = True: Text3.Visible = True
 Label5.Visible = True: Text4.Visible = True
-OpTodos.Top = 850: OpRango.Top = 1100
-Text1.Top = 1400: Label2.Top = 1400
-Text2.Top = 1700: Label3.Top = 1700
 End Sub
 
 Private Sub Carga_Almacen()
@@ -413,8 +400,23 @@ Dim RSQL As String
 Dim where As String
 Dim tex1 As String, tex2 As String
 Dim Va1 As String, Va2 As String
-Dim aparam(4) As Variant
+Dim aparam(6) As Variant
 Dim aform(1) As Variant
+
+If Option2.Value = True Then
+   If OpRango.Value = True Then
+      If Text1.text = "" And Text2.text = "" Then
+         MsgBox ("Ingrese codigo de familia ")
+         Text1.SetFocus
+         Exit Sub
+      ElseIf Text1.text = "" And Text2.text <> "" Then
+         MsgBox ("Ingrese codigo de familia inicial ")
+         Text1.SetFocus
+         Exit Sub
+      End If
+   End If
+End If
+
 
 Codigo1 = UCase(Trim(Text1))
 Set Adodc3 = New ADODB.Recordset
@@ -423,10 +425,11 @@ aparam(0) = VGCNx.DefaultDatabase
 aparam(1) = "" & Left(Combo1.text, 2) & ""
 aparam(2) = Chkstokcero.Value
 aparam(3) = Combo2.ListIndex
-    
+aparam(4) = IIf(Text1.text = "", "%%", Text1.text)
+aparam(5) = IIf(Text2.text = "", "%%", Text2.text)
+
 aform(0) = "almacen='" & Combo1.text & "'"
 
-If OpTodos.Value Then
     where = " "
     If Check1.Value = 0 Then
             If ChkSerie = 1 Then
@@ -453,7 +456,6 @@ If OpTodos.Value Then
             End If
     End If
     Exit Sub ''
-End If
 
 If Text1 = "" Then
         MsgBox "Ingrese el codigo", vbExclamation, "Error"
@@ -590,7 +592,6 @@ ElseIf Option2.Value Then
         frmReferencia.Conectar Adodc2, "SELECT FAM_CODIGO,FAM_NOMBRE FROM FAMILIA"
         frmReferencia.Label1.Caption = "Familias de Artículos"
         frmReferencia.Show vbModal
-        Adodc2.Close
         If vGUtil(1) <> "" Then
                 Text1 = (vGUtil(1))
         End If
@@ -599,7 +600,6 @@ ElseIf Option3.Value Then
         frmReferencia.Conectar Adodc2, "SELECT LIN_CODIGO,LIN_NOMBRE FROM LINEAS Where Fam_Codigo='" & Trim(Text3) & "'"
         frmReferencia.Label1.Caption = "Líneas de Artículos"
         frmReferencia.Show vbModal
-        Adodc2.Close
         If vGUtil(1) <> "" Then
                 Text1 = (vGUtil(1))
         End If
@@ -612,7 +612,6 @@ ElseIf Option4.Value Then
         frmReferencia.Conectar Adodc2, "SELECT GRU_CODIGO,GRU_NOMBRE FROM GRUPO Where Fam_Codigo='" & Trim(Text3) & "' and Lin_Codigo='" & Trim(Text4) & "'"
         frmReferencia.Label1.Caption = "Grupos de Artículos"
         frmReferencia.Show vbModal
-        Adodc2.Close
         If vGUtil(1) <> "" Then
                 Text1 = (vGUtil(1))
         End If
@@ -691,7 +690,6 @@ ElseIf Option2.Value Then
     frmReferencia.Conectar Adodc2, "SELECT FAM_CODIGO,FAM_NOMBRE FROM FAMILIA"
     frmReferencia.Label1.Caption = "Familias de Artículos"
     frmReferencia.Show vbModal
-    Adodc2.Close
     If vGUtil(1) <> "" Then
       Text2 = (vGUtil(1))
     End If
@@ -700,7 +698,6 @@ ElseIf Option3.Value Then
         frmReferencia.Conectar Adodc2, "SELECT LIN_CODIGO,LIN_NOMBRE FROM LINEAS Where Fam_Codigo='" & Trim(Text3) & "'"
         frmReferencia.Label1.Caption = "Líneas de Artículos"
         frmReferencia.Show vbModal
-        Adodc2.Close
         If vGUtil(1) <> "" Then
             Text2 = (vGUtil(1))
         End If
@@ -709,7 +706,6 @@ ElseIf Option4.Value Then
         frmReferencia.Conectar Adodc2, "SELECT GRU_CODIGO,GRU_NOMBRE FROM GRUPO Where Fam_Codigo='" & Trim(Text3) & "' and Lin_Codigo='" & Trim(Text4) & "'"
         frmReferencia.Label1.Caption = "Grupos de Artículos"
         frmReferencia.Show vbModal
-        Adodc2.Close
         If vGUtil(1) <> "" Then
                 Text2 = (vGUtil(1))
         End If
@@ -903,13 +899,6 @@ Else
         Else
                 CrystalReport1.WindowTitle = "Inv070 -- Control de Inventarios"
                 CrystalReport1.ReportFileName = VGParamSistem.RutaReport & "inv070.rpt"
-        End If
-        Ubi_Tab CrystalReport1
-        If Text2 <> "" Then
-                CADENA = "{STKART.STALMA}='" & almacen & "'  and ({MAEART.AFAMILIA} in '" & Codigo1 & "' to '" & Codigo2 & "')  and {STKART.STCODIGO} = {MAEART.ACODIGO} "
-        Else
-                Codigo2 = Codigo1: Va2 = Va1
-                CADENA = "{STKART.STALMA}='" & almacen & "'  and ({MAEART.AFAMILIA} in '" & Codigo1 & "' to '" & Codigo2 & "')  and {STKART.STCODIGO} = {MAEART.ACODIGO} "
         End If
 End If
 CrystalReport1.DiscardSavedData = True

@@ -836,9 +836,9 @@ If MsgBox("Esta seguro que desea salir?", vbYesNo + vbInformation, "Sistemas") =
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-Dim I As Integer
-For I = Forms.count - 1 To 0 Step -1
-  Unload Forms(I)
+Dim i As Integer
+For i = Forms.count - 1 To 0 Step -1
+  Unload Forms(i)
 Next
 End Sub
 
@@ -1317,7 +1317,7 @@ End Sub
 
 Private Sub mnu_contrans_09_01_Click()
 VGtransf = 0
- PrcAnulaDocumento.Show
+ frmAnulaDocumento.Show
 End Sub
 
 Private Sub mnu_contrans_09_02_Click()
@@ -1326,7 +1326,7 @@ End Sub
 
 Private Sub mnu_contrans_09_03_Click()
 VGtransf = 1
- PrcAnulaDocumento.Show
+ frmAnulaDocumento.Show
 End Sub
 
 Private Sub mnu_conValArtPend_Click()

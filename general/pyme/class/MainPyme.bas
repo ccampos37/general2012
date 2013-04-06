@@ -155,7 +155,7 @@ Public nDetalle As String
 Public ndensidad As Long
 Public modoventa As modoventa
 
-Public VGtipo As TIPOSISTEMA
+Public vgtipo As TIPOSISTEMA
 Public VGParametros As Parametrosdeempresa
 Public Type Parametrosdeempresa
     
@@ -186,31 +186,31 @@ Public Type Parametrosdeempresa
     permite_tc As Boolean
     TipoValorizacion As Integer  ' 1: empresa 2' x establecimiento
     
- controlaestadosrendicion As Boolean
- diasatrazorendicion As Integer
+     controlaestadosrendicion As Boolean
+    diasatrazorendicion As Integer
  
- VGLongCodigo As Integer    'Inddica la long de codigo de un articulo
- NomEmpresa As String
- RucEmpresa As String
- puntovta As String
- empresacodigo As String
- MesProceso As String
- VGporcentajeimpto As Double
- MontoexeneradoLiqCompra As Double
- nombreguia As String
- nombrefactura As String
- minimoretencion As Double
- auxaut As Boolean
- sistemaactivaccostos As Boolean
- sistemaasientoenlinea As Boolean
- sistemactrlgastos As Boolean
- sistemamultiempresas As Boolean
- sistemabancarizacion As Boolean
- sistemabancarizacion01 As Double
- sistemabancarizacion02 As Double
+     VGLongCodigo As Integer    'Inddica la long de codigo de un articulo
+    NomEmpresa As String
+     RucEmpresa As String
+     puntovta As String
+     empresacodigo As String
+     MesProceso As String
+     VGporcentajeimpto As Double
+     MontoexeneradoLiqCompra As Double
+     nombreguia As String
+     nombrefactura As String
+     minimoretencion As Double
+     auxaut As Boolean
+     sistemaactivaccostos As Boolean
+     sistemaasientoenlinea As Boolean
+     sistemactrlgastos As Boolean
+     sistemamultiempresas As Boolean
+     sistemabancarizacion As Boolean
+     sistemabancarizacion01 As Double
+     sistemabancarizacion02 As Double
 
- PermiteRequerimientos As Boolean
- PermiteIngresosconRequerimientos As Boolean
+     PermiteRequerimientos As Boolean
+     PermiteIngresosconRequerimientos As Boolean
  
  tipocreacioncodigo As String
  tipogeneracioncodigo As Double
@@ -272,10 +272,13 @@ Public Type ParametrosdeSistema
     AnoProceso As String
     fechatrabajo As Date
     RutaReport As String
+    
     Servidor As String
     BDEmpresa As String
     Usuario As String
     Pwd      As String
+    
+    BDEmpresaCONF As String
     
     ServidorCT As String
     BDEmpresaCT As String

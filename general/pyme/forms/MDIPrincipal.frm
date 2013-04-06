@@ -605,6 +605,11 @@ VGParamSistem.Usuario = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", 
 VGParamSistem.Pwd = Trim(VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "PASSW", "?"))
 
 VGOrden = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "ORDEN", "?")
+      
+   
+VGParamSistem.BDEmpresaCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "BDDATOSCONF", "?")
+If VGParamSistem.BDEmpresaCONF = "?" Then VGParamSistem.BDEmpresaCONF = "bdwenco"
+
    
    ' reportes
 VGParamSistem.RutaReport = Trim(VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "PYME", "?"))
@@ -752,6 +757,16 @@ End Sub
 
 Private Sub menu01_05_01_Click()
 FrmPrcSaldos.Show
+End Sub
+
+Private Sub menu01_05_02_01_Click()
+VGtransf = 0
+FrmAnulaDocumento.Show
+End Sub
+
+Private Sub menu01_05_02_02_Click()
+VGtransf = 1
+FrmAnulaDocumento.Show
 End Sub
 
 Private Sub menu02_01_01_Click()
