@@ -19,7 +19,7 @@ Public Enum Campos
     analitico = 4
     Ccosto = 5
     impbruto = 6
-    Igv = 7
+    igv = 7
     inafecto = 8
     Impcompra = 9
 
@@ -27,30 +27,34 @@ End Enum
 
 Public Sub CargarAyudas()
 With frmMantprovision
-    Call .CtrAyu_Cuenta.conexion(VGcnxCT): .CtrAyu_Cuenta.Filtro = "(cuentanivel=" & VGnumniveles & " and cuentacodigo <>'00') and (" & VGParametros.ctascompra & ")"
-    Call .CtrAyu_gastos.conexion(VGCNx): .CtrAyu_gastos.Filtro = "(gastosnivel=" & VGnumnivgas & " and gastoscodigo <>'00' and gastosestado<>1 ) "
-    Call .CtrAyu_TipDoc.conexion(VGCNx): .CtrAyu_TipDoc.Filtro = "tdocumentocodigo<>'00'"
-    Call .CtrAyu_TipRef.conexion(VGCNx): .CtrAyu_TipRef.Filtro = "tdocumentocodigo<>'00'"
-    Call .CtrAyu_Moneda.conexion(VGcnxCT): .CtrAyu_Moneda.Filtro = "monedacodigo<>'00'"
-    Call .CtrAyu_Modoprovi.conexion(VGCNx): .CtrAyu_Modoprovi.Filtro = "modoprovicod <>'00'"
+    Call .CtrAyu_Cuenta.conexion(VGCnxCT): .CtrAyu_Cuenta.filtro = "(cuentanivel=" & VGnumniveles & " and cuentacodigo <>'00') and (" & VGParametros.ctascompra & ")"
+    Call .CtrAyu_gastos.conexion(VGCNx): .CtrAyu_gastos.filtro = "(gastosnivel=" & VGnumnivgas & " and gastoscodigo <>'00' and gastosestado<>1 ) "
+    Call .CtrAyu_TipDoc.conexion(VGCNx): .CtrAyu_TipDoc.filtro = "tdocumentocodigo<>'00'"
+    Call .CtrAyu_TipRef.conexion(VGCNx): .CtrAyu_TipRef.filtro = "tdocumentocodigo<>'00'"
+    Call .CtrAyu_Moneda.conexion(VGCnxCT): .CtrAyu_Moneda.filtro = "monedacodigo<>'00'"
+    Call .CtrAyu_Modoprovi.conexion(VGCNx): .CtrAyu_Modoprovi.filtro = "modoprovicod <>'00'"
     Call .CtrAyu_TipCompra.conexion(VGCNx)
     Call .CtrAyu_TipSubAsi.conexion(VGCNx)
     Call .Ctr_AyuAnalitico.conexion(VGCNx)
+    
     Call .Ctr_AyuEmpresaPlanillas.conexion(VGCNx)
-    Call .CtrAyu_Proveedor.conexion(VGCNx): .CtrAyu_Proveedor.Filtro = "clientecodigo <>'00'"
+    Call .Ctr_AyuEmpresaactivos.conexion(VGCNx)
+    
+    
+    Call .CtrAyu_Proveedor.conexion(VGCNx): .CtrAyu_Proveedor.filtro = "clientecodigo <>'00'"
     
     Call .Ctr_AyudaCaja.conexion(VGCNx)
-    .Ctr_AyudaCaja.Filtro = " isnull(CajaCuentaxRendir,0)=" & .m_cuentasxrendir & " and isnull(Cajafondofijo,0)=" & .m_fondofijo
+    .Ctr_AyudaCaja.filtro = " isnull(CajaCuentaxRendir,0)=" & .m_cuentasxrendir & " and isnull(Cajafondofijo,0)=" & .m_fondofijo
     
     Call .Ctr_Ayutransf.conexion(VGCNx)
     
     Call .Ctr_AyudaOficina.conexion(VGCNx)
-    Call .CtrAyu_Ccosto.conexion(VGcnxCT)
-    Call .Ctr_Ayuempresa.conexion(VGCNx): .Ctr_Ayuempresa.Filtro = "empresacodigo<>'00'"
+    Call .CtrAyu_Ccosto.conexion(VGCnxCT)
+    Call .Ctr_Ayuempresa.conexion(VGCNx): .Ctr_Ayuempresa.filtro = "empresacodigo<>'00'"
     If VGParametros.sistemamultiempresas Then
-       .CtrAyu_Ccosto.Filtro = "empresacodigo='" & .Ctr_Ayuempresa.xclave & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
+       .CtrAyu_Ccosto.filtro = "empresacodigo='" & .Ctr_Ayuempresa.xclave & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
       Else
-        .CtrAyu_Ccosto.Filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
+        .CtrAyu_Ccosto.filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
     End If
 End With
 End Sub
@@ -121,7 +125,7 @@ Public Sub ActualizarDetalle(ByRef rs As ADODB.Recordset, op As Campos)
             Case analitico: !analitico = frmMantprovision.Ctr_AyuAnalitico.xclave
             Case Ccosto: !Ccosto = frmMantprovision.CtrAyu_Ccosto.xclave
             Case impbruto: !impbruto = vardllgen.ESNULO(Espunto(frmMantprovision.TxImpBruto.valor), 0)
-            Case Igv: !Igv = vardllgen.ESNULO(Espunto(frmMantprovision.TxIGV.valor), 0)
+            Case igv: !igv = vardllgen.ESNULO(Espunto(frmMantprovision.TxIGV.valor), 0)
             Case inafecto: !inafecto = vardllgen.ESNULO(Espunto(frmMantprovision.TxInafecto.valor), 0)
             Case Impcompra: !Impcompra = vardllgen.ESNULO(Espunto(frmMantprovision.TxImpCompra.valor), 0)
             
@@ -132,33 +136,34 @@ Public Sub ActualizarDetalle(ByRef rs As ADODB.Recordset, op As Campos)
     
     Screen.MousePointer = 0
 End Sub
-Private Function MaxItem(ByVal rs As ADODB.Recordset, ByVal Campo As String) As Variant
+Private Function MaxItem(ByVal rs As ADODB.Recordset, ByVal campo As String) As Variant
 Dim rsauxiliar As New ADODB.Recordset
 Set rsauxiliar = rs.Clone(adLockReadOnly)
 On Error GoTo errormaxitem
-    rsauxiliar.Sort = Campo & " desc"
+    rsauxiliar.Sort = campo & " desc"
     rsauxiliar.MoveFirst
-    MaxItem = rsauxiliar.Fields(Campo).Value
+    MaxItem = rsauxiliar.Fields(campo).Value
     Exit Function
 errormaxitem:
     MaxItem = Null
 End Function
 Public Sub GeneraAsientoenLine(ByVal op As Integer, ByVal Nprovi As String, ByVal Comprob_Contable As String)
 On Error GoTo genasiento
+    VGvarVerifica = True
     VGCNx.BeginTrans
 
     SQL = " Update " & VGParamSistem.TablaCabcomprob & " Set cabprovinconta=''"
-    SQL = SQL & " Where cabproviano='" & VGParamSistem.Anoproceso & "' and cabprovimes=" & VGParamSistem.Mesproceso
+    SQL = SQL & " Where cabproviano='" & VGParamSistem.AnoProceso & "' and cabprovimes=" & VGParamSistem.MesProceso
     SQL = SQL & " and cabprovinumero=" & Nprovi & ""
     VGCNx.Execute SQL
     
-    SQL = " Delete from ct_cabcomprob" & VGParamSistem.Anoproceso & " Where cabcomprobmes=" & VGParamSistem.Mesproceso
+    SQL = " Delete from ct_cabcomprob" & VGParamSistem.AnoProceso & " Where cabcomprobmes=" & VGParamSistem.MesProceso
     SQL = SQL & " and cabcomprobnprovi='COM" & Nprovi & "'"
     SQL = SQL & " and empresacodigo='" & frmMantprovision.Ctr_Ayuempresa.xclave & "'"
-    VGcnxCT.Execute SQL
+    VGCnxCT.Execute SQL
     
     SQL = " Update " & VGParamSistem.TablaCabcomprob & " Set cabproviflagmodi = 0 "
-    SQL = SQL & " Where cabproviano='" & VGParamSistem.Anoproceso & "' and cabprovimes=" & VGParamSistem.Mesproceso
+    SQL = SQL & " Where cabproviano='" & VGParamSistem.AnoProceso & "' and cabprovimes=" & VGParamSistem.MesProceso
     SQL = SQL & " and cabprovinumero=" & Nprovi & ""
     VGCNx.Execute SQL
 
@@ -176,8 +181,8 @@ On Error GoTo genasiento
     With VGCommandoSP
         .Parameters("@BaseConta") = VGParamSistem.BDEmpresaCT
         .Parameters("@BaseCompra") = VGParamSistem.BDEmpresa
-        .Parameters("@Ano") = VGParamSistem.Anoproceso
-        .Parameters("@Mes") = VGParamSistem.Mesproceso
+        .Parameters("@Ano") = VGParamSistem.AnoProceso
+        .Parameters("@Mes") = VGParamSistem.MesProceso
         .Parameters("@tipanal") = VGParametros.xTipAnal
         .Parameters("@User") = VGParamSistem.Usuario
         .Parameters("@Nprovi") = Nprovi
@@ -203,18 +208,18 @@ On Error GoTo genasiento
         End If
         .Parameters("@SubAsiento") = VGParametros.xsubasiento
         .Parameters("@Libro") = VGParametros.xLibro
-        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.Mesproceso) Then
+        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
            .Parameters("@mes") = Format(Month(frmMantprovision.DTPFechaContab), "00")
          Else
-           .Parameters("@mes") = Format(VGParamSistem.Mesproceso, "00")
+           .Parameters("@mes") = Format(VGParamSistem.MesProceso, "00")
         End If
-        .Parameters("@Ano") = VGParamSistem.Anoproceso
+        .Parameters("@Ano") = VGParamSistem.AnoProceso
         .Parameters("@ctatotal") = VGParametros.xCtaTotal
         .Parameters("@ctaIGV") = VGParametros.xCtaIGV
         .Parameters("@ctaIES") = VGParametros.xCtaIES
         .Parameters("@ctaRTA") = VGParametros.xCtaRTA
         .Parameters("@tipanal") = VGParametros.xTipAnal
-        .Parameters("@Compu") = VGComputer
+        .Parameters("@Compu") = VGcomputer
         .Parameters("@Usuario") = VGParamSistem.Usuario
         .Parameters("@Oficina") = Format(VGParametros.CpOficina, "00")
         .Parameters("@numcomprob") = Nprovi
@@ -233,25 +238,27 @@ On Error GoTo genasiento
     With VGCommandoSP
         .Parameters("@BaseConta") = VGParamSistem.BDEmpresaCT
         .Parameters("@BaseCompra") = VGParamSistem.BDEmpresa
-        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.Mesproceso) Then
+        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
            .Parameters("@mes") = Format(Month(frmMantprovision.DTPFechaContab), "00")
          Else
-           .Parameters("@mes") = Format(VGParamSistem.Mesproceso, "00")
+           .Parameters("@mes") = Format(VGParamSistem.MesProceso, "00")
         End If
-        .Parameters("@Ano") = VGParamSistem.Anoproceso
+        .Parameters("@Ano") = VGParamSistem.AnoProceso
         .Parameters("@Nprovi") = Nprovi
         .Execute
     End With
     VGCNx.CommitTrans
     Exit Sub
 genasiento:
+
     Screen.MousePointer = 1
     VGvarVerifica = False
-    VGErrorString = "Error en Grabar Cabecera " & Chr(13) & err.Description
+    VGErrorString = "Error en Grabar Cabecera " & Chr(13) & Err.Description
 End Sub
 Public Sub asientotesoreriaenlinea(ByVal op As Integer, recibo As String, comprobconta As String, tipocajabanco As String, moneda As String)
 Dim Comando As ADODB.Command
 Dim rsparimpo As New ADODB.Recordset
+VGvarVerifica = True
 On Error GoTo genasiento
 Screen.MousePointer = 11
 Set rsparimpo = New ADODB.Recordset
@@ -259,8 +266,10 @@ Set rsparimpo = VGCNx.Execute("Select * From  ct_importartesoreria Where Left(Up
 If rsparimpo.RecordCount() = 0 Then
    Screen.MousePointer = 1
    MsgBox "Verifique el parametro del asiento de " & recibo & " en ct_importartesoreria ", vbInformation, "Sistema de Tesoreria"
+   VGvarVerifica = False
    Exit Sub
 End If
+VGCNx.BeginTrans
 Set VGCommandoSP = New ADODB.Command
 Set VGvardllgen = New dllgeneral.dll_general
     Set Comando = New ADODB.Command
@@ -270,20 +279,20 @@ Set VGvardllgen = New dllgeneral.dll_general
          .CommandTimeout = 0
          .ActiveConnection = VGGeneral
          .Parameters.Refresh
-         .Parameters("@BaseConta") = VGcnxCT.DefaultDatabase
+         .Parameters("@BaseConta") = VGCnxCT.DefaultDatabase
          .Parameters("@BaseVenta") = VGCNx.DefaultDatabase
          If VGParametros.sistemamultiempresas = True Then
             .Parameters("@empresa") = frmMantprovision.Ctr_Ayuempresa.xclave
            Else
            .Parameters("@empresa") = VGParametros.empresacodigo
          End If
-         .Parameters("@Asiento") = rsparimpo!asiento
+         .Parameters("@Asiento") = rsparimpo!Asiento
          .Parameters("@SubAsiento") = rsparimpo!SubAsiento
          .Parameters("@Libro") = rsparimpo!libro
-         .Parameters("@Mes") = Format(VGParamSistem.Mesproceso, "00")
-         .Parameters("@Ano") = VGParamSistem.Anoproceso
+         .Parameters("@Mes") = Format(VGParamSistem.MesProceso, "00")
+         .Parameters("@Ano") = VGParamSistem.AnoProceso
          .Parameters("@tipanal") = "002"
-         .Parameters("@Compu") = VGComputer
+         .Parameters("@Compu") = VGcomputer
          .Parameters("@Usuario") = VGUsuario
          .Parameters("@TipoMov") = "E"
          .Parameters("@Nrecibo") = recibo
@@ -293,16 +302,18 @@ Set VGvardllgen = New dllgeneral.dll_general
          .Parameters("@ajustedebe") = VGParametros.sistemactaajustedeb
          .Execute
      End With
+VGCNx.CommitTrans
 Exit Sub
 genasiento:
     op = 1
+    VGvarVerifica = False
     Screen.MousePointer = 1
-    VGGeneral.RollbackTrans
-    MsgBox "Hubo Errores al momento que se genero el recibo " & recibo & Chr(13) & err.Description
-    Resume Next
+    MsgBox "Hubo Errores al momento que se genero el recibo " & recibo & Chr(13) & Err.Description
 End Sub
 Public Sub GrabarCabecera(ByVal op As Integer, Optional ByVal numero As Long, Optional ByVal NumeroAux As String, Optional ByVal Numerotesor As String)
 On Error GoTo ErrorGrabaCabecera
+VGvarVerifica = True
+VGCNx.BeginTrans
     Set VGCommandoSP = New ADODB.Command
     Set VGvardllgen = New dllgeneral.dll_general
     VGCommandoSP.ActiveConnection = VGGeneral
@@ -313,12 +324,12 @@ On Error GoTo ErrorGrabaCabecera
         .Parameters("@base") = VGParamSistem.BDEmpresa
         .Parameters("@tabla") = VGParamSistem.TablaCabcomprob
         .Parameters("@op") = op
-        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.Mesproceso) Then
+        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
             .Parameters("@cabprovimes") = Month(frmMantprovision.DTPFechaContab)
             .Parameters("@cabproviano") = Year(frmMantprovision.DTPFechaContab)
          Else
-            .Parameters("@cabproviano") = VGParamSistem.Anoproceso
-            .Parameters("@cabprovimes") = Val(VGParamSistem.Mesproceso)
+            .Parameters("@cabproviano") = VGParamSistem.AnoProceso
+            .Parameters("@cabprovimes") = Val(VGParamSistem.MesProceso)
         End If
 
         .Parameters("@cabprovinumero") = numero
@@ -389,11 +400,11 @@ On Error GoTo ErrorGrabaCabecera
         End If
     End With
     VGCommandoSP.Execute
+VGCNx.CommitTrans
     Exit Sub
 ErrorGrabaCabecera:
     VGvarVerifica = False
-  '  VGErrorString
-    MsgBox ("Error en Grabar Cabecera " & Chr(13) & err.Description)
+    MsgBox ("Error en Grabar Cabecera " & Chr(13) & Err.Description)
     Exit Sub
     Resume Next
 End Sub
@@ -404,7 +415,7 @@ Dim cad As String
     Set rsaux = New ADODB.Recordset
     cad = "Select isnull(libronumcorr" & Format(mes, "00") & ",0)+1 as numcorrelativo   From ct_librocorre " & _
           "Where empresacodigo='" & empresa & "' and  librocodigo='" & libro & "' and libroAnno='" & anno & "'"
-    Set rsaux = VGcnxCT.Execute(cad)
+    Set rsaux = VGCnxCT.Execute(cad)
     If rsaux.RecordCount > 0 Then
        NumeroAuxiliar = Trim(Format(rsaux!numcorrelativo, "00000"))
        numero = rsaux!numcorrelativo
@@ -415,9 +426,11 @@ Dim cad As String
     Exit Function
 Errnum:
     VGvarVerifica = False
-    VGErrorString = "Error en Numero de Comprobante " & Chr(13) & err.Description
+    VGErrorString = "Error en Numero de Comprobante " & Chr(13) & Err.Description
 End Function
 Public Sub ActualizaCorrelComprob(ByVal numero As Double)
+VGvarVerifica = True
+VGCNx.BeginTrans
 On Error GoTo Actualizacorre
     Set VGCommandoSP = New ADODB.Command
     VGCommandoSP.ActiveConnection = VGGeneral
@@ -426,18 +439,21 @@ On Error GoTo Actualizacorre
     VGCommandoSP.Parameters.Refresh
     With VGCommandoSP
         .Parameters("@Base") = VGParamSistem.BDEmpresa
-        .Parameters("@Ano") = VGParamSistem.Anoproceso
-        .Parameters("@Mes") = Format(IIf(Month(frmMantprovision.DTPFechaContab) < Val(VGParamSistem.Mesproceso), Month(frmMantprovision.DTPFechaContab), CInt(VGParamSistem.Mesproceso)), "00")
+        .Parameters("@Ano") = VGParamSistem.AnoProceso
+        .Parameters("@Mes") = Format(IIf(Month(frmMantprovision.DTPFechaContab) < Val(VGParamSistem.MesProceso), Month(frmMantprovision.DTPFechaContab), CInt(VGParamSistem.MesProceso)), "00")
         .Parameters("@numero") = numero
         .Execute
     End With
-    Exit Sub
+VGCNx.CommitTrans
+Exit Sub
 Actualizacorre:
     VGvarVerifica = False
-    VGErrorString = "Error en Actualizar el Numero de Comprobante Auxiliar " & Chr(13) & err.Description
+    VGErrorString = "Error en Actualizar el Numero de Comprobante Auxiliar " & Chr(13) & Err.Description
 End Sub
 
 Public Sub ActualizaCorrelAuxiliar(ByRef empresa As String, ByRef libro As String, ByRef anno As String, ByVal mes As Integer, ByVal numero As Double)
+VGvarVerifica = True
+VGCNx.BeginTrans
 On Error GoTo Actualizacorre
     Set VGCommandoSP = New ADODB.Command
     VGCommandoSP.ActiveConnection = VGGeneral
@@ -453,16 +469,18 @@ On Error GoTo Actualizacorre
         .Parameters("@numero") = numero
         .Execute
     End With
-    Exit Sub
+VGCNx.CommitTrans
+Exit Sub
 Actualizacorre:
     VGvarVerifica = False
-    VGErrorString = "Error en Actualizar el Numero de Comprobante Auxiliar " & Chr(13) & err.Description
+    VGErrorString = "Error en Actualizar el Numero de Comprobante Auxiliar " & Chr(13) & Err.Description
 End Sub
 Public Sub GrabarDetalle(ByVal rs As Recordset, Optional ByVal numero As Long = 0)
 On Error GoTo ErrorGrabaDetalle
 Dim rsaux As ADODB.Recordset
 Dim numerocomprobante As String
 VGvarVerifica = True
+VGCNx.BeginTrans
 Set VGvardllgen = New dllgeneral.dll_general
     Set rsaux = rs.Clone(adLockReadOnly)
     rsaux.Filter = "(impbruto<>0 or impcompra <> 0)"
@@ -475,17 +493,17 @@ Set VGvardllgen = New dllgeneral.dll_general
     VGCommandoSP.Parameters.Refresh
     With VGCommandoSP
         .Parameters("@base") = VGParamSistem.BDEmpresa
-        .Parameters("@tabla") = VGParamSistem.TablaDetcomprob
+        .Parameters("@tabla") = VGParamSistem.tabladetcomprob
         If VGParametros.sistemamultiempresas = True Then
               .Parameters("@empresa") = Trim(frmMantprovision.Ctr_Ayuempresa.xclave)
         End If
         .Parameters("@cabprovinumero") = numero
-        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.Mesproceso) Then
+        If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
            .Parameters("@cabproviano") = Year(frmMantprovision.DTPFechaContab)
            .Parameters("@cabprovimes") = Month(frmMantprovision.DTPFechaContab)
          Else
-           .Parameters("@cabproviano") = VGParamSistem.Anoproceso
-           .Parameters("@cabprovimes") = CInt(VGParamSistem.Mesproceso)
+           .Parameters("@cabproviano") = VGParamSistem.AnoProceso
+           .Parameters("@cabprovimes") = CInt(VGParamSistem.MesProceso)
         End If
        If VGParametros.sistemamultiempresas = True Then
           .Parameters("@empresa") = Trim(frmMantprovision.Ctr_Ayuempresa.xclave)
@@ -499,10 +517,10 @@ Set VGvardllgen = New dllgeneral.dll_general
     While Not rsaux.EOF
         With VGCommandoSP
             .Parameters("@cabprovinumero") = numero
-            If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.Mesproceso) Then
+            If Month(frmMantprovision.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
                .Parameters("@cabprovimes") = Month(frmMantprovision.DTPFechaContab)
              Else
-               .Parameters("@cabprovimes") = CInt(VGParamSistem.Mesproceso)
+               .Parameters("@cabprovimes") = CInt(VGParamSistem.MesProceso)
             End If
             .Parameters("@op") = 1
             .Parameters("@detproviitem") = rsaux!Item
@@ -515,7 +533,7 @@ Set VGvardllgen = New dllgeneral.dll_general
             .Parameters("@detprovimon") = frmMantprovision.CtrAyu_Moneda.xclave
             '.Parameters("@detproviestado") = 0
             .Parameters("@detproviimpbru") = rsaux!impbruto
-            .Parameters("@detproviimpigv") = rsaux!Igv
+            .Parameters("@detproviimpigv") = rsaux!igv
             .Parameters("@detproviimpina") = rsaux!inafecto
             .Parameters("@detprovitotal") = rsaux!Impcompra
             '.Parameters("@detprovidscto") = 0
@@ -533,15 +551,19 @@ Set VGvardllgen = New dllgeneral.dll_general
         End With
         rsaux.MoveNext
     Wend
+VGCNx.CommitTrans
     Exit Sub
 ErrorGrabaDetalle:
     VGvarVerifica = False
-    VGErrorString = "Error en Grabar Detalle " & Chr(13) & err.Description
+    VGErrorString = "Error en Grabar Detalle " & Chr(13) & Err.Description
 End Sub
 Public Sub GrabarCP_Cargo(op As Integer, Optional numero As Long = 0, Optional codigo As String, Optional monto As Double, Optional tipodoc As String)
 On Error GoTo ErrorGrabaCP
 Dim rsaux As ADODB.Recordset
 Dim numerocomprobante As String
+VGvarVerifica = True
+VGCNx.BeginTrans
+
 Set VGvardllgen = New dllgeneral.dll_general
     Set VGCommandoSP = New ADODB.Command
     Set VGvardllgen = New dllgeneral.dll_general
@@ -604,16 +626,16 @@ Set VGvardllgen = New dllgeneral.dll_general
         End If
         .Execute
     End With
+VGCNx.CommitTrans
     Exit Sub
 ErrorGrabaCP:
     VGvarVerifica = False
-    
-    
-    VGErrorString = "Error en Grabar en Cuentas por Pagar " & Chr(13) & err.Description
+    VGErrorString = "Error en Grabar en Cuentas por Pagar " & Chr(13) & Err.Description
 End Sub
 Public Sub Grabaren_Tesoreria(ByVal op As Integer, Optional ByVal Numeroprovi As Long = 0, Optional ByVal rs As Recordset, Optional ByRef Xnum As String)
 On Error GoTo ErrorGrabaTesore
 Dim numero As String
+VGvarVerifica = True
 Set VGvardllgen = New dllgeneral.dll_general
 Dim rb As ADODB.Recordset
 Dim Item As Integer
@@ -639,10 +661,12 @@ Dim Item As Integer
             
           Else
             Set rb = VGCNx.Execute("select * from te_parametroempresa where empresacodigo='01'")
+            VGCNx.BeginTrans
             If rb.RecordCount > 0 Then
                 numero = Format(CDbl(VGvardllgen.ESNULO(rb!empresanumegreso, "0")) + 1, "000000")
                 VGCNx.Execute "Update te_parametroempresa Set empresanumegreso='" & numero & "' where empresacodigo='01'"
             End If
+            VGCNx.CommitTrans
         End If
         Xnum = numero
         .Parameters("@estadoreg") = ""
@@ -692,6 +716,7 @@ Dim Item As Integer
         End If
     End With
 op = opaux
+VGCNx.BeginTrans
 Set VGCommandoSP = New ADODB.Command
 VGCommandoSP.ActiveConnection = VGGeneral
 VGCommandoSP.CommandType = adCmdStoredProc
@@ -762,12 +787,12 @@ Else
     rs.MoveNext
   Wend
 End If
-
+VGCNx.CommitTrans
 Exit Sub
 
 ErrorGrabaTesore:
     VGvarVerifica = False
-    VGErrorString = "Error en Grabar en Tesoreria " & Chr(13) & err.Description
+    VGErrorString = "Error en Grabar en Tesoreria " & Chr(13) & Err.Description
     Exit Sub
     Resume
 End Sub
@@ -844,15 +869,15 @@ Dim sqltes As ADODB.Recordset
         .VlComprob_Conta = VGvardllgen.ESNULO(rsaux!cabprovinconta, "''''")
         .Ctr_Ayuempresa.xclave = VGvardllgen.ESNULO(rsaux!empresacodigo, "00"): .Ctr_Ayuempresa.Ejecutar
         If VGParametros.sistemamultiempresas Then
-          .CtrAyu_Ccosto.Filtro = "empresacodigo='" & .Ctr_Ayuempresa.xclave & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
+          .CtrAyu_Ccosto.filtro = "empresacodigo='" & .Ctr_Ayuempresa.xclave & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
          Else
-          .CtrAyu_Ccosto.Filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
+          .CtrAyu_Ccosto.filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
         End If
 
     End With
 End Sub
 Public Sub MostrarDetalle(ByRef rs As ADODB.Recordset)
-Dim rsaux As ADODB.Recordset, I As Integer
+Dim rsaux As ADODB.Recordset, i As Integer
     Set rsaux = New ADODB.Recordset
     Set VGCommandoSP = New ADODB.Command
     Set VGvardllgen = New dllgeneral.dll_general
@@ -863,11 +888,11 @@ Dim rsaux As ADODB.Recordset, I As Integer
     VGCommandoSP.Parameters.Refresh
     With VGCommandoSP
         .Parameters("@base") = VGParamSistem.BDEmpresa
-        .Parameters("@tabla") = VGParamSistem.TablaDetcomprob
+        .Parameters("@tabla") = VGParamSistem.tabladetcomprob
         .Parameters("@empresa") = frmMantprovision.Ctr_Ayuempresa.xclave
         .Parameters("@op") = 3
         .Parameters("@cabprovinumero") = frmMantprovision.lbNumComprobCab
-        .Parameters("@cabproviano") = VGParamSistem.Anoproceso
+        .Parameters("@cabproviano") = VGParamSistem.AnoProceso
         Set rsaux = .Execute
     End With
     If rsaux.RecordCount() > 0 Then
@@ -875,8 +900,8 @@ Dim rsaux As ADODB.Recordset, I As Integer
     End If
     While Not rsaux.EOF
         rs.AddNew
-        For I = 0 To rsaux.Fields.Count - 1
-            rs.Fields(rsaux.Fields(I).Name) = IIf(IsNull(rsaux.Fields(I).Value), "0", rsaux.Fields(I).Value)
+        For i = 0 To rsaux.Fields.Count - 1
+            rs.Fields(rsaux.Fields(i).Name) = IIf(IsNull(rsaux.Fields(i).Value), "0", rsaux.Fields(i).Value)
         Next
         rs.Update
         rsaux.MoveNext
@@ -942,7 +967,7 @@ With frmMantprovision
         MsgBox "Debe de escoger una fecha que exista tipo de cambio", vbInformation
         Exit Function
     End If
-    If Format(Month(.DTPFechaContab), "00") <> Format(VGParamSistem.Mesproceso, "00") Then
+    If Format(Month(.DTPFechaContab), "00") <> Format(VGParamSistem.MesProceso, "00") Then
        MsgBox "MES de Fecha Contable diferente a MES de fecha de proceso, VERIFIQUE", vbInformation
            .DTPFechaContab.SetFocus
            Exit Function
@@ -1109,6 +1134,18 @@ With frmMantprovision
         .TxImpCompra.SetFocus
         Exit Function
     End If
+    If .CheckActivo.Value = 0 Then
+       If CDbl(VGvardllgen.ESNULO(Espunto(.TxImpBruto.valor), 0)) = 0 And CDbl(VGvardllgen.ESNULO(Espunto(.TxInafecto.valor), 0)) = 0 Then
+           MsgBox "Por lo menos el Importe Bruto o el Importe Inafecto tiene que ser mayor a cero"
+           .TxImpBruto.SetFocus
+           Exit Function
+       End If
+       If CDbl(VGvardllgen.ESNULO(Espunto(.TxImpCompra.valor), 0)) = 0 Then
+           MsgBox "El Importe de Compra no debe ser Cero"
+           .TxImpCompra.SetFocus
+           Exit Function
+       End If
+    End If
     If (.CtrAyu_Ccosto.Enabled And .CtrAyu_Ccosto.Visible) And (Trim(.CtrAyu_Ccosto.xclave) = "" Or Trim(.CtrAyu_Ccosto.xclave) = "00") Then
         MsgBox "Debe ingresar El cento de costo", vbInformation
         .CtrAyu_Ccosto.SetFocus
@@ -1180,6 +1217,8 @@ Dim rsaux As New ADODB.Recordset
 Dim xrendicion As String
 Dim xsaldo As Double
 On Error GoTo actualizasaldo
+VGvarVerifica = True
+VGCNx.BeginTrans
 With frmMantprovision
     SQL = "select numero=max(rendicionnumero) from te_rendiciones where oficinacodigo='" & .Ctr_AyudaOficina.xclave & "'"
     SQL = SQL & " and codigocaja='" & .Ctr_AyudaCaja.xclave & "'"
@@ -1195,19 +1234,20 @@ With frmMantprovision
     SQL = SQL & " and codigocaja='" & .Ctr_AyudaCaja.xclave & "' and rendicionnumero='" & xrendicion & "'"
     Set rsaux = VGCNx.Execute(SQL)
 End With
+VGCNx.CommitTrans
 Exit Sub
 actualizasaldo:
 Screen.MousePointer = 1
 VGvarVerifica = False
-VGErrorString = "Error en Grabar saldo de rendiciones  " & Chr(13) & err.Description
+VGErrorString = "Error en Grabar saldo de rendiciones  " & Chr(13) & Err.Description
 End Sub
 
 Public Sub GrabaAsientoAuto(ByVal comp As String, ByVal numconta As String)
-Dim RSQL As New ADODB.Recordset
-SQL = "select cabcomprobnumero,asientocodigo,subasientocodigo,cabcomprobmes from ct_cabcomprob" & VGParamSistem.Anoproceso
+Dim rsql As New ADODB.Recordset
+SQL = "select cabcomprobnumero,asientocodigo,subasientocodigo,cabcomprobmes from ct_cabcomprob" & VGParamSistem.AnoProceso
 SQL = SQL & " where cabcomprobnprovi='" & comp & "'"
-Set RSQL = VGCNx.Execute(SQL)
-If RSQL.RecordCount > 0 Then
+Set rsql = VGCNx.Execute(SQL)
+If rsql.RecordCount > 0 Then
     On Error GoTo GrabaAuto
     Set VGCommandoSP = New ADODB.Command
     VGCommandoSP.ActiveConnection = VGGeneral
@@ -1216,18 +1256,18 @@ If RSQL.RecordCount > 0 Then
     VGCommandoSP.Parameters.Refresh
     With VGCommandoSP
         .Parameters("@base") = VGParamSistem.BDEmpresaCT
-        .Parameters("@tabla") = "ct_detcomprob" & VGParamSistem.Anoproceso
+        .Parameters("@tabla") = "ct_detcomprob" & VGParamSistem.AnoProceso
         .Parameters("@comp") = comp
-        .Parameters("@mes") = CInt(VGParamSistem.Mesproceso)
-        .Parameters("@asiento") = RSQL!asientocodigo
-        .Parameters("@subasiento") = RSQL!subasientocodigo
+        .Parameters("@mes") = CInt(VGParamSistem.MesProceso)
+        .Parameters("@asiento") = rsql!asientocodigo
+        .Parameters("@subasiento") = rsql!subasientocodigo
         .Execute
     End With
 End If
     Exit Sub
 GrabaAuto:
     VGvarVerifica = False
-    VGErrorString = "Error en Grabar Asientos Automaticos " & Chr(13) & err.Description
+    VGErrorString = "Error en Grabar Asientos Automaticos " & Chr(13) & Err.Description
 End Sub
 
 

@@ -152,7 +152,7 @@ Begin VB.Form frmTransferencias
          _ExtentX        =   2884
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   98566145
+         Format          =   41025537
          CurrentDate     =   37628
       End
       Begin TextFer.TxFer txt 
@@ -179,17 +179,19 @@ Begin VB.Form frmTransferencias
          SaltarAlEnter   =   -1  'True
          Valor           =   ""
          TipoDato        =   1
-         NumeroDecimales =   4
+         NumeroDecimales =   6
+         SignoNegativo   =   0   'False
+         MarcarTextoAlEnfoque=   -1  'True
       End
       Begin TextFer.TxFer txt 
-         Height          =   300
+         Height          =   375
          Index           =   2
-         Left            =   1770
+         Left            =   1800
          TabIndex        =   12
-         Top             =   1140
-         Width           =   1755
-         _ExtentX        =   3096
-         _ExtentY        =   529
+         Top             =   1080
+         Width           =   1815
+         _ExtentX        =   3201
+         _ExtentY        =   661
          Object.CausesValidation=   -1  'True
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
@@ -252,6 +254,45 @@ Begin VB.Form frmTransferencias
          XListCampo      =   "cabrec_descripcion"
          ListaCamposDescrip=   "Nro.transferencia,descripcion,Saldo"
          ListaCamposText =   "cabrec_numreciboegreso,cabrec_descripcion,SaldoDocxRendir"
+      End
+      Begin TextFer.TxFer txt 
+         Height          =   375
+         Index           =   4
+         Left            =   4680
+         TabIndex        =   47
+         Top             =   1080
+         Visible         =   0   'False
+         Width           =   1815
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         Object.CausesValidation=   -1  'True
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Text            =   ""
+         Enabled         =   0   'False
+         ColorIlumina    =   -2147483624
+         SaltarAlEnter   =   -1  'True
+         Valor           =   ""
+         TipoDato        =   1
+         SignodeMiles    =   -1  'True
+         NumeroDecimales =   4
+         MarcarTextoAlEnfoque=   -1  'True
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Importe Transferido"
+         Height          =   300
+         Index           =   13
+         Left            =   4920
+         TabIndex        =   48
+         Top             =   720
+         Width           =   1410
       End
       Begin VB.Label LeReferencia 
          AutoSize        =   -1  'True
@@ -691,7 +732,7 @@ txt(0).Text = Ctr_Ayutransf.xclave
 End Sub
 
 Private Sub DTPicker1_Change()
-txt(1).valor = DatotipoCambio(VGCnxCT, DTPicker1.Value)
+txt(1).valor = DatoTipoCambio(VGCnxCT, DTPicker1.Value)
 txt(1).SetFocus
 End Sub
 
@@ -715,8 +756,8 @@ Private Sub Form_Load()
    Else
     chkInterCia.Visible = False
    End If
-   DTPicker1.Value = Format(Now, "dd/mm/yyyy")
-   txt(1).valor = DatotipoCambio(VGCnxCT, DTPicker1.Value)
+   DTPicker1.Value = Format(VGParamSistem.fechatrabajo, "dd/mm/yyyy")
+   txt(1).valor = DatoTipoCambio(VGCnxCT, DTPicker1.Value)
    If (m_fondofijo = 1 Or m_cuentasxrendir = 1) And m_tipo = 1 Then
       Ctr_Ayutransf.Visible = True
       LeReferencia.Visible = True
@@ -834,9 +875,12 @@ Private Sub Ctr_Ay_CtaMonedaDestino_AlDevolverDato(ByVal ColecCampos As ADODB.Fi
     Case "B":
       lblMonDes.Caption = ColecCampos("monedacodigo").Value
   End Select
-
+If lblMonOrigen <> lblMonDes Then
+   txt(4).Visible = True
+ Else
+   txt(4).Visible = False
+ End If
 End Sub
-
 Private Sub CmdCancelar_Click()
   Unload Me
 End Sub
@@ -1029,7 +1073,7 @@ Function GrabarDataOrigen() As Integer      '***JCGI
          End If
         .Parameters("@monedacodigo") = lblMonOrigen.Caption
         .Parameters("@ingsal") = "E"
-        .Parameters("@tipocambio") = Round(IIf(CDbl(numero(txt(1).Text)) = 0, 1#, CDbl(numero(txt(1).Text))), 4)
+        .Parameters("@tipocambio") = txt(1).Text
         .Parameters("@totsoles") = Round(IIf(lblMonOrigen.Caption = "01", CDbl(txt(2).Text), CDbl(txt(2).Text) * CDbl(txt(1).Text)), 4)
         .Parameters("@totdolares") = Round(IIf(lblMonOrigen.Caption = "01", CDbl(txt(2).Text) / CDbl(txt(1).Text), CDbl(txt(2).Text)), 4)
         .Parameters("@fechadocumento") = Format(DTPicker1.Value, "dd/mm/yyyy")
@@ -1204,7 +1248,7 @@ Function GrabarDataDestino() As Integer   '***JCGI
 '        .Parameters("@operacion") = VGParametros.codigooperaciontransferencia
         .Parameters("@monedacodigo") = lblMonDes.Caption
         .Parameters("@ingsal") = "I"
-        .Parameters("@tipocambio") = Round(CDbl(txt(1).Text), 4)
+        .Parameters("@tipocambio") = Round(CDbl(txt(1).Text), 6)
         .Parameters("@totsoles") = Round(IIf(lblMonOrigen.Caption = "01", CDbl(txt(2).Text), CDbl(txt(2).Text) * CDbl(txt(1).Text)), 4)
         .Parameters("@totdolares") = Round(IIf(lblMonOrigen.Caption = "01", CDbl(txt(2).Text) / CDbl(txt(1).Text), CDbl(txt(2).Text)), 4)
         .Parameters("@fechadocumento") = Format(DTPicker1.Value, "dd/mm/yyyy")
@@ -1392,9 +1436,7 @@ Function ValidarData() As Boolean
      Exit Function
    ElseIf txt(1).Text = Empty Then
           txt(1).Text = 1#
-     Else
-       txt(1).Text = numero(txt(1).Text)
-  End If
+   End If
   If txt(2).Text = Empty Then
      MsgBox "Falta Completar el Importe a Transferir", vbInformation, Caption
      ValidarData = False
@@ -1465,3 +1507,9 @@ Private Function RUCDestino() As String
         RUCDestino = rs!empresaruc
     End If
 End Function
+
+
+
+Private Sub txt_LostFocus(Index As Integer)
+If Index = 2 Then txt(4).Text = Round(txt(2).valor * IIf(txt(1).Text = "", 1, txt(1).valor), 2)
+End Sub

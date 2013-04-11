@@ -534,7 +534,7 @@ Begin VB.Form FrmMovimientoClientes
          Begin VB.TextBox Text1 
             Height          =   285
             Index           =   3
-            Left            =   4740
+            Left            =   4800
             MaxLength       =   10
             TabIndex        =   9
             Top             =   2130
@@ -1770,7 +1770,7 @@ Private Sub Form_Load()
    Frame4.Enabled = False
    
    MBox1 = Format(VGParamSistem.fechatrabajo, "dd/mm/yyyy")
-   Text1(3) = DatoTipoCambio(VGcnxCT, MBox1.Text)
+   Text1(3) = DatoTipoCambio(VGCnxCT, MBox1.Text)
    Call cargar_grilla
    Call ConfigGrid
    
@@ -1781,7 +1781,7 @@ Private Sub MBox1_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub MBox1_LostFocus()
- If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGcnxCT, MBox1.Text)
+ If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGCnxCT, MBox1.Text)
 End Sub
 
 Private Sub MBox2_KeyDown(KeyCode As Integer, Shift As Integer)

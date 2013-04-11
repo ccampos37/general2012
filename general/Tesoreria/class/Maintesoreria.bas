@@ -7,6 +7,8 @@ Public nDetalle As String
 Public nAyuda1 As String
 Public nMoneda As String
 
+Public VGdllApi As New dll_apisgen.dll_apis
+    
 Public g_DetalleEmpresa As String
 Public g_PedidoPuntoVta As String
 Public g_DetallePuntoVta As String
@@ -115,6 +117,9 @@ Private Type ParametrosdeSistema
     Usuario As String
     Pwd      As String
     
+    BDempresaCONF As String
+    UsuarioReporte As String
+    
     ServidorCT As String
     BDEmpresaCT As String
     UsuarioCT As String
@@ -215,12 +220,12 @@ Public Sub Configurar_Conexiones()
    End If
    
     'Conexion de Contabilidad
-    Set VGcnxCT = New ADODB.Connection
-    VGcnxCT.CursorLocation = adUseClient
-    VGcnxCT.CommandTimeout = 0
-    VGcnxCT.ConnectionTimeout = 0
-    VGcnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioCT & ";Password=" & VGParamSistem.PwdCT & ";Initial Catalog=" & VGParamSistem.BDEmpresaCT & ";Data Source=" & VGParamSistem.ServidorCT
-    VGcnxCT.Open
+    Set VGCnxCT = New ADODB.Connection
+    VGCnxCT.CursorLocation = adUseClient
+    VGCnxCT.CommandTimeout = 0
+    VGCnxCT.ConnectionTimeout = 0
+    VGCnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioCT & ";Password=" & VGParamSistem.PwdCT & ";Initial Catalog=" & VGParamSistem.BDEmpresaCT & ";Data Source=" & VGParamSistem.ServidorCT
+    VGCnxCT.Open
     
     VGParamSistem.BDEmpresaGEN = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "BDDATOS", "?")
     VGParamSistem.ServidorGEN = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "SERVIDOR", "?")
@@ -274,7 +279,7 @@ Public Sub Cargar_Parametros_Funcionales()
         VGParametros.transferenciaingreso = Escadena(rsaux!empresatransaccioningreso)
         VGParametros.empresacodigoretencion = Escadena(rsaux!empresacodigoretencion)
         VGParametros.porcentajeretencion = numero(rsaux!porcentajeretencion)
-        VGParametros.empresaretencion = numero(rsaux!empresaretencion)
+        VGParametros.empresaretencion = numeroEntero(rsaux!empresaretencion)
         VGParametros.codigooperaciontransferencia = Escadena(rsaux!codigooperaciontransferencia)
    End If
    
@@ -319,7 +324,7 @@ Public Sub Cargar_Parametros_Funcionales()
 
    End If
    Set rsaux = New ADODB.Recordset
-   rsaux.Open "select sistemaultimonivel,sistemaultimonivelcostos from  ct_sistema", VGcnxCT, adOpenKeyset, adLockReadOnly
+   rsaux.Open "select sistemaultimonivel,sistemaultimonivelcostos from  ct_sistema", VGCnxCT, adOpenKeyset, adLockReadOnly
    If rsaux.RecordCount = 0 Then Exit Sub
    VGnumniveles = rsaux!sistemaultimonivel
    VGnumnivcos = ESNULO(rsaux!sistemaultimonivelcostos, 1)

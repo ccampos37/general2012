@@ -533,7 +533,7 @@ Private Sub mnu06_02_Click()
 End Sub
 
 Private Sub mnu06_04_Click()
-   frmCfgUsuario.Show
+   Frmusuarios.Show
 End Sub
 
 Private Sub StatusBar1_PanelDblClick(ByVal Panel As MSComctlLib.Panel)

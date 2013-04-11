@@ -569,93 +569,10 @@ Option Explicit
 
 Private Sub MDIForm_Load()
       
-On Error GoTo Xmain
-    'VGusuario = "03"
-    'Leer Ini
-    Set VGdllApi = New dll_apisgen.dll_apis
-    VGcomputer = UCase$(ComputerName)
-    VGsql = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "SQL", "?")
-    VGsql = IIf(VGsql = "?", 0, VGsql)
-   VGParametros.empresacodigo = "01"
-   
-    VGformatofecha = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "FECHASQL", "?")
-    VGformatofecha = IIf(VGformatofecha = "?", "DMY", VGformatofecha)
-    
-   
-    VGParamSistem.BDEmpresaGEN = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "BDDATOS", "?")
-    VGParamSistem.ServidorGEN = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "SERVIDOR", "?")
-    VGParamSistem.UsuarioGEN = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "USUARIO", "?")
-    VGParamSistem.PwdGEN = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "BDGENERAL", "PASSW", "?")
-    
-    VGCadenaReport2 = "DSN=jckconsultores;DSQ=" & VGParamSistem.BDEmpresaGEN & ";UID=" & VGParamSistem.UsuarioGEN & ";PWD=" & VGParamSistem.PwdGEN & ""
-    
-    'Establecer Conexiones
-    Set VGGeneral = New ADODB.Connection
-    VGGeneral.CursorLocation = adUseClient
-    VGGeneral.CommandTimeout = 0
-    VGGeneral.ConnectionTimeout = 0
-    VGGeneral.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioGEN & ";Password=" & VGParamSistem.PwdGEN & ";Initial Catalog=" & VGParamSistem.BDEmpresaGEN & ";Data Source=" & VGParamSistem.ServidorGEN
-    VGGeneral.Open
-    
-    If Trim$(VGdllApi.LeerIni(App.Path & "\MARFICE.INI", VGcomputer, "conexion", "?")) <> "?" Then
-        VGParamSistem.BDEmpresa = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", VGcomputer, "BDDATOS", "?")
-        VGParamSistem.Servidor = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", VGcomputer, "SERVIDOR", "?")
-        VGParamSistem.Usuario = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", VGcomputer, "USUARIO", "?")
-        VGParamSistem.UsuarioReporte = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", VGcomputer, "USUARIO", "?")
-        VGParamSistem.Pwd = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", VGcomputer, "PASSW", "?")
-      Else
-        VGParamSistem.BDEmpresa = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "BDDATOS", "?")
-        VGParamSistem.Servidor = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "SERVIDOR", "?")
-        VGParamSistem.Usuario = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "USUARIO", "?")
-        VGParamSistem.UsuarioReporte = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "USUARIO", "?")
-        VGParamSistem.Pwd = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "PASSW", "?")
-    End If
-    
-   VGParamSistem.BDempresaCONF = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONEXION", "BDDATOSCONF", "?")
-   If VGParamSistem.BDempresaCONF = "?" Then VGParamSistem.BDempresaCONF = "bdwenco"
-    
-    If VGParamSistem.BDEmpresa = "?" Or VGParamSistem.Servidor = "?" Then
-        MsgBox "No se ha Configurado bien los parametros BDDATOS y SERVIDOR en el archivo " & Chr(13) & _
-               App.Path & "\MARFICE.INI"
-    End If
-    
-    VGParamSistem.RutaReport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "CONTABILIDAD", "?")
-    VGParamSistem.carpetareportes = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "CARPETAREPORTES", "?")
-  
-    
-    'Establecer Cadena de Conexión de Reportes
-    vgCADENAREPORT = "DSN=" & VGParamSistem.Servidor & ";DSQ=" & VGParamSistem.BDEmpresa & ";UID=" & VGParamSistem.UsuarioReporte & ";PWD=" & VGParamSistem.Pwd
-    Set VGCNx = New ADODB.Connection
-    VGCNx.CursorLocation = adUseClient
-    VGCNx.CommandTimeout = 0
-    VGCNx.ConnectionTimeout = 0
-    VGCNx.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=" & VGParamSistem.BDEmpresa & ";Data Source=" & VGParamSistem.Servidor
-    VGCNx.Open
-    
-    Set VGcnxCT = New ADODB.Connection
-    VGcnxCT.CursorLocation = adUseClient
-    VGcnxCT.CommandTimeout = 0
-    VGcnxCT.ConnectionTimeout = 0
-    VGcnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=" & VGParamSistem.BDEmpresa & ";Data Source=" & VGParamSistem.Servidor
-'    VGCnxCT.ConnectionString = VGcnx.ConnectionString
-    VGcnxCT.Open
-    
- 
-   'Conexion de Cofiguracion
+Call ADOConectar
+Call ADOConectarReport("CONTABILIDAD")
+VGtipo = contab
 
-    Set VGConfig = New ADODB.Connection
-    VGConfig.CursorLocation = adUseClient
-    VGConfig.CommandTimeout = 0
-    VGConfig.ConnectionTimeout = 0
-    VGConfig.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.Usuario & ";Password=" & VGParamSistem.Pwd & ";Initial Catalog=" & VGParamSistem.BDempresaCONF & ";Data Source=" & VGParamSistem.Servidor
-    VGConfig.Open
-
-    VGtipo = contab
-
-       
-'Establecer Cadena de Conexión de Reportes
-VGCadenaReport2 = "DSN=jckconsultores;DSQ=" & VGParamSistem.BDEmpresaGEN & ";UID=" & VGParamSistem.UsuarioGEN & ";PWD=" & VGParamSistem.PwdGEN & ""
-          
 mensaje1 = "Prueba "
 
 frmlogin.Show 1
@@ -663,7 +580,7 @@ MDIPrincipal.Caption = "Sistema de Contabilidad Empresa : " & VGParametros.NomEm
 
 If VGSalir Then
    If VGCNx.State = 1 Then VGCNx.Close
-   If VGcnxCT.State = 1 Then VGcnxCT.Close
+   If VGCnxCT.State = 1 Then VGCnxCT.Close
       MDIPrincipal.Visible = False
       Unload Me
       Exit Sub
