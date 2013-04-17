@@ -39,11 +39,14 @@ Public VG_cNIVELES() As Integer              'Dígitos por Nivel de costos
 Public VGGlosa As String                     'Glosa del Sub Asiento
 Public VGMonSubAsiento As String             'Moneda por defecto del Sub Asiento
 Public VGSalir As Boolean
-
-Public vgCADENAREPORT As String              'Cadena de Reportes Base Empresa
+Public vGCadenaReport As String    'Cadena de Reportes Base Empresa
 
 Public strvalor As String
 Public strvalor1 As String
+
+Public VGParametros As ParametrosdeContabilidad
+Public VGParamSistem As ParametrosdeSistema
+Public VGtipo As TIPOSISTEMA
 
 Private Type ParametrosdeContabilidad
     monedabase As String * 2
@@ -65,7 +68,7 @@ Private Type ParametrosdeContabilidad
     cuentadeCostos As String
     puntovta As String * 2
     cierremes As Boolean
-    multiempresas As Boolean
+    MultiEmpresas As Boolean
     
     
 End Type
@@ -94,11 +97,9 @@ Private Type ParametrosdeSistema
    RutaReport As String
     Pwd      As String
     UsuarioReporte As String
-    carpetareportes As String
+    CarpetaReportes As String
 End Type
-Public VGParametros As ParametrosdeContabilidad
-Public VGParamSistem As ParametrosdeSistema
-Public VGtipo As TIPOSISTEMA
+
 
 
 Public Sub AdjuntarServ(cnx As ADODB.Connection, Servidor As String)

@@ -199,7 +199,7 @@ Public Sub Main()
                App.Path & "\MARFICE.INI"
     End If
     
-    VGparamsistem.RutaReport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "CONTABILIDAD", "?")
+    VGparamsistem.RutaReport = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "REPORTES", "COBRAR", "?")
     VGparamsistem.carpetareportes = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "conexion", "CARPETAREPORTES", "?")
   
     
@@ -213,13 +213,13 @@ Public Sub Main()
     VGCNx.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.Usuario & ";Password=" & VGparamsistem.pwd & ";Initial Catalog=" & VGparamsistem.bdempresa & ";Data Source=" & VGparamsistem.servidor
     VGCNx.Open
     
-    Set VGcnxCT = New ADODB.Connection
-    VGcnxCT.CursorLocation = adUseClient
-    VGcnxCT.CommandTimeout = 0
-    VGcnxCT.ConnectionTimeout = 0
-    VGcnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.usuarioCT & ";Password=" & VGparamsistem.pwdCT & ";Initial Catalog=" & VGparamsistem.bdempresaCT & ";Data Source=" & VGparamsistem.servidorCT
+    Set VGCnxCT = New ADODB.Connection
+    VGCnxCT.CursorLocation = adUseClient
+    VGCnxCT.CommandTimeout = 0
+    VGCnxCT.ConnectionTimeout = 0
+    VGCnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.usuarioCT & ";Password=" & VGparamsistem.pwdCT & ";Initial Catalog=" & VGparamsistem.bdempresaCT & ";Data Source=" & VGparamsistem.servidorCT
 '    VGCnxCT.ConnectionString = VGcnx.ConnectionString
-    VGcnxCT.Open
+    VGCnxCT.Open
     
  
    'Conexion de Cofiguracion
@@ -271,8 +271,8 @@ VGConfig.Open
 'Conexion de inventarios
 
 If VGparamsistem.bdempresa = "" Or VGparamsistem.bdempresa = "?" Then
-   Set RSQL = VGConfig.Execute("select empresabaseinventarios from empresa where empresaflaginventarios=1")
-   VGparamsistem.bdempresa = RSQL!empresabaseinventarios
+   Set rsql = VGConfig.Execute("select empresabaseinventarios from empresa where empresaflaginventarios=1")
+   VGparamsistem.bdempresa = rsql!empresabaseinventarios
 End If
 Set VGCNx = New ADODB.Connection
 VGCNx.CursorLocation = adUseClient
@@ -283,11 +283,11 @@ VGCNx.Open
     
 'Conexion de Contabilidad
 
-VGcnxCT.CursorLocation = adUseClient
-VGcnxCT.CommandTimeout = 0
-VGcnxCT.ConnectionTimeout = 0
-VGcnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.usuarioCT & ";Password=" & VGparamsistem.pwdCT & ";Initial Catalog=" & VGparamsistem.bdempresaCT & ";Data Source=" & VGparamsistem.servidorCT
-VGcnxCT.Open
+VGCnxCT.CursorLocation = adUseClient
+VGCnxCT.CommandTimeout = 0
+VGCnxCT.ConnectionTimeout = 0
+VGCnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGparamsistem.usuarioCT & ";Password=" & VGparamsistem.pwdCT & ";Initial Catalog=" & VGparamsistem.bdempresaCT & ";Data Source=" & VGparamsistem.servidorCT
+VGCnxCT.Open
     
 'Call adicionacamposct
 Exit Sub

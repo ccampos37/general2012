@@ -47,21 +47,21 @@ Begin VB.Form frmMantprovision
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmMantprovision.frx":128E
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Shilu2"
+      Tab(1).Control(0)=   "ChkCtaCte"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "SSTab2"
+      Tab(1).Control(1)=   "ChkRegComp"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "StBar"
+      Tab(1).Control(2)=   "framTotales"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "frameGrid"
+      Tab(1).Control(3)=   "FrameCabecera"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "FrameCabecera"
+      Tab(1).Control(4)=   "frameGrid"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "framTotales"
+      Tab(1).Control(5)=   "StBar"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "ChkRegComp"
+      Tab(1).Control(6)=   "SSTab2"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "ChkCtaCte"
+      Tab(1).Control(7)=   "Shilu2"
       Tab(1).Control(7).Enabled=   0   'False
       Tab(1).ControlCount=   8
       Begin VB.CheckBox ChkCtaCte 
@@ -336,7 +336,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3836
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   108920833
+            Format          =   109117441
             CurrentDate     =   37617
          End
          Begin VB.CheckBox ChkOperGrab 
@@ -410,7 +410,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   108920833
+            Format          =   109117441
             CurrentDate     =   37469
          End
          Begin MSComCtl2.DTPicker DtpFech_Ven 
@@ -422,7 +422,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   108920833
+            Format          =   109117441
             CurrentDate     =   37469
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_Moneda 
@@ -538,7 +538,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3889
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   108920833
+            Format          =   109117441
             CurrentDate     =   37489
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipRef 
@@ -593,7 +593,7 @@ Begin VB.Form frmMantprovision
             _ExtentY        =   503
             _Version        =   393216
             CheckBox        =   -1  'True
-            Format          =   108920833
+            Format          =   109117441
             CurrentDate     =   37601
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipCompra 
@@ -1347,7 +1347,7 @@ Begin VB.Form frmMantprovision
                Style           =   6
                Object.Width           =   2547
                MinWidth        =   2547
-               TextSave        =   "06/04/2013"
+               TextSave        =   "11/04/2013"
             EndProperty
             BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
                Object.Width           =   8819
@@ -3131,7 +3131,6 @@ emitedetraccion = 0
        xnumero = CDbl(frmMantprovision.lbNumComprobCab)
     End If
    VGCNx.CommitTrans
-    VGCNx.BeginTrans
     '2=>Paso Grabo la Cabecera del Comprobante
     
     Dim Xnumtesor As String
@@ -3146,16 +3145,14 @@ emitedetraccion = 0
     End If
      If Not VGvarVerifica Then varnerror = 4: GoTo ErrorGrabar
     
-    VGCNx.CommitTrans
    
-   VGCNx.BeginTrans
     
    ' 1. grabo provisiones
    
    Call ClsMM1.GrabarCabecera(IMant, xnumero, Format(CInt(VGParamSistem.Mesproceso), "00") & v1libro & xnumerocompro, Xnumtesor)
     If Not VGvarVerifica Then varnerror = 5: GoTo ErrorGrabar
     
-    VGCNx.CommitTrans
+
     VGCNx.BeginTrans
    
     If ChkCtaCte.Value = 1 Then
@@ -3225,11 +3222,10 @@ emitedetraccion = 0
     '2 => Paso Grabo los Detalle del Comprobante
     
     VGCNx.CommitTrans
-    VGCNx.BeginTrans
+
     Call ClsMM1.GrabarDetalle(rsmantenimiento, xnumero)
     If Not VGvarVerifica Then varnerror = 6: GoTo ErrorGrabar
     
-    VGCNx.CommitTrans
 
     
     '4=>Generar Asiento en Linea segun parametro
@@ -3238,9 +3234,7 @@ emitedetraccion = 0
         Call ClsMM1.GeneraAsientoenLine(IMant, xnumero, VlComprob_Conta)
 
        If ChkActCaja.Value = 1 Or modoproviold = 1 Then
-          VGCNx.BeginTrans
           Call ClsMM1.asientotesoreriaenlinea(IMant, Xnumtesor, xcomprobconta, "C", CtrAyu_moneda.xclave)
-          VGCNx.CommitTrans
        End If
     End If
        If Not VGvarVerifica Then varnerror = 7: GoTo ErrorGrabar
@@ -3251,7 +3245,6 @@ emitedetraccion = 0
 
    ' 5.  actualizo el estado del registro con respecto a la rendcion
    
-    VGCNx.BeginTrans
     If frmMantprovision.estadorendicion = 1 Then
        sqltes = " update te_detallerecibos set chkconcil=" & frmMantprovision.estadorendicion & ",fechconcil='" & frmMantprovision.fecharendicion & "'"
        sqltes = sqltes & ",rendicionnumero='" & frmMantprovision.numerorendicion & "' where cabrec_numrecibo='" & frmMantprovision.numerorecibo & "'"
@@ -3272,8 +3265,7 @@ emitedetraccion = 0
     
     'Acepto toda la transaccion porque es correcta
 
-   VGCNx.CommitTrans
-    
+     
     If IMant = 1 Then
         MsgBox "Se grabo Satisfactoriamente  El numero de Comprobante Generado Es :" & Chr(13) & _
            "Nro: " & xnumero & Chr(13) & _

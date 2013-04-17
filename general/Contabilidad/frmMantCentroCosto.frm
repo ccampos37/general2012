@@ -39,23 +39,26 @@ Private Sub Form_Load()
    'CentrarForm MDIPrincipal, Me
       
    'Nombre Campos:
-   a_Array(0, 0) = "centrocostocodigo"
-   a_Array(0, 1) = "centrocostodescripcion"
-   a_Array(0, 2) = "centrocostodescrcorta"
-   a_Array(0, 3) = "centrocostotipo"
-   a_Array(0, 4) = "centrocostonivel"
-   a_Array(0, 5) = "usuariocodigo"
-   a_Array(0, 6) = "fechaact"
-   a_Array(0, 7) = "empresacodigo"
+   a_Array(0, 0) = "empresacodigo"
+   a_Array(0, 1) = "centrocostocodigo"
+   a_Array(0, 2) = "centrocostodescripcion"
+   a_Array(0, 3) = "centrocostodescrcorta"
+   a_Array(0, 4) = "centrocostotipo"
+   a_Array(0, 5) = "centrocostonivel"
+   a_Array(0, 6) = "cuentacodigo"
+   a_Array(0, 7) = "usuariocodigo"
+   a_Array(0, 8) = "fechaact"
+   
    'Etiquetas:
-   a_Array(1, 0) = "Código"
-   a_Array(1, 1) = "Descripción"
-   a_Array(1, 2) = "Desc Corta"
-   a_Array(1, 3) = "Tipo"
-   a_Array(1, 4) = "Equivalencia"
-   a_Array(1, 5) = Empty
-   a_Array(1, 6) = Empty
-   a_Array(1, 7) = "Empresa"
+   a_Array(1, 0) = "Empresa"
+   a_Array(1, 1) = "Código"
+   a_Array(1, 2) = "Descripción"
+   a_Array(1, 3) = "Desc Corta"
+   a_Array(1, 4) = "Tipo"
+   a_Array(1, 5) = "Equivalencia"
+   a_Array(1, 6) = "Cuenta Contable"
+   a_Array(1, 7) = Empty
+   a_Array(1, 8) = Empty
    'Tipo de Dato:
    a_Array(2, 0) = "C"
    a_Array(2, 1) = "C"
@@ -63,48 +66,60 @@ Private Sub Form_Load()
    a_Array(2, 3) = "C"
    a_Array(2, 4) = "C"
    a_Array(2, 5) = "C"
-   a_Array(2, 6) = "D"
-   a_Array(2, 7) = "C"
+   a_Array(2, 6) = "C"
+   a_Array(2, 7) = "D"
+   a_Array(2, 8) = "C"
+   
    'Ancho de campo:
-   a_Array(3, 0) = 6
-   a_Array(3, 1) = 30
-   a_Array(3, 2) = 15
-   a_Array(3, 3) = 1
-   a_Array(3, 4) = 2
-   a_Array(3, 5) = 8
-   a_Array(3, 6) = Empty
-   a_Array(3, 7) = 2
+   
+   a_Array(3, 0) = 2
+   a_Array(3, 1) = 6
+   a_Array(3, 2) = 30
+   a_Array(3, 3) = 15
+   a_Array(3, 4) = 1
+   a_Array(3, 5) = 2
+   a_Array(3, 6) = 20
+   a_Array(3, 7) = 8
+   a_Array(3, 8) = Empty
+   
    'Campo Clave:
    
    a_Array(4, 0) = True
-   a_Array(4, 1) = False
+   a_Array(4, 1) = True
    a_Array(4, 2) = False
    a_Array(4, 3) = False
    a_Array(4, 4) = False
    a_Array(4, 5) = False
    a_Array(4, 6) = False
-   a_Array(4, 7) = True
+   a_Array(4, 7) = False
+   a_Array(4, 8) = False
+   
    'Valores Ingresados por el Sistema:
-   a_Array(5, 0) = Empty
+   
+   a_Array(5, 0) = VGParametros.empresacodigo
    a_Array(5, 1) = Empty
    a_Array(5, 2) = Empty
    a_Array(5, 3) = Empty
    a_Array(5, 4) = Empty
-   a_Array(5, 5) = VGusuario
-   a_Array(5, 6) = Date
-   a_Array(5, 7) = VGParametros.empresacodigo
+   a_Array(5, 5) = Empty
+   a_Array(5, 6) = Empty
+   a_Array(5, 7) = VGUsuario
+   a_Array(5, 8) = Date
+   
    'a_Array(5, 4) = Format(Now, "aaaa-mm-dd hh:mm:ss.000")
-   'Permite Nulos:
+      'Permite Nulos:
+   
    a_Array(6, 0) = False
    a_Array(6, 1) = False
-   a_Array(6, 2) = True
+   a_Array(6, 2) = False
    a_Array(6, 3) = False
    a_Array(6, 4) = False
    a_Array(6, 5) = False
    a_Array(6, 6) = False
    a_Array(6, 7) = False
+   a_Array(6, 8) = False
    
-   mTablaBasica1.conexion = VGCNx
+   mTablaBasica1.Conexion = VGCNx
    mTablaBasica1.NombreTabla = "ct_centrocosto"
    mTablaBasica1.TituloForm = "Centro de Costo"
    mTablaBasica1.Filtro = "centrocostocodigo<>'00' And empresacodigo='" & VGParametros.empresacodigo & "'"
