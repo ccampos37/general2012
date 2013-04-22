@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
 Object = "{4D137D9C-00A6-4458-9B46-7E95DB76D55B}#9.0#0"; "TextFer.ocx"
 Begin VB.Form FrmImportDataFac 
    BorderStyle     =   3  'Fixed Dialog
@@ -73,7 +73,7 @@ Begin VB.Form FrmImportDataFac
          _ExtentY        =   556
          _Version        =   393216
          CustomFormat    =   "MMM - yyyy"
-         Format          =   51773443
+         Format          =   39452675
          CurrentDate     =   37656
       End
       Begin VB.Label Label1 
@@ -194,16 +194,17 @@ If Opt(0).Value = True Then
     End If
     BaseOrigen = "TRANSFER" & Trim$(Mid$(cboSerie.List(cboSerie.ListIndex), 7, 3))
 End If
+If rsparimpo.RecordCount = 0 Then Exit Sub
 If Opt(1).Value = True Then
     BaseOrigen = rsparimpo!BaseVenta
 End If
 paso1 = rsparimpo!asientofacturacion
 procedimiento = ESNULO(rsparimpo!procedimientoasiento, "")
-Set COMANDO = New ADODB.Command
+Set Comando = New ADODB.Command
     Screen.MousePointer = 11
     '@BaseConta, @BaseVenta, @Ano, @Mes, @tipanal, @User
     VGGeneral.BeginTrans
-    With COMANDO
+    With Comando
         .CommandType = adCmdStoredProc
         .CommandText = "vt_insertacliente"
         .ActiveConnection = VGGeneral
@@ -216,10 +217,10 @@ Set COMANDO = New ADODB.Command
         .Parameters("@User") = VGParamSistem.Usuario
         .Execute
     End With
-Set COMANDO = New ADODB.Command
+Set Comando = New ADODB.Command
 If paso1 = 1 Then
    If procedimiento = "" Then procedimiento = "vt_generaasiento1_pro"
-   With COMANDO
+   With Comando
         .CommandType = adCmdStoredProc
         .CommandText = "" & procedimiento & ""  ' "vt_generaasiento1_pro"
         .ActiveConnection = VGGeneral
@@ -235,13 +236,13 @@ If paso1 = 1 Then
         .Parameters("@ctadolares") = rsparimpo!cuentadolares
         .Parameters("@ctaIGV") = rsparimpo!ctaigv
         .Parameters("@tipanal") = rsparimpo!tipanal
-        .Parameters("@Compu") = VGComputer
+        .Parameters("@Compu") = VGcomputer
         .Parameters("@Usuario") = VGParamSistem.Usuario
         .Execute
     End With
 Else
  If procedimiento = "" Then procedimiento = "vt_generaasiento_pro"
- With COMANDO
+ With Comando
         .CommandType = adCmdStoredProc
         .CommandText = "" & procedimiento & ""     '  "vt_generaasiento_pro"
         .ActiveConnection = VGGeneral
@@ -258,7 +259,7 @@ Else
 '        .Parameters("@ctadolares") = rsparimpo!cuentadolares
         .Parameters("@ctaIGV") = rsparimpo!ctaigv
         .Parameters("@tipanal") = rsparimpo!tipanal
-        .Parameters("@Compu") = VGComputer
+        .Parameters("@Compu") = VGcomputer
         .Parameters("@Usuario") = VGParamSistem.Usuario
         .Execute
     End With
@@ -277,7 +278,7 @@ Proceso:
 End Sub
 Private Function Restaurar() As Boolean
 Dim Data(1) As String, Log(1) As String
-Dim i As Integer
+Dim I As Integer
 Restaurar = False
 On Error GoTo restarurar
     Set cnxtrans = New ADODB.Connection

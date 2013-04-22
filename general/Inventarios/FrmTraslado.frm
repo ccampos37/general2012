@@ -776,7 +776,7 @@ Begin VB.Form FrmTraslado
          _ExtentX        =   2778
          _ExtentY        =   450
          _Version        =   393216
-         Format          =   108265473
+         Format          =   97452033
          CurrentDate     =   41125
          MinDate         =   39814
       End
@@ -1449,7 +1449,7 @@ Dim empresadestino As String
 Dim intercompanias As String
 Dim Nroreq As String
 Dim Interestablecimientos As String
-Dim ruc As String, Empresa As String
+Dim ruc As String, empresa As String
 
 Dim analitico As Integer
 Dim RsEmpresa As ADODB.Recordset
@@ -1498,20 +1498,20 @@ Private Sub Bdire_Click()
   Dim rg As New ADODB.Recordset
   On Error Resume Next
    Set rg = Nothing
-   Set dbGrid1.DataSource = Nothing
+   Set DbGrid1.DataSource = Nothing
    
    Set rg = VGCNx.Execute("select cliedirnumero as Nro,cliedirdireccion as Direccion from vt_clientedireccion where clientecodigo='" & Text5 & "'")
    If rg.RecordCount > 0 Then
        Frame7.Visible = True
-       Set dbGrid1.DataSource = rg
-       dbGrid1.Refresh
+       Set DbGrid1.DataSource = rg
+       DbGrid1.Refresh
    Else
       Frame7.Visible = False
    End If
    
 End Sub
 Private Sub cAcepta_Click()
-   Text7 = IIf(IsNull(dbGrid1.Columns(1).text), "", dbGrid1.Columns(1).text)
+   Text7 = IIf(IsNull(DbGrid1.Columns(1).text), "", DbGrid1.Columns(1).text)
    Frame7.Visible = False
    Text7.SetFocus
 
@@ -1557,7 +1557,7 @@ Dim RSQL As New ADODB.Recordset
         FrmAyuda2.BFiltro = sfiltra
         FrmAyuda2.Show 1
         MBox2(1) = Escadena(nAyuda):   Label5 = Escadena(nDetalle)
-        txtcanti(2) = nSaldo
+        txtcanti(2) = nsaldo
         Set RSQL = VGCNx.Execute("select * from maeart where acodigo ='" & MBox2(1) & "'")
         If RSQL.RecordCount() > 0 Then txtuni(0) = ESNULO(RSQL!aunidad, "")
         txtcanti(0).SetFocus
@@ -1593,7 +1593,7 @@ If RsRq.RecordCount > 0 Then
 Else
    FrmReq.Visible = False
 End If
-Empresa = Ctr_Ayuda2.xclave
+empresa = Ctr_Ayuda2.xclave
 empresadestino = ColecCampos("empresacodigo")
 TDBGrid.DataSource = RsRq
 TDBGrid.Refresh
@@ -1810,16 +1810,16 @@ central Me
 DTPicker1.MaxDate = VGParamSistem.fechatrabajo
 DTPicker1.Value = UltimoCierreFech(CDate(Format(VGParamSistem.fechatrabajo, "dd/MM/yyyy")))
 MBox(10) = DTPicker1.Value
-Call Ctr_Ayuda1.conexion(VGCNx)
-Call Ctr_Ayuda2.conexion(VGCNx)
-Call Ctr_Ayusalida.conexion(VGCNx): Ctr_Ayusalida.filtro = "tt_tipmov='S' and rtrim(tt_codtrans_auto)<>''"
-Call Ctr_Ayuingreso.conexion(VGCNx)
-Call Ctr_AyuAnalitico.conexion(VGCNx)
+Call Ctr_Ayuda1.Conexion(VGCNx)
+Call Ctr_Ayuda2.Conexion(VGCNx)
+Call Ctr_Ayusalida.Conexion(VGCNx): Ctr_Ayusalida.filtro = "tt_tipmov='S' and rtrim(tt_codtrans_auto)<>''"
+Call Ctr_Ayuingreso.Conexion(VGCNx)
+Call Ctr_AyuAnalitico.Conexion(VGCNx)
 Call CargaGrilla
     
-Cmdbotones(11).Picture = MDIPrincipal.ImageList2.ListImages.item("Grabar").Picture
-Cmdbotones(12).Picture = MDIPrincipal.ImageList2.ListImages.item("Retornar").Picture
-Cmdbotones(0).Picture = MDIPrincipal.ImageList2.ListImages.item("Insertar").Picture
+cmdBotones(11).Picture = MDIPrincipal.ImageList2.ListImages.item("Grabar").Picture
+cmdBotones(12).Picture = MDIPrincipal.ImageList2.ListImages.item("Retornar").Picture
+cmdBotones(0).Picture = MDIPrincipal.ImageList2.ListImages.item("Insertar").Picture
 
 End Sub
 
@@ -2119,7 +2119,7 @@ error:
 Private Sub imprimirguias()
 Dim nguia As String, ReporteNombre As String
 Dim nflag As Integer
-Dim I As Integer
+Dim i As Integer
 Dim arrparam(4) As Variant
 Dim arrform(2) As Variant
 Dim Serie As String
@@ -2159,11 +2159,11 @@ Text5.text = Empty
 Text6.text = Empty
 Text7.text = Empty
 
-For I = 0 To 1
-    Label4(I).Caption = Empty
-    txtuni(I).text = Empty
-    txtcanti(I).text = Empty
-Next I
+For i = 0 To 1
+    Label4(i).Caption = Empty
+    txtuni(i).text = Empty
+    txtcanti(i).text = Empty
+Next i
 
 txtcanti(2).text = Empty
 
@@ -2206,7 +2206,7 @@ Private Sub MBox2_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer
         nsql = "select * from maeart inner join stkart on acodigo=stcodigo  where stcodigo='" & MBox2(1).ClipText & "' and stalma='" & Ctr_Ayuda1.xclave & "' "
         Set rabusca = VGCNx.Execute(nsql)
         If rabusca.RecordCount > 0 Then
-          Label5 = Escadena(rabusca!adescri)
+          Label5 = Escadena(rabusca!ADESCRI)
           If stockcomp Then
              txtcanti(0) = Round(rabusca!STSKDIS, 3) - Round(rabusca!STSKcom, 3)
            Else
@@ -2290,7 +2290,7 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
       End If
       rst.Close
    End If
-   SendKeys "{tab}"
+       SendKeys "{tab}"
  End If
  Set rst = Nothing
 End Sub

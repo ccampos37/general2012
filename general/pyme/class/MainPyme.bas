@@ -63,7 +63,7 @@ Public VGBase3 As String
 Public VGbase4 As String
 Public VGCommandoSP As ADODB.Command         'De Comando
 
-Public VGdllApi As dll_apisgen.dll_apis
+
 Public VGvardllgen As dllgeneral.dll_general 'Dll de Algunas funciones
 
 Public GPunto As String   'punto de venta
@@ -272,7 +272,7 @@ Public Type ParametrosdeSistema
     AnoProceso As String
     fechatrabajo As Date
     RutaReport As String
-    
+    UsuarioReporte As String
     Servidor As String
     BDEmpresa As String
     Usuario As String

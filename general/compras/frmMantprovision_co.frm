@@ -1,11 +1,11 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "msdatlst.ocx"
 Object = "{DEF7CADD-83C0-11D0-A0F1-00A024703500}#7.0#0"; "todg7.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
 Object = "{D2B97638-05A0-43C1-BDD0-A8D84599A1D6}#4.0#0"; "controlayuda.ocx"
 Object = "{4D137D9C-00A6-4458-9B46-7E95DB76D55B}#9.0#0"; "TextFer.ocx"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "msdatlst.ocx"
 Begin VB.Form frmMantprovision 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Mantenimiento de Provisiones "
@@ -23,83 +23,6 @@ Begin VB.Form frmMantprovision
    NegotiateMenus  =   0   'False
    ScaleHeight     =   9015
    ScaleWidth      =   12150
-   Begin VB.Frame FramePlanillas 
-      Caption         =   "Planillas"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   2175
-      Left            =   2430
-      TabIndex        =   99
-      Top             =   3870
-      Visible         =   0   'False
-      Width           =   5295
-      Begin VB.OptionButton Option2 
-         Caption         =   "Empleados"
-         Height          =   495
-         Left            =   4080
-         TabIndex        =   106
-         Top             =   720
-         Width           =   1095
-      End
-      Begin VB.OptionButton Option1 
-         Caption         =   "Obreros"
-         Height          =   495
-         Left            =   4080
-         TabIndex        =   105
-         Top             =   240
-         Width           =   975
-      End
-      Begin VB.CommandButton Command1 
-         Caption         =   "Salir"
-         Height          =   495
-         Left            =   2520
-         TabIndex        =   101
-         Top             =   1440
-         Width           =   1215
-      End
-      Begin VB.CommandButton CmdAceptar 
-         Caption         =   "Aceptar"
-         Height          =   495
-         Left            =   840
-         TabIndex        =   100
-         Top             =   1440
-         Width           =   1215
-      End
-      Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyuEmpresaPlanillas 
-         Height          =   315
-         Left            =   240
-         TabIndex        =   102
-         Top             =   720
-         Width           =   3135
-         _ExtentX        =   5530
-         _ExtentY        =   556
-         XcodMaxLongitud =   3
-         xcodwith        =   300
-         NomTabla        =   "co_multiempresas"
-         TituloAyuda     =   "Busqueda de Empresas"
-         ListaCampos     =   "empresacodigo(1),empresadescripcion(1),agentederetencion(1)"
-         XcodCampo       =   "empresacodigo"
-         XListCampo      =   "empresadescripcion"
-         ListaCamposDescrip=   "Codigo,Descripcion"
-         ListaCamposText =   "empresacodigo,empresadescripcion,agentederetencion"
-      End
-      Begin VB.Label Leplanillas 
-         AutoSize        =   -1  'True
-         Caption         =   "Empresa :"
-         Height          =   195
-         Left            =   1080
-         TabIndex        =   103
-         Top             =   300
-         Width           =   705
-      End
-   End
    Begin TabDlg.SSTab SSTabMant 
       Height          =   8745
       Left            =   60
@@ -111,34 +34,27 @@ Begin VB.Form frmMantprovision
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "frmMantprovision_co.frx":1272
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "FrameConsulta"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "FrameConsul"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmMantprovision_co.frx":128E
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "Shilu2"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "SSTab2"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "StBar"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "frameGrid"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "FrameCabecera"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "framTotales"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "ChkRegComp"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "ChkCtaCte"
-      Tab(1).Control(7).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "ChkCtaCte"
+      Tab(1).Control(1)=   "ChkRegComp"
+      Tab(1).Control(2)=   "framTotales"
+      Tab(1).Control(3)=   "FrameCabecera"
+      Tab(1).Control(4)=   "frameGrid"
+      Tab(1).Control(5)=   "StBar"
+      Tab(1).Control(6)=   "SSTab2"
+      Tab(1).Control(7)=   "Shilu2"
       Tab(1).ControlCount=   8
       Begin VB.CheckBox ChkCtaCte 
          Alignment       =   1  'Right Justify
@@ -146,7 +62,7 @@ Begin VB.Form frmMantprovision
          Enabled         =   0   'False
          ForeColor       =   &H00800000&
          Height          =   285
-         Left            =   4680
+         Left            =   -70320
          TabIndex        =   97
          Top             =   1560
          Width           =   1140
@@ -157,7 +73,7 @@ Begin VB.Form frmMantprovision
          Enabled         =   0   'False
          ForeColor       =   &H00800000&
          Height          =   285
-         Left            =   5910
+         Left            =   -69090
          TabIndex        =   96
          Top             =   1560
          Width           =   1395
@@ -165,7 +81,7 @@ Begin VB.Form frmMantprovision
       Begin VB.Frame framTotales 
          BackColor       =   &H00C0C0C0&
          Height          =   384
-         Left            =   300
+         Left            =   -74700
          TabIndex        =   83
          Top             =   3840
          Width           =   11235
@@ -335,7 +251,7 @@ Begin VB.Form frmMantprovision
       End
       Begin VB.Frame FrameCabecera 
          Height          =   3375
-         Left            =   300
+         Left            =   -74700
          TabIndex        =   40
          Top             =   300
          Width           =   11265
@@ -343,7 +259,7 @@ Begin VB.Form frmMantprovision
             Enabled         =   0   'False
             Height          =   315
             Left            =   10350
-            TabIndex        =   110
+            TabIndex        =   102
             Top             =   2925
             Width           =   525
          End
@@ -354,14 +270,14 @@ Begin VB.Form frmMantprovision
             ForeColor       =   &H00800000&
             Height          =   285
             Left            =   8175
-            TabIndex        =   109
+            TabIndex        =   101
             Top             =   2940
             Width           =   1500
          End
          Begin VB.TextBox TxtACuenta 
             Height          =   315
             Left            =   7560
-            TabIndex        =   108
+            TabIndex        =   100
             Top             =   2910
             Width           =   525
          End
@@ -412,7 +328,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3836
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   107479041
+            Format          =   96993281
             CurrentDate     =   37617
          End
          Begin VB.CheckBox ChkOperGrab 
@@ -486,7 +402,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   107479041
+            Format          =   96993281
             CurrentDate     =   37469
          End
          Begin MSComCtl2.DTPicker DtpFech_Ven 
@@ -498,7 +414,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   107479041
+            Format          =   96993281
             CurrentDate     =   37469
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_Moneda 
@@ -614,7 +530,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3889
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   107479041
+            Format          =   96993281
             CurrentDate     =   37489
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipRef 
@@ -669,7 +585,7 @@ Begin VB.Form frmMantprovision
             _ExtentY        =   503
             _Version        =   393216
             CheckBox        =   -1  'True
-            Format          =   107479041
+            Format          =   96993281
             CurrentDate     =   37601
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipCompra 
@@ -811,7 +727,7 @@ Begin VB.Form frmMantprovision
             BorderStyle     =   1  'Fixed Single
             Height          =   285
             Left            =   2640
-            TabIndex        =   111
+            TabIndex        =   103
             Top             =   1560
             Width           =   360
          End
@@ -821,7 +737,7 @@ Begin VB.Form frmMantprovision
             ForeColor       =   &H00000000&
             Height          =   195
             Left            =   180
-            TabIndex        =   107
+            TabIndex        =   99
             Top             =   2970
             Visible         =   0   'False
             Width           =   1095
@@ -1078,7 +994,7 @@ Begin VB.Form frmMantprovision
       Begin VB.Frame frameGrid 
          BackColor       =   &H00808080&
          Height          =   2328
-         Left            =   300
+         Left            =   -74700
          TabIndex        =   53
          Top             =   4125
          Width           =   11220
@@ -1361,7 +1277,7 @@ Begin VB.Form frmMantprovision
       Begin VB.Frame FrameConsul 
          BackColor       =   &H8000000B&
          Height          =   1005
-         Left            =   -74910
+         Left            =   90
          TabIndex        =   43
          Top             =   375
          Width           =   11610
@@ -1410,7 +1326,7 @@ Begin VB.Form frmMantprovision
       End
       Begin MSComctlLib.StatusBar StBar 
          Height          =   285
-         Left            =   90
+         Left            =   -74910
          TabIndex        =   42
          Top             =   8295
          Width           =   11220
@@ -1423,7 +1339,7 @@ Begin VB.Form frmMantprovision
                Style           =   6
                Object.Width           =   2547
                MinWidth        =   2547
-               TextSave        =   "13/03/2013"
+               TextSave        =   "22/04/2013"
             EndProperty
             BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
                Object.Width           =   8819
@@ -1443,7 +1359,7 @@ Begin VB.Form frmMantprovision
       End
       Begin TabDlg.SSTab SSTab2 
          Height          =   1890
-         Left            =   315
+         Left            =   -74685
          TabIndex        =   38
          Top             =   6465
          Width           =   11235
@@ -1836,7 +1752,7 @@ Begin VB.Form frmMantprovision
       Begin VB.Frame FrameConsulta 
          BackColor       =   &H00808080&
          Height          =   7485
-         Left            =   -74910
+         Left            =   90
          TabIndex        =   44
          Top             =   1380
          Width           =   11610
@@ -1846,10 +1762,183 @@ Begin VB.Form frmMantprovision
             Caption         =   "Planillas"
             ForeColor       =   &H00FFFFFF&
             Height          =   270
-            Left            =   4080
-            TabIndex        =   98
+            Left            =   2760
+            TabIndex        =   119
             Top             =   120
             Width           =   1095
+         End
+         Begin VB.CheckBox CheckOrdCompra 
+            Alignment       =   1  'Right Justify
+            BackColor       =   &H000040C0&
+            Caption         =   "Orden de Compra"
+            ForeColor       =   &H00FFFFFF&
+            Height          =   270
+            Left            =   4440
+            TabIndex        =   118
+            Top             =   120
+            Width           =   1575
+         End
+         Begin VB.CheckBox CheckOrdServicio 
+            Alignment       =   1  'Right Justify
+            BackColor       =   &H000080FF&
+            Caption         =   "Orden de Servicio"
+            ForeColor       =   &H00FFFFFF&
+            Height          =   270
+            Left            =   6480
+            TabIndex        =   117
+            Top             =   120
+            Width           =   1575
+         End
+         Begin VB.CheckBox CheckActivo 
+            Alignment       =   1  'Right Justify
+            BackColor       =   &H00FF0000&
+            Caption         =   "Activo Fijo"
+            ForeColor       =   &H00FFFFFF&
+            Height          =   270
+            Left            =   8400
+            TabIndex        =   116
+            Top             =   120
+            Width           =   1575
+         End
+         Begin VB.Frame FramePlanillas 
+            Caption         =   "Planillas"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   2175
+            Left            =   2040
+            TabIndex        =   109
+            Top             =   2400
+            Visible         =   0   'False
+            Width           =   5295
+            Begin VB.CommandButton CmdAceptar 
+               Caption         =   "Aceptar"
+               Height          =   495
+               Left            =   840
+               TabIndex        =   113
+               Top             =   1440
+               Width           =   1215
+            End
+            Begin VB.CommandButton Command1 
+               Caption         =   "Salir"
+               Height          =   495
+               Left            =   2520
+               TabIndex        =   112
+               Top             =   1440
+               Width           =   1215
+            End
+            Begin VB.OptionButton Option1 
+               Caption         =   "Obreros"
+               Height          =   495
+               Left            =   4080
+               TabIndex        =   111
+               Top             =   240
+               Width           =   975
+            End
+            Begin VB.OptionButton Option2 
+               Caption         =   "Empleados"
+               Height          =   495
+               Left            =   4080
+               TabIndex        =   110
+               Top             =   720
+               Width           =   1095
+            End
+            Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyuEmpresaPlanillas 
+               Height          =   315
+               Left            =   240
+               TabIndex        =   114
+               Top             =   720
+               Width           =   3135
+               _ExtentX        =   5530
+               _ExtentY        =   556
+               XcodMaxLongitud =   3
+               xcodwith        =   300
+               NomTabla        =   "co_multiempresas"
+               TituloAyuda     =   "Busqueda de Empresas"
+               ListaCampos     =   "empresacodigo(1),empresadescripcion(1),agentederetencion(1)"
+               XcodCampo       =   "empresacodigo"
+               XListCampo      =   "empresadescripcion"
+               ListaCamposDescrip=   "Codigo,Descripcion"
+               ListaCamposText =   "empresacodigo,empresadescripcion,agentederetencion"
+            End
+            Begin VB.Label Leplanillas 
+               AutoSize        =   -1  'True
+               Caption         =   "Empresa :"
+               Height          =   195
+               Left            =   1080
+               TabIndex        =   115
+               Top             =   300
+               Width           =   705
+            End
+         End
+         Begin VB.Frame FrameActivos 
+            Caption         =   "Activo Fijo"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FF0000&
+            Height          =   2175
+            Left            =   4440
+            TabIndex        =   104
+            Top             =   2040
+            Visible         =   0   'False
+            Width           =   5295
+            Begin VB.CommandButton CmdSalirActivos 
+               Caption         =   "Salir"
+               Height          =   495
+               Left            =   2520
+               TabIndex        =   106
+               Top             =   1440
+               Width           =   1215
+            End
+            Begin VB.CommandButton CmdAceptarActivos 
+               Caption         =   "Aceptar"
+               Height          =   495
+               Left            =   840
+               TabIndex        =   105
+               Top             =   1440
+               Width           =   1215
+            End
+            Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyuEmpresaactivos 
+               Height          =   315
+               Left            =   240
+               TabIndex        =   107
+               Top             =   720
+               Width           =   3135
+               _ExtentX        =   5530
+               _ExtentY        =   556
+               XcodMaxLongitud =   3
+               xcodwith        =   300
+               NomTabla        =   "co_multiempresas"
+               TituloAyuda     =   "Busqueda de Empresas"
+               ListaCampos     =   "empresacodigo(1),empresadescripcion(1),agentederetencion(1)"
+               XcodCampo       =   "empresacodigo"
+               XListCampo      =   "empresadescripcion"
+               ListaCamposDescrip=   "Codigo,Descripcion"
+               ListaCamposText =   "empresacodigo,empresadescripcion,agentederetencion"
+            End
+            Begin VB.Label Label11 
+               AutoSize        =   -1  'True
+               Caption         =   "Empresa :"
+               ForeColor       =   &H00FF0000&
+               Height          =   195
+               Left            =   1080
+               TabIndex        =   108
+               Top             =   300
+               Width           =   705
+            End
          End
          Begin TextFer.TxFer TxEjecutar 
             Height          =   300
@@ -1901,7 +1990,7 @@ Begin VB.Form frmMantprovision
          Begin TrueOleDBGrid70.TDBGrid TDBG_Consulta 
             Height          =   6150
             Left            =   120
-            TabIndex        =   104
+            TabIndex        =   98
             Top             =   840
             Width           =   11280
             _ExtentX        =   19897
@@ -2202,7 +2291,7 @@ Begin VB.Form frmMantprovision
          BorderColor     =   &H0000FF00&
          BorderWidth     =   2
          Height          =   2505
-         Left            =   11295
+         Left            =   -63705
          Top             =   4350
          Visible         =   0   'False
          Width           =   30
@@ -2277,21 +2366,21 @@ Private Sub ChkTodos_Click()
 End Sub
 Private Sub CmbTcambio_Click()
     If UCase(VlDocNota) <> "A" Then
-        lb_vcambio = Format(XRecuperaTipoCambio(Dtp_FechaDoc, CmbTcambio.ListIndex + 1, VGcnxCT), "#0.000 ")
+        lb_vcambio = Format(XRecuperaTipoCambio(Dtp_FechaDoc, CmbTcambio.ListIndex + 1, VGCnxCT), "#0.000 ")
       Else
         If IsNull(Dtp_FechaDocRef) Then
             MsgBox "La Fecha del Documento de Referencia esta en nulo", vbInformation
             Dtp_FechaDocRef.SetFocus
             Exit Sub
         End If
-        lb_vcambio = Format(XRecuperaTipoCambio(Dtp_FechaDocRef, CmbTcambio.ListIndex + 1, VGcnxCT), "#0.000 ")
+        lb_vcambio = Format(XRecuperaTipoCambio(Dtp_FechaDocRef, CmbTcambio.ListIndex + 1, VGCnxCT), "#0.000 ")
     End If
 End Sub
 Private Sub CmbTcambio_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = 13 Then Call SendKeys("{TAB}")
 End Sub
 
-Private Sub cmdAceptar_Click()
+Private Sub cmdaceptar_Click()
 Call actualizaplanillas(rsmantenimiento)
 Call PBoton(1)
 End Sub
@@ -2310,8 +2399,8 @@ With VGCommandoSP
     .Parameters("@baseorigen") = "planta10"
     .Parameters("@basedestino") = VGCNx.DefaultDatabase
     .Parameters("@empresa") = Ctr_AyuEmpresaPlanillas.xclave
-    .Parameters("@fechaini") = Fecha(1, VGParamSistem.FechaTrabajo)
-    .Parameters("@fechafin") = Fecha(2, VGParamSistem.FechaTrabajo)
+    .Parameters("@fechaini") = Fecha(1, VGParamSistem.fechatrabajo)
+    .Parameters("@fechafin") = Fecha(2, VGParamSistem.fechatrabajo)
     .Parameters("@computer") = VGcomputer
    If Option1.Value = True Then
     .Parameters("@tipo") = "1"
@@ -2336,7 +2425,7 @@ If rb.RecordCount > 0 Then
     Wend
      FramePlanillas.Visible = False
      Ctr_Ayuempresa.xclave = Ctr_AyuEmpresaPlanillas.xclave
-     CtrAyu_moneda.xclave = "01"
+     CtrAyu_Moneda.xclave = "01"
 End If
 Call VGvardllgen.ActivaTab(1, 1, SSTabMant)
 Call HabilitarDetalle(True, FramDetalle, Me)
@@ -2344,13 +2433,13 @@ lbNumComprobCab.Caption = UltNumeroAuto(VGParamSistem.TablaCabcomprob, 1, VGCNx)
 IMant = 1
 VlUltAccion = 1
     
-If VGParametros.Auxaut Then
+If VGParametros.auxaut Then
    TxNAux.Locked = True
  Else
    TxNAux.Locked = False
 End If
 If IMant = 1 Then
-   TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.Anoproceso, VGParamSistem.Mesproceso, xnumero)
+   TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.AnoProceso, VGParamSistem.MesProceso, xnumero)
 End If
 CtrAyu_Ccosto.Visible = False
 lbccosto.Visible = False
@@ -2368,13 +2457,13 @@ lbNumComprobCab.Caption = UltNumeroAuto(VGParamSistem.TablaCabcomprob, 1, VGCNx)
 IMant = 1
 VlUltAccion = 1
     
-If VGParametros.Auxaut Then
+If VGParametros.auxaut Then
    TxNAux.Locked = True
  Else
    TxNAux.Locked = False
 End If
 If IMant = 1 Then
-   TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, "02", VGParamSistem.Anoproceso, VGParamSistem.Mesproceso, xnumero)
+   TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, "02", VGParamSistem.AnoProceso, VGParamSistem.MesProceso, xnumero)
 End If
 CtrAyu_Ccosto.Visible = False
 lbccosto.Visible = False
@@ -2399,7 +2488,7 @@ End Sub
 Private Sub Ctr_AyudaCaja_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
 controlarendicion = ColecCampos("cajarendiciones")
 ' Ctr_Ayutransf.Filtro = " isnull(estadodocxrendir,0)=1 and cajacodigo='" & Ctr_AyudaCaja.xclave & "' and cabrec_transferenciaautomatico=1 "
-Ctr_Ayutransf.Filtro = " isnull(estadodocxrendir,0)<2 and cajacodigo='" & Ctr_AyudaCaja.xclave & "' and cabrec_transferenciaautomatico=1 "
+Ctr_Ayutransf.filtro = " isnull(estadodocxrendir,0)<2 and cajacodigo='" & Ctr_AyudaCaja.xclave & "' and cabrec_transferenciaautomatico=1 "
 
 End Sub
 
@@ -2413,20 +2502,20 @@ Dim xnumero As Long
      Else
        tipoinafecto = 0
     End If
-    CtrAyu_Ccosto.Filtro = "empresacodigo='" & Ctr_Ayuempresa.xclave & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
-    If VGParametros.Auxaut Then
+    CtrAyu_Ccosto.filtro = "empresacodigo='" & Ctr_Ayuempresa.xclave & "' and centrocostonivel='" & VGnumnivcos & "' and centrocostocodigo<>'00' "
+    If VGParametros.auxaut Then
        TxNAux.Locked = True
        Le_libro = v1libro
        If IMant = 1 Then
-          TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.Anoproceso, Format(VGParamSistem.Mesproceso, "00"), xnumero)
+          TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.AnoProceso, Format(VGParamSistem.MesProceso, "00"), xnumero)
         End If
       Else
        TxNAux.Locked = False
     End If
-   If IsNumeric(VGParamSistem.Anoproceso) And IsNumeric(VGParamSistem.Mesproceso) Then
+   If IsNumeric(VGParamSistem.AnoProceso) And IsNumeric(VGParamSistem.MesProceso) Then
       If Not VGParametros.cierremes Then
           SQL = "select * from ct_cierremensual where empresacodigo='" & Ctr_Ayuempresa.xclave & "' and " _
-          & " anio='" & VGParamSistem.Anoproceso & "' and mes=" & Trim(VGParamSistem.Mesproceso) & " "
+          & " anio='" & VGParamSistem.AnoProceso & "' and mes=" & Trim(VGParamSistem.MesProceso) & " "
           Set rrrsql = VGCNx.Execute(SQL)
           If rrrsql.RecordCount > 0 Then VGParametros.cierremes = IIf(rrrsql!compras = True, True, False)
              If VGParametros.cierremes = True Then
@@ -2470,7 +2559,7 @@ Private Sub CtrAyu_gastos_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
         CtrAyu_Ccosto.xclave = "00": CtrAyu_Ccosto.Ejecutar
     End If
     If ColecCampos("tipoanaliticocodigo") <> "00" Then
-       Ctr_AyuAnalitico.Filtro = " tipoanaliticocodigo='" & ColecCampos("tipoanaliticocodigo") & "' and  isnull(proyectocierre,0)=0 "
+       Ctr_AyuAnalitico.filtro = " tipoanaliticocodigo='" & ColecCampos("tipoanaliticocodigo") & "' and  isnull(proyectocierre,0)=0 "
        Ctr_AyuAnalitico.Visible = True
        Lblanalitico.Visible = True
      Else
@@ -2541,10 +2630,10 @@ Set VGvardllgen = New dllgeneral.dll_general
         LeCaja.Visible = False
         LeReferencia.Visible = False
         Ctr_Ayutransf.Visible = False
-        Ctr_Ayutransf.Filtro = ""
+        Ctr_Ayutransf.filtro = ""
         controlarendicion = False
     End If
-    CtrAyu_TipCompra.Filtro = " PATINDEX('%" & CtrAyu_Modoprovi.xclave & "%' , modosprovisionescodigo) > 0"
+    CtrAyu_TipCompra.filtro = " PATINDEX('%" & CtrAyu_Modoprovi.xclave & "%' , modosprovisionescodigo) > 0"
     CtrAyu_TipCompra.Ejecutar
     SetCamposAcuenta
     v1libro = IIf(VGvardllgen.ESNULO(ColecCampos("librocodigo").Value, 0) = 0, "00", ColecCampos("librocodigo").Value)
@@ -2557,7 +2646,7 @@ Set VGvardllgen = New dllgeneral.dll_general
     ChkActCaja.Value = 0
 End Sub
 Private Sub CtrAyu_Moneda_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
-    If CtrAyu_moneda.xclave = "02" Then
+    If CtrAyu_Moneda.xclave = "02" Then
         LeTcambio.Visible = True
         CmbTcambio.Visible = True
         lb_vcambio.Visible = True
@@ -2584,7 +2673,7 @@ Private Sub CtrAyu_TipCompra_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
 Dim xnumero As Long
     Set VGvardllgen = New dllgeneral.dll_general
     CtrAyu_TipSubAsi.xclave = "": CtrAyu_TipSubAsi.xnombre = ""
-    CtrAyu_TipSubAsi.Filtro = "tipocompracodigo='" & CtrAyu_TipCompra.xclave & "'"
+    CtrAyu_TipSubAsi.filtro = "tipocompracodigo='" & CtrAyu_TipCompra.xclave & "'"
     comprainafecta = VGvardllgen.ESNULO(ColecCampos("tipocomprainafecta").Value, 0)
     If comprainafecta = 1 Then
        TxImpBruto.Visible = False
@@ -2594,11 +2683,11 @@ Dim xnumero As Long
        TxIGV.Visible = True
      End If
      v1libro = VGvardllgen.ESNULO(ColecCampos("eqconta").Value, "00")
-     If VGParametros.Auxaut Then
+     If VGParametros.auxaut Then
        TxNAux.Locked = True
        Le_libro = v1libro
        If IMant = 1 Then
-         TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.Anoproceso, Format(VGParamSistem.Mesproceso, "00"), xnumero)
+         TxNAux.Text = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.AnoProceso, Format(VGParamSistem.MesProceso, "00"), xnumero)
       End If
      Else
        TxNAux.Locked = False
@@ -2651,10 +2740,10 @@ Private Sub Form_Load()
     Top = 0
     Left = 0
     'Inicializo la fechas
-    DTPFechaContab.Value = VGParamSistem.FechaTrabajo
-    Dtp_FechaDoc.Value = VGParamSistem.FechaTrabajo
-    DtpFech_Ven.Value = VGParamSistem.FechaTrabajo
-    DTPFechaCaja.Value = VGParamSistem.FechaTrabajo
+    DTPFechaContab.Value = VGParamSistem.fechatrabajo
+    Dtp_FechaDoc.Value = VGParamSistem.fechatrabajo
+    DtpFech_Ven.Value = VGParamSistem.fechatrabajo
+    DTPFechaCaja.Value = VGParamSistem.fechatrabajo
     IMant = 0
     VlUltAccion = 0
     modoproviold = 0
@@ -2710,7 +2799,7 @@ Dim pos As Integer
         End If
         Ctr_AyuAnalitico.xclave = !analitico
         TxImpBruto.Text = Format(!impbruto, "###,###,###.00"): TxImpBruto.valor = Format(!impbruto, "#0.00")
-        TxIGV.Text = Format(!Igv, "###,###,###.00"): TxIGV.valor = Format(!Igv, "#0.00")
+        TxIGV.Text = Format(!igv, "###,###,###.00"): TxIGV.valor = Format(!igv, "#0.00")
         TxInafecto.Text = Format(!inafecto, "###,###,###.00"): TxInafecto.valor = Format(!inafecto, "#0.00")
         TxImpCompra.Text = Format(!Impcompra, "###,###,###.00"): TxImpCompra.valor = Format(!Impcompra, "#0.00")
         Txtglosa.Text = !glosa
@@ -2742,14 +2831,14 @@ Private Sub SSTabMant_Click(PreviousTab As Integer)
         End If
         CtrAyu_TipDoc.Requerido = True
         CtrAyu_TipRef.Requerido = False
-        CtrAyu_moneda.Requerido = True
+        CtrAyu_Moneda.Requerido = True
         CtrAyu_Proveedor.Requerido = True
         CtrAyu_TipCompra.Requerido = True
         CtrAyu_Modoprovi.Requerido = True
         Ctr_AyudaCaja.Requerido = True
         Ctr_AyudaOficina.Requerido = True
 '        MDIPrincipal.mnu00_01(9).Visible = True
-        le_Mes.Caption = Format(VGParamSistem.Mesproceso, "00")
+        le_Mes.Caption = Format(VGParamSistem.MesProceso, "00")
       Else
         CtrAyu_Ccosto.Requerido = False
         If VGParametros.sistemactrlgastos Then
@@ -2765,7 +2854,7 @@ Private Sub SSTabMant_Click(PreviousTab As Integer)
         End If
         CtrAyu_TipDoc.Requerido = False
         CtrAyu_TipRef.Requerido = False
-        CtrAyu_moneda.Requerido = False
+        CtrAyu_Moneda.Requerido = False
         CtrAyu_Proveedor.Requerido = False
         CtrAyu_TipCompra.Requerido = False
         CtrAyu_Modoprovi.Requerido = False
@@ -2807,9 +2896,9 @@ Dim sqlcad As String, xasiento As String, xsubasiento As String
     If criterio = "" Then
         cad = " where 1=0 "
       Else
-        cad = " where  cabproviano='" & VGParamSistem.Anoproceso & "' and cabprovimes=" & CInt(VGParamSistem.Mesproceso) & " and "
+        cad = " where  cabproviano='" & VGParamSistem.AnoProceso & "' and cabprovimes=" & CInt(VGParamSistem.MesProceso) & " and "
     End If
-    If todos Then cad = " where cabproviano='" & VGParamSistem.Anoproceso & "' and cabprovimes=" & CInt(VGParamSistem.Mesproceso) & "  "
+    If todos Then cad = " where cabproviano='" & VGParamSistem.AnoProceso & "' and cabprovimes=" & CInt(VGParamSistem.MesProceso) & "  "
     sqlcad = "select aa.*, numerodocxrendir=isnull(numerodocxrendir,'') from " & VGParamSistem.TablaCabcomprob & " aa "
     sqlcad = sqlcad & " left join te_cabecerarecibos bb on aa.empresacodigo+aa.cabprovinumtes=bb.empresacodigo+bb.cabrec_numrecibo "
     sqlcad = sqlcad & cad & " " & criterio
@@ -2837,7 +2926,7 @@ xinafecto = 0: ximpcompra = 0:
 rsaux.MoveFirst
     While Not rsaux.EOF
         ximpbruto = ximpbruto + vardllgen.ESNULO(rsaux!impbruto, 0)
-        xigv = xigv + vardllgen.ESNULO(rsaux!Igv, 0)
+        xigv = xigv + vardllgen.ESNULO(rsaux!igv, 0)
         xinafecto = xinafecto + vardllgen.ESNULO(rsaux!inafecto, 0)
         ximpcompra = ximpcompra + vardllgen.ESNULO(rsaux!Impcompra, 0)
         rsaux.MoveNext
@@ -2870,7 +2959,7 @@ Private Sub Mostrar()
     Call VGvardllgen.ActivaTab(1, 1, SSTabMant)
     VlUltAccion = 4
     Call PBoton(VlUltAccion)
-    If VGParametros.Auxaut Then
+    If VGParametros.auxaut Then
         TxNAux.Locked = True
      Else
         TxNAux.Locked = False
@@ -2982,8 +3071,8 @@ emitedetraccion = 0
     '1=>Paso Genera el Correlativo del Comprobante
     Dim xnumero As Long
     If IMant = 1 Then
-        If VGParametros.Auxaut Then
-            xnumerocompro = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.Anoproceso, VGParamSistem.Mesproceso, xnumero)
+        If VGParametros.auxaut Then
+            xnumerocompro = ClsMM1.NumeroAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.AnoProceso, VGParamSistem.MesProceso, xnumero)
           Else
             xnumerocompro = Trim(TxNAux.Text)
             'Validar si el Numero ya ha sido ingresado
@@ -2998,13 +3087,13 @@ emitedetraccion = 0
         '2=>Paso Actualizo el Correlativo en la Tabla SubAsiento si es que ingrese un nuevo
         'Comprobante
         
-        Call ClsMM1.ActualizaCorrelAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.Anoproceso, Month(DTPFechaContab), xnumero)
+        Call ClsMM1.ActualizaCorrelAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.AnoProceso, Month(DTPFechaContab), xnumero)
         If Not VGvarVerifica Then varnerror = 1: GoTo ErrorGrabar
     Else
-        If Month(DTPFechaContab) < Val(VGParamSistem.Mesproceso) Then
-           If VGParametros.Auxaut Then
-              xnumerocompro = ClsMM1.NumeroAuxiliar(VGParametros.empresacodigo, v1libro, VGParamSistem.Anoproceso, VGParamSistem.Mesproceso, xnumero)
-              Call ClsMM1.ActualizaCorrelAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.Anoproceso, Month(DTPFechaContab), xnumero)
+        If Month(DTPFechaContab) < Val(VGParamSistem.MesProceso) Then
+           If VGParametros.auxaut Then
+              xnumerocompro = ClsMM1.NumeroAuxiliar(VGParametros.empresacodigo, v1libro, VGParamSistem.AnoProceso, VGParamSistem.MesProceso, xnumero)
+              Call ClsMM1.ActualizaCorrelAuxiliar(Ctr_Ayuempresa.xclave, v1libro, VGParamSistem.AnoProceso, Month(DTPFechaContab), xnumero)
              If Not VGvarVerifica Then varnerror = 2: GoTo ErrorGrabar
             End If
         Else
@@ -3032,7 +3121,7 @@ emitedetraccion = 0
        xnumero = CDbl(frmMantprovision.lbNumComprobCab)
     End If
    VGCNx.CommitTrans
-    VGCNx.BeginTrans
+
     '2=>Paso Grabo la Cabecera del Comprobante
     
     Dim Xnumtesor As String
@@ -3047,17 +3136,12 @@ emitedetraccion = 0
     End If
      If Not VGvarVerifica Then varnerror = 4: GoTo ErrorGrabar
     
-    VGCNx.CommitTrans
-   
-   VGCNx.BeginTrans
-    
+  
    ' 1. grabo provisiones
    
-   Call ClsMM1.GrabarCabecera(IMant, xnumero, Format(CInt(VGParamSistem.Mesproceso), "00") & v1libro & xnumerocompro, Xnumtesor)
+   Call ClsMM1.GrabarCabecera(IMant, xnumero, Format(CInt(VGParamSistem.MesProceso), "00") & v1libro & xnumerocompro, Xnumtesor)
     If Not VGvarVerifica Then varnerror = 5: GoTo ErrorGrabar
     
-    VGCNx.CommitTrans
-    VGCNx.BeginTrans
    
     If ChkCtaCte.Value = 1 Then
        If (frmMantprovision.Ctr_AyuAnalitico.xclave = "" Or frmMantprovision.Ctr_AyuAnalitico.xclave = "00") And frmMantprovision.TxtACuenta.Text = "" Then
@@ -3124,14 +3208,9 @@ emitedetraccion = 0
     End If
     
     '2 => Paso Grabo los Detalle del Comprobante
-    
-    VGCNx.CommitTrans
-    VGCNx.BeginTrans
     Call ClsMM1.GrabarDetalle(rsmantenimiento, xnumero)
     If Not VGvarVerifica Then varnerror = 6: GoTo ErrorGrabar
     
-    VGCNx.CommitTrans
-
     
     '4=>Generar Asiento en Linea segun parametro
     
@@ -3139,9 +3218,7 @@ emitedetraccion = 0
         Call ClsMM1.GeneraAsientoenLine(IMant, xnumero, VlComprob_Conta)
 
        If ChkActCaja.Value = 1 Or modoproviold = 1 Then
-          VGCNx.BeginTrans
-          Call ClsMM1.asientotesoreriaenlinea(IMant, Xnumtesor, xcomprobconta, "C", CtrAyu_moneda.xclave)
-          VGCNx.CommitTrans
+          Call ClsMM1.asientotesoreriaenlinea(IMant, Xnumtesor, xcomprobconta, "C", CtrAyu_Moneda.xclave)
        End If
     End If
        If Not VGvarVerifica Then varnerror = 7: GoTo ErrorGrabar
@@ -3178,7 +3255,7 @@ emitedetraccion = 0
     If IMant = 1 Then
         MsgBox "Se grabo Satisfactoriamente  El numero de Comprobante Generado Es :" & Chr(13) & _
            "Nro: " & xnumero & Chr(13) & _
-           "El Numero de Asiento Generado es : " & Format(CInt(VGParamSistem.Mesproceso), "00") & "-" & v1libro & "-" & xnumerocompro
+           "El Numero de Asiento Generado es : " & Format(CInt(VGParamSistem.MesProceso), "00") & "-" & v1libro & "-" & xnumerocompro
       Else
         MsgBox "Se Actualizo Satisfactoriamente  ", vbInformation
     End If
@@ -3198,7 +3275,7 @@ ErrorGrabar:
      VGCNx.RollbackTrans
      MsgBox "Hubo Errores al Grabar Tipo --> " & varnerror & Chr(13) & VGErrorString, vbExclamation
      Call Cancelar(1)
-     MsgBox "Errores Desconocidos " & Chr(13) & err.Description
+     MsgBox "Errores Desconocidos " & Chr(13) & Err.Description
     Screen.MousePointer = vbDefault
     Exit Sub
     Resume
@@ -3250,13 +3327,13 @@ Public Sub Eliminar()
     
     Dim sqlcad As String
     sqlcad = "" & _
-    " Update dbo.ct_cabcomprob" & VGParamSistem.Anoproceso & _
+    " Update dbo.ct_cabcomprob" & VGParamSistem.AnoProceso & _
     " Set cabcomprobtotdebe=0, " & _
     "     cabcomprobtothaber=0," & _
     "     cabcomprobtotussdebe=0, " & _
     "     cabcomprobtotusshaber = 0 " & _
     " Where cabcomprobnumero='" & VlComprob_Conta & "' " & Chr(13) & _
-    " Update dbo.ct_detcomprob" & VGParamSistem.Anoproceso & _
+    " Update dbo.ct_detcomprob" & VGParamSistem.AnoProceso & _
     "   Set detcomprobdebe=0, " & _
     "   detcomprobhaber=0, " & _
     "   detcomprobussdebe=0, " & _
@@ -3348,8 +3425,8 @@ Private Sub ImprimirComprob(Ncomprob As String, mes As String)
 Dim arrform(0) As Variant, arrparm(5) As Variant
 Screen.MousePointer = 11
     arrparm(0) = Trim(VGParamSistem.BDEmpresa)
-    arrparm(1) = Trim(VGParamSistem.Anoproceso)
-    arrparm(2) = CInt(Trim(VGParamSistem.Mesproceso))
+    arrparm(1) = Trim(VGParamSistem.AnoProceso)
+    arrparm(2) = CInt(Trim(VGParamSistem.MesProceso))
     arrparm(3) = Trim(Ncomprob)
     Call ImpresionRptProc("co_VoucherComprobCompra.rpt", arrform, arrparm)
 Screen.MousePointer = 1
@@ -3393,7 +3470,7 @@ Private Sub TxIGV_Change()
     If Not VGflaglimpia Then Exit Sub
     If VGMoverRegistro Then Exit Sub
     Set ClsMM1 = New ClsMantMov1
-    Call ClsMM1.ActualizarDetalle(rsmantenimiento, Igv)
+    Call ClsMM1.ActualizarDetalle(rsmantenimiento, igv)
     Call CalculoCompra
     Call CalcularTotales(rsmantenimiento)
 End Sub
@@ -3404,7 +3481,7 @@ Private Sub TxImpBruto_Change()
     Set VGvardllgen = New dllgeneral.dll_general
     Set ClsMM1 = New ClsMantMov1
     Call ClsMM1.ActualizarDetalle(rsmantenimiento, impbruto)
-    TxIGV.valor = CDbl(VGvardllgen.ESNULO(TxImpBruto.valor, 0)) * VGParametros.Igv
+    TxIGV.valor = CDbl(VGvardllgen.ESNULO(TxImpBruto.valor, 0)) * VGParametros.igv
     TxIGV.Text = Format(TxIGV.valor, "###,###,###.00")
     Call CalculoCompra
     Call CalcularTotales(rsmantenimiento)
