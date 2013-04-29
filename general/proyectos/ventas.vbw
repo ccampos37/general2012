@@ -81,6 +81,6 @@ FrmMntProyectos = 75, 75, 760, 393, , 25, 25, 710, 343, C
 FrmPedidoGlosa = 75, 75, 940, 394, , 0, 0, 685, 319, C
 FrmPedidoVentanilla = 52, 52, 664, 362, , 75, 75, 760, 394, C
 ModificarCampos = 220, 220, 843, 674, 
-MainVentas = 130, 130, 742, 440, 
+MainVentas = 130, 130, 742, 440, Z
 FrmVtasporPuntoVta = 0, 0, 637, 285, , 104, 104, 741, 389, C
 ModVarios = 104, 104, 695, 388, 

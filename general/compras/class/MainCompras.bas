@@ -100,6 +100,8 @@ Private Type ParametrosdeSistema
     Servidor As String
     RutaReport As String
     PWD      As String
+    UsuarioReporte As String
+    
     
     BDEmpresaCONF As String
     
@@ -219,12 +221,12 @@ On Error GoTo Xmain
     MDIPrincipal.menu02_03.Visible = True
           
     'Conexion de Contabilidad
-    Set VGcnxCT = New ADODB.Connection
-    VGcnxCT.CursorLocation = adUseClient
-    VGcnxCT.CommandTimeout = 0
-    VGcnxCT.ConnectionTimeout = 0
-    VGcnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioCT & ";Password=" & VGParamSistem.PwdCT & ";Initial Catalog=" & VGParamSistem.BDEmpresaCT & ";Data Source=" & VGParamSistem.ServidorCT
-    VGcnxCT.Open
+    Set VGCnxCT = New ADODB.Connection
+    VGCnxCT.CursorLocation = adUseClient
+    VGCnxCT.CommandTimeout = 0
+    VGCnxCT.ConnectionTimeout = 0
+    VGCnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioCT & ";Password=" & VGParamSistem.PwdCT & ";Initial Catalog=" & VGParamSistem.BDEmpresaCT & ";Data Source=" & VGParamSistem.ServidorCT
+    VGCnxCT.Open
     Call adicionarcampos
   '   Call CargarParametrosCompras
     Call Parametrogastos

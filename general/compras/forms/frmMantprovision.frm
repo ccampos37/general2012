@@ -47,21 +47,21 @@ Begin VB.Form frmMantprovision
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "frmMantprovision.frx":128E
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "ChkCtaCte"
+      Tab(1).Control(0)=   "Shilu2"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "ChkRegComp"
+      Tab(1).Control(1)=   "SSTab2"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "framTotales"
+      Tab(1).Control(2)=   "StBar"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "FrameCabecera"
+      Tab(1).Control(3)=   "frameGrid"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "frameGrid"
+      Tab(1).Control(4)=   "FrameCabecera"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "StBar"
+      Tab(1).Control(5)=   "framTotales"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "SSTab2"
+      Tab(1).Control(6)=   "ChkRegComp"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "Shilu2"
+      Tab(1).Control(7)=   "ChkCtaCte"
       Tab(1).Control(7).Enabled=   0   'False
       Tab(1).ControlCount=   8
       Begin VB.CheckBox ChkCtaCte 
@@ -336,7 +336,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3836
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   109117441
+            Format          =   40108033
             CurrentDate     =   37617
          End
          Begin VB.CheckBox ChkOperGrab 
@@ -410,7 +410,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   109117441
+            Format          =   40108033
             CurrentDate     =   37469
          End
          Begin MSComCtl2.DTPicker DtpFech_Ven 
@@ -422,7 +422,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   4260
             _ExtentY        =   556
             _Version        =   393216
-            Format          =   109117441
+            Format          =   40108033
             CurrentDate     =   37469
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_Moneda 
@@ -538,7 +538,7 @@ Begin VB.Form frmMantprovision
             _ExtentX        =   3889
             _ExtentY        =   529
             _Version        =   393216
-            Format          =   109117441
+            Format          =   40108033
             CurrentDate     =   37489
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipRef 
@@ -593,7 +593,7 @@ Begin VB.Form frmMantprovision
             _ExtentY        =   503
             _Version        =   393216
             CheckBox        =   -1  'True
-            Format          =   109117441
+            Format          =   40108033
             CurrentDate     =   37601
          End
          Begin ctrlayuda_f.Ctr_Ayuda CtrAyu_TipCompra 
@@ -1347,7 +1347,7 @@ Begin VB.Form frmMantprovision
                Style           =   6
                Object.Width           =   2547
                MinWidth        =   2547
-               TextSave        =   "11/04/2013"
+               TextSave        =   "25/04/2013"
             EndProperty
             BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
                Object.Width           =   8819
@@ -3153,8 +3153,6 @@ emitedetraccion = 0
     If Not VGvarVerifica Then varnerror = 5: GoTo ErrorGrabar
     
 
-    VGCNx.BeginTrans
-   
     If ChkCtaCte.Value = 1 Then
        If (frmMantprovision.Ctr_AyuAnalitico.xclave = "" Or frmMantprovision.Ctr_AyuAnalitico.xclave = "00") And frmMantprovision.TxtACuenta.Text = "" Then
             SQL = "select * from cp_cargo where clientecodigo='" & Trim(frmMantprovision.CtrAyu_Proveedor.xclave) & "'"
@@ -3220,8 +3218,6 @@ emitedetraccion = 0
     End If
     
     '2 => Paso Grabo los Detalle del Comprobante
-    
-    VGCNx.CommitTrans
 
     Call ClsMM1.GrabarDetalle(rsmantenimiento, xnumero)
     If Not VGvarVerifica Then varnerror = 6: GoTo ErrorGrabar

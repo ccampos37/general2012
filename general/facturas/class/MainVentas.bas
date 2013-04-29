@@ -78,7 +78,7 @@ Private Type ParametrosdeSistema         ' Crea Tipo de Empresa
    Usuario As String
    Servidor As String
    PWD      As String
-   
+   UsuarioReporte As String
    BDempresaCONF As String
    
    ServidorGEN As String

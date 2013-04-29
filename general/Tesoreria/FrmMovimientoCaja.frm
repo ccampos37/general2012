@@ -1527,7 +1527,7 @@ If ColecCampos!cajarendiciones Then
    SQL = " select rendicionfecha from te_rendiciones where oficinacodigo='" & VGoficina & "'"
    SQL = SQL & " and codigocaja='" & Ctr_AyudaCaja.xclave & "' and rendicionnumero='" & xrendicion & "'"
    Set rsaux = VGCNx.Execute(SQL)
-   If xrendicion > 0 Then
+   If xrendicion <> "" Then
       fecharendicion = rsaux!rendicionfecha - VGParametros.diasatrazorendicion
       controlarendicion = ColecCampos!cajarendiciones
     Else
@@ -1599,10 +1599,10 @@ Private Sub Form_Load()
    
    MBox1 = Format(VGParamSistem.fechatrabajo, "dd/mm/yyyy")
 '   MBox1.Text = VGParamSistem.fechatrabajo
-   Text1(3) = DatoTipoCambio(VGcnxCT, MBox1.Text)
+   Text1(3) = DatoTipoCambio(VGCnxCT, MBox1.Text)
    Call cargar_grilla
    Call ConfigGrid
-   Call CtrAyu_Ccosto.conexion(VGcnxCT)
+   Call CtrAyu_Ccosto.conexion(VGCnxCT)
    CtrAyu_Ccosto.filtro = "centrocostotipo=" & VGnumnivcos & " and centrocostocodigo<>'00' "
    Call CtrAyu_gastos.conexion(VGCNx): CtrAyu_gastos.filtro = "(gastosnivel=" & VGnumnivgas & " and gastoscodigo <>'00') "
    Call Ctr_AyuAnalitico.conexion(VGCNx)
@@ -1635,7 +1635,7 @@ Private Sub MBox1_KeyDown(KeyCode As Integer, Shift As Integer)
 End Sub
 
 Private Sub MBox1_LostFocus()
- If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGcnxCT, MBox1.Text)
+ If IsDate(MBox1.Text) Then Text1(3).Text = DatoTipoCambio(VGCnxCT, MBox1.Text)
 End Sub
 
 Private Sub MBox2_KeyDown(KeyCode As Integer, Shift As Integer)
