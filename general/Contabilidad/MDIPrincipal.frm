@@ -288,11 +288,29 @@ Begin VB.MDIForm MDIPrincipal
    End
    Begin VB.Menu mnu01 
       Caption         =   "&Tablas Básicas"
-      Begin VB.Menu mnu01_02 
-         Caption         =   "&Operación"
-      End
-      Begin VB.Menu mnu01_03 
-         Caption         =   "&Centro Costos"
+      Begin VB.Menu mnu01_01 
+         Caption         =   "Principales"
+         Begin VB.Menu mnu01_01_02 
+            Caption         =   "&Operación"
+         End
+         Begin VB.Menu mnu01_01_03 
+            Caption         =   "&Centro Costos"
+         End
+         Begin VB.Menu mnu01_01_08 
+            Caption         =   "Tipo de &Documento"
+         End
+         Begin VB.Menu mnu01_01_09 
+            Caption         =   "&Estado Comprobante"
+         End
+         Begin VB.Menu mnu01_01_10 
+            Caption         =   "A&plicación"
+         End
+         Begin VB.Menu mnu01_01_14 
+            Caption         =   "Tipo de Monedas"
+         End
+         Begin VB.Menu mnu01_01_15 
+            Caption         =   "Tipo de Cuentas "
+         End
       End
       Begin VB.Menu mnu01_04 
          Caption         =   "Analitico"
@@ -320,15 +338,6 @@ Begin VB.MDIForm MDIPrincipal
       End
       Begin VB.Menu mnu01_07 
          Caption         =   "Tipo &Cambio"
-      End
-      Begin VB.Menu mnu01_08 
-         Caption         =   "Tipo de &Documento"
-      End
-      Begin VB.Menu mnu01_09 
-         Caption         =   "&Estado Comprobante"
-      End
-      Begin VB.Menu mnu01_10 
-         Caption         =   "A&plicación"
       End
       Begin VB.Menu mnu01_11 
          Caption         =   "Estructuras"
@@ -358,11 +367,14 @@ Begin VB.MDIForm MDIPrincipal
       Begin VB.Menu mnu01_13 
          Caption         =   "Saldos Iniciales"
       End
-      Begin VB.Menu mnu01_14 
-         Caption         =   "Tipo de Monedas"
-      End
-      Begin VB.Menu mnu01_15 
-         Caption         =   "Tipo de Cuentas "
+      Begin VB.Menu mnu01_02 
+         Caption         =   "Libros Electronicos"
+         Begin VB.Menu mnu01_02_01 
+            Caption         =   "Oportunidad de Presentacion"
+         End
+         Begin VB.Menu mnu01_02_02 
+            Caption         =   "Indicador de Operacion"
+         End
       End
    End
    Begin VB.Menu mnu02 
@@ -405,6 +417,9 @@ Begin VB.MDIForm MDIPrincipal
          Begin VB.Menu mnu03_04_03 
             Caption         =   "Importar Datos Pagar"
          End
+      End
+      Begin VB.Menu mnu03_07 
+         Caption         =   "Generar Saldos Analiticos"
       End
    End
    Begin VB.Menu mnu04 
@@ -553,6 +568,24 @@ Begin VB.MDIForm MDIPrincipal
             Caption         =   "Form 682"
          End
       End
+      Begin VB.Menu mnu06_02 
+         Caption         =   "Libros Electronicos"
+         Begin VB.Menu mnu06_02_01 
+            Caption         =   "Libros Principales"
+         End
+         Begin VB.Menu mnu06_02_02 
+            Caption         =   "Libros auxiliares"
+         End
+         Begin VB.Menu mnu06_02_03 
+            Caption         =   "Librios Inventarios y Balamcer"
+         End
+         Begin VB.Menu mnu06_02_14 
+            Caption         =   "Estados Financieros"
+         End
+         Begin VB.Menu mnu06_02_10 
+            Caption         =   "Otros"
+         End
+      End
    End
    Begin VB.Menu mnu08 
       Caption         =   "&Salir"
@@ -599,18 +632,6 @@ Xmain:
 
 End Sub
 
-Private Sub mnu_03_04_01_Click()
-
-End Sub
-
-Private Sub mnu_03_04_02_Click()
-
-End Sub
-
-Private Sub mnu_03_04_03_Click()
-
-End Sub
-
 Private Sub mnu00_01_01_Click(Index As Integer)
 'FIXIT: Siempre que sea posible, reemplace ActiveForm o ActiveControl con una variable en tiempo de compilación.     FixIT90210ae-R1614-RCFE85
     Call Screen.ActiveForm.Pavant(Index)
@@ -621,12 +642,17 @@ Private Sub mnu00_01_Click(Index As Integer)
     Call Screen.ActiveForm.PMant(Index)
 End Sub
 
-Private Sub mnu01_02_Click()
+Private Sub mnu01_01_02_Click()
     frmMantOperacion.Show
 End Sub
 
-Private Sub mnu01_03_Click()
+Private Sub mnu01_01_03_Click()
     frmMantCentroCosto.Show
+End Sub
+
+
+Private Sub mnu01_02_02_Click()
+FrmMntIndicadorOportunidad.Show
 End Sub
 
 Private Sub mnu01_04_01_Click()
@@ -637,7 +663,7 @@ Private Sub mnu01_04_02_Click()
     frmMantEntidad.Show
 End Sub
 
-Private Sub mnu01_05_Click()
+Private Sub mnu01_01_05_Click()
     frmMantLibro.Show
 End Sub
 
@@ -662,15 +688,15 @@ Private Sub mnu01_07_Click()
     frmMantTipoCambio.Show
 End Sub
 
-Private Sub mnu01_08_Click()
+Private Sub mnu01_01_08_Click()
     frmMantTipoDocumento.Show
 End Sub
 
-Private Sub mnu01_09_Click()
+Private Sub mnu01_01_09_Click()
     frmMantEstComprobante.Show
 End Sub
 
-Private Sub mnu01_10_Click()
+Private Sub mnu01_01_10_Click()
     frmMantAplicacion.Show
 End Sub
 
@@ -702,11 +728,11 @@ Private Sub mnu01_13_Click()
     frmMantSaldosInicialPlan.Show
 End Sub
 
-Private Sub mnu01_14_Click()
+Private Sub mnu01_01_14_Click()
     FrmMantMoneda.Show
 End Sub
 
-Private Sub mnu01_15_Click()
+Private Sub mnu01_01_15_Click()
 FrmTipocuenta.Show 1
 End Sub
 
@@ -770,33 +796,8 @@ Private Sub mnu03_04_02_Click()
 End Sub
 
 Private Sub mnu03_07_Click()
- Dim SQL As String
-  On Error GoTo xx
-    Screen.MousePointer = 11
-    VGCNx.BeginTrans
-    
-    Set VGCommandoSP = New ADODB.Command
-    VGCommandoSP.ActiveConnection = VGGeneral
-    VGCommandoSP.CommandType = adCmdStoredProc
-    VGCommandoSP.CommandText = "ct_GeneraCtaCteApertura_pro"
-    VGCommandoSP.Parameters.Refresh
-    With VGCommandoSP
-        .Parameters("@base") = VGParamSistem.BDEmpresa
-        .Parameters("@empresa") = VGParametros.empresacodigo
-        .Parameters("@annoact") = VGParamSistem.Anoproceso
-        .Parameters("@annopas") = Trim$(VGParamSistem.Anoproceso - 1)
-        .Parameters("@NombrePC") = VGcomputer
-        .Execute
-    End With
-    VGCNx.CommitTrans
-    Screen.MousePointer = 1
-    MsgBox "Se Genero la Cuenta Corriente de Apertura del Año " & VGParamSistem.Anoproceso, vbInformation
-    Exit Sub
-xx:
-    Screen.MousePointer = 1
-    VGCNx.RollbackTrans
-    MsgBox "No se pudo Aperturar la Cuenta Corriente " & Chr(13) & err.Description, vbExclamation
-    End Sub
+FrmgenerasaldosAnaliticos.Show
+End Sub
 
 Private Sub mnu03_04_03_Click()
 FrmContabPagar.Show 1
@@ -984,6 +985,10 @@ End Sub
 
 Private Sub mnu06_01_01_Click()
 FrmSunat682.Show
+End Sub
+
+Private Sub mnu06_02_01_Click()
+FrmLibrosElectPrincipales.Show
 End Sub
 
 Private Sub mnu08_Click()

@@ -1,5 +1,1 @@
 Línea 927: la clase MSComctlLib.StatusBar del control Panel no era una clase de control cargada.
-Línea 934: el nombre de la propiedad _ExtentX de Panel no es válido.
-Línea 935: el nombre de la propiedad _ExtentY de Panel no es válido.
-Línea 936: el nombre de la propiedad _Version de Panel no es válido.
-Línea 947: el nombre de la propiedad Panels de Panel no es válido.

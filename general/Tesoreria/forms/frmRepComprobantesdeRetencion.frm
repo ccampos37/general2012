@@ -14,7 +14,7 @@ Begin VB.Form frmRepComprobantesRetencion
       Caption         =   "&Aceptar"
       Height          =   360
       Index           =   0
-      Left            =   1545
+      Left            =   1560
       TabIndex        =   5
       Top             =   2100
       Width           =   1440
@@ -23,7 +23,7 @@ Begin VB.Form frmRepComprobantesRetencion
       Caption         =   "&Cancelar"
       Height          =   360
       Index           =   1
-      Left            =   2910
+      Left            =   3150
       TabIndex        =   4
       Top             =   2100
       Width           =   1440
@@ -37,7 +37,7 @@ Begin VB.Form frmRepComprobantesRetencion
       _ExtentX        =   3254
       _ExtentY        =   529
       _Version        =   393216
-      Format          =   25493505
+      Format          =   110034945
       CurrentDate     =   37474
    End
    Begin MSComCtl2.DTPicker DTPickerFecInicio 
@@ -49,7 +49,7 @@ Begin VB.Form frmRepComprobantesRetencion
       _ExtentX        =   2805
       _ExtentY        =   529
       _Version        =   393216
-      Format          =   25493505
+      Format          =   110034945
       CurrentDate     =   37474
    End
    Begin VB.Label Label1 
@@ -75,6 +75,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim tipdoc As String
 
 Private Sub Form_Load()
   Dim cFecha As Date
@@ -95,21 +96,37 @@ Private Sub cmdBotones_Click(Index As Integer)
 End Sub
 
 Sub ImpresionComprobantesEmitidos()
+Attribute ImpresionComprobantesEmitidos.VB_Description = "tipodocumento"
 Dim arrform() As Variant, arrparm() As Variant
-Dim dato As String
+Dim dato1 As String
+Dim tipo As String
 ReDim arrparm(5)
-ReDim arrform(1)
+ReDim arrform(2)
 
+Set xsql = New ADODB.Recordset
 arrparm(0) = VGParamSistem.BDEmpresa
 arrparm(1) = "%%"
-arrparm(2) = VGParametros.empresacodigoretencion
+If tipdoc = 1 Then
+   tipo = VGParametros.empresacodigoretencion
+Else
+   tipo = VGParametros.empresacodigodetraccion
+End If
+arrparm(2) = tipo
+SQL = "select * from cp_tipodocumento where tdocumentocodigo='" & tipo & "'"
+Set xsql = VGCNx.Execute(SQL)
+
 arrparm(3) = Format(DTPickerFecInicio.Value, "dd/mm/yyyy")
 arrparm(4) = Format(DTPickerFecFinal.Value, "dd/mm/yyyy")
 
-dato = "Del : " & DTPickerFecInicio & " Al : " & DTPickerFecFinal
-arrform(0) = "dato='" & dato & "'"
+dato1 = "Del : " & DTPickerFecInicio & " Al : " & DTPickerFecFinal
+arrform(0) = "dato='" & dato1 & "'"
+arrform(1) = "descripcion='" & xsql!tdocumentodescripcion & "'"
 
 Call ImpresionRptProc("te_ListadoComprobantesRetencion.rpt ", arrform, arrparm)
 
 End Sub
 
+
+Public Property Let tipodocumento(ByVal dato As Variant)
+  tipdoc = dato
+End Property

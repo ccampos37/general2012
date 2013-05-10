@@ -22,7 +22,7 @@ Public VGflaglimpia As Boolean               'Flag que Limpia
 Public VGMoverRegistro As Boolean            'Flag al mover el registro
 Public VGvarVerifica As Boolean              'Flag Verifica que transaccion es OK (Grabar ,Etc)
 Public VGErrorString As String               'Almacena el Error el que hubo en alguna transaccion
-Public VGoficina As String * 3
+Public VGoficina As String
 Public VGCommandoSP As ADODB.Command         'De Comando
 Public VGvardllgen As dllgeneral.dll_general 'Dll de Algunas funciones
 
@@ -41,35 +41,35 @@ Private Type ParametrosdeTesoreria        ' Crea Datos de Empresa
    NomEmpresa As String
    RucEmpresa As String
    auxaut As Boolean
-   monedabase As String * 2
+   monedabase As String
    ctascompra As String
    igv As Double
    minimoretencion As Double
-   empresacodigo As String * 2
-   puntovta As String * 2
+   empresacodigo As String
+   puntovta As String
    numeracionautomaticalibro As Boolean
    
    sistemaasientoenlinea As Boolean
-   descripcion As String * 30
+   descripcion As String
    tipocambio As Double
-   controlarefe As String * 1
-   numeauto As String * 1
-   controlacodigocaja As String * 1
-   saldocontadispo As String * 1
-   controlacobranzacheq As String * 1
-   impresioncheq As String * 1
-   listaclientes As String * 1
-   listaproveedor As String * 1
-   controlacuenta As String * 1
-   transferencia As String * 1
-   transferenciaegreso As String * 2
-   transferenciaingreso As String * 2
-   codigooperaciontransferencia As String * 2
+   controlarefe As String
+   numeauto As String
+   controlacodigocaja As String
+   saldocontadispo As String
+   controlacobranzacheq As String
+   impresioncheq As String
+   listaclientes As String
+   listaproveedor As String
+   controlacuenta As String
+   transferencia As String
+   transferenciaegreso As String
+   transferenciaingreso As String
+   codigooperaciontransferencia As String
    
    sistemaactivaccostos As Boolean
    sistemactrlgastos As Boolean
    sistemamultiempresas As Boolean
-   sistemaultimonivel As String * 1
+   sistemaultimonivel As String
    sistemactaajustedeb As String
    sistemactaajustehab As String
        
@@ -89,10 +89,11 @@ Private Type ParametrosdeTesoreria        ' Crea Datos de Empresa
     AsientoAutoxCCostos As Integer
 
    porcentajeretencion As Double
-   empresacodigoretencion As String * 2
-   empresaretencion As String * 1
+   empresacodigodetraccion As String
+   empresacodigoretencion As String
+   empresaretencion As String
    sistemaminimoretencion As Double
-   sistemanumnivelcosto As String * 1
+   sistemanumnivelcosto As String
    sistemabancarizacion As Boolean
    sistemabancarizacion01 As Double
    sistemabancarizacion02 As Double
@@ -278,6 +279,7 @@ Public Sub Cargar_Parametros_Funcionales()
         VGParametros.transferenciaegreso = Escadena(rsaux!empresatransaccionegreso)
         VGParametros.transferenciaingreso = Escadena(rsaux!empresatransaccioningreso)
         VGParametros.empresacodigoretencion = Escadena(rsaux!empresacodigoretencion)
+        VGParametros.empresacodigodetraccion = Escadena(rsaux!empresacodigodetraccion)
         VGParametros.porcentajeretencion = numero(rsaux!porcentajeretencion)
         VGParametros.empresaretencion = numeroEntero(rsaux!empresaretencion)
         VGParametros.codigooperaciontransferencia = Escadena(rsaux!codigooperaciontransferencia)

@@ -173,7 +173,7 @@ Begin VB.Form frmlogin
          _ExtentX        =   2566
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   97386497
+         Format          =   3801089
          CurrentDate     =   39104
       End
       Begin VB.Label Label1 
@@ -338,7 +338,7 @@ If DTPfecha > Date Then
 End If
 
 
-Call CargarParametrosCompras
+Call CargarParametros
 
 If VGParametros.sistemamultiempresas Then
  VGParametros.empresacodigo = Left(Combo2.text, 2)
@@ -387,7 +387,7 @@ If clave < 4 Then
         MDIPrincipal.StatusBar1.Panels.item(5) = "Fecha:  " & VGParamSistem.fechatrabajo
         MDIPrincipal.StatusBar1.Panels.item(6) = "Pto de Venta:  " & VGParametros.puntovta & " - " & RsPvta!puntovtadescripcion
                
-        vgtipo = TIPOSISTEMA.INVENTARIOS
+        vgtipo = TIPOSISTEMA.inventarios
         Clsmenu.TablaMenu = "si_menu"
         Clsmenu.CrearTablaMenu
         Clsmenu.TabaMenuDet = "si_menuusuarios"
@@ -504,12 +504,12 @@ If Combo1.ListCount > 0 Then
          VGParamSistem.BDEmpresaCT = VGdllApi.LeerIni(App.Path & "\MARFICE.INI", "CONTABILIDAD", "BDDATOS", "?")
          If VGParamSistem.BDEmpresaCT = "" And basect <> VGParamSistem.BDEmpresa Then
             VGParamSistem.BDEmpresaCT = VGParamSistem.BDEmpresa
-            Set VGcnxCT = New ADODB.Connection
-            VGcnxCT.CursorLocation = adUseClient
-            VGcnxCT.CommandTimeout = 0
-            VGcnxCT.ConnectionTimeout = 0
-            VGcnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioCT & ";Password=" & VGParamSistem.PwdCT & ";Initial Catalog=" & VGParamSistem.BDEmpresaCT & ";Data Source=" & VGParamSistem.ServidorCT
-            VGcnxCT.Open
+            Set VGCnxCT = New ADODB.Connection
+            VGCnxCT.CursorLocation = adUseClient
+            VGCnxCT.CommandTimeout = 0
+            VGCnxCT.ConnectionTimeout = 0
+            VGCnxCT.ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=False;User ID=" & VGParamSistem.UsuarioCT & ";Password=" & VGParamSistem.PwdCT & ";Initial Catalog=" & VGParamSistem.BDEmpresaCT & ";Data Source=" & VGParamSistem.ServidorCT
+            VGCnxCT.Open
          End If
       End If
     Else
@@ -582,9 +582,9 @@ Private Sub Form_Load()
 Me.Cls
 clave = 1
 central Me
-ADOCONECTAR
+ADOConectar
 DTPfecha.Value = Date
-SQL = " select * from si_sistema where tipodesistema =" & TIPOSISTEMA.INVENTARIOS & ""
+SQL = " select * from si_sistema where tipodesistema =" & TIPOSISTEMA.inventarios & ""
 Set REG1 = VGConfig.Execute(SQL)
 If REG1.RecordCount > 0 Then Label1(0) = RTrim(REG1!tipodesistemadescripcion) + " : " + REG1!anno + "." + REG1!Version
 Set REG1 = New ADODB.Recordset

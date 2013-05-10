@@ -45,7 +45,7 @@ Begin VB.Form FrmGenerasaldosini
       Requerido       =   0   'False
    End
    Begin VB.Label Label1 
-      BackColor       =   &H80000009&
+      BackColor       =   &H80000004&
       Caption         =   "Cuenta de Resultados para el actual ejercicio"
       Height          =   495
       Left            =   360
@@ -69,7 +69,7 @@ Private Sub Command2_Click()
 End Sub
 
 Private Sub Form_Load()
-    Call Ctr_AyudaCuenta.conexion(VGCNx): Ctr_AyudaCuenta.Filtro = "empresacodigo ='" & VGParametros.empresacodigo & "'"
+    Call Ctr_AyudaCuenta.Conexion(VGCNx): Ctr_AyudaCuenta.Filtro = "empresacodigo ='" & VGParametros.empresacodigo & "'"
 End Sub
 Private Function ValidaIngreso() As Boolean
 ValidaIngreso = False

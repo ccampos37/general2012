@@ -575,7 +575,11 @@ Private Sub Form_Load()
   Set rs = VGCNx.Execute(SQL)
   
   Combo2.Clear
-  SQL = "select TAALMA,TADESCRI from tabalm where puntovtacodigo in (" & VGParametros.listaPuntoVtas & ")"
+  If VGParametros.listaPuntoVtas <> "" Then
+     SQL = "select TAALMA,TADESCRI from tabalm where puntovtacodigo in (" & VGParametros.listaPuntoVtas & ")"
+    Else
+     SQL = "select TAALMA,TADESCRI from tabalm "
+  End If
   Set rsc = VGCNx.Execute(SQL)
   If rsc.RecordCount > 0 Then
       rsc.MoveFirst

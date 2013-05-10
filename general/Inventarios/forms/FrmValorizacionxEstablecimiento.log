@@ -1,12 +1,2 @@
 Línea 106: la clase MSComctlLib.ProgressBar del control BarraProc no era una clase de control cargada.
 Línea 142: la clase MSComctlLib.ProgressBar del control BarraProc1 no era una clase de control cargada.
-Línea 113: el nombre de la propiedad _ExtentX de BarraProc no es válido.
-Línea 114: el nombre de la propiedad _ExtentY de BarraProc no es válido.
-Línea 115: el nombre de la propiedad _Version de BarraProc no es válido.
-Línea 117: el nombre de la propiedad Min de BarraProc no es válido.
-Línea 118: el nombre de la propiedad Max de BarraProc no es válido.
-Línea 149: el nombre de la propiedad _ExtentX de BarraProc1 no es válido.
-Línea 150: el nombre de la propiedad _ExtentY de BarraProc1 no es válido.
-Línea 151: el nombre de la propiedad _Version de BarraProc1 no es válido.
-Línea 153: el nombre de la propiedad Min de BarraProc1 no es válido.
-Línea 154: el nombre de la propiedad Max de BarraProc1 no es válido.

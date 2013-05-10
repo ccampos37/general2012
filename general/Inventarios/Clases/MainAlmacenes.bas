@@ -40,7 +40,6 @@ Public VGBase3 As String
 Public VGbase4 As String
 Public VGCommandoSP As ADODB.Command         'De Comando
 
-Public VGdllApi As dll_apisgen.dll_apis
 Public VGvardllgen As dllgeneral.dll_general 'Dll de Algunas funciones
 
 Public GPunto As String   'punto de venta
@@ -154,7 +153,7 @@ Public Type Parametrosdeempresa
     permite_tc As Boolean
     TipoValorizacion As Integer  ' 1: empresa 2' x establecimiento
     
-     
+    multiplespuntovta As Integer
  
  VGLongCodigo As Integer    'Inddica la long de codigo de un articulo
  NomEmpresa As String
@@ -188,6 +187,8 @@ Public Type Parametrosdeempresa
  multiboletas As Boolean
  multifacturas As Boolean
  multiguias As Boolean
+ 
+ listaPuntoVtas As String
 End Type
 
 
@@ -247,7 +248,10 @@ Public Type ParametrosdeSistema
     UsuarioGEN As String
     PwdGEN As String
     
+    BDempresaCONF As String
+    
     carpetareportes As String
+    UsuarioReporte As String
     
     tipoanaliticocodigo As String
 End Type

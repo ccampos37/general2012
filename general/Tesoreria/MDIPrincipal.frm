@@ -78,8 +78,8 @@ Begin VB.MDIForm MDIPrincipal
       TabIndex        =   0
       Top             =   0
       Visible         =   0   'False
-      Width           =   18960
-      _ExtentX        =   33443
+      Width           =   12075
+      _ExtentX        =   21299
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -154,9 +154,9 @@ Begin VB.MDIForm MDIPrincipal
       Height          =   330
       Left            =   0
       TabIndex        =   1
-      Top             =   10785
-      Width           =   18960
-      _ExtentX        =   33443
+      Top             =   7185
+      Width           =   12075
+      _ExtentX        =   21299
       _ExtentY        =   582
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -195,7 +195,7 @@ Begin VB.MDIForm MDIPrincipal
          EndProperty
          BeginProperty Panel6 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   11104
+            Object.Width           =   4410
             MinWidth        =   4410
             Picture         =   "MDIPrincipal.frx":1800
             Text            =   "Base de Datos"
@@ -920,6 +920,12 @@ Private Sub opc36_Click()
 Frmreplistgastos.Show 1
 End Sub
 Private Sub opc371_Click()
+frmRepComprobantesRetencion.tipodocumento = 1
+frmRepComprobantesRetencion.Show
+End Sub
+
+Private Sub opc372_Click()
+frmRepComprobantesRetencion.tipodocumento = 2
 frmRepComprobantesRetencion.Show
 End Sub
 

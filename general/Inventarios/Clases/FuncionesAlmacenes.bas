@@ -159,9 +159,9 @@ With FrmValorizacionArticulos
 '        End If
     
     If Trim(.CtrAyu_moneda.xclave) = "02" Then
-       montosoles = IIf(.TxTotTotal.Valor = "", 0, .TxTotTotal.Valor * montosoles)
+       montosoles = IIf(.TxTotTotal.valor = "", 0, .TxTotTotal.valor * montosoles)
      Else
-       montosoles = IIf(.TxTotTotal.Valor = "", 0, .TxTotTotal.Valor)
+       montosoles = IIf(.TxTotTotal.valor = "", 0, .TxTotTotal.valor)
     End If
     .Emiteretencion = "0"
     If Not .buencontribuyente = True And .comprainafecta = 0 Then
@@ -203,12 +203,12 @@ With FrmValorizacionArticulos
             Exit Function
         End If
     If VGParametros.sistemabancarizacion = True And .ChkActCaja = 1 Then
-       If .CtrAyu_moneda.xclave = "01" And .TxTotTotal.Valor > VGParametros.sistemabancarizacion01 Then
+       If .CtrAyu_moneda.xclave = "01" And .TxTotTotal.valor > VGParametros.sistemabancarizacion01 Then
            MsgBox "Tiene que Seleccionar Modo Proveedores por Bancarizacion de Soles Mayor a " & VGParametros.sistemabancarizacion01, vbInformation
           .CtrAyu_Modoprovi.SetFocus
             Exit Function
         End If
-       If .CtrAyu_moneda.xclave = "02" And .TxTotTotal.Valor > VGParametros.sistemabancarizacion02 Then
+       If .CtrAyu_moneda.xclave = "02" And .TxTotTotal.valor > VGParametros.sistemabancarizacion02 Then
            MsgBox "Tiene que Seleccionar Modo Proveedores por Bancarizacion de dolares  Mayor a " & VGParametros.sistemabancarizacion02, vbInformation
           .CtrAyu_Modoprovi.SetFocus
             Exit Function
@@ -231,19 +231,19 @@ On Error GoTo ErrorGrabaCabecera
         .Parameters("@base") = VGParamSistem.BDEmpresa
         .Parameters("@tabla") = VGParamSistem.TablaCabcomprob
         .Parameters("@op") = op
-        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
+        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.mesproceso) Then
            .Parameters("@cabproviano") = Year(FrmValorizacionArticulos.DTPFechaContab)
            .Parameters("@cabprovimes") = Month(FrmValorizacionArticulos.DTPFechaContab)
          Else
             .Parameters("@cabproviano") = VGParamSistem.AnoProceso
-            .Parameters("@cabprovimes") = Val(VGParamSistem.MesProceso)
+            .Parameters("@cabprovimes") = Val(VGParamSistem.mesproceso)
         End If
         .Parameters("@cabprovinumero") = numero
         'Este para que al eliminar no utilizar estos parametros
         If op <= 2 Then
             .Parameters("@proveedorcodigo") = Trim(FrmValorizacionArticulos.CtrAyu_Proveedor.xclave)
             .Parameters("@cabprovirznsoc") = Left(Trim(FrmValorizacionArticulos.CtrAyu_Proveedor.xnombre), 50)
-            .Parameters("@cabproviruc") = FrmValorizacionArticulos.TxRuc.text
+            .Parameters("@cabproviruc") = FrmValorizacionArticulos.txRuc.text
             .Parameters("@monedacodigo") = FrmValorizacionArticulos.CtrAyu_moneda.xclave
             .Parameters("@modoprovicod") = FrmValorizacionArticulos.CtrAyu_Modoprovi.xclave
             .Parameters("@documetocodigo") = FrmValorizacionArticulos.CtrAyu_TipDoc.xclave
@@ -256,12 +256,12 @@ On Error GoTo ErrorGrabaCabecera
             .Parameters("@cabprovifchven") = FrmValorizacionArticulos.DtpFech_Ven.Value
             '.Parameters("@cabproviitem") = 0
             .Parameters("@tipocompracodigo") = FrmValorizacionArticulos.CtrAyu_TipCompra.xclave
-            .Parameters("@cabprovitotbru") = CDbl(FrmValorizacionArticulos.TxTotBruto.Valor)
+            .Parameters("@cabprovitotbru") = CDbl(FrmValorizacionArticulos.TxTotBruto.valor)
             '.Parameters("@cabprovitotdcto") = 0
             '.Parameters("@cabprovitotven") = 0
-            .Parameters("@cabprovitotigv") = CDbl(FrmValorizacionArticulos.TxTotIGV.Valor)
-            .Parameters("@cabprovitotinaf") = CDbl(FrmValorizacionArticulos.TxTotInafecto.Valor)
-            .Parameters("@cabprovitotal") = CDbl(FrmValorizacionArticulos.TxTotTotal.Valor)
+            .Parameters("@cabprovitotigv") = CDbl(FrmValorizacionArticulos.TxTotIGV.valor)
+            .Parameters("@cabprovitotinaf") = CDbl(FrmValorizacionArticulos.TxTotInafecto.valor)
+            .Parameters("@cabprovitotal") = CDbl(FrmValorizacionArticulos.TxTotTotal.valor)
             '.Parameters("@cabprovitotcxp") = 0
             '.Parameters("@cabprovitipigv") = 0
             .Parameters("@cabprovifchconta") = FrmValorizacionArticulos.Dtp_FechaDoc.Value
@@ -351,7 +351,7 @@ Set VGvardllgen = New dllgeneral.dll_general
             .Parameters("@zona") = Null
             .Parameters("@apefecemi") = FrmValorizacionArticulos.Dtp_FechaDoc.Value
             .Parameters("@moneda") = FrmValorizacionArticulos.CtrAyu_moneda.xclave
-            .Parameters("@apeimppag") = CDbl(FrmValorizacionArticulos.TxTotTotal.Valor)
+            .Parameters("@apeimppag") = CDbl(FrmValorizacionArticulos.TxTotTotal.valor)
             .Parameters("@usuario") = VGUsuario
             .Parameters("@tipocambio") = CDbl(FrmValorizacionArticulos.lb_vcambio.Caption)
             .Parameters("@fechaact") = Now
@@ -393,12 +393,12 @@ Set VGvardllgen = New dllgeneral.dll_general
         .Parameters("@base") = VGParamSistem.BDEmpresa
         .Parameters("@tabla") = VGParamSistem.tabladetcomprob
         .Parameters("@cabprovinumero") = numero
-        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
+        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.mesproceso) Then
            .Parameters("@cabproviano") = Year(FrmValorizacionArticulos.DTPFechaContab)
            .Parameters("@cabprovimes") = Month(FrmValorizacionArticulos.DTPFechaContab)
          Else
           .Parameters("@cabproviano") = VGParamSistem.AnoProceso
-          .Parameters("@cabprovimes") = CInt(VGParamSistem.MesProceso)
+          .Parameters("@cabprovimes") = CInt(VGParamSistem.mesproceso)
         End If
         If VGParametros.sistemamultiempresas = True Then
               .Parameters("@empresa") = Trim(FrmValorizacionArticulos.Ctr_Ayuempresa.xclave)
@@ -412,10 +412,10 @@ Set VGvardllgen = New dllgeneral.dll_general
     While Not RSAUX.EOF
         With VGCommandoSP
             .Parameters("@cabprovinumero") = numero
-            If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
+            If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.mesproceso) Then
                .Parameters("@cabprovimes") = Month(FrmValorizacionArticulos.DTPFechaContab)
              Else
-               .Parameters("@cabprovimes") = CInt(VGParamSistem.MesProceso)
+               .Parameters("@cabprovimes") = CInt(VGParamSistem.mesproceso)
             End If
             .Parameters("@op") = 1
             .Parameters("@detproviitem") = "001"  'RSAUX!item
@@ -469,7 +469,7 @@ On Error GoTo genasiento
         .Parameters("@BaseConta") = VGParamSistem.BDEmpresaCT
         .Parameters("@BaseCompra") = VGParamSistem.BDEmpresa
         .Parameters("@Ano") = VGParamSistem.AnoProceso
-        .Parameters("@Mes") = VGParamSistem.MesProceso
+        .Parameters("@Mes") = VGParamSistem.mesproceso
         .Parameters("@tipanal") = VGParametros.xTipAnal
         .Parameters("@User") = VGParamSistem.Usuario
         .Parameters("@Nprovi") = Nprovi
@@ -488,10 +488,10 @@ On Error GoTo genasiento
         .Parameters("@BaseCompra") = VGParamSistem.BDEmpresa
         .Parameters("@SubAsiento") = VGParametros.xsubasiento
         .Parameters("@Libro") = VGParametros.xLibro
-        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
+        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.mesproceso) Then
            .Parameters("@mes") = Format(Month(FrmValorizacionArticulos.DTPFechaContab), "00")
          Else
-           .Parameters("@mes") = Format(VGParamSistem.MesProceso, "00")
+           .Parameters("@mes") = Format(VGParamSistem.mesproceso, "00")
         End If
         .Parameters("@Ano") = VGParamSistem.AnoProceso
         .Parameters("@ctatotal") = VGParametros.xCtaTotal
@@ -518,10 +518,10 @@ On Error GoTo genasiento
     With VGCommandoSP
         .Parameters("@BaseConta") = VGParamSistem.BDEmpresaCT
         .Parameters("@BaseCompra") = VGParamSistem.BDEmpresa
-        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
+        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.mesproceso) Then
            .Parameters("@mes") = Format(Month(FrmValorizacionArticulos.DTPFechaContab), "00")
          Else
-           .Parameters("@mes") = Format(VGParamSistem.MesProceso, "00")
+           .Parameters("@mes") = Format(VGParamSistem.mesproceso, "00")
         End If
         .Parameters("@Ano") = VGParamSistem.AnoProceso
         .Parameters("@Nprovi") = Nprovi
@@ -539,10 +539,10 @@ On Error GoTo genasiento
         .Parameters("@BaseCompra") = VGParamSistem.BDEmpresa
         .Parameters("@BaseConta") = VGParamSistem.BDEmpresaCT
         .Parameters("@Asiento") = "081"
-        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.MesProceso) Then
+        If Month(FrmValorizacionArticulos.DTPFechaContab) <> Val(VGParamSistem.mesproceso) Then
            .Parameters("@mes") = Format(Month(FrmValorizacionArticulos.DTPFechaContab), "00")
          Else
-           .Parameters("@mes") = Format(VGParamSistem.MesProceso, "00")
+           .Parameters("@mes") = Format(VGParamSistem.mesproceso, "00")
         End If
         .Parameters("@Ano") = VGParamSistem.AnoProceso
         .Parameters("@Nprovi") = Nprovi
@@ -557,7 +557,7 @@ genasiento:
     VGvarVerifica = False
     vgerrorstring = "Error en Grabar Cabecera " & Chr(13) & Err.Description
 End Sub
-Public Sub CargarParametrosCompras()
+Public Sub CargarParametros()
 Dim RSAUX As ADODB.Recordset
     
 Set RSAUX = New ADODB.Recordset
@@ -606,7 +606,7 @@ If RSAUX.RecordCount = 0 Then Exit Sub
 VGParamSistem.tipoanaliticocodigo = RSAUX!tipoanaliticocodigo
     
 Set RSAUX = New ADODB.Recordset
-RSAUX.Open "select sistemaultimonivel,sistemaultimonivelcostos from  ct_sistema", VGcnxCT, adOpenKeyset, adLockReadOnly
+RSAUX.Open "select sistemaultimonivel,sistemaultimonivelcostos from  ct_sistema", VGCnxCT, adOpenKeyset, adLockReadOnly
 If RSAUX.RecordCount = 0 Then Exit Sub
 VGnumniveles = RSAUX!sistemaultimonivel
 VGnumnivcos = ESNULO(RSAUX!sistemaultimonivelcostos, 1)
@@ -1447,7 +1447,7 @@ Public Sub EliminaIndice(ByVal BaseDeDatos As String, ByVal NombreTabla As Strin
 End Sub
 
 Function UltimoCierreFech(ByVal xfecha As Date) As Date
-Dim rs2 As New ADODB.Recordset
+Dim Rs2 As New ADODB.Recordset
 Dim RSQL As String
 Dim CIERRE, Anio, mes As String
 Dim lFecha As Date
@@ -1717,7 +1717,7 @@ End Sub
 
 
 
-Sub ImpresionRptCad(reporte As CrystalReport, cNombreReporte As String, PFormulas(), Param(), Optional ORDEN As String, Optional titulo As String, Optional Seleccion As String)
+Sub ImpresionRptCad(Reporte As CrystalReport, cNombreReporte As String, PFormulas(), Param(), Optional ORDEN As String, Optional titulo As String, Optional Seleccion As String)
 Dim i As Integer
 Dim sServer As String
 Dim sBase As String
@@ -1742,7 +1742,7 @@ On Error GoTo procImpresionRptError
     sRutaReportes = sGetIni(App.Path & "\wenco.ini", "CONFIG", "rpt ", "?")
     If Trim(sRutaReportes) = "?" Then sRutaReportes = "C:\WENCO\REPORTES\"
     Screen.MousePointer = 11
-    With reporte
+    With Reporte
         .Reset
         .Destination = crptToWindow
         .WindowState = crptMaximized
@@ -1776,7 +1776,7 @@ procImpresionRptError:
   Screen.MousePointer = 1
   MsgBox "Error inesperado: " & Err.Number & "  " & Err.Description, vbExclamation
 End Sub
-Sub ImpresionRptdefault(reporte As CrystalReport, titulo)
+Sub ImpresionRptdefault(Reporte As CrystalReport, titulo)
 Dim i As Integer
 Dim sServer As String
 Dim sBase As String
@@ -1784,7 +1784,7 @@ Dim sUsuario As String
 Dim sPwd As String
 Dim sRutaReportes As String
 Screen.MousePointer = 11
-With reporte
+With Reporte
      .Reset
      .Destination = crptToWindow
      .WindowState = crptMaximized

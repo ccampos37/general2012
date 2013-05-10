@@ -1,4 +1,4 @@
-FrmSaldoxCliente = 132, 175, 916, 654, , 110, 135, 738, 604, C
+FrmSaldoxCliente = 132, 175, 916, 654, Z, 110, 135, 738, 604, C
 RptSaldoxVendedor = 88, 116, 758, 421, , 132, 162, 760, 631, C
 RptCtactexVendedor = 110, 110, 778, 482, , 154, 189, 782, 658, C
 RptPlanillaCobranza = 88, 88, 741, 396, , 176, 216, 804, 685, C
@@ -64,5 +64,5 @@ FuncionesCobrar = 110, 145, 967, 485,
 FrmrepPlanCompensaciones = 110, 145, 744, 633, , 88, 116, 722, 604, C
 MainCobrar = 52, 52, 664, 362, 
 ClassMenu = 52, 52, 663, 336, 
-Frmcliente = 78, 78, 689, 362, Z, 52, 52, 701, 336, C
+Frmcliente = 78, 78, 689, 362, , 52, 52, 701, 336, C
 ModificarCampos = 26, 26, 817, 310, 

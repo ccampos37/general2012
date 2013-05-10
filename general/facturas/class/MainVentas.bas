@@ -300,12 +300,9 @@ Public Sub Cargar_Parametros_Funcionales()
    If rs.RecordCount > 0 Then
      VGParamSistem.tipoanaliticocodigo = rs!tipoanaliticocodigo
      VGParamSistem.familiaproyectos = rs!familiaproyectos
-   End If
-   Set rs = VGCNx.Execute("select * from dbo.te_parametroempresa")
-   If rs.RecordCount > 0 Then
      VGParametros.empresaasientosautomaticos = ESNULO(rs!empresaasientosautomaticos, "0")
    End If
-If IsNumeric(VGParamSistem.AnoProceso) And IsNumeric(VGParametros.mesproceso) Then
+ If IsNumeric(VGParamSistem.AnoProceso) And IsNumeric(VGParametros.mesproceso) Then
         SQL = "select * from ct_cierremensual where empresacodigo='" & VGParametros.empresacodigo & "' and " _
         & " anio='" & VGParamSistem.AnoProceso & "' and mes=" & Trim(VGParametros.mesproceso) & " "
         Set rs = VGCNx.Execute(SQL)

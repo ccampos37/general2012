@@ -415,7 +415,7 @@ Begin VB.Form frmOrdenes
          _ExtentX        =   2355
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   40566785
+         Format          =   122814465
          CurrentDate     =   37015
       End
       Begin MSComCtl2.DTPicker txtEnt 
@@ -427,7 +427,7 @@ Begin VB.Form frmOrdenes
          _ExtentX        =   2355
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   40566785
+         Format          =   122814465
          CurrentDate     =   37015
       End
       Begin TextFer.TxFer lblRuc 
@@ -998,10 +998,10 @@ Private Sub CmdEli2_Click()
     Mensaje = "¿Desea quitar el artículo seleccionado?"
     If MsgBox(Mensaje, vbQuestion + vbYesNo + vbDefaultButton2, "Mensaje") = vbYes Then
         If Flex1.Rows - 1 = 1 Then
-            Dim I As Integer
+            Dim i As Integer
             
-            For I = 0 To 13
-                Flex1.TextMatrix(1, I) = ""
+            For i = 0 To 13
+                Flex1.TextMatrix(1, i) = ""
             Next
         Else
             Flex1.RemoveItem Flex1.Row
@@ -1014,8 +1014,8 @@ End Sub
 Private Sub cmdGra_Click()
     Dim SQLc As String
     Dim SQLd As String
-    Dim Rs2 As New ADODB.Recordset
-    Dim I As Integer
+    Dim rs2 As New ADODB.Recordset
+    Dim i As Integer
     Dim vFactor As Single, vCantid As Single
     Dim vPreuni As Single, vDscpor As Single
     Dim vDescto As Single, vIgv As Single
@@ -1089,9 +1089,9 @@ Private Sub cmdGra_Click()
          'unum = Format(Devolver_Dato(1, , " & trim(ctrayu_tipoordencodigo) & ", "tipoordencodigo", False,
          '      "ctnnumero"), "00000000000")
          SQLc = "select tipoordennumeracion from co_tipodeorden where tipoordencodigo='" & Trim(Ctrayu_tipoorden.xclave) & "' "
-         Set Rs2 = New ADODB.Recordset
-         Rs2.Open SQLc, VGCNx, adOpenKeyset, adLockReadOnly
-         unum = Rs2!tipoordennumeracion + 1
+         Set rs2 = New ADODB.Recordset
+         rs2.Open SQLc, VGCNx, adOpenKeyset, adLockReadOnly
+         unum = rs2!tipoordennumeracion + 1
           
           SQLc = "UPDATE co_tipodeorden SET tipoordennumeracion=" & unum & _
                 " WHERE tipoordencodigo='" & Trim(Ctrayu_tipoorden.xclave) & "' "
@@ -1111,39 +1111,39 @@ Private Sub cmdGra_Click()
                 "','" & txtEst & "')"
             VGCNx.Execute SQLc
             
-            For I = 1 To Flex1.Rows - 1
-                vFactor = Val(Flex1.TextMatrix(I, 6))
-                vCantid = Val(Flex1.TextMatrix(I, 4))
+            For i = 1 To Flex1.Rows - 1
+                vFactor = Val(Flex1.TextMatrix(i, 6))
+                vCantid = Val(Flex1.TextMatrix(i, 4))
                 If vCantid = 0 Then
                    vCantid = 1
                 End If
-                vPreuni = Val(Flex1.TextMatrix(I, 7))
-                vDscpor = Val(Flex1.TextMatrix(I, 9))
+                vPreuni = Val(Flex1.TextMatrix(i, 7))
+                vDscpor = Val(Flex1.TextMatrix(i, 9))
                 vDescto = IIf(vFactor > 0, vFactor / vCantid, 1) * vPreuni * vCantid * _
                     vDscpor / 100
-                vIgvpor = Val(Flex1.TextMatrix(I, 10))
-                vTotven = Val(Flex1.TextMatrix(I, 11))
+                vIgvpor = Val(Flex1.TextMatrix(i, 10))
+                vTotven = Val(Flex1.TextMatrix(i, 11))
                 vIgv = (vTotven - vDescto) * vIgvpor / 100
-                vPrenet = Val(Flex1.TextMatrix(I, 8)) * (1 - vDscpor / 100)
+                vPrenet = Val(Flex1.TextMatrix(i, 8)) * (1 - vDscpor / 100)
                 SQLd = "INSERT INTO co_detordcompra (tipoordencodigo,oc_cnumord,oc_ccodpro,oc_dfecdoc,oc_citem," & _
                   "oc_ccodigo,oc_ccodref,oc_cdesref,oc_cunidad,oc_cuniref,oc_nfactor," & _
                   "oc_ncantid,oc_nsaldo,oc_npreuni,oc_ndscpor,oc_ndescto,oc_nigv,oc_nigvpor," & _
                   "oc_nprenet,oc_ntotven,oc_ntotnet,estadooccodigo,ord_fabnum,oc_ccomen1, tipoarticulocodigo, " & _
                   "oc_ncanten)" & _
                   "VALUES ('" & Ctrayu_tipoorden.xclave & "','" & lblNum & "','" & txtPro & "','" & txtEmi _
-                  & "','" & Format(I, "000") & "','" & _
-                  Flex1.TextMatrix(I, 0) & "','" & Flex1.TextMatrix(I, 1) & "','" & _
-                  Flex1.TextMatrix(I, 2) & "','" & Flex1.TextMatrix(I, 3) & "','" & _
-                  Flex1.TextMatrix(I, 5) & "'," & vFactor & "," & vCantid & "," & vCantid & "," & _
+                  & "','" & Format(i, "000") & "','" & _
+                  Flex1.TextMatrix(i, 0) & "','" & Flex1.TextMatrix(i, 1) & "','" & _
+                  Flex1.TextMatrix(i, 2) & "','" & Flex1.TextMatrix(i, 3) & "','" & _
+                  Flex1.TextMatrix(i, 5) & "'," & vFactor & "," & vCantid & "," & vCantid & "," & _
                   vPreuni & "," & vDscpor & "," & vDescto & "," & vIgv & "," & _
                   vIgvpor & "," & vPrenet & "," & vTotven & "," & vTotven - vDescto + _
-                  vIgv & ",'0','" & Flex1.TextMatrix(I, 12) & "','" & _
-                  Flex1.TextMatrix(I, 13) & "','" & Flex1.TextMatrix(I, 14) & "',0)"
+                  vIgv & ",'0','" & Flex1.TextMatrix(i, 12) & "','" & _
+                  Flex1.TextMatrix(i, 13) & "','" & Flex1.TextMatrix(i, 14) & "',0)"
                 VGCNx.Execute SQLd
                 
-                SQLd = "UPDATE maeart SET aprecom=" & Val(Flex1.TextMatrix(I, 8)) & _
+                SQLd = "UPDATE maeart SET aprecom=" & Val(Flex1.TextMatrix(i, 8)) & _
                     ",acodpro='" & txtPro & "',afecven='" & txtEmi _
-                    & "' WHERE acodigo='" & Flex1.TextMatrix(I, 0) & "'"
+                    & "' WHERE acodigo='" & Flex1.TextMatrix(i, 0) & "'"
                 VGCNx.Execute SQLd
             Next
         ElseIf nT = 2 Then     'Modificar
@@ -1162,41 +1162,41 @@ Private Sub cmdGra_Click()
             SQLd = "DELETE co_detordcompra WHERE tipoordencodigo='" & Ctrayu_tipoorden.xclave & "' and oc_cnumord='" & lblNum & "'"
             VGCNx.Execute SQLd
             
-            For I = 1 To Flex1.Rows - 1
+            For i = 1 To Flex1.Rows - 1
                 vURef = ""
                 vFactor = 0
-                If Flex1.TextMatrix(I, 3) <> Flex1.TextMatrix(I, 5) Then
-                    vURef = Flex1.TextMatrix(I, 5)
-                    vFactor = Val(Flex1.TextMatrix(I, 6))
+                If Flex1.TextMatrix(i, 3) <> Flex1.TextMatrix(i, 5) Then
+                    vURef = Flex1.TextMatrix(i, 5)
+                    vFactor = Val(Flex1.TextMatrix(i, 6))
                 End If
-                vCantid = Val(Flex1.TextMatrix(I, 4))
-                vPreuni = Val(Flex1.TextMatrix(I, 7))
-                vDscpor = Val(Flex1.TextMatrix(I, 9))
+                vCantid = Val(Flex1.TextMatrix(i, 4))
+                vPreuni = Val(Flex1.TextMatrix(i, 7))
+                vDscpor = Val(Flex1.TextMatrix(i, 9))
                 vDescto = IIf(vFactor > 0, vFactor / vCantid, 1) * vPreuni * vCantid * _
                     vDscpor / 100
-                vIgvpor = Val(Flex1.TextMatrix(I, 10))
-                vTotven = Val(Flex1.TextMatrix(I, 11))
+                vIgvpor = Val(Flex1.TextMatrix(i, 10))
+                vTotven = Val(Flex1.TextMatrix(i, 11))
                 vIgv = (vTotven - vDescto) * vIgvpor / 100
-                vPrenet = Val(Flex1.TextMatrix(I, 8)) * (1 - vDscpor / 100)
+                vPrenet = Val(Flex1.TextMatrix(i, 8)) * (1 - vDscpor / 100)
                 SQLd = "INSERT INTO co_detordcompra (tipoordencodigo,oc_cnumord,oc_ccodpro,oc_dfecdoc,oc_citem," & _
                     "oc_ccodigo,oc_ccodref,oc_cdesref,oc_cunidad,oc_cuniref,oc_nfactor," & _
                     "oc_ncantid,oc_npreuni,oc_ndscpor,oc_ndescto,oc_nigv,oc_nigvpor," & _
                     "oc_nprenet,oc_ntotven,oc_ntotnet,estadooccodigo,ord_fabnum,oc_ccomen1,tipoarticulocodigo, " & _
                     "oc_ncanten,oc_nsaldo)" & _
                     "VALUES ('" & Ctrayu_tipoorden.xclave & "','" & lblNum & "','" & txtPro & "','" & txtEmi _
-                    & "','" & Format(I, "000") & "','" & _
-                    Flex1.TextMatrix(I, 0) & "','" & Flex1.TextMatrix(I, 1) & "','" & _
-                    Flex1.TextMatrix(I, 2) & "','" & Flex1.TextMatrix(I, 3) & "','" & _
+                    & "','" & Format(i, "000") & "','" & _
+                    Flex1.TextMatrix(i, 0) & "','" & Flex1.TextMatrix(i, 1) & "','" & _
+                    Flex1.TextMatrix(i, 2) & "','" & Flex1.TextMatrix(i, 3) & "','" & _
                     vURef & "'," & vFactor & "," & vCantid & "," & _
                     vPreuni & "," & vDscpor & "," & vDescto & "," & vIgv & "," & _
                     vIgvpor & "," & vPrenet & "," & vTotven & "," & vTotven - vDescto + _
-                    vIgv & ",'0','" & Flex1.TextMatrix(I, 12) & "','" & _
-                    Flex1.TextMatrix(I, 13) & "', '" & Flex1.TextMatrix(I, 14) & "',0," & vCantid & ")"
+                    vIgv & ",'0','" & Flex1.TextMatrix(i, 12) & "','" & _
+                    Flex1.TextMatrix(i, 13) & "', '" & Flex1.TextMatrix(i, 14) & "',0," & vCantid & ")"
                 VGCNx.Execute SQLd
                 
-                SQLd = "UPDATE maeart SET aprecom=" & Val(Flex1.TextMatrix(I, 8)) & _
+                SQLd = "UPDATE maeart SET aprecom=" & Val(Flex1.TextMatrix(i, 8)) & _
                     ",acodpro='" & txtPro & "',afecven='" & txtEmi _
-                    & "' WHERE acodigo='" & Flex1.TextMatrix(I, 0) & "'"
+                    & "' WHERE acodigo='" & Flex1.TextMatrix(i, 0) & "'"
                 VGCNx.Execute SQLd
             Next
         End If
@@ -1232,29 +1232,18 @@ GrabErr:
 End Sub
 
 Private Sub cmdImp_Click()
-Dim formulas(3) As String
+Dim aForm(1) As Variant
+Dim aparam(3) As Variant
 Dim tipoorden As String
+Dim report As String
+Dim letras As String
 unum = adodc1("oc_cnumord")
 tipoorden = adodc1("tipoordencodigo")
-CrystalReport1.Reset
-CrystalReport1.WindowTitle = "al_ordendecompra.rpt -- orden de compra"
 If VGParametros.sistemamultiempresas = 1 Then
-   CrystalReport1.ReportFileName = VGParamSistem.RutaReport & "al_ordendecompra" & Trim(VGCNx.DefaultDatabase) & ".rpt"
+   report = "al_ordendecompra" & Trim(VGCNx.DefaultDatabase) & ".rpt"
  Else
-   CrystalReport1.ReportFileName = VGParamSistem.RutaReport & "al_ordendecompra.rpt"
+   report = "al_ordendecompra.rpt"
 End If
-    CrystalReport1.DiscardSavedData = True
- 
-'   CrystalReport1.Connect = VGcadenareport2
-    CrystalReport1.Connect = "Provider=SQLOLEDB;Password=" & VGParamSistem.PwdGEN & ";Persist Security Info=True;User ID=" & VGParamSistem.UsuarioGEN & ";Initial Catalog=" & VGParamSistem.BDEmpresaGEN & ";SERVER=" & VGParamSistem.ServidorGEN
-    
-    CrystalReport1.Destination = crptToWindow
-    CrystalReport1.WindowState = crptMaximized
-    CrystalReport1.WindowShowPrintBtn = True
-    CrystalReport1.WindowShowRefreshBtn = True
-    CrystalReport1.WindowShowSearchBtn = True
-    CrystalReport1.WindowShowPrintSetupBtn = True
-    Dim letras As String
     letras = NUMLET(adodc1("oc_nventa"))
     If adodc1("oc_ccodmon") = "01" Then
       letras = letras + " Nuevos Soles "
@@ -1263,16 +1252,11 @@ End If
        Else
         letras = letras + " Dolares Americanos "
     End If
-    CrystalReport1.formulas(0) = "emp ='" & VGParametros.NomEmpresa & "'"
-    CrystalReport1.formulas(1) = "ruc ='" & VGParametros.RucEmpresa & "'"
-    CrystalReport1.formulas(2) = "letras ='" & letras & "'"
-    CrystalReport1.StoredProcParam(0) = VGCNx.DefaultDatabase
-    CrystalReport1.StoredProcParam(1) = tipoorden
-   CrystalReport1.StoredProcParam(2) = unum
-   If CrystalReport1.Status <> 2 Then
-      CrystalReport1.Action = 1
-   End If
-
+    aForm(0) = "letras ='" & letras & "'"
+    aparam(0) = VGCNx.DefaultDatabase
+    aparam(1) = tipoorden
+    aparam(2) = unum
+Call ImpresionRptProc(report, aForm, aparam, , "Impresion de ordenes")
 End Sub
 
 Private Sub cmdNue_Click()
@@ -1509,7 +1493,7 @@ Case 1 'Bd. Comun
 Case 2 'Bd. Config
             cSel1.Open cSL, VGCNx, adOpenStatic
 Case 3 'Bd. Contab
-            cSel1.Open cSL, VGcnxCT, adOpenStatic
+            cSel1.Open cSL, VGCnxCT, adOpenStatic
 End Select
 
 If cSel1.RecordCount > 0 Then
@@ -1538,7 +1522,7 @@ End Sub
 
 Sub Mostrar(cC1 As String)
     Dim cSqlM As String, cSelM As ADODB.Recordset
-    Dim k As Integer, I As Integer, vd As String
+    Dim k As Integer, i As Integer, vd As String
     Dim vpu As Single, txtPro As String
     Dim txtSol As String
     
@@ -1755,30 +1739,30 @@ Sub Estado_Items()
 End Sub
 
 Sub Vacia_FlexGrid()
-    Dim I As Integer
+    Dim i As Integer
     
     Do While Flex1.Rows - 1 > 1
         Flex1.RemoveItem 1
     Loop
     
-    For I = 0 To 14
-        Flex1.TextMatrix(1, I) = ""
+    For i = 0 To 14
+        Flex1.TextMatrix(1, i) = ""
     Next
 End Sub
 
 Sub Calcula_Totales()
-    Dim I As Integer
+    Dim i As Integer
     Dim tV As Single, valor As Single
     Dim tD As Single, vDesc As Single
     Dim tI As Single, vIgv As Single
     
     With Flex1
-        For I = 1 To Flex1.Rows - 1
-            tV = Val(.TextMatrix(I, 11))
+        For i = 1 To Flex1.Rows - 1
+            tV = Val(.TextMatrix(i, 11))
             valor = valor + tV
-            tD = tV * Val(.TextMatrix(I, 9)) / 100
+            tD = tV * Val(.TextMatrix(i, 9)) / 100
             vDesc = vDesc + tD
-            tI = (tV - tD) * Val(.TextMatrix(I, 10)) / 100
+            tI = (tV - tD) * Val(.TextMatrix(i, 10)) / 100
             vIgv = vIgv + tI
         Next
     End With

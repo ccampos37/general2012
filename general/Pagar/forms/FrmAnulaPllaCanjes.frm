@@ -24,12 +24,13 @@ Begin VB.Form FrmAnulaPllaCanjes
       _ExtentY        =   15954
       _Version        =   393216
       Tabs            =   2
+      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BackColor       =   0
       TabCaption(0)   =   "Datos Generales"
       TabPicture(0)   =   "FrmAnulaPllaCanjes.frx":0000
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Frame4"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Frame1"
@@ -37,9 +38,11 @@ Begin VB.Form FrmAnulaPllaCanjes
       Tab(0).ControlCount=   2
       TabCaption(1)   =   "Detalle"
       TabPicture(1)   =   "FrmAnulaPllaCanjes.frx":001C
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "Frame3"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Frame7"
+      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).ControlCount=   2
       Begin VB.Frame Frame1 
          BackColor       =   &H8000000B&
@@ -47,7 +50,7 @@ Begin VB.Form FrmAnulaPllaCanjes
          Caption         =   "sssssssssss"
          ForeColor       =   &H000000FF&
          Height          =   3600
-         Left            =   2280
+         Left            =   -72720
          TabIndex        =   18
          Top             =   2040
          Width           =   7545
@@ -252,7 +255,7 @@ Begin VB.Form FrmAnulaPllaCanjes
       Begin VB.Frame Frame7 
          BorderStyle     =   0  'None
          Height          =   4425
-         Left            =   -74670
+         Left            =   330
          TabIndex        =   9
          Top             =   4440
          Width           =   11295
@@ -276,7 +279,7 @@ Begin VB.Form FrmAnulaPllaCanjes
                Width           =   975
             End
             Begin VB.CommandButton cmdBotones 
-               Caption         =   "&Grabar"
+               Caption         =   "&Anular"
                Height          =   735
                Index           =   5
                Left            =   240
@@ -582,7 +585,7 @@ Begin VB.Form FrmAnulaPllaCanjes
       Begin VB.Frame Frame3 
          BorderStyle     =   0  'None
          Height          =   3795
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   4
          Top             =   360
          Width           =   11415
@@ -880,7 +883,7 @@ Begin VB.Form FrmAnulaPllaCanjes
       End
       Begin VB.Frame Frame4 
          Height          =   930
-         Left            =   5310
+         Left            =   -69690
          TabIndex        =   1
          Top             =   6360
          Width           =   1980
@@ -1008,13 +1011,13 @@ Private Sub cmdBotones_Click(Index As Integer)
                 If rb.RecordCount > 0 Then
                   xnumpag = rb!cargoapenumpag
                  Else
-                   xzona = "01": xmone = g_TipoSol: xnumpag = 1: xparcial = ""
+                   xzona = "01": xmone = g_tiposol: xnumpag = 1: xparcial = ""
                 End If
                 
                 ximpsol = CDbl(rsdetac1.Fields("importe"))
-                xtcam = DatoTipoCambio(VGcnxCT, MBox1.Text)               'TraeTipoCambio(Date, VGcnx)
+                xtcam = DatoTipoCambio(VGCnxCT, MBox1.Text)               'TraeTipoCambio(Date, VGcnx)
                 If rsdetac1.Fields("moneda") <> xmone Then
-                   If rsdetac1.Fields("moneda") = g_TipoSol Then
+                   If rsdetac1.Fields("moneda") = g_tiposol Then
                       ximpsol = CDbl(rsdetac1.Fields("importe")) / CDbl(xtcam)
                    Else
                       ximpsol = CDbl(rsdetac1.Fields("importe")) * CDbl(xtcam)
@@ -1025,8 +1028,8 @@ Private Sub cmdBotones_Click(Index As Integer)
                 DoEvents
 
                 '**** Actualizamos Saldos de documento pendiente
-                If rsdetac1.Fields("moneda") = g_TipoDolar Then
-                   If xmone = g_TipoSol Then
+                If rsdetac1.Fields("moneda") = g_tipodolar Then
+                   If xmone = g_tiposol Then
                        VGCNx.Execute "Update  cp_cargo Set cargoapeimppag=isnull(cargoapeimppag,0) -" & CDbl(rsdetac1.Fields("importe") / xtcam) & "," & _
                                    " cargoapenumpag='" & xnumpag - 1 & "'" & _
                                   " Where empresacodigo='" & Ctr_Ayuempresa.xclave & "' and documentocargo='" & rsdetac1.Fields(2) & "' and cargonumdoc='" & Trim$(rsdetac1.Fields(3) & rsdetac1.Fields(4)) & "' and " & _
@@ -1037,8 +1040,8 @@ Private Sub cmdBotones_Click(Index As Integer)
                                   " Where  empresacodigo='" & Ctr_Ayuempresa.xclave & "' and  documentocargo='" & rsdetac1.Fields(2) & "' and cargonumdoc='" & Trim$(rsdetac1.Fields(3) & rsdetac1.Fields(4)) & "' and " & _
                                   " clientecodigo='" & Trim$(rsdetac1.Fields("Cliente")) & "'"
                    End If
-                ElseIf rsdetac1.Fields("moneda") = g_TipoSol Then
-                   If xmone = g_TipoDolar Then
+                ElseIf rsdetac1.Fields("moneda") = g_tiposol Then
+                   If xmone = g_tipodolar Then
                        VGCNx.Execute "Update  cp_cargo Set cargoapeimppag=isnull(cargoapeimppag,0) - " & CDbl(rsdetac1.Fields("importe") * xtcam) & "," & _
                                   " cargoapenumpag='" & xnumpag - 1 & "'" & _
                                   " Where  empresacodigo='" & Ctr_Ayuempresa.xclave & "' and  documentocargo='" & rsdetac1.Fields(2) & "' and cargonumdoc='" & Trim$(rsdetac1.Fields(3) & rsdetac1.Fields(4)) & "' and " & _

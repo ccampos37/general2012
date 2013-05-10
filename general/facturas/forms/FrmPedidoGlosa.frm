@@ -24,7 +24,7 @@ Begin VB.Form FrmPedidoGlosa
       Height          =   8205
       Left            =   120
       TabIndex        =   9
-      Top             =   30
+      Top             =   150
       Width           =   12285
       _ExtentX        =   21669
       _ExtentY        =   14473
@@ -35,21 +35,21 @@ Begin VB.Form FrmPedidoGlosa
       TabCaption(0)   =   "Consulta"
       TabPicture(0)   =   "FrmPedidoGlosa.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "CmdBuscar"
-      Tab(0).Control(1)=   "TxtNro"
-      Tab(0).Control(2)=   "TxtCliente"
-      Tab(0).Control(3)=   "cmdBotones(0)"
-      Tab(0).Control(4)=   "cmdBotones(1)"
-      Tab(0).Control(5)=   "cmdBotones(2)"
-      Tab(0).Control(6)=   "cmdBotones(4)"
+      Tab(0).Control(0)=   "Label10"
+      Tab(0).Control(1)=   "Label11"
+      Tab(0).Control(2)=   "Label12"
+      Tab(0).Control(3)=   "LblReg"
+      Tab(0).Control(4)=   "DtFechaHasta"
+      Tab(0).Control(5)=   "DtFechaDesde"
+      Tab(0).Control(6)=   "Frame1"
       Tab(0).Control(7)=   "Fr1(1)"
-      Tab(0).Control(8)=   "Frame1"
-      Tab(0).Control(9)=   "DtFechaDesde"
-      Tab(0).Control(10)=   "DtFechaHasta"
-      Tab(0).Control(11)=   "LblReg"
-      Tab(0).Control(12)=   "Label12"
-      Tab(0).Control(13)=   "Label11"
-      Tab(0).Control(14)=   "Label10"
+      Tab(0).Control(8)=   "cmdBotones(4)"
+      Tab(0).Control(9)=   "cmdBotones(2)"
+      Tab(0).Control(10)=   "cmdBotones(1)"
+      Tab(0).Control(11)=   "cmdBotones(0)"
+      Tab(0).Control(12)=   "TxtCliente"
+      Tab(0).Control(13)=   "TxtNro"
+      Tab(0).Control(14)=   "CmdBuscar"
       Tab(0).ControlCount=   15
       TabCaption(1)   =   "Mantenimiento"
       TabPicture(1)   =   "FrmPedidoGlosa.frx":0028
@@ -74,22 +74,22 @@ Begin VB.Form FrmPedidoGlosa
       TabCaption(2)   =   "Ingreso Masivo"
       TabPicture(2)   =   "FrmPedidoGlosa.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Cmdsalirmasivo"
-      Tab(2).Control(1)=   "Cmdgrabamasivo"
-      Tab(2).Control(2)=   "Text4(3)"
-      Tab(2).Control(3)=   "Text7"
+      Tab(2).Control(0)=   "Label1(26)"
+      Tab(2).Control(1)=   "Label3(6)"
+      Tab(2).Control(2)=   "Label4(2)"
+      Tab(2).Control(3)=   "TDBGrid3"
       Tab(2).Control(4)=   "Text10"
-      Tab(2).Control(5)=   "TDBGrid3"
-      Tab(2).Control(6)=   "Label4(2)"
-      Tab(2).Control(7)=   "Label3(6)"
-      Tab(2).Control(8)=   "Label1(26)"
+      Tab(2).Control(5)=   "Text7"
+      Tab(2).Control(6)=   "Text4(3)"
+      Tab(2).Control(7)=   "Cmdgrabamasivo"
+      Tab(2).Control(8)=   "Cmdsalirmasivo"
       Tab(2).ControlCount=   9
       Begin VB.Frame Fr4 
          BackColor       =   &H00C9955A&
          BorderStyle     =   0  'None
          Height          =   3705
          Left            =   1560
-         TabIndex        =   158
+         TabIndex        =   156
          Top             =   4320
          Visible         =   0   'False
          Width           =   8790
@@ -98,7 +98,7 @@ Begin VB.Form FrmPedidoGlosa
             BorderStyle     =   0  'None
             Height          =   360
             Left            =   165
-            TabIndex        =   161
+            TabIndex        =   159
             Top             =   300
             Width           =   6750
             Begin VB.OptionButton cOpc2 
@@ -117,7 +117,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   465
                Index           =   4
                Left            =   5085
-               TabIndex        =   166
+               TabIndex        =   164
                Top             =   -45
                Width           =   1290
             End
@@ -137,7 +137,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   3
                Left            =   120
-               TabIndex        =   165
+               TabIndex        =   163
                Top             =   -30
                Width           =   975
             End
@@ -157,7 +157,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   2
                Left            =   4245
-               TabIndex        =   164
+               TabIndex        =   162
                Top             =   -30
                Width           =   735
             End
@@ -177,7 +177,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   1
                Left            =   2850
-               TabIndex        =   163
+               TabIndex        =   161
                Top             =   -30
                Width           =   1050
             End
@@ -197,7 +197,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   0
                Left            =   1335
-               TabIndex        =   162
+               TabIndex        =   160
                Top             =   -30
                Width           =   1155
             End
@@ -218,7 +218,7 @@ Begin VB.Form FrmPedidoGlosa
             Index           =   1
             Left            =   7290
             Style           =   1  'Graphical
-            TabIndex        =   160
+            TabIndex        =   158
             Top             =   2460
             Width           =   1185
          End
@@ -238,14 +238,14 @@ Begin VB.Form FrmPedidoGlosa
             Index           =   0
             Left            =   7290
             Style           =   1  'Graphical
-            TabIndex        =   159
+            TabIndex        =   157
             Top             =   1380
             Width           =   1185
          End
          Begin TextFer.TxFer TxFernumero 
             Height          =   315
             Left            =   4320
-            TabIndex        =   167
+            TabIndex        =   165
             Top             =   960
             Width           =   1815
             _ExtentX        =   3201
@@ -272,7 +272,7 @@ Begin VB.Form FrmPedidoGlosa
          Begin TextFer.TxFer TxFerimporte 
             Height          =   315
             Left            =   7140
-            TabIndex        =   168
+            TabIndex        =   166
             Top             =   960
             Width           =   1455
             _ExtentX        =   2566
@@ -299,7 +299,7 @@ Begin VB.Form FrmPedidoGlosa
          Begin TextFer.TxFer TxFermoneda 
             Height          =   315
             Left            =   6270
-            TabIndex        =   169
+            TabIndex        =   167
             Top             =   960
             Width           =   735
             _ExtentX        =   1296
@@ -326,7 +326,7 @@ Begin VB.Form FrmPedidoGlosa
          Begin ctrlayuda_f.Ctr_Ayuda Ctr_Ayuoperacion 
             Height          =   315
             Left            =   240
-            TabIndex        =   170
+            TabIndex        =   168
             Top             =   960
             Width           =   1740
             _ExtentX        =   3069
@@ -344,7 +344,7 @@ Begin VB.Form FrmPedidoGlosa
          Begin ctrlayuda_f.Ctr_Ayuda Ctr_Ayutipo 
             Height          =   315
             Left            =   2040
-            TabIndex        =   171
+            TabIndex        =   169
             Top             =   960
             Width           =   2100
             _ExtentX        =   3704
@@ -362,7 +362,7 @@ Begin VB.Form FrmPedidoGlosa
          Begin TrueOleDBGrid70.TDBGrid TDBpagos 
             Height          =   2055
             Left            =   240
-            TabIndex        =   172
+            TabIndex        =   170
             Top             =   1410
             Width           =   6735
             _ExtentX        =   11880
@@ -526,7 +526,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   195
             Index           =   28
             Left            =   270
-            TabIndex        =   177
+            TabIndex        =   175
             Top             =   690
             Width           =   735
          End
@@ -547,7 +547,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   195
             Index           =   10
             Left            =   2070
-            TabIndex        =   176
+            TabIndex        =   174
             Top             =   690
             Width           =   1065
          End
@@ -568,7 +568,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   195
             Index           =   9
             Left            =   6330
-            TabIndex        =   175
+            TabIndex        =   173
             Top             =   690
             Width           =   570
          End
@@ -589,7 +589,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   195
             Index           =   8
             Left            =   4380
-            TabIndex        =   174
+            TabIndex        =   172
             Top             =   690
             Width           =   555
          End
@@ -610,7 +610,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   195
             Index           =   7
             Left            =   7200
-            TabIndex        =   173
+            TabIndex        =   171
             Top             =   690
             Width           =   570
          End
@@ -743,7 +743,7 @@ Begin VB.Form FrmPedidoGlosa
          Index           =   11
          Left            =   9450
          Style           =   1  'Graphical
-         TabIndex        =   132
+         TabIndex        =   130
          Top             =   7140
          Width           =   1110
       End
@@ -762,7 +762,7 @@ Begin VB.Form FrmPedidoGlosa
          Index           =   12
          Left            =   10650
          Style           =   1  'Graphical
-         TabIndex        =   131
+         TabIndex        =   129
          Top             =   7140
          Width           =   1095
       End
@@ -770,7 +770,7 @@ Begin VB.Form FrmPedidoGlosa
          Caption         =   "Cancelar"
          Height          =   540
          Left            =   -64695
-         TabIndex        =   127
+         TabIndex        =   125
          Top             =   6525
          Width           =   972
       End
@@ -778,7 +778,7 @@ Begin VB.Form FrmPedidoGlosa
          Caption         =   "Grabar"
          Height          =   540
          Left            =   -66045
-         TabIndex        =   126
+         TabIndex        =   124
          Top             =   6570
          Width           =   972
       End
@@ -786,7 +786,7 @@ Begin VB.Form FrmPedidoGlosa
          Height          =   396
          Index           =   3
          Left            =   -69096
-         TabIndex        =   125
+         TabIndex        =   123
          Text            =   "Text4"
          Top             =   6645
          Visible         =   0   'False
@@ -795,7 +795,7 @@ Begin VB.Form FrmPedidoGlosa
       Begin VB.TextBox Text7 
          Height          =   396
          Left            =   -71064
-         TabIndex        =   124
+         TabIndex        =   122
          Text            =   "0"
          Top             =   6705
          Width           =   972
@@ -803,7 +803,7 @@ Begin VB.Form FrmPedidoGlosa
       Begin VB.TextBox Text10 
          Height          =   396
          Left            =   -74712
-         TabIndex        =   123
+         TabIndex        =   121
          Text            =   "Text1"
          Top             =   6705
          Width           =   972
@@ -822,7 +822,7 @@ Begin VB.Form FrmPedidoGlosa
          ForeColor       =   &H00800000&
          Height          =   735
          Left            =   120
-         TabIndex        =   108
+         TabIndex        =   106
          Top             =   7080
          Width           =   2895
          Begin VB.Label Label5 
@@ -839,7 +839,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   225
             Index           =   1
             Left            =   780
-            TabIndex        =   112
+            TabIndex        =   110
             Top             =   450
             Width           =   675
          End
@@ -857,7 +857,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   225
             Index           =   0
             Left            =   780
-            TabIndex        =   111
+            TabIndex        =   109
             Top             =   150
             Width           =   495
          End
@@ -883,7 +883,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   225
             Index           =   1
             Left            =   1470
-            TabIndex        =   110
+            TabIndex        =   108
             Top             =   450
             Width           =   1125
          End
@@ -902,7 +902,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   225
             Index           =   0
             Left            =   1470
-            TabIndex        =   109
+            TabIndex        =   107
             Top             =   150
             Width           =   1095
          End
@@ -924,7 +924,7 @@ Begin VB.Form FrmPedidoGlosa
          Height          =   1545
          Index           =   1
          Left            =   -70995
-         TabIndex        =   79
+         TabIndex        =   77
          Top             =   4005
          Visible         =   0   'False
          Width           =   4875
@@ -944,7 +944,7 @@ Begin VB.Form FrmPedidoGlosa
             Index           =   1
             Left            =   2565
             Style           =   1  'Graphical
-            TabIndex        =   83
+            TabIndex        =   81
             Top             =   990
             Width           =   1275
          End
@@ -964,7 +964,7 @@ Begin VB.Form FrmPedidoGlosa
             Index           =   0
             Left            =   1125
             Style           =   1  'Graphical
-            TabIndex        =   82
+            TabIndex        =   80
             Top             =   990
             Width           =   1275
          End
@@ -985,7 +985,7 @@ Begin VB.Form FrmPedidoGlosa
             Index           =   1
             Left            =   3060
             MaskColor       =   &H00FFFFFF&
-            TabIndex        =   81
+            TabIndex        =   79
             Top             =   405
             Width           =   1665
          End
@@ -1006,7 +1006,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   225
             Index           =   0
             Left            =   855
-            TabIndex        =   80
+            TabIndex        =   78
             Top             =   405
             Value           =   -1  'True
             Width           =   1125
@@ -1037,35 +1037,30 @@ Begin VB.Form FrmPedidoGlosa
          End
       End
       Begin TabDlg.SSTab SSTab2 
-         Height          =   3105
+         Height          =   3345
          Left            =   60
          TabIndex        =   50
-         Top             =   690
+         Top             =   450
          Width           =   12285
          _ExtentX        =   21669
-         _ExtentY        =   5477
+         _ExtentY        =   5900
          _Version        =   393216
          Style           =   1
-         Tab             =   1
          TabHeight       =   520
          TabCaption(0)   =   "Datos Generales"
          TabPicture(0)   =   "FrmPedidoGlosa.frx":19FA
-         Tab(0).ControlEnabled=   0   'False
+         Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Fr1(0)"
+         Tab(0).Control(0).Enabled=   0   'False
          Tab(0).ControlCount=   1
          TabCaption(1)   =   "Datos Detalle"
          TabPicture(1)   =   "FrmPedidoGlosa.frx":1A16
-         Tab(1).ControlEnabled=   -1  'True
+         Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "MBox(11)"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Fr2(0)"
-         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).Control(2)=   "TClie"
-         Tab(1).Control(2).Enabled=   0   'False
          Tab(1).Control(3)=   "Chkmasivo"
-         Tab(1).Control(3).Enabled=   0   'False
          Tab(1).Control(4)=   "Frame6"
-         Tab(1).Control(4).Enabled=   0   'False
          Tab(1).ControlCount=   5
          TabCaption(2)   =   "Datos Complementarios"
          TabPicture(2)   =   "FrmPedidoGlosa.frx":1A32
@@ -1073,17 +1068,35 @@ Begin VB.Form FrmPedidoGlosa
          Tab(2).Control(0)=   "Fr3(0)"
          Tab(2).ControlCount=   1
          Begin VB.Frame Frame6 
-            Height          =   1755
-            Left            =   0
-            TabIndex        =   178
-            Top             =   1200
+            Height          =   2115
+            Left            =   -75000
+            TabIndex        =   176
+            Top             =   1320
             Width           =   11415
+            Begin VB.TextBox Text6 
+               Height          =   1725
+               Left            =   4560
+               MaxLength       =   254
+               MultiLine       =   -1  'True
+               TabIndex        =   199
+               Top             =   240
+               Width           =   4110
+            End
+            Begin VB.TextBox Text3 
+               Height          =   1725
+               Left            =   120
+               MaxLength       =   254
+               MultiLine       =   -1  'True
+               TabIndex        =   198
+               Top             =   240
+               Width           =   4110
+            End
             Begin VB.TextBox Text4 
                Height          =   285
                Index           =   2
                Left            =   9840
                MaxLength       =   10
-               TabIndex        =   182
+               TabIndex        =   179
                Top             =   180
                Width           =   1455
             End
@@ -1092,7 +1105,7 @@ Begin VB.Form FrmPedidoGlosa
                Index           =   1
                Left            =   9180
                MaxLength       =   4
-               TabIndex        =   181
+               TabIndex        =   178
                Top             =   180
                Width           =   615
             End
@@ -1101,24 +1114,15 @@ Begin VB.Form FrmPedidoGlosa
                Index           =   0
                Left            =   8760
                MaxLength       =   2
-               TabIndex        =   180
+               TabIndex        =   177
                Top             =   180
                Width           =   375
             End
-            Begin VB.TextBox Text3 
-               Height          =   1485
-               Left            =   795
-               MaxLength       =   254
-               MultiLine       =   -1  'True
-               TabIndex        =   179
-               Top             =   180
-               Width           =   6750
-            End
             Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyuTransporte 
                Height          =   375
-               Left            =   7650
-               TabIndex        =   196
-               Top             =   1320
+               Left            =   5010
+               TabIndex        =   192
+               Top             =   720
                Visible         =   0   'False
                Width           =   5295
                _ExtentX        =   9340
@@ -1135,9 +1139,9 @@ Begin VB.Form FrmPedidoGlosa
             End
             Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyudaTc 
                Height          =   315
-               Left            =   7620
-               TabIndex        =   198
-               Top             =   720
+               Left            =   4860
+               TabIndex        =   194
+               Top             =   1200
                Visible         =   0   'False
                Width           =   3795
                _ExtentX        =   6694
@@ -1158,7 +1162,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   29
                Left            =   7800
-               TabIndex        =   199
+               TabIndex        =   195
                Top             =   540
                Visible         =   0   'False
                Width           =   1335
@@ -1168,7 +1172,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   27
                Left            =   7800
-               TabIndex        =   197
+               TabIndex        =   193
                Top             =   990
                Visible         =   0   'False
                Width           =   1005
@@ -1177,24 +1181,16 @@ Begin VB.Form FrmPedidoGlosa
                Caption         =   "Referencia"
                Height          =   255
                Left            =   7920
-               TabIndex        =   184
+               TabIndex        =   180
                Top             =   240
                Width           =   855
-            End
-            Begin VB.Label Label7 
-               Caption         =   "Observacion"
-               Height          =   255
-               Left            =   165
-               TabIndex        =   183
-               Top             =   240
-               Width           =   435
             End
          End
          Begin VB.Frame Fr1 
             Height          =   2535
             Index           =   0
-            Left            =   -74940
-            TabIndex        =   133
+            Left            =   60
+            TabIndex        =   131
             Top             =   330
             Width           =   12045
             Begin VB.TextBox Text5 
@@ -1202,7 +1198,7 @@ Begin VB.Form FrmPedidoGlosa
                Enabled         =   0   'False
                Height          =   288
                Left            =   10035
-               TabIndex        =   192
+               TabIndex        =   188
                Text            =   "Text1"
                Top             =   975
                Width           =   1500
@@ -1212,7 +1208,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   0
                Left            =   8745
-               TabIndex        =   185
+               TabIndex        =   181
                Top             =   2040
                Width           =   285
             End
@@ -1236,7 +1232,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   0
                Left            =   720
-               TabIndex        =   134
+               TabIndex        =   132
                Top             =   240
                Width           =   375
                _ExtentX        =   661
@@ -1250,7 +1246,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   1
                Left            =   1920
-               TabIndex        =   135
+               TabIndex        =   133
                Top             =   240
                Width           =   1485
                _ExtentX        =   2619
@@ -1264,7 +1260,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   2
                Left            =   4215
-               TabIndex        =   136
+               TabIndex        =   134
                Top             =   240
                Width           =   1365
                _ExtentX        =   2408
@@ -1280,7 +1276,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   3
                Left            =   6270
-               TabIndex        =   137
+               TabIndex        =   135
                Top             =   240
                Width           =   1455
                _ExtentX        =   2566
@@ -1296,7 +1292,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   4
                Left            =   8280
-               TabIndex        =   138
+               TabIndex        =   136
                Top             =   240
                Width           =   1455
                _ExtentX        =   2566
@@ -1373,7 +1369,7 @@ Begin VB.Form FrmPedidoGlosa
             Begin MSMask.MaskEdBox MBox 
                Height          =   255
                Index           =   9
-               Left            =   1560
+               Left            =   7680
                TabIndex        =   17
                Top             =   1650
                Visible         =   0   'False
@@ -1409,7 +1405,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   19
                Left            =   1530
-               TabIndex        =   186
+               TabIndex        =   182
                Top             =   2040
                Width           =   7110
                _ExtentX        =   12541
@@ -1422,7 +1418,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   18
                Left            =   10560
-               TabIndex        =   188
+               TabIndex        =   184
                Top             =   2040
                Width           =   525
                _ExtentX        =   926
@@ -1436,7 +1432,7 @@ Begin VB.Form FrmPedidoGlosa
             Begin ctrlayuda_f.Ctr_Ayuda Ctr_AyuAnalitico 
                Height          =   315
                Left            =   1545
-               TabIndex        =   190
+               TabIndex        =   186
                Top             =   1320
                Visible         =   0   'False
                Width           =   4455
@@ -1456,7 +1452,7 @@ Begin VB.Form FrmPedidoGlosa
             Begin ctrlayuda_f.Ctr_Ayuda Ctr_Ayuda1 
                Height          =   315
                Left            =   1530
-               TabIndex        =   193
+               TabIndex        =   189
                Top             =   960
                Width           =   6570
                _ExtentX        =   11589
@@ -1475,7 +1471,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   12
                Left            =   10320
-               TabIndex        =   200
+               TabIndex        =   196
                Top             =   240
                Width           =   1455
                _ExtentX        =   2566
@@ -1487,12 +1483,35 @@ Begin VB.Form FrmPedidoGlosa
                MaxLength       =   11
                PromptChar      =   "_"
             End
+            Begin MSMask.MaskEdBox MBox 
+               Height          =   255
+               Index           =   17
+               Left            =   1590
+               TabIndex        =   200
+               Top             =   1680
+               Width           =   4395
+               _ExtentX        =   7752
+               _ExtentY        =   450
+               _Version        =   393216
+               ClipMode        =   1
+               MaxLength       =   60
+               PromptChar      =   "_"
+            End
+            Begin VB.Label Label1 
+               Caption         =   " Referencia"
+               Height          =   255
+               Index           =   21
+               Left            =   240
+               TabIndex        =   201
+               Top             =   1680
+               Width           =   1395
+            End
             Begin VB.Label Label1 
                Caption         =   "No. GR"
                Height          =   375
                Index           =   31
                Left            =   9840
-               TabIndex        =   201
+               TabIndex        =   197
                Top             =   120
                Width           =   495
             End
@@ -1501,7 +1520,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   15
                Left            =   120
-               TabIndex        =   195
+               TabIndex        =   191
                Top             =   1020
                Width           =   1575
             End
@@ -1510,7 +1529,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   25
                Left            =   8925
-               TabIndex        =   194
+               TabIndex        =   190
                Top             =   975
                Width           =   975
             End
@@ -1519,7 +1538,7 @@ Begin VB.Form FrmPedidoGlosa
                Caption         =   "Proyecto"
                Height          =   195
                Left            =   360
-               TabIndex        =   191
+               TabIndex        =   187
                Top             =   1365
                Width           =   630
             End
@@ -1528,7 +1547,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   18
                Left            =   9720
-               TabIndex        =   189
+               TabIndex        =   185
                Top             =   2070
                Width           =   765
             End
@@ -1537,7 +1556,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   24
                Left            =   120
-               TabIndex        =   187
+               TabIndex        =   183
                Top             =   2040
                Width           =   1335
             End
@@ -1548,7 +1567,7 @@ Begin VB.Form FrmPedidoGlosa
                ForeColor       =   &H80000008&
                Height          =   255
                Left            =   10305
-               TabIndex        =   153
+               TabIndex        =   151
                Top             =   1620
                Visible         =   0   'False
                Width           =   1155
@@ -1557,8 +1576,8 @@ Begin VB.Form FrmPedidoGlosa
                Caption         =   "Contacto :"
                Height          =   255
                Index           =   11
-               Left            =   210
-               TabIndex        =   151
+               Left            =   6810
+               TabIndex        =   149
                Top             =   1680
                Visible         =   0   'False
                Width           =   1215
@@ -1568,7 +1587,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   10
                Left            =   9210
-               TabIndex        =   150
+               TabIndex        =   148
                Top             =   630
                Width           =   975
             End
@@ -1577,7 +1596,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   9
                Left            =   2850
-               TabIndex        =   149
+               TabIndex        =   147
                Top             =   495
                Visible         =   0   'False
                Width           =   1125
@@ -1587,7 +1606,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   8
                Left            =   7845
-               TabIndex        =   148
+               TabIndex        =   146
                Top             =   120
                Width           =   615
             End
@@ -1596,7 +1615,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   7
                Left            =   1320
-               TabIndex        =   147
+               TabIndex        =   145
                Top             =   120
                Width           =   735
             End
@@ -1606,7 +1625,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   6
                Left            =   4875
-               TabIndex        =   146
+               TabIndex        =   144
                Top             =   615
                Width           =   585
             End
@@ -1615,7 +1634,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   5
                Left            =   2610
-               TabIndex        =   145
+               TabIndex        =   143
                Top             =   615
                Visible         =   0   'False
                Width           =   1035
@@ -1625,7 +1644,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   4
                Left            =   5670
-               TabIndex        =   144
+               TabIndex        =   142
                Top             =   120
                Width           =   735
             End
@@ -1635,7 +1654,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   3
                Left            =   6975
-               TabIndex        =   143
+               TabIndex        =   141
                Top             =   615
                Width           =   1110
             End
@@ -1644,7 +1663,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   2
                Left            =   210
-               TabIndex        =   142
+               TabIndex        =   140
                Top             =   615
                Width           =   1245
             End
@@ -1653,7 +1672,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   1
                Left            =   3495
-               TabIndex        =   141
+               TabIndex        =   139
                Top             =   120
                Width           =   735
             End
@@ -1662,7 +1681,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   375
                Index           =   0
                Left            =   180
-               TabIndex        =   140
+               TabIndex        =   138
                Top             =   120
                Width           =   855
             End
@@ -1671,7 +1690,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   30
                Left            =   5580
-               TabIndex        =   139
+               TabIndex        =   137
                Top             =   1320
                Visible         =   0   'False
                Width           =   825
@@ -1681,8 +1700,8 @@ Begin VB.Form FrmPedidoGlosa
             Caption         =   "Ing.Masivo"
             Enabled         =   0   'False
             Height          =   192
-            Left            =   8265
-            TabIndex        =   129
+            Left            =   -66735
+            TabIndex        =   127
             Top             =   2205
             Visible         =   0   'False
             Width           =   1290
@@ -1690,16 +1709,16 @@ Begin VB.Form FrmPedidoGlosa
          Begin VB.CheckBox TClie 
             Caption         =   "Cliente Eventual"
             Height          =   195
-            Left            =   10050
-            TabIndex        =   102
+            Left            =   -64950
+            TabIndex        =   100
             Top             =   2205
             Visible         =   0   'False
             Width           =   1515
          End
          Begin VB.Frame Fr2 
-            Height          =   1215
+            Height          =   975
             Index           =   0
-            Left            =   48
+            Left            =   -74952
             TabIndex        =   51
             Top             =   330
             Width           =   11685
@@ -1747,7 +1766,7 @@ Begin VB.Form FrmPedidoGlosa
                Enabled         =   0   'False
                Height          =   285
                Left            =   10560
-               TabIndex        =   119
+               TabIndex        =   117
                Top             =   1620
                Visible         =   0   'False
                Width           =   1005
@@ -1756,7 +1775,7 @@ Begin VB.Form FrmPedidoGlosa
                Enabled         =   0   'False
                Height          =   285
                Left            =   10710
-               TabIndex        =   118
+               TabIndex        =   116
                Top             =   1470
                Visible         =   0   'False
                Width           =   1005
@@ -1799,11 +1818,11 @@ Begin VB.Form FrmPedidoGlosa
             End
             Begin VB.ComboBox Combo3 
                Height          =   315
-               Left            =   1530
+               Left            =   930
                Style           =   2  'Dropdown List
                TabIndex        =   18
                Top             =   180
-               Width           =   2130
+               Width           =   2730
             End
             Begin VB.ComboBox Combo4 
                Height          =   315
@@ -1892,27 +1911,12 @@ Begin VB.Form FrmPedidoGlosa
                MaxLength       =   10
                PromptChar      =   "_"
             End
-            Begin MSMask.MaskEdBox MBox 
-               Height          =   252
-               Index           =   17
-               Left            =   6876
-               TabIndex        =   54
-               Top             =   1512
-               Visible         =   0   'False
-               Width           =   1032
-               _ExtentX        =   1826
-               _ExtentY        =   450
-               _Version        =   393216
-               ClipMode        =   1
-               MaxLength       =   10
-               PromptChar      =   "_"
-            End
             Begin VB.Label Label9 
                AutoSize        =   -1  'True
                Caption         =   "Hora :"
                Height          =   195
                Left            =   7290
-               TabIndex        =   152
+               TabIndex        =   150
                Top             =   225
                Width           =   435
             End
@@ -1920,19 +1924,19 @@ Begin VB.Form FrmPedidoGlosa
                Caption         =   "Dscto Cliente"
                Height          =   255
                Left            =   9525
-               TabIndex        =   117
+               TabIndex        =   115
                Top             =   1545
                Visible         =   0   'False
                Width           =   975
             End
             Begin VB.Label Label1 
-               Caption         =   "Modo de la Venta"
+               Caption         =   "Modo Vta"
                Height          =   255
                Index           =   12
                Left            =   120
-               TabIndex        =   72
+               TabIndex        =   70
                Top             =   240
-               Width           =   1575
+               Width           =   855
             End
             Begin VB.Label Label1 
                AutoSize        =   -1  'True
@@ -1940,7 +1944,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   13
                Left            =   3690
-               TabIndex        =   71
+               TabIndex        =   69
                Top             =   240
                Width           =   870
             End
@@ -1950,7 +1954,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   14
                Left            =   8580
-               TabIndex        =   70
+               TabIndex        =   68
                Top             =   240
                Width           =   810
             End
@@ -1959,7 +1963,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   16
                Left            =   120
-               TabIndex        =   69
+               TabIndex        =   67
                Top             =   660
                Width           =   1575
             End
@@ -1968,7 +1972,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   17
                Left            =   5790
-               TabIndex        =   68
+               TabIndex        =   66
                Top             =   660
                Width           =   795
             End
@@ -1977,7 +1981,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   19
                Left            =   120
-               TabIndex        =   67
+               TabIndex        =   65
                Top             =   1530
                Visible         =   0   'False
                Width           =   1575
@@ -1987,27 +1991,17 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   252
                Index           =   20
                Left            =   3096
-               TabIndex        =   65
+               TabIndex        =   63
                Top             =   1512
                Visible         =   0   'False
                Width           =   1140
-            End
-            Begin VB.Label Label1 
-               Caption         =   " Referencia"
-               Height          =   252
-               Index           =   21
-               Left            =   5520
-               TabIndex        =   64
-               Top             =   1512
-               Visible         =   0   'False
-               Width           =   1392
             End
             Begin VB.Label Label1 
                Caption         =   "Autorizacion"
                Height          =   255
                Index           =   22
                Left            =   9615
-               TabIndex        =   56
+               TabIndex        =   55
                Top             =   630
                Width           =   945
             End
@@ -2016,7 +2010,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   252
                Index           =   23
                Left            =   7968
-               TabIndex        =   55
+               TabIndex        =   54
                Top             =   1500
                Visible         =   0   'False
                Width           =   852
@@ -2036,14 +2030,14 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   1755
             Index           =   0
             Left            =   -74880
-            TabIndex        =   73
+            TabIndex        =   71
             Top             =   450
             Width           =   11565
             Begin VB.ComboBox Combo8 
                Height          =   315
                Left            =   1290
                Style           =   2  'Dropdown List
-               TabIndex        =   97
+               TabIndex        =   95
                Top             =   1290
                Width           =   1185
             End
@@ -2051,7 +2045,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Left            =   9540
                Style           =   2  'Dropdown List
-               TabIndex        =   95
+               TabIndex        =   93
                Top             =   930
                Width           =   1410
             End
@@ -2059,7 +2053,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Left            =   7320
                Style           =   2  'Dropdown List
-               TabIndex        =   94
+               TabIndex        =   92
                Top             =   930
                Width           =   1125
             End
@@ -2067,7 +2061,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Index           =   0
                Left            =   1290
-               TabIndex        =   84
+               TabIndex        =   82
                Top             =   210
                Width           =   1395
                _ExtentX        =   2461
@@ -2080,7 +2074,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Index           =   1
                Left            =   2745
-               TabIndex        =   85
+               TabIndex        =   83
                Top             =   210
                Width           =   6495
                _ExtentX        =   11456
@@ -2092,7 +2086,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Index           =   2
                Left            =   9840
-               TabIndex        =   86
+               TabIndex        =   84
                Top             =   210
                Width           =   1635
                _ExtentX        =   2884
@@ -2105,7 +2099,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Index           =   3
                Left            =   1290
-               TabIndex        =   87
+               TabIndex        =   85
                Top             =   570
                Width           =   10185
                _ExtentX        =   17965
@@ -2117,7 +2111,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   315
                Index           =   4
                Left            =   1290
-               TabIndex        =   88
+               TabIndex        =   86
                Top             =   930
                Width           =   4545
                _ExtentX        =   8017
@@ -2133,7 +2127,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   8
                Left            =   240
-               TabIndex        =   96
+               TabIndex        =   94
                Top             =   1380
                Width           =   1005
             End
@@ -2144,7 +2138,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   6
                Left            =   9030
-               TabIndex        =   93
+               TabIndex        =   91
                Top             =   990
                Width           =   465
             End
@@ -2155,7 +2149,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   3
                Left            =   6120
-               TabIndex        =   92
+               TabIndex        =   90
                Top             =   960
                Width           =   975
             End
@@ -2166,7 +2160,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   7
                Left            =   9420
-               TabIndex        =   91
+               TabIndex        =   89
                Top             =   270
                Width           =   675
             End
@@ -2176,7 +2170,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   285
                Index           =   1
                Left            =   9870
-               TabIndex        =   90
+               TabIndex        =   88
                Top             =   1320
                Width           =   1605
             End
@@ -2186,7 +2180,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   285
                Index           =   0
                Left            =   6780
-               TabIndex        =   89
+               TabIndex        =   87
                Top             =   1350
                Width           =   1575
             End
@@ -2197,7 +2191,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   0
                Left            =   240
-               TabIndex        =   78
+               TabIndex        =   76
                Top             =   240
                Width           =   1815
             End
@@ -2208,7 +2202,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   1
                Left            =   240
-               TabIndex        =   77
+               TabIndex        =   75
                Top             =   600
                Width           =   1815
             End
@@ -2219,7 +2213,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   2
                Left            =   240
-               TabIndex        =   76
+               TabIndex        =   74
                Top             =   990
                Width           =   1815
             End
@@ -2230,7 +2224,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   4
                Left            =   5790
-               TabIndex        =   75
+               TabIndex        =   73
                Top             =   1380
                Width           =   1335
             End
@@ -2241,7 +2235,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   255
                Index           =   5
                Left            =   8520
-               TabIndex        =   74
+               TabIndex        =   72
                Top             =   1380
                Width           =   1815
             End
@@ -2249,8 +2243,8 @@ Begin VB.Form FrmPedidoGlosa
          Begin MSMask.MaskEdBox MBox 
             Height          =   255
             Index           =   11
-            Left            =   180
-            TabIndex        =   130
+            Left            =   -74820
+            TabIndex        =   128
             Top             =   2205
             Visible         =   0   'False
             Width           =   7725
@@ -2760,7 +2754,7 @@ Begin VB.Form FrmPedidoGlosa
       Begin VB.Frame Frame1 
          Height          =   5955
          Left            =   -74790
-         TabIndex        =   98
+         TabIndex        =   96
          Top             =   1710
          Width           =   11535
          Begin VB.Frame Fr5 
@@ -2779,7 +2773,7 @@ Begin VB.Form FrmPedidoGlosa
             ForeColor       =   &H00C9955A&
             Height          =   1545
             Left            =   3800
-            TabIndex        =   103
+            TabIndex        =   101
             Top             =   2295
             Visible         =   0   'False
             Width           =   4875
@@ -2799,7 +2793,7 @@ Begin VB.Form FrmPedidoGlosa
                Index           =   1
                Left            =   2610
                Style           =   1  'Graphical
-               TabIndex        =   107
+               TabIndex        =   105
                Top             =   900
                Width           =   1215
             End
@@ -2820,7 +2814,7 @@ Begin VB.Form FrmPedidoGlosa
                Left            =   1215
                MaskColor       =   &H0000C0C0&
                Style           =   1  'Graphical
-               TabIndex        =   106
+               TabIndex        =   104
                Top             =   900
                Width           =   1215
             End
@@ -2840,7 +2834,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   1
                Left            =   2880
-               TabIndex        =   105
+               TabIndex        =   103
                Top             =   405
                Width           =   1695
             End
@@ -2860,7 +2854,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   195
                Index           =   0
                Left            =   855
-               TabIndex        =   104
+               TabIndex        =   102
                Top             =   405
                Width           =   1275
             End
@@ -2893,7 +2887,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   585
             Index           =   0
             Left            =   9540
-            TabIndex        =   99
+            TabIndex        =   97
             Top             =   6570
             Width           =   2265
             Begin VB.TextBox TReg 
@@ -2901,7 +2895,7 @@ Begin VB.Form FrmPedidoGlosa
                Enabled         =   0   'False
                Height          =   285
                Left            =   1350
-               TabIndex        =   101
+               TabIndex        =   99
                Top             =   210
                Width           =   765
             End
@@ -2919,7 +2913,7 @@ Begin VB.Form FrmPedidoGlosa
                Height          =   225
                Index           =   5
                Left            =   150
-               TabIndex        =   100
+               TabIndex        =   98
                Top             =   270
                Width           =   1035
             End
@@ -2927,7 +2921,7 @@ Begin VB.Form FrmPedidoGlosa
          Begin TrueOleDBGrid70.TDBGrid TDBGrid2 
             Height          =   5715
             Left            =   30
-            TabIndex        =   113
+            TabIndex        =   111
             Top             =   150
             Width           =   11475
             _ExtentX        =   20241
@@ -3062,7 +3056,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   3
             Left            =   3660
-            TabIndex        =   60
+            TabIndex        =   59
             Top             =   420
             Width           =   285
          End
@@ -3070,7 +3064,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   0
             Left            =   1530
-            TabIndex        =   58
+            TabIndex        =   57
             Top             =   420
             Width           =   765
             _ExtentX        =   1349
@@ -3085,7 +3079,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   1
             Left            =   2340
-            TabIndex        =   59
+            TabIndex        =   58
             Top             =   420
             Width           =   1275
             _ExtentX        =   2249
@@ -3099,7 +3093,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   2
             Left            =   7710
-            TabIndex        =   66
+            TabIndex        =   64
             Top             =   420
             Width           =   855
             _ExtentX        =   1508
@@ -3114,7 +3108,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   3
             Left            =   8610
-            TabIndex        =   61
+            TabIndex        =   60
             Top             =   420
             Width           =   1095
             _ExtentX        =   1931
@@ -3129,7 +3123,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   4
             Left            =   9810
-            TabIndex        =   62
+            TabIndex        =   61
             Top             =   420
             Width           =   855
             _ExtentX        =   1508
@@ -3144,7 +3138,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   5
             Left            =   10740
-            TabIndex        =   63
+            TabIndex        =   62
             Top             =   420
             Width           =   975
             _ExtentX        =   1720
@@ -3175,7 +3169,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   330
             Index           =   12
             Left            =   90
-            TabIndex        =   57
+            TabIndex        =   56
             Top             =   420
             Width           =   675
             _ExtentX        =   1191
@@ -3190,7 +3184,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   270
             Index           =   13
             Left            =   240
-            TabIndex        =   115
+            TabIndex        =   113
             Top             =   450
             Width           =   180
             _ExtentX        =   318
@@ -3205,7 +3199,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   255
             Index           =   14
             Left            =   285
-            TabIndex        =   116
+            TabIndex        =   114
             Top             =   450
             Width           =   255
             _ExtentX        =   450
@@ -3232,7 +3226,7 @@ Begin VB.Form FrmPedidoGlosa
             Height          =   255
             Index           =   8
             Left            =   750
-            TabIndex        =   114
+            TabIndex        =   112
             Top             =   180
             Width           =   765
          End
@@ -3400,7 +3394,7 @@ Begin VB.Form FrmPedidoGlosa
       Begin TrueOleDBGrid70.TDBGrid TDBGrid3 
          Height          =   5220
          Left            =   -74715
-         TabIndex        =   128
+         TabIndex        =   126
          Top             =   720
          Width           =   11070
          _ExtentX        =   19526
@@ -3597,7 +3591,7 @@ Begin VB.Form FrmPedidoGlosa
          _ExtentX        =   2408
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   39583745
+         Format          =   117178369
          CurrentDate     =   39763
          MaxDate         =   44196
          MinDate         =   36526
@@ -3611,7 +3605,7 @@ Begin VB.Form FrmPedidoGlosa
          _ExtentX        =   2408
          _ExtentY        =   503
          _Version        =   393216
-         Format          =   39583745
+         Format          =   117178369
          CurrentDate     =   39763
          MaxDate         =   44196
          MinDate         =   36526
@@ -3631,7 +3625,7 @@ Begin VB.Form FrmPedidoGlosa
          EndProperty
          Height          =   195
          Left            =   -64290
-         TabIndex        =   157
+         TabIndex        =   155
          Top             =   7740
          Width           =   960
       End
@@ -3649,7 +3643,7 @@ Begin VB.Form FrmPedidoGlosa
          EndProperty
          Height          =   195
          Left            =   -74685
-         TabIndex        =   156
+         TabIndex        =   154
          Top             =   720
          Width           =   945
       End
@@ -3667,7 +3661,7 @@ Begin VB.Form FrmPedidoGlosa
          EndProperty
          Height          =   195
          Left            =   -74685
-         TabIndex        =   155
+         TabIndex        =   153
          Top             =   1440
          Width           =   585
       End
@@ -3685,7 +3679,7 @@ Begin VB.Form FrmPedidoGlosa
          EndProperty
          Height          =   195
          Left            =   -74685
-         TabIndex        =   154
+         TabIndex        =   152
          Top             =   1080
          Width           =   1155
       End
@@ -3694,7 +3688,7 @@ Begin VB.Form FrmPedidoGlosa
          Height          =   390
          Index           =   2
          Left            =   -69045
-         TabIndex        =   122
+         TabIndex        =   120
          Top             =   6165
          Visible         =   0   'False
          Width           =   975
@@ -3704,7 +3698,7 @@ Begin VB.Form FrmPedidoGlosa
          Height          =   390
          Index           =   6
          Left            =   -71010
-         TabIndex        =   121
+         TabIndex        =   119
          Top             =   6165
          Width           =   975
       End
@@ -3713,7 +3707,7 @@ Begin VB.Form FrmPedidoGlosa
          Height          =   390
          Index           =   26
          Left            =   -74610
-         TabIndex        =   120
+         TabIndex        =   118
          Top             =   6165
          Width           =   975
       End
@@ -4160,15 +4154,15 @@ Private Sub cBoton_Click(Index As Integer)
        Combo2.ListIndex = VerificaCombo(Combo2, VGParamSistem.listapre)   'listaprecios
        'Combo2.Enabled = False
        MBox(8) = numero(VGParamSistem.tipocambio)                         'tipo de cambio
-       Ctr_Ayuda3.xclave = Escadena(VGParamSistem.almacen)                'almacen
+   '    Ctr_Ayuda3.xclave = Escadena(VGParamSistem.almacen)                'almacen
        'Ctr_Ayuda3.Filtro = "empresacodigo='" & VGParametros.empresacodigo & "' and puntovtacodigo='" & VGParametros.puntovta & "'"
-       Call Ctr_Ayuda3.Ejecutar
+    '   Call Ctr_Ayuda3.Ejecutar
        If Len(Trim(modoventa.almacenes)) > 0 And Chkentrega.Value = 0 Then
           Ctr_Ayuda3.Filtro = "taalma in (" & modoventa.almacenes & ") and puntovtacodigo='" & VGParametros.puntovta & "' and empresacodigo='" & VGParametros.empresacodigo & "'"
           Ctr_Ayuda3.Ejecutar
        End If
 
-       
+       Ctr_Ayuda1.xclave = ""
        MBox(13).Enabled = IIf(VGParamSistem.comivende = "F", False, True)                     'comision de vendedor
        
       'Se activa los parametros de punto de venta
@@ -4230,7 +4224,7 @@ Private Sub cmdBotones_Click(Index As Integer)
         Fr2(0).Enabled = True
         Fr3(0).Enabled = True
         TClie.Enabled = True
-        Text3 = "": Text4(0) = "": Text4(1) = "": Text4(2) = ""
+        Text3 = "": Text4(0) = "": Text4(1) = "": Text4(2) = "": Text6 = ""
         Call CargarModo
         cOpc(0).Value = False: cOpc(1).Value = False: cOpc2(0).Value = False
         cOpc2(1).Value = False: cOpc2(2).Value = False
@@ -4250,7 +4244,7 @@ Private Sub cmdBotones_Click(Index As Integer)
           cOpc(0).Value = False: cOpc(1).Value = False: cOpc2(0).Value = False
           cOpc2(1).Value = False: cOpc2(2).Value = False
           cOpc3(0).Value = False: cOpc3(1).Value = False
-          Text3 = "": Text4(0) = "": Text4(1) = "": Text4(2) = ""
+          Text3 = "": Text4(0) = "": Text4(1) = "": Text4(2) = "": Text6 = ""
           Fr5.Visible = True
           cOpc3(0).SetFocus
        End If
@@ -4454,7 +4448,8 @@ Private Sub Combo3_Click()
   If Combo3.ListCount >= 0 Then
      Call CargarModo
      If Len(Trim(modoventa.almacenes)) > 0 Then
-          Ctr_Ayuda3.Filtro = "taalma in (" & modoventa.almacenes & ") and empresacodigo='" & VGParametros.empresacodigo & "'"
+          SQL = "empresacodigo='" & VGParametros.empresacodigo & "' and taalma in (" & modoventa.almacenes & ")"
+          Ctr_Ayuda3.Filtro = SQL
           'Ctr_Ayuda3.Ejecutar
       End If
   End If
@@ -4614,10 +4609,12 @@ End Sub
 
 Private Sub Ctr_AyuAnalitico_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
 Text3.Visible = True
+Text6.Visible = True
 End Sub
 
 Private Sub Ctr_AyuAnalitico_AlNoDevolverNada()
 Text3.Visible = False
+Text6.Visible = False
 End Sub
 
 Private Sub Ctr_Ayuda1_AlDevolverDato(ByVal ColecCampos As ADODB.Fields)
@@ -4684,7 +4681,7 @@ If ESNULO(ColecCampos("stockenlinea"), False) Then
       If ColecCampos("puntovtacodigo") <> VGParametros.puntovta Then
          MsgBox ("El codigo del Almacen no pertenece al punto de venta ")
          Ctr_Ayuda3.xclave = ""
-         Exit Sub
+    '     Exit Sub
       Else
          Chkentrega.Value = 0
          Chkentrega.Refresh
@@ -5238,12 +5235,15 @@ End Sub
 
 Private Sub MBox_GotFocus(Index As Integer)
   Call dllgeneral.Enfoquetexto(MBox(Index))
- If MBox(10).Text <> VGParamSistem.FechaTrabajo Then
-     Chkentrega.Value = 1
-   Else
-     Chkentrega.Value = 0
-   End If
-   
+  Chkentrega.Value = 0
+  If Index = 10 Then
+      If MBox(10).Text <> VGParamSistem.FechaTrabajo Then
+         Chkentrega.Value = 1
+       Else
+         Chkentrega.Value = 0
+      End If
+End If
+If Text3.Visible = True Then Chkentrega.Value = 1
 End Sub
 
 
@@ -5989,7 +5989,7 @@ Public Function GrabarData() As Integer
     wCabe(38) = DTItem                       'Total Descuentos Item
     wCabe(39) = DTLinea                      'Total Descuentos Linea
     wCabe(40) = DTPromo                      'Total Descuentos x Promocion
-    wCabe(41) = Trim(Text3)
+    wCabe(41) = Trim(Text6)
     wCabe(42) = Trim(Text4(0))
     wCabe(43) = Trim(Text4(1)) & Trim(Text4(2))
     wCabe(44) = Trim(Ctr_AyudaTc.xclave)
@@ -6252,7 +6252,7 @@ Public Function GrabarData() As Integer
         .Parameters("@moneda") = wCabe(9)
         .Parameters("@tipocambio") = wCabe(10)
         .Parameters("@listaprecio") = wCabe(11)
-        .Parameters("@mensaje") = Left(wCabe(12), 240)
+        .Parameters("@mensaje") = wCabe(12)
         .Parameters("@modoventa") = wCabe(13)
         .Parameters("@fecha") = wCabe(14)
         .Parameters("@formapago") = wCabe(15)
@@ -6284,7 +6284,7 @@ Public Function GrabarData() As Integer
         .Parameters("@TDOficina") = wCabe(37)
         .Parameters("@TDItem") = wCabe(38)
         .Parameters("@TDPromo") = wCabe(40)
-        .Parameters("@observa") = wCabe(12)     'wCabe(41)
+        .Parameters("@observa") = wCabe(41)  'wCabe(12)
         .Parameters("@tiporefe") = wCabe(42)
         .Parameters("@nrorefe") = wCabe(43)
         .Parameters("@nrotransporte") = Ctr_AyuTransporte.xclave
@@ -6890,7 +6890,7 @@ Dim busca As New dll_apisgen.dll_apis
 Dim nguia As String
 Dim SQL As String
 Dim numguias As Integer
-Dim k As Integer
+Dim K As Integer
 Dim KK As Integer
 nguia = "xx"
 VGCNx.Execute "delete from gtempfilep2filas"
@@ -6911,15 +6911,15 @@ If rb.RecordCount > 0 Then
         Else
            KK = 100
        End If
-       For k = 1 To KK
-           If k <= 50 Then
-             TCant = (contador - 1) * 50 + k
+       For K = 1 To KK
+           If K <= 50 Then
+             TCant = (contador - 1) * 50 + K
               SQL = "INSERT INTO gtempfilep2filas(item,producto1,descripcion1,cantidad1,importe1,"
               SQL = SQL & "cantidad2,importe2)  "
               SQL = SQL & " VALUES ( '" & TCant & "','" & RTrim(rb!productocodigo) & "','" & RTrim(rb!productodescripcion) & "','" & rb!detpedcantpedida & "','" & rb!detpedimpbruto & "',"
               SQL = SQL & "0,0 )"
             Else
-             TCant = (contador - 1) * 50 + k - 50
+             TCant = (contador - 1) * 50 + K - 50
               SQL = "UPDATE gtempfilep2filas set producto2 ='" & RTrim(rb!productocodigo) & "',"
               SQL = SQL & " descripcion2='" & RTrim(rb!productodescripcion) & "',"
               SQL = SQL & "cantidad2='" & rb!detpedcantpedida & "',"
@@ -6928,7 +6928,7 @@ If rb.RecordCount > 0 Then
            End If
            VGCNx.Execute SQL
            rb.MoveNext
-        Next k
+        Next K
    Loop
    rb.Close
    Set rb = Nothing
@@ -7251,6 +7251,9 @@ VGCNx.CommitTrans
 If VGParametros.empresaasientosautomaticos = "1" Then
    Call GeneraAsientoEnlineaTesor(CDate(wCabe(34)), VGParametros.empresacodigo, rs.Fields(0), Escadena(text1), 1, "''''", Left(wCabe(9), 2), "C", "E")
 End If
+'If VGParametros.Imprimirreciboscaja = "1" Then
+'   Call imprimirreciboCaja
+'End If
  
  MsgBox "Los datos han sido grabados satisfactoriamente...!!!", vbInformation, MsgTitle
     Exit Sub
@@ -7310,3 +7313,19 @@ Public Function ValidaNegativos()
   
  End Function
 
+Private Sub imprimirreciboCaja()
+'       monto = Format(xmonto, "#########.00")
+'       monto = monto + 0.001
+'       arrparm(0) = VGParamSistem.BDEmpresa
+'       arrparm(1) = Nrecibo
+'       arrform(0) = "@NumeroLetras='" & NUMLET(monto) & "'"
+'       If rs.Fields("cabrec_numreciboegreso") <> Empty Then
+'          arrform(1) = "@NroTransferencia='" & "Nro Transferencia: " & rs.Fields("cabrec_numreciboegreso") & "'"
+'       Else
+'          arrform(1) = "@NroTransferencia='" & rs.Fields("cabrec_numreciboegreso") & "'"
+'       End If
+'       Call ImpresionRpt_SubRpt_Proc("Te_Voucher.rpt", arrform, arrparm, "Te_Voucher_sub.rpt", , "Impresion de recibos")
+'    Else
+'       MsgBox "No existen datos del Nº de Recibo " & Str(Nrecibo)
+'    End If
+End Sub

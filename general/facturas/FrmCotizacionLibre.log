@@ -1,1 +1,11 @@
 Línea 32: la clase ComctlLib.StatusBar del control Panel no era una clase de control cargada.
+Línea 39: el nombre de la propiedad _ExtentX de Panel no es válido.
+Línea 40: el nombre de la propiedad _ExtentY de Panel no es válido.
+Línea 41: el nombre de la propiedad SimpleText de Panel no es válido.
+Línea 42: el nombre de la propiedad _Version de Panel no es válido.
+Línea 61: el nombre de la propiedad Panels de Panel no es válido.
+Línea 39: el nombre de la propiedad _ExtentX de Panel no es válido.
+Línea 40: el nombre de la propiedad _ExtentY de Panel no es válido.
+Línea 41: el nombre de la propiedad SimpleText de Panel no es válido.
+Línea 42: el nombre de la propiedad _Version de Panel no es válido.
+Línea 61: el nombre de la propiedad Panels de Panel no es válido.

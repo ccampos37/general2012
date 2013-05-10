@@ -1,4 +1,4 @@
-MDIPrincipal = 154, 203, 930, 683, Z, 0, -4, 776, 476, C
+MDIPrincipal = 154, 203, 930, 683, , 0, -4, 776, 476, C
 RptctactexCliente = 22, 29, 829, 451, , 110, 145, 886, 625, C
 XXXRptPlanillaCobranza = 0, 0, 0, 0, C, 132, 174, 908, 654, C
 XXXRptDocumentosVarios = 0, 0, 0, 0, C, 154, 203, 930, 683, C
@@ -50,7 +50,7 @@ frmCfgUsuario = 0, 0, 773, 480, , 66, 87, 842, 567, C
 ClassMenu = 26, 26, 691, 313, 
 FrmPlanillaCompensaciones = 44, 58, 980, 480, , 88, 116, 935, 596, C
 RptSaldoxProveedor = 110, 145, 927, 575, , 110, 145, 886, 625, C
-FrmAnulaPllaCanjes = 110, 145, 975, 567, , 132, 174, 908, 654, C
+FrmAnulaPllaCanjes = 110, 145, 975, 567, Z, 132, 174, 908, 654, C
 FrmrepPlanCompensaciones = 52, 52, 717, 339, , 110, 145, 852, 625, C
 MainPagar = 0, 0, 612, 310, 
 ModificarCampos = 0, 0, 0, 0, C

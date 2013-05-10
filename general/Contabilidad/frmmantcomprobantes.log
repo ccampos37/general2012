@@ -1,5 +1,0 @@
-Línea 900: la clase MSComctlLib.StatusBar del control StBar no era una clase de control cargada.
-Línea 906: el nombre de la propiedad _ExtentX de StBar no es válido.
-Línea 907: el nombre de la propiedad _ExtentY de StBar no es válido.
-Línea 908: el nombre de la propiedad _Version de StBar no es válido.
-Línea 936: el nombre de la propiedad Panels de StBar no es válido.

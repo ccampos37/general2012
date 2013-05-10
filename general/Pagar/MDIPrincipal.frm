@@ -523,9 +523,9 @@ End Sub
 Private Sub opc6_Click()
    If MsgBox("Desea Salir del Sistema?", vbYesNo, "AVISO") = vbYes Then
       Set VGCNx = Nothing
-      Set VGgeneral = Nothing
+      Set VGGeneral = Nothing
       Set VGCNx = Nothing
-      Set VGcnxCT = Nothing
+      Set VGCnxCT = Nothing
       Unload Me
       End
    End If

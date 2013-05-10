@@ -911,7 +911,7 @@ Dim n As String
 Dim RSQL As String
 Dim IASA As String
 On Error GoTo Err
-Set VGdllApi = New dll_apisgen.dll_apis
+
    
 'Verificar_Sistema
 VGCodMon = "01"
@@ -981,7 +981,7 @@ MDIPrincipal.Caption = "Sistema de Inventario Empresa : " & VGParametros.NomEmpr
 
 If VGSALIR Then
    If VGCNx.State = 1 Then VGCNx.Close
-   If VGcnxCT.State = 1 Then VGcnxCT.Close
+   If VGCnxCT.State = 1 Then VGCnxCT.Close
       MDIPrincipal.Visible = False
       Form_Unload (0)
       Exit Sub
@@ -1317,7 +1317,7 @@ End Sub
 
 Private Sub mnu_contrans_09_01_Click()
 VGtransf = 0
- frmAnulaDocumento.Show
+ FrmAnulaDocumento.Show
 End Sub
 
 Private Sub mnu_contrans_09_02_Click()
@@ -1326,7 +1326,7 @@ End Sub
 
 Private Sub mnu_contrans_09_03_Click()
 VGtransf = 1
- frmAnulaDocumento.Show
+ FrmAnulaDocumento.Show
 End Sub
 
 Private Sub mnu_conValArtPend_Click()

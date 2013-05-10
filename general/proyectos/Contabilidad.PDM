@@ -1,0 +1,185 @@
+[Root]
+Most Recent Package=Paquete de instalación estándar 1
+
+[Package|Paquete de instalación estándar 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=D:\desarrollo\VB\instaado\contabilidad
+
+[Package|Paquete de instalación estándar 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Paquete de instalación estándar 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Paquete de instalación estándar 1|Files Found]
+
+[Package|Paquete de instalación estándar 1|Files Released]
+
+[Package|Paquete de instalación estándar 1|Missing Dependency Information]
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\mTablaBasica.ocx=
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\controlayuda.ocx=
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\TextFer.ocx=
+D:\desarrollo\VB\Controles Y Dll\pett\dllgeneral.dll=
+D:\desarrollo\VB\Controles Y Dll\pett\dllapisgen.dll=
+C:\Program Files\Common Files\System\ado\msado26.tlb=
+
+[Package|Paquete de instalación estándar 1|Out-of-Date Dependency Information]
+C:\Windows\System32\msstdfmt.dll=
+C:\Windows\System32\mscomct2.ocx=
+C:\Windows\System32\MSCOMCTL.OCX=
+
+[Package|Paquete de instalación estándar 1|Files Added]
+
+[Package|Paquete de instalación estándar 1|Files Removed]
+
+[Package|Paquete de instalación estándar 1|Files In Project]
+D:\desarrollo\VB\aplicaciones\aliterm\Contabilidad.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\VB6ES.DLL=Yes
+C:\Program Files\Common Files\System\ado\msado26.tlb=Yes
+C:\Program Files\Common Files\designer\MSDERUN.DLL=Yes
+D:\desarrollo\VB\Controles Y Dll\pett\dllapisgen.dll=Yes
+D:\desarrollo\VB\Controles Y Dll\pett\dllgeneral.dll=Yes
+C:\Windows\System32\TABCTL32.OCX=Yes
+C:\Windows\System32\TABCTES.DLL=Yes
+C:\Windows\System32\MSFLXGRD.OCX=Yes
+C:\Windows\System32\FLXGDES.DLL=Yes
+C:\Windows\System32\COMDLG32.OCX=Yes
+C:\Windows\System32\CMDLGES.DLL=Yes
+C:\Windows\System32\MSCOMCTL.OCX=Yes
+C:\Windows\System32\MSCMCES.DLL=Yes
+C:\Windows\System32\mscomct2.ocx=Yes
+C:\Windows\System32\MSCC2ES.DLL=Yes
+C:\Windows\System32\RICHTX32.OCX=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=Yes
+C:\Windows\System32\RCHTXES.DLL=Yes
+C:\Windows\System32\MSCHRT20.OCX=Yes
+C:\Windows\System32\MSCH2ES.DLL=Yes
+C:\Windows\System32\MSWINSCK.OCX=Yes
+C:\Windows\System32\WINSKES.DLL=Yes
+C:\Windows\System32\MSMAPI32.OCX=Yes
+C:\Windows\System32\MSMPIES.DLL=Yes
+C:\Windows\System32\MSCOMM32.OCX=Yes
+C:\Windows\System32\MSCOMES.DLL=Yes
+C:\Windows\System32\MSMASK32.OCX=Yes
+C:\Windows\System32\MSMSKES.DLL=Yes
+C:\Windows\System32\MSDATGRD.OCX=Yes
+C:\Windows\System32\msstdfmt.dll=Yes
+C:\Windows\System32\STDFTES.DLL=Yes
+C:\Windows\System32\DATGDES.DLL=Yes
+C:\Windows\System32\MSDATLST.OCX=Yes
+C:\Windows\System32\DATLSES.DLL=Yes
+C:\Windows\System32\COMCT332.OCX=Yes
+C:\Windows\System32\CMCT3ES.DLL=Yes
+C:\Windows\System32\MSADODC.OCX=Yes
+C:\Windows\System32\ADODCES.DLL=Yes
+C:\Windows\System32\MSHFLXGD.OCX=Yes
+C:\Windows\System32\MSHFGES.DLL=Yes
+C:\Windows\System32\todg7.ocx=Yes
+C:\Windows\System32\todgub7.dll=Yes
+C:\Windows\System32\tdbgpp7.dll=Yes
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\TextFer.ocx=Yes
+C:\Windows\System32\Crystl32.OCX=Yes
+C:\Windows\System32\crpe32.dll=Yes
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\controlayuda.ocx=Yes
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\mTablaBasica.ocx=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Paquete de instalación estándar 1|Configure Registry Files]
+Applicable=No
+
+[Package|Paquete de instalación estándar 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Paquete de instalación estándar 1|Install Locations]
+D:\desarrollo\VB\aplicaciones\aliterm\Contabilidad.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB6ES.DLL=$(WinSysPath)
+C:\Program Files\Common Files\System\ado\msado26.tlb=$(WinSysPath)
+C:\Program Files\Common Files\designer\MSDERUN.DLL=$(CommonFiles)\designer
+D:\desarrollo\VB\Controles Y Dll\pett\dllapisgen.dll=$(WinSysPath)
+D:\desarrollo\VB\Controles Y Dll\pett\dllgeneral.dll=$(WinSysPath)
+C:\Windows\System32\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\System32\TABCTES.DLL=$(WinSysPath)
+C:\Windows\System32\MSFLXGRD.OCX=$(WinSysPath)
+C:\Windows\System32\FLXGDES.DLL=$(WinSysPath)
+C:\Windows\System32\COMDLG32.OCX=$(WinSysPath)
+C:\Windows\System32\CMDLGES.DLL=$(WinSysPath)
+C:\Windows\System32\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\System32\MSCMCES.DLL=$(WinSysPath)
+C:\Windows\System32\mscomct2.ocx=$(WinSysPath)
+C:\Windows\System32\MSCC2ES.DLL=$(WinSysPath)
+C:\Windows\System32\RICHTX32.OCX=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\RICHED32.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\RCHTXES.DLL=$(WinSysPath)
+C:\Windows\System32\MSCHRT20.OCX=$(WinSysPath)
+C:\Windows\System32\MSCH2ES.DLL=$(WinSysPath)
+C:\Windows\System32\MSWINSCK.OCX=$(WinSysPath)
+C:\Windows\System32\WINSKES.DLL=$(WinSysPath)
+C:\Windows\System32\MSMAPI32.OCX=$(WinSysPath)
+C:\Windows\System32\MSMPIES.DLL=$(WinSysPath)
+C:\Windows\System32\MSCOMM32.OCX=$(WinSysPath)
+C:\Windows\System32\MSCOMES.DLL=$(WinSysPath)
+C:\Windows\System32\MSMASK32.OCX=$(WinSysPath)
+C:\Windows\System32\MSMSKES.DLL=$(WinSysPath)
+C:\Windows\System32\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\System32\msstdfmt.dll=$(WinSysPath)
+C:\Windows\System32\STDFTES.DLL=$(WinSysPath)
+C:\Windows\System32\DATGDES.DLL=$(WinSysPath)
+C:\Windows\System32\MSDATLST.OCX=$(WinSysPath)
+C:\Windows\System32\DATLSES.DLL=$(WinSysPath)
+C:\Windows\System32\COMCT332.OCX=$(WinSysPath)
+C:\Windows\System32\CMCT3ES.DLL=$(WinSysPath)
+C:\Windows\System32\MSADODC.OCX=$(WinSysPath)
+C:\Windows\System32\ADODCES.DLL=$(WinSysPath)
+C:\Windows\System32\MSHFLXGD.OCX=$(WinSysPath)
+C:\Windows\System32\MSHFGES.DLL=$(WinSysPath)
+C:\Windows\System32\todg7.ocx=$(WinSysPath)
+C:\Windows\System32\todgub7.dll=$(WinSysPath)
+C:\Windows\System32\tdbgpp7.dll=$(WinSysPath)
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\TextFer.ocx=$(WinSysPath)
+C:\Windows\System32\Crystl32.OCX=$(WinSysPath)
+C:\Windows\System32\crpe32.dll=$(WinSysPath)
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\controlayuda.ocx=$(WinSysPath)
+D:\desarrollo\VB\Controles Y Dll\propio\ocx a registar\mTablaBasica.ocx=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Paquete de instalación estándar 1|Configure Shared Files]
+Applicable=Yes
+D:\desarrollo\VB\aplicaciones\aliterm\Contabilidad.exe=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MDAC_TYP.EXE=Yes
+
+[Package|Paquete de instalación estándar 1|Distribution]
+Type=single
+Size=
+Title=Sistema Contable
+
+[Package|Paquete de instalación estándar 1|IconGroups]
+Group0=Sistema Contable
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Paquete de instalación estándar 1|Sistema Contable]
+Icon1=Contabilidad.exe
+Title1=Sistema Contable
+StartIn1=$(AppPath)
+Key1=Icon1

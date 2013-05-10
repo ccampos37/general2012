@@ -639,7 +639,7 @@ Private Sub cCerrar_Click()
                      " set catipmov='A'" & _
                      " where catd='NI' and canumdoc='" & Trim(Label4(1)) & "' and caalma='" & Text2(3) & "'"
         End If
-        Set acmd.ActiveConnection = VGgeneral
+        Set acmd.ActiveConnection = VGGeneral
         acmd.CommandType = adCmdStoredProc
         acmd.CommandTimeout = 0
         acmd.CommandText = "vt_actualizoalma_pro"
@@ -802,7 +802,7 @@ Private Sub cElige_Click()
         wCabe(39) = 0                      'Total Descuentos Linea
         wCabe(40) = 0                      'Total Descuentos x Promocion
         
-        Set acmd.ActiveConnection = VGgeneral
+        Set acmd.ActiveConnection = VGGeneral
         acmd.CommandType = adCmdStoredProc
         acmd.CommandText = "vt_ingresoalma_pro"
         acmd.CommandTimeout = 0
@@ -866,7 +866,7 @@ Private Sub cElige_Click()
           
        '** Actualizamos detalle
     
-        Set acmd.ActiveConnection = VGgeneral
+        Set acmd.ActiveConnection = VGGeneral
         acmd.CommandType = adCmdStoredProc
         acmd.CommandTimeout = 0
         acmd.CommandText = "vt_ingresodetallealma_pro"
@@ -902,7 +902,7 @@ Private Sub cElige_Click()
         acmd.Execute
         Set acmd = Nothing
                     
-        Set acmd.ActiveConnection = VGgeneral
+        Set acmd.ActiveConnection = VGGeneral
         acmd.CommandType = adCmdStoredProc
         acmd.CommandTimeout = 0
         acmd.CommandText = "vt_actualizoalma_pro"
@@ -976,8 +976,8 @@ Private Sub cElige_Click()
     
     MsgBox "Traslado de almacen satisfactorio...!!", vbInformation, "AVISO"
     Frame3.Visible = False
-    Text1 = Trim(Text3)
-    Text1.SetFocus
+    text1 = Trim(Text3)
+    text1.SetFocus
     
 
 nerror:
@@ -1008,7 +1008,7 @@ Private Sub DGrid1_KeyDown(KeyCode As Integer, Shift As Integer)
         Select Case xtipo
           Case 1, 3
             nAyuda = DGrid1.Columns(0).Text
-            nDetalle = Trim(DGrid1.Columns(2).Text)
+            nDetalle = Trim(DGrid1.Columns(1).Text)
           Case 2
             nAyuda = DGrid1.Columns(2).Text
             nDetalle = ""
@@ -1032,7 +1032,7 @@ Private Sub Form_Load()
   xdato = UCase(xdato)
   If Trim(Escadena(xdata)) = "1" Then
      Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, "adescri like '" & xdato & "%'")
-     Text1 = Escadena(xdato): Text1.SelStart = Len(Trim(Text1))
+     text1 = Escadena(xdato): text1.SelStart = Len(Trim(text1))
   ElseIf Trim(Escadena(xdata)) = "2" Then
      If VGParamSistem.stockcomp = 1 Then
         If VGParamSistem.kitvirtual = 1 Then
@@ -1043,14 +1043,14 @@ Private Sub Form_Load()
       Else
          Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, "adescri like '" & xdato & "%%' and " & xCondi & "")
      End If
-     Text1 = Escadena(xdato): Text1.SelStart = Len(Trim(Text1))
+     text1 = Escadena(xdato): text1.SelStart = Len(Trim(text1))
      cTraslado.Visible = True
  ElseIf Trim(Escadena(xdata)) = "3" Then
      Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, "adescri like '" & xdato & "%' and stalma='" & FrmCotizacionLibre.Ctr_Ayuda3.xclave & "'")
-     Text1 = Escadena(xdato): Text1.SelStart = Len(Trim(Text1))
+     text1 = Escadena(xdato): text1.SelStart = Len(Trim(text1))
  ElseIf Trim(Escadena(xdata)) = "4" Then
      Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, "adescri like '" & xdato & "%' and stalma='" & FrmTraslado.Ctr_Ayuda1.xclave & "' AND STSKDIS>0")
-     Text1 = Escadena(xdato): Text1.SelStart = Len(Trim(Text1))
+     text1 = Escadena(xdato): text1.SelStart = Len(Trim(text1))
   Else
      Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, xCondi)
   End If
@@ -1169,9 +1169,9 @@ Private Sub Text1_Change()
     Dim posi As Integer
     posi = Combo1.ListIndex + 1
     If Len(Trim(xCondi)) = 0 Then
-       Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, nfiltra(posi, 2) & " Like '%" & Text1 & "%'")
+       Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, nfiltra(posi, 2) & " Like '%" & text1 & "%'")
     Else
-       Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, xCondi & " and " & nfiltra(posi, 2) & " Like '%" & Trim(Text1) & "%'")
+       Call DLLGENERALAYUDA.ListarEnTDBGRID(vcon, xtabla, DGrid1, xCampos, xOrden, nlongi, xCondi & " and " & nfiltra(posi, 2) & " Like '%" & Trim(text1) & "%'")
     End If
     ConfigGrid xtipo
 End Sub
@@ -1181,12 +1181,12 @@ Private Sub Text1_KeyPress(KeyAscii As Integer)
   Dim rs As ADODB.Recordset
   
   If KeyAscii = 13 Then
-     If Len(Trim(Text1)) > 0 Then
+     If Len(Trim(text1)) > 0 Then
         posi = Combo1.ListIndex + 1
         If Len(Trim(xCondi)) = 0 Then
-           Call DLLGENERALAYUDA.ListarEnTDBGRID(VGCNx, xtabla, DGrid1, xCampos, xOrden, nlongi, nfiltra(posi, 2) & " Like '" & Text1 & "%'")
+           Call DLLGENERALAYUDA.ListarEnTDBGRID(VGCNx, xtabla, DGrid1, xCampos, xOrden, nlongi, nfiltra(posi, 2) & " Like '" & text1 & "%'")
         Else
-           Call DLLGENERALAYUDA.ListarEnTDBGRID(VGCNx, xtabla, DGrid1, xCampos, xOrden, nlongi, xCondi & " and " & nfiltra(posi, 2) & " Like '%" & Text1 & "%'")
+           Call DLLGENERALAYUDA.ListarEnTDBGRID(VGCNx, xtabla, DGrid1, xCampos, xOrden, nlongi, xCondi & " and " & nfiltra(posi, 2) & " Like '%" & text1 & "%'")
         End If
      Else
         Call DLLGENERALAYUDA.ListarEnTDBGRID(VGCNx, xtabla, DGrid1, xCampos, xOrden, nlongi, xCondi)
