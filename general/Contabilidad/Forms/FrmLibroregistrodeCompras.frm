@@ -83,7 +83,7 @@ Attribute VB_Exposed = False
 'FIXIT: Utilice Option Explicit para evitar la creación implícita de variables de tipo Variant.     FixIT90210ae-R383-H1984
 Dim RSparCompras As ADODB.Recordset
 
-Private Sub axbAceptar_Click()
+Private Sub axBAceptar_Click()
     Call imprimir
 End Sub
 
@@ -109,7 +109,8 @@ End Sub
 
 Public Sub imprimir()
 'FIXIT: Declare 'arrform' con un tipo de datos de enlace en tiempo de compilación          FixIT90210ae-R1672-R1B8ZE
-Dim arrform(1) As Variant, arrparm(9) As Variant
+Dim arrform(1) As Variant
+Dim arrparm(9) As Variant
 Dim NombreRep As String, CadOrden As String
 Dim mon As String
      '@BASE, @ANNO, @MES, @ASIENTOSPLAN, @CTASPLANCOMP, @CTASIGV
@@ -130,7 +131,7 @@ Dim mon As String
     arrparm(7) = RSparCompras!paramlibauxies
     arrparm(8) = RSparCompras!paramlibauxirenta
     
-    arrform(0) = "periodo='" & VGvardllgen.DesMes(Trim$(VGParamSistem.Mesproceso)) & "'"
+    arrform(0) = "periodo='" & DesMes(Trim$(VGParamSistem.Mesproceso)) & "'"
     NombreRep = "ct_LibroRegistroComprasSunat.rpt"
     CadOrden = ""
     CadOrden = "+{ct_registrocompras_rpt.numauxiliar},"

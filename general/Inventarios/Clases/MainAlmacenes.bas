@@ -67,7 +67,7 @@ Public VGTipCamb As Double        'Tipo de Cambios
 Public VGCodMon As String       'Tipo de Moneda
 'Public VGWrk As Workspace
 'Public VGBaseDatos As Database
-Public VGSALIR As Boolean
+
 Public VGEstadomodi As Boolean    'Estado de modificacion
 Public VGValnuevo  As Boolean           'Para doc valorizados
 Public VGUsua  As String
@@ -153,7 +153,7 @@ Public Type Parametrosdeempresa
     permite_tc As Boolean
     TipoValorizacion As Integer  ' 1: empresa 2' x establecimiento
     
-    multiplespuntovta As Integer
+    multiplesPuntoVta As Integer
  
  VGLongCodigo As Integer    'Inddica la long de codigo de un articulo
  NomEmpresa As String

@@ -38,7 +38,6 @@ Public VGnumnivelescentrocosto As Integer               'Número de Niveles de lo
 Public VG_cNIVELES() As Integer              'Dígitos por Nivel de costos
 Public VGGlosa As String                     'Glosa del Sub Asiento
 Public VGMonSubAsiento As String             'Moneda por defecto del Sub Asiento
-Public VGSalir As Boolean
 Public vGCadenaReport As String    'Cadena de Reportes Base Empresa
 
 Public strvalor As String

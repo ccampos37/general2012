@@ -1,5 +1,5 @@
 FormOcuGui = 0, 0, 0, 0, C, 154, 203, 745, 651, C
-FormAyuArt = 52, 52, 664, 362, , 0, 0, 591, 448, C
+FormAyuArt = 52, 52, 664, 362, Z, 0, 0, 591, 448, C
 FrmKardex = 52, 52, 844, 362, , 22, 29, 613, 477, C
 FormKardexMov = 0, 0, 0, 0, C, 44, 58, 635, 506, C
 FormProValCierre = 0, 0, 0, 0, C, 66, 87, 657, 535, C
@@ -191,4 +191,4 @@ ClassMenu = 78, 78, 870, 388,
 ModificarCampos = 52, 52, 664, 362, 
 FrmRegistro = 0, 0, 612, 310, , 130, 130, 742, 440, C
 ModVarios = 0, 0, 0, 0, C
-FrmAnulaDocumento = 52, 52, 654, 336, Z, 104, 104, 706, 388, C
+FrmAnulaDocumento = 52, 52, 654, 336, , 104, 104, 706, 388, C

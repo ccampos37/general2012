@@ -981,8 +981,6 @@ Private Sub mnu05_05_Click()
 FrmCierremensual.Show 1
 End Sub
 
-
-
 Private Sub mnu06_01_01_Click()
 FrmSunat682.Show
 End Sub

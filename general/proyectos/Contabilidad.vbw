@@ -1,4 +1,4 @@
-MDIPrincipal = 44, 60, 678, 546, Z, 22, 29, 656, 517, C
+MDIPrincipal = 44, 60, 678, 546, , 22, 29, 656, 517, C
 frmantcomprobantes = 110, 145, 967, 485, , 154, 203, 788, 691, C
 ClsMantMov1 = 88, 116, 945, 456, 
 frmRepDiarioGeneral = 0, 0, 792, 310, , 0, 0, 634, 488, C
@@ -78,8 +78,7 @@ ModificarCampos = 0, 0, 611, 284,
 Frmusuarios = 52, 52, 651, 330, , 104, 104, 523, 382, C
 ClassMenu = 0, 0, 0, 0, C
 FrmSunat682 = 0, 0, 591, 284, , 130, 130, 721, 414, C
-FrmLibrosElectPrincipales = 0, 0, 602, 284, , 26, 26, 628, 310, C
-Form2 = 0, 0, 0, 0, C, 52, 52, 654, 336, C
 FrmgenerasaldosAnaliticos = 0, 0, 602, 284, , 130, 130, 732, 414, C
 FrmMntIndicadorOportunidad = 78, 78, 680, 362, , 52, 52, 654, 336, C
-Module1 = 78, 78, 680, 362, 
+ModLibroselectronicos = 78, 78, 680, 362, Z
+FrmLibrosElectPrincipales = 104, 104, 707, 388, , 78, 78, 681, 362, C

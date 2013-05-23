@@ -161,7 +161,7 @@ Attribute VB_Exposed = False
  Dim rs1 As New ADODB.Recordset
  Dim li_aRC As Integer
 Private Sub LlenarLista()
- Dim I As Integer
+ Dim i As Integer
  Dim itmX As ListItem
  Dim rs2 As New ADODB.Recordset
  ListView1.ColumnHeaders.Clear
@@ -171,7 +171,7 @@ Private Sub LlenarLista()
    Set rs1 = Nothing
    Set rs1 = VGCNx.Execute("select * from ct_librossunatcorrelativos where categorialibro=1 ")
    rs1.MoveFirst
-   I = 1
+   i = 1
    Do While Not rs1.EOF
       Set itmX = ListView1.ListItems.Add(, , rs1!librocodigosunat + "  " + rs1!libroCorrelativodescripcion)
       If Check1.Value = 0 Then
@@ -179,14 +179,14 @@ Private Sub LlenarLista()
          SQL = SQL & " and librocodigosunat='" & rs1!librocodigosunat & "'"
          Set rs2 = VGCNx.Execute(SQL)
          If rs2.RecordCount = 0 Then
-              ListView1.ListItems.Item(I + 0).Checked = 0
+              ListView1.ListItems.Item(i + 0).Checked = 0
            Else
-              ListView1.ListItems.Item(I + 0).Checked = rs2!estadoregistro
+              ListView1.ListItems.Item(i + 0).Checked = rs2!estadoregistro
          End If
       Else
-               ListView1.ListItems.Item(I + 0).Checked = 1
+               ListView1.ListItems.Item(i + 0).Checked = 1
       End If
-      I = I + 1
+      i = i + 1
       rs1.MoveNext
    Loop
   End Sub
@@ -210,6 +210,7 @@ Do Until x > rs1.RecordCount
    End If
    x = x + 1
 Loop
+Command1.Visible = False
 End Sub
 
 Private Sub Command2_Click()
